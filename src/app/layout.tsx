@@ -4,23 +4,23 @@ import "swiper/css";
 import "swiper/css/navigation";
 
 export const metadata: Metadata = {
-  title: "Custom Software, Web & Mobile App Development | AmentoTech",
+  title: "Custom Software, Web & Mobile App Development | Greater works technologies",
   description:
-    "AmentoTech is a leading software development company delivering custom web, mobile, and enterprise solutions. We help businesses innovate with scalable technology, expert engineering, and end-to-end digital transformation.",
+    "Greater works technologies is a leading software development company delivering custom web, mobile, and enterprise solutions. We help businesses innovate with scalable technology, expert engineering, and end-to-end digital transformation.",
   openGraph: {
-    title: "Custom Software, Web & Mobile App Development | AmentoTech",
+    title: "Custom Software, Web & Mobile App Development | Greater works technologies",
     description:
-      "AmentoTech is a leading software development company delivering custom web, mobile, and enterprise solutions. We help businesses innovate with scalable technology, expert engineering, and end-to-end digital transformation.",
+      "Greater works technologies is a leading software development company delivering custom web, mobile, and enterprise solutions. We help businesses innovate with scalable technology, expert engineering, and end-to-end digital transformation.",
     images: [
-      "https://cdn.prod.website-files.com/68d276a2319df5bdcc752026/695e355daa28eb4763e492ef_AmentoTech.png",
+      "https://res.cloudinary.com/dsoilebvu/image/upload/v1777048314/logo_kxjvlv.png",
     ],
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Custom Software, Web & Mobile App Development | AmentoTech",
+    title: "Custom Software, Web & Mobile App Development | Greater works technologies",
     description:
-      "AmentoTech is a leading software development company delivering custom web, mobile, and enterprise solutions. We help businesses innovate with scalable technology, expert engineering, and end-to-end digital transformation.",
+      "Greater works technologies is a leading software development company delivering custom web, mobile, and enterprise solutions. We help businesses innovate with scalable technology, expert engineering, and end-to-end digital transformation.",
   },
   verification: {
     google: "k0xE33C6K6KeRfdFUagvQ0oIqV3qXHQJwYes3eVixsM",
