@@ -62,7 +62,17 @@ export default function TestimonialsSection() {
                                     <div className="rating-remarks client-review">Average client rating!</div>
                                 </div>
                                 <div className="seperator client-review" />
-                                <Image src="https://cdn.prod.website-files.com/68d276a2319df5bdcc752026/69440c812b834803ed4f2260_envato-logo-dark.png" loading="lazy" alt="logo" width={80} height={24} className="brand-logo" />
+                                <div className="rating-brand">
+                                    <Image
+                                        src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg"
+                                        width={15}
+                                        height={15}
+                                        loading="lazy"
+                                        alt="Google logo"
+                                        className="rating-brand-icon"
+                                    />
+                                    <span className="rating-brand-text">Google</span>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -94,7 +104,8 @@ export default function TestimonialsSection() {
                                         </div>
                                         <div className="client-review-description">{t.desc}</div>
                                         <div className="client-profile-wrap  mt-20!">
-                                            <Image src="https://cdn.prod.website-files.com/68d276a2319df5bdcc752026/6953e25f2b41648999029475_Avatar.svg" loading="lazy" alt="Client Profile" width={48} height={48} className="client-image" />
+                                            <Image src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" loading="lazy" alt="Client Profile" width={48} height={48} className="client-image" />
+                                            <span className="rating-brand-text">Google</span>
                                             <div className="client-description">
                                                 <h3 className="client-name">{t.name}</h3>
                                                 <div className="client-designation">{t.designation}</div>
@@ -108,6 +119,23 @@ export default function TestimonialsSection() {
                 </div>
             </section>
             <style>{`
+                .rating-brand {
+                    display: inline-flex;
+                    align-items: center;
+                    gap: 6px;
+                }
+                .rating-brand-icon {
+                    width: 36px;
+                    height: 36px;
+                    flex-shrink: 0;
+                }
+                .rating-brand-text {
+                    color: #525252ff;
+                    font-family: "DM Sans", sans-serif;
+                    font-size: 24px;
+                    font-weight: 700;
+                    line-height: 1;
+                }
                 .clients-slider-wrap:active {
                     cursor: grabbing;
                 }
