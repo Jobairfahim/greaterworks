@@ -214,6 +214,7 @@ export default function ContactSection() {
                 }
                 .radio-button.w--redirected-checked:before {
                     opacity: 1;
+                    border-radius: 50%;
                 }
                 .contact-form-select.service-form-field {
                     background-position: right 32px center;
@@ -221,6 +222,7 @@ export default function ContactSection() {
                 .service-radio-wrap .radio-button {
                     width: 28px;
                     height: 28px;
+                    border-radius: 50%;
                 }
                 .service-radio-wrap .radio-button.w--redirected-checked {
                     background-color: #9433e9;
@@ -230,6 +232,7 @@ export default function ContactSection() {
                 }
                 .service-radio-wrap .radio-button::before {
                     background: #fff;
+                    border-radius: 50%;
                 }
                 @media (max-width: 767px) {
                     .service-radio-wrap .radio-button {

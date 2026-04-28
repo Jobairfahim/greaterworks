@@ -32,7 +32,7 @@ export default function Home() {
                         <StaffAugmentationSection />
                         <TestimonialsSection />
                         <ContactSection />
-                        <CTASection />
+                       
                     </main>
                     
                 </div>
