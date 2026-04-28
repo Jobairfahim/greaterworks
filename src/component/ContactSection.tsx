@@ -223,9 +223,12 @@ export default function ContactSection() {
                     width: 28px;
                     height: 28px;
                     border-radius: 50%;
+                    border: 2px solid #d1d5db;
+                    background-color: #fff;
                 }
                 .service-radio-wrap .radio-button.w--redirected-checked {
                     background-color: #9433e9;
+                    border-color: #9433e9;
                 }
                 .service-radio-wrap .radio-button.w--redirected-checked ~ span {
                     color: var(--heading);
