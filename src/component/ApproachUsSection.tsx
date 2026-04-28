@@ -93,7 +93,7 @@ export default function ApproachUsSection() {
                     flex-shrink: 0;
                 }
                 .rating-brand-text {
-                    color: #ffffffff;
+                    color: #f7f7f7ff;
                     font-family: "DM Sans", sans-serif;
                     font-size: 24px;
                     font-weight: 700;

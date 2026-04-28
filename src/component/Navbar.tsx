@@ -268,12 +268,12 @@ export default function Navbar() {
                                                     />
                                                 </div>
                                                 <Link
-                                                    href="mailto:sales@amentotech.com"
+                                                    href="mailto:sales@greaterworks.tech"
                                                     className="link-2 menu-contact-us-card-link"
                                                 >
                                                     Talk To Sales{" "}
                                                     <span className="menu-contact-us-card-link-info menu-contact-us-card-link-info-header">
-                                                        sales@amentotech.com
+                                                        sales@greaterworks.tech
                                                     </span>
                                                 </Link>
                                             </div>
@@ -399,7 +399,7 @@ export default function Navbar() {
                         <Dropdown className="mega-menu-wrap-dropdown">
                             <DropdownToggle>
                                 <div className="link-text-wrap">
-                                    <p className="nav-item-title nav-title-white">Hire talent</p>
+                                    <p className="nav-item-title nav-title-white">Our Solutions</p>
                                 </div>
                                 <svg
                                     className="nav-dropdown-icon nav-dropdown-icon-white w-icon-dropdown-toggle"
@@ -505,7 +505,7 @@ export default function Navbar() {
                             target="_blank"
                             className="nav-link nav-title-white w-nav-link"
                         >
-                            Careers
+                            Insights 
                         </Link>
                     </nav>
                     <div className="div-block-3 contact-us header-contact-us">
@@ -801,7 +801,7 @@ export default function Navbar() {
                                     <polyline points="6 9 12 15 18 9" />
                                 </svg>
                                 <div className="link-text-wrap">
-                                    <p className="nav-item-title">Hire talent</p>
+                                    <p className="nav-item-title">Our Solutions</p>
                                 </div>
                                 <div className="nav-hover" />
                             </button>
@@ -898,7 +898,7 @@ export default function Navbar() {
                             target="_blank"
                             className="nav-link w-nav-link"
                         >
-                            Careers
+                            Insights 
                         </Link>
                         <div className="div-block-3 contact-us">
                             <Link href="/contact-us" className="link-block w-inline-block">

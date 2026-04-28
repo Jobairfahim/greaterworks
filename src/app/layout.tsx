@@ -2,6 +2,10 @@ import type { Metadata } from "next";
 import "./globals.css";
 import "swiper/css";
 import "swiper/css/navigation";
+import Navbar from "@/component/Navbar";
+import CTASection from "@/component/CTASection";
+import Footer from "@/component/Footer";
+import FloatingCTA from "@/component/FloatingCTA";
 
 export const metadata: Metadata = {
   title: "Custom Software, Web & Mobile App Development | Greater works technologies",
@@ -45,7 +49,11 @@ export default function RootLayout({
 
       </head>
       <body>
+        <Navbar />
         {children}
+        <CTASection />
+        <FloatingCTA />
+        <Footer />
       </body>
     </html>
   );

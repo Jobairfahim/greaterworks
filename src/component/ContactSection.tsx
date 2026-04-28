@@ -45,24 +45,24 @@ export default function ContactSection() {
                                         <Image src="https://cdn.prod.website-files.com/68d276a2319df5bdcc752026/68e4b7bde312a6e238715c90_email.svg" loading="lazy" alt="Icon" width={20} height={20} className="contact-us-schedule-icon" />
                                     </Link>
                                     <div className="contact-us-ceo-name-title">
-                                        <p className="from-prefer-email service-page">Talk To Sales <Link href="mailto:sales@amentotech.com" className="link-3 service-link">sales@amentotech.com</Link></p>
+                                        <p className="from-prefer-email service-page">Talk To Sales <Link href="mailto:sales@greaterworks.tech  " className="link-3 service-link">sales@greaterworks.tech</Link></p>
                                     </div>
                                 </div>
-                                <div className={`contact-us-schedule staff-contact-us-schedule ${engagementType === "Staff Augmentation" ? "is-active" : ""}`}>
+                                <div className={`contact-us-schedule staff-contact-us-schedule ${engagementType === "Custom Product Development" ? "is-active" : ""}`}>
                                     <Link href="https://cal.com/amentotech/30min" target="_blank" className="contact-us-schedule-icon-wrap staff-contact-us-schedule-icon-wrap w-inline-block">
                                         <Image src="https://cdn.prod.website-files.com/68d276a2319df5bdcc752026/6941678ff02622c117747807_information-icon.png" loading="lazy" alt="Icon" width={20} height={20} className="contact-us-schedule-icon" />
                                     </Link>
                                     <div className="contact-us-ceo-name-title">
-                                        <p className="from-prefer-email staff-description"><span className="text-span-20">Staff Augmentation</span>Scale your internal team instantly with vetted developers, designers, QA engineers, and PMs. You keep full control while we provide the talent and expertise you need.</p>
+                                        <p className="from-prefer-email staff-description"><span className="text-span-20">Custom Product Development </span>Turn your ideas into fully functional digital products. We design and build tailored solutions that align with your goals, from initial concept to final launch.</p>
                                     </div>
                                 </div>
-                                <div className={`contact-us-schedule teams-contact-us-schedule ${engagementType === "Dedicated Teams" ? "is-active" : ""}`}>
+                                <div className={`contact-us-schedule teams-contact-us-schedule ${engagementType === "End-to-End Product Delivery" ? "is-active" : ""}`}>
                                     <Link href="https://cal.com/amentotech/30min" target="_blank" className="contact-us-schedule-icon-wrap staff-contact-us-schedule-icon-wrap w-inline-block">
                                         <Image src="https://cdn.prod.website-files.com/68d276a2319df5bdcc752026/6941678ff02622c117747807_information-icon.png" loading="lazy" alt="Icon" width={20} height={20} className="contact-us-schedule-icon" />
                                     </Link>
                                     <div className="contact-us-ceo-name-title">
-                                        <div className="link-3 staff-title">Dedicated Teams</div>
-                                        <p className="from-prefer-email staff-description">Get a full, cross-functional team fully aligned with your goals and processes. They operate as an extension of your organization, focused exclusively on your project&apos;s success.</p>
+                                        <div className="link-3 staff-title">End-to-End Product Delivery</div>
+                                        <p className="from-prefer-email staff-description">We manage the entire product lifecycle, from planning and design to development and deployment, ensuring a seamless and efficient delivery process.</p>
                                     </div>
                                 </div>
                                 <div className={`contact-us-schedule project-contact-us-schedule ${engagementType === "Fixed Project" ? "is-active" : ""}`}>
@@ -130,7 +130,7 @@ export default function ContactSection() {
                                     <div className="form-group service-form-group engagement-type">
                                         <p className="from-group-title service-form-title">Engagement type</p>
                                         <div className="radio-wrap service-radio-wrap">
-                                            {["Staff Augmentation", "Dedicated Teams", "Fixed Project"].map((type) => (
+                                            {["Custom Product Development", "End-to-End Product Delivery", "Fixed Project"].map((type) => (
                                                 <label key={type} className="radio-button-field service-radio-field w-radio">
                                                     <input
                                                         type="radio"

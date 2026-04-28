@@ -27,7 +27,7 @@ export default function ServicesSection() {
                         </div>
                         <div className="title title-two">
                             <h2 className="title-h2-2 title-h2-two">IT Solutions That Propel Your Business Forward</h2>
-                            <p className="section-title-description">At AmentoTech, we lead change with technology consulting and advanced software solutions. We help businesses embrace digital transformation through cloud solutions, enterprise software, and AI development.</p>
+                            <p className="section-title-description">At Greater Works Technologies, we lead change with technology consulting and advanced software solutions. We help businesses embrace digital transformation through cloud solutions, enterprise software, and AI development.</p>
                         </div>
                     </div>
                     <div className="our-service-wrapper">

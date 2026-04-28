@@ -44,6 +44,12 @@ const industries = [
         items: ["Property listing platforms", "Real estate CRM integration", "Virtual property tours", "Real estate transaction management systems", "Real-time property valuation tools"],
     },
     {
+        title: "Fashion",
+        icon: "https://res.cloudinary.com/dsoilebvu/image/upload/v1777061148/fashion_xjz7wh.svg",
+        bg: "https://cdn.prod.website-files.com/68d276a2319df5bdcc752026/69493aa5788b5d7fb9065d4e_fashion.png",
+        items: ["Virtual try-on solutions", "Fashion e-commerce platforms", "Inventory management for fashion", "Trend forecasting analytics", "Custom design visualization tools"],
+    },
+    {
         title: "Blockchain",
         icon: "https://res.cloudinary.com/dsoilebvu/image/upload/v1777061595/block_zyz4vf.svg",
         bg: "https://cdn.prod.website-files.com/68d276a2319df5bdcc752026/69493aa5788b5d7fb9065d4e_blockchain.png",

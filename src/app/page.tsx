@@ -20,7 +20,7 @@ export default function Home() {
             <Preloader />
             <div className="smooth-wrapper">
                 <div className="smooth-content">
-                    <Navbar />
+                   
                     <main>
                         <HeroSection />
                         <ApproachUsSection />
@@ -34,8 +34,7 @@ export default function Home() {
                         <ContactSection />
                         <CTASection />
                     </main>
-                    <FloatingCTA />
-                    <Footer />
+                    
                 </div>
             </div>
         </>

@@ -6537,7 +6537,7 @@ figure {
 }
 
 .logo-footer-image {
-  width: 80%;
+  width: 140px;
   max-width: 100%;
   height: auto;
 }
@@ -15673,7 +15673,7 @@ figure {
 }
 
 .button-primary-dark:hover {
-  background-color: #479839;
+  background-color: #6b21a8;
 }
 
 .button-primary-dark.portfolio-primary-btn {
@@ -16377,8 +16377,8 @@ figure {
 
 .button-primary-3:hover {
   color: #fff;
-  background-color: #9433e9;
-  border: 1px #9433e9;
+  background-color: #6b21a8;
+  border: 1px #6b21a8;
 }
 
 .button-primary-3.hero-banner {
@@ -16386,7 +16386,7 @@ figure {
 }
 
 .button-primary-3.hero-banner:hover {
-  background-color: #479839;
+  background-color: #6b21a8;
 }
 
 .button-primary-3.discussion-cta {
@@ -16396,7 +16396,7 @@ figure {
 }
 
 .button-primary-3.discussion-cta:hover {
-  background-color: #479839;
+  background-color: #6b21a8;
 }
 
 .hero-banner-title {
@@ -17283,8 +17283,8 @@ figure {
 
 .button-primary-5:hover {
   color: #fff;
-  background-color: #9433e9;
-  border: 1px #9433e9;
+  background-color: #6b21a8;
+  border: 1px #6b21a8;
 }
 
 .button-primary-5.service-button-primary {
@@ -18628,7 +18628,7 @@ figure {
   }
 
   .logo-footer-image {
-    width: 80%;
+    width: 140px;
   }
 
   .footer-links-header {
@@ -21733,7 +21733,7 @@ figure {
   }
 
   .logo-footer-image {
-    width: auto;
+    width: 140px;
   }
 
   .footer-links-header {
