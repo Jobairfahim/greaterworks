@@ -10,9 +10,7 @@ import CaseStudySection from "@/component/CaseStudySection";
 import StaffAugmentationSection from "@/component/StaffAugmentationSection";
 import TestimonialsSection from "@/component/TestimonialsSection";
 import ContactSection from "@/component/ContactSection";
-import CTASection from "@/component/CTASection";
-import Footer from "@/component/Footer";
-import FloatingCTA from "@/component/FloatingCTA";
+
 
 export default function Home() {
     return (
