@@ -1,4 +1,5 @@
 import ContactSection from "@/component/ContactSection";
+import { ServiceFaqAccordion } from "@/component/ServiceFaqAccordion";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -896,74 +897,33 @@ export default function CustomSoftwareDevelopmentPage() {
                 <p className="section-title-description service-faq-description">
                   If you have other questions or want to know anything else feel free to reach out
                   at:{" "}
-                  <a href="mailto:sales@amentotech.com" className="faq-heading-description-link">
-                    sales@amentotech.com
+                  <a href="mailto:sales@greaterworks.tech" className="faq-heading-description-link">
+                    sales@greaterworks.tech
                   </a>
                 </p>
               </div>
             </div>
 
-            <div className="w-layout-vflex accordion-wrap service-accordion-wrap">
-              {[
+            <ServiceFaqAccordion
+              items={[
                 {
                   q: "How long does a custom software project take?",
                   a: "Timelines vary depending on complexity but typically range from 3 to 9 months.",
-                  open: true,
                 },
                 {
                   q: "How much does it cost to build software?",
                   a: "Costs depend on features, technology stack, and engagement model. We provide transparent estimates after the discovery phase.",
-                  open: false,
                 },
                 {
                   q: "Do you offer ongoing support?",
                   a: "Yes, we offer long-term maintenance, upgrades, and technical assistance.",
-                  open: false,
                 },
                 {
                   q: "How do you ensure software security?",
                   a: "We follow global compliance standards (ISO, GDPR, HIPAA) with advanced encryption and data protection.",
-                  open: false,
                 },
-              ].map((faq) => (
-                <div key={faq.q} className="accordion-panel-card">
-                  <div
-                    data-click="accordionwrap"
-                    className={`accordion-panel-title-wrap${faq.open ? " open" : ""} service-accordion-panel-title-wrap`}
-                  >
-                    <h3 className="accordion-panel-title service-accordion-panel-title">
-                      {faq.q}
-                    </h3>
-                    <div className="accordion-panel-title-icon-wrap">
-                      <Image
-                        src="https://cdn.prod.website-files.com/68d276a2319df5bdcc752026/694011d3bc5973f861427aea_minus-icon.svg"
-                        alt="icon"
-                        width={16}
-                        height={16}
-                        className={`accordion-panel-title-icon-close${faq.open ? " accordion-panel-title-icon-close-two" : ""}`}
-                      />
-                      <Image
-                        src="https://cdn.prod.website-files.com/68d276a2319df5bdcc752026/694011fba4478e87df631290_plus-icon.svg"
-                        alt="icon"
-                        width={16}
-                        height={16}
-                        className={`accordion-panel-title-icon${faq.open ? " accordion-panel-title-icon-two" : ""}`}
-                      />
-                    </div>
-                  </div>
-                  <div
-                    className={`accordion-panel-content${faq.open ? " service-accordion-content" : ""}`}
-                    style={faq.open ? {} : { height: "0px" }}
-                  >
-                    <div className="accordion-panel-content-description service-accordion-panel-content-desc">
-                      <p className="accordion-panel-content-wrap service-accordion-panel-description">
-                        {faq.a}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
+              ]}
+            />
           </div>
         </div>
       </div>

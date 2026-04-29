@@ -34426,27 +34426,40 @@ body:has(.preloader.amt-loading[style*="display: none"]) {
     z-index: 1001;
   }
 
-  /* Slide-in panel */
+  /* Top sheet: slides down from below the status bar */
   .nav-menu-wrapper-responsive .nav-menu-2 {
     position: fixed;
     top: 0;
     left: 0;
-    bottom: 0;
-    width: min(320px, 85vw);
+    right: 0;
+    bottom: auto;
+    width: 100%;
+    max-width: 100%;
+    max-height: 100vh;
+    max-height: 100dvh;
+    height: auto;
+    min-height: 0;
     background: #ffffff;
     z-index: 999;
     flex-direction: column;
-    padding: 72px 20px 32px;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: max(72px, calc(env(safe-area-inset-top, 0px) + 56px)) 20px 32px;
+    padding-bottom: max(32px, env(safe-area-inset-bottom, 0px));
     overflow-y: auto;
     overflow-x: hidden;
-    transform: translateX(-100%);
+    -webkit-overflow-scrolling: touch;
+    transform: translateY(-100%);
     transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
     display: flex;
     gap: 0;
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12);
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px;
   }
 
   .nav-menu-wrapper-responsive .nav-menu-2.w--nav-menu-open {
-    transform: translateX(0);
+    transform: translateY(0);
   }
 
   /* Hamburger button — always above the panel */
@@ -34515,7 +34528,7 @@ body:has(.preloader.amt-loading[style*="display: none"]) {
   }
 
   .nav-menu-wrapper-responsive .dropdown.w--open .w-dropdown-list {
-    max-height: 1500px;
+    max-height: min(3200px, 92vh);
     padding: 8px 0 16px;
   }
 

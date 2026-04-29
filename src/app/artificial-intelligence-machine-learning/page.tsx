@@ -1,5 +1,6 @@
 import ContactSection from "@/component/ContactSection";
 import ImpactSection from "@/component/ImpactSection";
+import { ServiceFaqAccordion } from "@/component/ServiceFaqAccordion";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -782,79 +783,38 @@ export default function MobileAppDevelopmentPage() {
                 <p className="section-title-description service-faq-description">
                   If you have other questions or want to know anything else feel free to reach out
                   at:{" "}
-                  <a href="mailto:sales@amentotech.com" className="faq-heading-description-link">
-                    sales@amentotech.com
+                  <a href="mailto:sales@greaterworks.tech" className="faq-heading-description-link">
+                    sales@greaterworks.tech
                   </a>
                 </p>
               </div>
             </div>
 
-            <div className="w-layout-vflex accordion-wrap service-accordion-wrap">
-              {[
+            <ServiceFaqAccordion
+              cdnBase={CDN}
+              items={[
                 {
                   q: "Do you build apps for both iOS and Android?",
                   a: "Yes, we develop for both platforms, natively or through cross-platform frameworks.",
-                  open: true,
                 },
                 {
                   q: "Can you integrate third-party APIs or legacy systems?",
                   a: "Absolutely. Our team specializes in seamless integrations and system modernization.",
-                  open: false,
                 },
                 {
                   q: "What is the typical cost and timeline for a mobile app?",
                   a: "It depends on complexity and scope — we provide a tailored estimate after discovery.",
-                  open: false,
                 },
                 {
                   q: "Do you handle publishing to app stores?",
                   a: "Yes, we manage testing, submission, and deployment for both the App Store and Play Store.",
-                  open: false,
                 },
                 {
                   q: "Do you offer maintenance and post-launch support?",
                   a: "Yes, ongoing monitoring, updates, and scaling support are part of every engagement.",
-                  open: false,
                 },
-              ].map((faq) => (
-                <div key={faq.q} className="accordion-panel-card">
-                  <div
-                    data-click="accordionwrap"
-                    className={`accordion-panel-title-wrap${faq.open ? " open" : ""} service-accordion-panel-title-wrap`}
-                  >
-                    <h3 className="accordion-panel-title service-accordion-panel-title">
-                      {faq.q}
-                    </h3>
-                    <div className="accordion-panel-title-icon-wrap">
-                      <Image
-                        src={`${CDN}/694011d3bc5973f861427aea_minus-icon.svg`}
-                        alt="icon"
-                        width={16}
-                        height={16}
-                        className={`accordion-panel-title-icon-close${faq.open ? " accordion-panel-title-icon-close-two" : ""}`}
-                      />
-                      <Image
-                        src={`${CDN}/694011fba4478e87df631290_plus-icon.svg`}
-                        alt="icon"
-                        width={16}
-                        height={16}
-                        className={`accordion-panel-title-icon${faq.open ? " accordion-panel-title-icon-two" : ""}`}
-                      />
-                    </div>
-                  </div>
-                  <div
-                    className={`accordion-panel-content${faq.open ? " service-accordion-content" : ""}`}
-                    style={faq.open ? {} : { height: "0px" }}
-                  >
-                    <div className="accordion-panel-content-description service-accordion-panel-content-desc">
-                      <p className="accordion-panel-content-wrap service-accordion-panel-description">
-                        {faq.a}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
+              ]}
+            />
           </div>
         </div>
       </div>

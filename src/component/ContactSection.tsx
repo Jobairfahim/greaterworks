@@ -45,7 +45,7 @@ export default function ContactSection() {
                                         <Image src="https://cdn.prod.website-files.com/68d276a2319df5bdcc752026/68e4b7bde312a6e238715c90_email.svg" loading="lazy" alt="Icon" width={20} height={20} className="contact-us-schedule-icon" />
                                     </Link>
                                     <div className="contact-us-ceo-name-title">
-                                        <p className="from-prefer-email service-page">Talk To Sales <Link href="mailto:sales@greaterworks.tech  " className="link-3 service-link">sales@greaterworks.tech</Link></p>
+                                        <p className="from-prefer-email service-page">Talk To Sales <Link href="mailto:sales@greaterworks.tech" className="link-3 service-link">sales@greaterworks.tech</Link></p>
                                     </div>
                                 </div>
                                 <div className={`contact-us-schedule staff-contact-us-schedule ${engagementType === "Custom Product Development" ? "is-active" : ""}`}>

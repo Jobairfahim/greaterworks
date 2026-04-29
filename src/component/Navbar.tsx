@@ -650,12 +650,12 @@ export default function Navbar() {
                                                     />
                                                 </div>
                                                 <Link
-                                                    href="mailto:sales@amentotech.com"
+                                                    href="mailto:sales@greaterworks.tech"
                                                     className="link-2 menu-contact-us-card-link"
                                                 >
                                                     Talk To Sales{" "}
                                                     <span className="menu-contact-us-card-link-info menu-contact-us-card-link-info-header">
-                                                        sales@amentotech.com
+                                                        sales@greaterworks.tech
                                                     </span>
                                                 </Link>
                                             </div>
@@ -1123,24 +1123,34 @@ export default function Navbar() {
                     .navbar-2[data-collapse="medium"] .nav-menu-wrapper-responsive .nav-menu-2 {
                         display: flex !important;
                     }
+                    /* Full-width panel slides down from the top */
                     .nav-menu-wrapper-responsive .nav-menu-2 {
                         position: fixed;
                         top: 0;
                         left: 0;
                         right: 0;
+                        bottom: auto;
                         width: 100%;
-                        max-height: 60vh;
+                        max-width: 100%;
+                        max-height: 100vh;
+                        max-height: 100dvh;
+                        height: auto;
+                        min-height: 0;
                         background: #ffffff;
                         z-index: 1000;
                         flex-direction: column;
-                        padding: 60px 20px 20px 20px;
+                        align-items: flex-start !important;
+                        justify-content: flex-start !important;
+                        padding: max(72px, calc(env(safe-area-inset-top, 0px) + 56px)) 20px
+                            max(32px, env(safe-area-inset-bottom, 0px));
                         overflow-y: auto;
                         overflow-x: hidden;
+                        -webkit-overflow-scrolling: touch;
                         transform: translateY(-100%);
                         transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
                         display: flex;
                         gap: 0;
-                        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+                        box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12);
                         border-bottom-left-radius: 12px;
                         border-bottom-right-radius: 12px;
                     }
@@ -1202,7 +1212,7 @@ export default function Navbar() {
                         padding: 0;
                     }
                     .nav-menu-wrapper-responsive .dropdown.w--open .w-dropdown-list {
-                        max-height: 1500px;
+                        max-height: min(3200px, 92vh);
                         padding: 8px 0 16px;
                     }
                     .nav-menu-wrapper-responsive .dropdown.w--open .nav-dropdown-icon {
@@ -1251,10 +1261,6 @@ export default function Navbar() {
                         align-items: flex-start !important;
                         padding: 14px 0;
                         border-bottom: 1px solid rgba(0, 0, 0, 0.08);
-                    }
-                    .nav-menu-wrapper-responsive .nav-menu-2 {
-                        align-items: flex-start !important;
-                        justify-content: flex-start !important;
                     }
                 }
                 @media only screen and (min-width: 992px) and (max-width: 1280px) {

@@ -72,7 +72,7 @@ export default function Footer() {
                                         <div className="contact-us-card-icon">
                                             <Image src="https://cdn.prod.website-files.com/68d276a2319df5bdcc752026/68e4b7bde312a6e238715c90_email.svg" alt="icon" width={20} height={20} className="image-22" />
                                         </div>
-                                        <Link href="mailto:sales@amentotech.com" className="link-2">Talk To Sales <span className="menu-contact-us-card-link-info">sales@greaterworkstech.com</span></Link>
+                                        <Link href="mailto:sales@greaterworks.tech" className="link-2">Talk To Sales <span className="menu-contact-us-card-link-info">sales@greaterworks.tech</span></Link>
                                     </div>
                                 </div>
                                 <div className="footer-header-card">
