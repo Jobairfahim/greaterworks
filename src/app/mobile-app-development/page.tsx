@@ -1,4 +1,5 @@
 import ContactSection from "@/component/ContactSection";
+import ImpactSection from "@/component/ImpactSection";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -147,7 +148,7 @@ export default function CustomSoftwareDevelopmentPage() {
             <div className="award-winning">
               <Image
                 alt="Marquee Image"
-                src="https://res.cloudinary.com/dsoilebvu/image/upload/v1777048239/rating-l_ngsvxg.svg"
+                src="https://cdn.prod.website-files.com/68d276a2319df5bdcc752026/6937d7440f57acbe2b3fb811_award-shade.svg"
                 width={40}
                 height={40}
                 className="award-winning-shade-img"
@@ -157,7 +158,7 @@ export default function CustomSoftwareDevelopmentPage() {
               </p>
               <Image
                 alt="Marquee Image"
-                src="https://res.cloudinary.com/dsoilebvu/image/upload/v1777048240/rating-r_vlkuz4.svg"
+                src="https://cdn.prod.website-files.com/68d276a2319df5bdcc752026/6937d852b619fec95dcec38d_award-shade-right.svg"
                 width={40}
                 height={40}
                 className="award-winning-shade-img"
@@ -268,7 +269,7 @@ export default function CustomSoftwareDevelopmentPage() {
                             <div className="button-text active-button-text">Start a project</div>
                             <div className="arrows-container cta">
                               <Image
-                                src="https://res.cloudinary.com/dsoilebvu/image/upload/v1777064837/arrow-up_ktln9z.svg"
+                                src="https://cdn.prod.website-files.com/68d276a2319df5bdcc752026/68dd0ede1e60a7db30b19932_arrow-top-right.svg"
                                 alt="icon"
                                 width={16}
                                 height={16}
@@ -307,7 +308,7 @@ export default function CustomSoftwareDevelopmentPage() {
                 <div className="button-text active-button-text">Book a meeting</div>
                 <div className="arrows-container cta tagline-button-icon">
                   <Image
-                    src="https://res.cloudinary.com/dsoilebvu/image/upload/v1777064837/arrow-up_ktln9z.svg"
+                    src="https://cdn.prod.website-files.com/68d276a2319df5bdcc752026/68dd0ede1e60a7db30b19932_arrow-top-right.svg"
                     alt="icon"
                     width={16}
                     height={16}
@@ -400,122 +401,7 @@ export default function CustomSoftwareDevelopmentPage() {
       </section>
 
       {/* ── OUR IMPACT ──────────────────────────────────────────────────── */}
-      <section className="our-impact">
-        <div className="w-layout-blockcontainer container-3 w-container">
-          <div className="section-head section-head-two">
-            <div className="section-head-content-subtitle subtitle-primary-content">
-              <div className="section-head-subtitle-dot" />
-              <p className="section-head-subtitle-content subtitle-primary-content">
-                Impact that speaks for Itself
-              </p>
-            </div>
-            <div
-              id="w-node-_91e32355-7776-50bb-abb0-7dd1d2bcce8f-d2bcce88"
-              className="title title-two"
-            >
-              <h2 className="title-h2 title-h2-two why-choose-us-title-h2">
-                From Concept to Industry Impact, We Build World Class Experiences
-              </h2>
-              <div className="button-wrap service-banner-button none">
-                <Link href="/contact-us" className="button-primary-dark w-inline-block">
-                  <div className="text-block-12">Get in touch</div>
-                  <Image
-                    alt="arrow-top-right"
-                    src="https://cdn.prod.website-files.com/68d276a2319df5bdcc752026/68dd105094d90e0a289e4185_arrow-top-right-white.svg"
-                    width={16}
-                    height={16}
-                    className="button-icon"
-                  />
-                </Link>
-                <Link href="/contact-us" className="button-secondary-dark w-inline-block">
-                  <div className="button-secondary-dark-text">Book a meeting</div>
-                  <div className="arrows-container cta">
-                    <Image
-                      src="https://cdn.prod.website-files.com/68d276a2319df5bdcc752026/6937e4382716cdf25ad0f3d5_date-icon-light.svg"
-                      alt="Icon"
-                      width={16}
-                      height={16}
-                      className="arrow-button _16"
-                    />
-                    <Image
-                      src="https://cdn.prod.website-files.com/68d276a2319df5bdcc752026/6937e33ae69eb8ce6ab3de51_date-icon-dark.svg"
-                      alt="Icon"
-                      width={16}
-                      height={16}
-                      className="dark-arrow _16"
-                    />
-                  </div>
-                </Link>
-              </div>
-            </div>
-          </div>
-
-          <ul role="list" className="quality-stats-list-two">
-            {[
-              { label: "Years of experience", target: 10, suffix: "+", desc: "Years of experience building custom software solutions." },
-              { label: "Client retention rate", target: 98, suffix: "%", desc: "Client retention rate, & longterm partnerships built on trust." },
-              { label: "Projects delivered", target: 300, suffix: "+", desc: "Projects delivered successfully across various industries." },
-              { label: "Users worldwide", target: 50, suffix: "M+", desc: "Empowering 50M+ users with seamless digital experiences" },
-            ].map((s, i) => (
-              <li key={s.label} className="quality-stats-item-two">
-                <div className={`quality-stats-card-two${i === 3 ? " last-item" : ""}`}>
-                  <p className="quality-stats-card-title-two">{s.label}</p>
-                  <p className="quality-stats-card-counter">
-                    <span
-                      data-suffix={s.suffix}
-                      data-target={String(s.target)}
-                      className="amt-counter amt-counter-two"
-                    >
-                      {s.target}{s.suffix}
-                    </span>
-                  </p>
-                  <p className="quality-stats-card-info-two">{s.desc}</p>
-                </div>
-              </li>
-            ))}
-          </ul>
-
-          <div className="button-wrap service-banner-button v2">
-            <Link
-              href="/contact-us"
-              className="button-primary-dark button-primary-dark-responsive w-inline-block"
-            >
-              <div className="text-block-12 text-block-12-responsive">Start a project</div>
-              <Image
-                alt="arrow-top-right"
-                src="https://cdn.prod.website-files.com/68d276a2319df5bdcc752026/68dd105094d90e0a289e4185_arrow-top-right-white.svg"
-                width={16}
-                height={16}
-                className="button-icon"
-              />
-            </Link>
-            <Link
-              href="/contact-us"
-              className="button-secondary-dark button-secondary-dark-responsive w-inline-block"
-            >
-              <div className="button-secondary-dark-text button-secondary-dark-text-responsive">
-                Book a meeting
-              </div>
-              <div className="arrows-container cta">
-                <Image
-                  src="https://cdn.prod.website-files.com/68d276a2319df5bdcc752026/6937e4382716cdf25ad0f3d5_date-icon-light.svg"
-                  alt="Icon"
-                  width={16}
-                  height={16}
-                  className="arrow-button _16 v2"
-                />
-                <Image
-                  src="https://cdn.prod.website-files.com/68d276a2319df5bdcc752026/6937e33ae69eb8ce6ab3de51_date-icon-dark.svg"
-                  alt="Icon"
-                  width={16}
-                  height={16}
-                  className="dark-arrow _16"
-                />
-              </div>
-            </Link>
-          </div>
-        </div>
-      </section>
+      <ImpactSection />
 
       {/* ── PORTFOLIO ───────────────────────────────────────────────────── */}
       <section className="section portfolio-section">
@@ -812,17 +698,17 @@ export default function CustomSoftwareDevelopmentPage() {
                 {[
                   {
                     name: "Raustyle",
-                    role: "Google Customer",
+                    role: "Envato Customer",
                     text: "The most extensive and well-designed theme of this type that I've seen available. Constantly updated, great support, feature requests added to the theme and constantly getting better. Really hope it keeps improving and evolving for a long time. Great work!",
                   },
                   {
                     name: "paulthinkgrow",
-                    role: "Google Customer",
+                    role: "Envato Customer",
                     text: "Very GREAT customer support. I am blown away. Great price for the template and very beautiful. I contacted support for something I thought was impossible and they were so kind and helped me without any hesitation. Thank you so much.",
                   },
                   {
                     name: "BuxRecord",
-                    role: "Google Customer",
+                    role: "Envato Customer",
                     text: "Great job. I have use many other freelancers script theme, fiverr clone script and theme since years, and no one like this in design, and features. So i decide to remove previous script from my domain and install workreap. Now i am happy. Thanks for your support too",
                   },
                 ].map((t) => (
@@ -832,7 +718,7 @@ export default function CustomSoftwareDevelopmentPage() {
                         {[...Array(5)].map((_, i) => (
                           <Image
                             key={i}
-                            src="https://res.cloudinary.com/dsoilebvu/image/upload/v1777057659/star_o6pixh.svg"
+                            src="https://cdn.prod.website-files.com/68d276a2319df5bdcc752026/693ff758fbcd58bad0d563bc_star.svg"
                             loading="lazy"
                             alt="star-svg"
                             width={16}
@@ -844,7 +730,7 @@ export default function CustomSoftwareDevelopmentPage() {
                       <p className="testimonial-description">{t.text}</p>
                       <div className="testimonial-profile-content">
                         <Image
-                          src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg"
+                          src="https://cdn.prod.website-files.com/68d276a2319df5bdcc752026/6953e25f2b41648999029475_Avatar.svg"
                           loading="lazy"
                           alt="Client Profile Image"
                           width={48}
