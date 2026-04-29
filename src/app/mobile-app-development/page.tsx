@@ -3,7 +3,9 @@ import ImpactSection from "@/component/ImpactSection";
 import Image from "next/image";
 import Link from "next/link";
 
-export default function CustomSoftwareDevelopmentPage() {
+const CDN = "https://cdn.prod.website-files.com/68d276a2319df5bdcc752026";
+
+export default function MobileAppDevelopmentPage() {
   return (
     <>
       {/* ── SERVICE BANNER ─────────────────────────────────────────────── */}
@@ -15,18 +17,18 @@ export default function CustomSoftwareDevelopmentPage() {
               <p className="section-head-subtitle-content">Booking for Q1 2026</p>
             </div>
             <h2 className="banner-title-2 service-banner-content-title">
-              Custom Software Development Built for Innovation &amp; Growth
+              We Build World Class Mobile Experiences, Not Just Apps
             </h2>
             <p className="service-banner-content-description">
-              Beyond Code, Delivering Impact! We don&apos;t just build apps, we create solutions
-              that drive business results and delight users.
+              We design and develop mobile applications that don&apos;t just meet business goals,
+              they create lasting digital relationships.
             </p>
             <div className="button-wrap service-banner-button">
               <Link href="/contact-us" className="button-primary w-inline-block">
                 <div className="text-block-12">Get in touch</div>
                 <Image
                   alt="arrow-top-right"
-                  src="https://cdn.prod.website-files.com/68d276a2319df5bdcc752026/68dd105094d90e0a289e4185_arrow-top-right-white.svg"
+                  src={`${CDN}/68dd105094d90e0a289e4185_arrow-top-right-white.svg`}
                   width={16}
                   height={16}
                   className="button-icon"
@@ -36,14 +38,14 @@ export default function CustomSoftwareDevelopmentPage() {
                 <div className="button-secondary-light-text">Book a meeting</div>
                 <div className="arrows-container cta">
                   <Image
-                    src="https://cdn.prod.website-files.com/68d276a2319df5bdcc752026/6937e4382716cdf25ad0f3d5_date-icon-light.svg"
+                    src={`${CDN}/6937e4382716cdf25ad0f3d5_date-icon-light.svg`}
                     alt="Icon"
                     width={16}
                     height={16}
                     className="dark-arrow _16"
                   />
                   <Image
-                    src="https://cdn.prod.website-files.com/68d276a2319df5bdcc752026/6937e33ae69eb8ce6ab3de51_date-icon-dark.svg"
+                    src={`${CDN}/6937e33ae69eb8ce6ab3de51_date-icon-dark.svg`}
                     alt="Icon"
                     width={16}
                     height={16}
@@ -73,7 +75,7 @@ export default function CustomSoftwareDevelopmentPage() {
                         <Image
                           key={img}
                           alt="Marquee Image"
-                          src={`https://cdn.prod.website-files.com/68d276a2319df5bdcc752026/${img}`}
+                          src={`${CDN}/${img}`}
                           width={120}
                           height={40}
                           className="ui-logo-marquee"
@@ -89,15 +91,15 @@ export default function CustomSoftwareDevelopmentPage() {
 
           <div className="w-layout-hflex banner-images service-banner-image-wrap">
             <Image
-              src="https://cdn.prod.website-files.com/68d276a2319df5bdcc752026/695229417510a7e65f18d077_banner-lines-bg.png"
+              src={`${CDN}/695229417510a7e65f18d077_banner-lines-bg.png`}
               loading="lazy"
-              alt=""
+              alt="linr-bar-img"
               width={800}
               height={600}
               className="banner-line-image"
             />
             <Image
-              src="https://cdn.prod.website-files.com/68d276a2319df5bdcc752026/695227c7f17e6a5a37ecaea8_banner-image.png"
+              src={`${CDN}/69562e8e1649a35ec5e91f45_mobile-app-banner-img.png`}
               alt="Banner-Image"
               width={600}
               height={700}
@@ -126,7 +128,7 @@ export default function CustomSoftwareDevelopmentPage() {
                       <Image
                         key={img}
                         alt="Marquee Image"
-                        src={`https://cdn.prod.website-files.com/68d276a2319df5bdcc752026/${img}`}
+                        src={`${CDN}/${img}`}
                         width={100}
                         height={36}
                         className="ui-logo-marquee"
@@ -148,7 +150,7 @@ export default function CustomSoftwareDevelopmentPage() {
             <div className="award-winning">
               <Image
                 alt="Marquee Image"
-                src="https://cdn.prod.website-files.com/68d276a2319df5bdcc752026/6937d7440f57acbe2b3fb811_award-shade.svg"
+                src={`${CDN}/6937d7440f57acbe2b3fb811_award-shade.svg`}
                 width={40}
                 height={40}
                 className="award-winning-shade-img"
@@ -158,7 +160,7 @@ export default function CustomSoftwareDevelopmentPage() {
               </p>
               <Image
                 alt="Marquee Image"
-                src="https://cdn.prod.website-files.com/68d276a2319df5bdcc752026/6937d852b619fec95dcec38d_award-shade-right.svg"
+                src={`${CDN}/6937d852b619fec95dcec38d_award-shade-right.svg`}
                 width={40}
                 height={40}
                 className="award-winning-shade-img"
@@ -172,8 +174,8 @@ export default function CustomSoftwareDevelopmentPage() {
             </div>
             <div className="approach-content">
               <p className="approach-content-description-content">
-                Off-the-shelf solutions are fine until your business needs more. We build custom
-                software that aligns with your workflows and scales securely.
+                A great mobile app isn&apos;t just about functionality, it&apos;s about creating a
+                connection that inspires action. We help brands build apps that solve real problems.
               </p>
             </div>
           </div>
@@ -191,15 +193,15 @@ export default function CustomSoftwareDevelopmentPage() {
               </p>
             </div>
             <div
-              id="w-node-_93788805-22ef-a1fe-12a4-2d6f1fc25549-1494fcae"
+              id="w-node-_93788805-22ef-a1fe-12a4-2d6f1fc25549-6dea9209"
               className="title title-two"
             >
-              <h2 className="title-h2 title-h2-two">
-                Driving Growth Through Tailored Technology
+              <h2 className="title-h2 title-h2-two our-app-title">
+                Mobile App Development Services That Drive Growth
               </h2>
               <p className="section-title-description">
-                Our apps are customized for your sector, addressing unique workflows, compliance
-                needs, and user expectations.
+                Our mobile app solutions are built around your specific industry, guaranteeing a
+                match for your workflow, regulations, and user expectations.
               </p>
             </div>
           </div>
@@ -208,39 +210,39 @@ export default function CustomSoftwareDevelopmentPage() {
             {[
               {
                 num: "S / 001",
-                icon: "69566f0cfd5b251dab6cb856_d-choose-us-img-02.svg",
-                title: "Web Application Development",
-                desc: "Secure, responsive web applications built for scalability, cross-device compatibility, and custom feature integration.",
+                icon: "69567e155eaa5f8c9854daf3_Mobile-service-card-01.svg",
+                title: "IOS App Development",
+                desc: "Immersive, fast, secure iPhone and iPad apps built with Swift and best practices.",
               },
               {
                 num: "S / 002",
-                icon: "69566d02b993d21fb5c04f20_d-service-card-01.svg",
-                title: "API & System Integration",
-                desc: "Robust APIs and seamless integration of legacy systems with new tools, supporting real-time or batch sync and microservices.",
+                icon: "69567e1500edc02978a81b0f_Mobile-service-card-02.svg",
+                title: "Android App Development",
+                desc: "High-performance Android apps with Kotlin and Java, optimized for speed, reliability, and compatibility.",
               },
               {
                 num: "S / 003",
-                icon: "69567adc2f0bcbb6107b04d4_w-service-card-01.svg",
-                title: "Enterprise Data Solutions & Analytics",
-                desc: "End-to-end data solutions including ETL pipelines, real-time dashboards, predictive analytics, and data warehousing.",
+                icon: "69562ff469e9daf9f20bb00e_cross-platform-icon.png",
+                title: "Cross-Platform App Development",
+                desc: "One codebase, multiple platforms using Flutter or React Native for consistent, high-quality experiences.",
               },
               {
                 num: "S / 004",
-                icon: "69567adc94209566fdd240d1_w-service-card-02.svg",
-                title: "Cloud & Infrastructure Engineering",
-                desc: "Cloud migration (AWS, Azure, GCP), server less architectures, containerization, DevOps pipelines, infrastructure as code, and monitoring.",
+                icon: "695630b97d4a0e93dab04e5e_ai-technology-icon.png",
+                title: "AI-Powered Mobile Apps",
+                desc: "Intelligent apps leveraging predictive analytics and automation to personalize experiences and boost engagement.",
               },
               {
                 num: "S / 005",
-                icon: "69567adc6712f4c48d005dcb_w-service-card-03.svg",
-                title: "UI/UX Design & Prototyping",
-                desc: "User research, journey mapping, wireframes, interactive prototypes, visual and interaction design, and usability testing.",
+                icon: "69567e151fd4da55fde4cc11_Mobile-service-card-05.svg",
+                title: "App Maintenance & Feature Enhancements",
+                desc: "Ongoing updates, bug fixes, and feature improvements to keep your app performing optimally.",
               },
               {
                 num: "S / 006",
                 icon: "69566d029643f586cf9f0265_d-service-card-06.svg",
-                title: "Maintenance & Support",
-                desc: "Comprehensive maintenance including bug fixes, feature updates, performance optimization, security compliance, and managed SLA support.",
+                title: "App Store Deployment & Optimization",
+                desc: "Seamless app launches with App Store/Play Store optimization for visibility, downloads, and performance.",
               },
             ].map((s) => (
               <li key={s.num} className="our-technology-listi-tem">
@@ -248,7 +250,7 @@ export default function CustomSoftwareDevelopmentPage() {
                   <div className="technology-shade" />
                   <figure className="our-technology-list-image">
                     <Image
-                      src={`https://cdn.prod.website-files.com/68d276a2319df5bdcc752026/${s.icon}`}
+                      src={`${CDN}/${s.icon}`}
                       alt="image description"
                       width={48}
                       height={48}
@@ -269,14 +271,14 @@ export default function CustomSoftwareDevelopmentPage() {
                             <div className="button-text active-button-text">Start a project</div>
                             <div className="arrows-container cta">
                               <Image
-                                src="https://cdn.prod.website-files.com/68d276a2319df5bdcc752026/68dd0ede1e60a7db30b19932_arrow-top-right.svg"
+                                src={`${CDN}/68dd0ede1e60a7db30b19932_arrow-top-right.svg`}
                                 alt="icon"
                                 width={16}
                                 height={16}
                                 className="dark-arrow _16 active-button-arrow"
                               />
                               <Image
-                                src="https://cdn.prod.website-files.com/68d276a2319df5bdcc752026/68dbd9d8c78e82683455072e_arrow-top-right.svg"
+                                src={`${CDN}/68dbd9d8c78e82683455072e_arrow-top-right.svg`}
                                 alt="icon"
                                 width={16}
                                 height={16}
@@ -308,14 +310,14 @@ export default function CustomSoftwareDevelopmentPage() {
                 <div className="button-text active-button-text">Book a meeting</div>
                 <div className="arrows-container cta tagline-button-icon">
                   <Image
-                    src="https://cdn.prod.website-files.com/68d276a2319df5bdcc752026/68dd0ede1e60a7db30b19932_arrow-top-right.svg"
+                    src={`${CDN}/68dd0ede1e60a7db30b19932_arrow-top-right.svg`}
                     alt="icon"
                     width={16}
                     height={16}
                     className="dark-arrow _16 active-button-arrow"
                   />
                   <Image
-                    src="https://cdn.prod.website-files.com/68d276a2319df5bdcc752026/68dbd9d8c78e82683455072e_arrow-top-right.svg"
+                    src={`${CDN}/68dbd9d8c78e82683455072e_arrow-top-right.svg`}
                     alt="icon"
                     width={16}
                     height={16}
@@ -338,8 +340,8 @@ export default function CustomSoftwareDevelopmentPage() {
                 Why choose us
               </p>
             </div>
-            <h2 className="title-h2 title-h2-two choose-us choose-us-two-title">
-              Partner With Us for Custom Software Development
+            <h2 className="title-h2 title-h2-two choose-us choose-us-two-title-two">
+              Partner With Us for Mobile App Development
             </h2>
           </div>
           <div className="choose-us-content">
@@ -347,43 +349,43 @@ export default function CustomSoftwareDevelopmentPage() {
               {
                 icon: "69567b82006c105bfc41926e_w-choose-us-img-05.svg",
                 alt: "Octagon Icon",
-                title: "Full Ownership & IP Rights",
-                desc: "You have complete ownership and all intellectual property rights to your product.",
+                title: "Full IP Ownership",
+                desc: "You retain full rights to your code, product, and IP complete control, always.",
               },
               {
-                icon: "69567b8201311900976bab07_w-choose-us-img-01.svg",
+                icon: "69567b827695f581f7b31b50_w-choose-us-img-03.svg",
                 alt: "Quality-standard-icon",
-                title: "Assured Quality Standards",
-                desc: "Dependable software solutions through strong design, careful testing, and clear maintenance.",
+                title: "Agile Collaboration",
+                desc: "Transparent communication, and iterative development keep you involved at every stage.",
               },
               {
                 icon: "69567b82049528fdedba9c45_w-choose-us-img-02.svg",
                 alt: "Globe",
-                title: "Flexible Engagement Models",
-                desc: "Choose from flexible models, dedicated teams, staff augmentation, or project-based solutions.",
+                title: "Quality Engineering",
+                desc: "Secure, scalable, high-performance apps built to meet user expectations and enterprise standards.",
               },
               {
-                icon: "69567b827695f581f7b31b50_w-choose-us-img-03.svg",
+                icon: "695632a1744dc836e5123af3_mentoring.png",
                 alt: "communication-icon",
-                title: "Transparent Communication",
-                desc: "Stay informed with transparent project tracking, frequent updates, and concise agile reports.",
-              },
-              {
-                icon: "69567b820738559f1070439c_w-choose-us-img-04.svg",
-                alt: "business-icon",
-                title: "Business-Centric Solutions",
-                desc: "Solutions crafted to mirror your business strategy, ensuring alignment with your industry landscape.",
+                title: "Design-Led Approach",
+                desc: "Screens and interactions crafted for usability, and engaging user experiences.",
               },
               {
                 icon: "69566d029643f586cf9f0265_d-service-card-06.svg",
+                alt: "business-icon",
+                title: "Dedicated Support",
+                desc: "Post-launch updates, and feature enhancements ensure your app grows successfully over time.",
+              },
+              {
+                icon: "695632c6d77988747920302e_continuous-icon.png",
                 alt: "settings-icon",
-                title: "Ongoing Support & Growth",
-                desc: "Reliable maintenance, continuous updates, and scalable solutions for performance and growth.",
+                title: "Continuous Optimization",
+                desc: "Post-deployment monitoring, retraining, and fine-tuning for lasting performance.",
               },
             ].map((w) => (
               <div key={w.title} className="choose-us-item">
                 <Image
-                  src={`https://cdn.prod.website-files.com/68d276a2319df5bdcc752026/${w.icon}`}
+                  src={`${CDN}/${w.icon}`}
                   loading="lazy"
                   alt={w.alt}
                   width={48}
@@ -414,16 +416,16 @@ export default function CustomSoftwareDevelopmentPage() {
               </p>
             </div>
             <h2 className="title-h2 title-h2-two portfolio">
-              Empowering businesses worldwide with measurable results
+              Our Solutions Have Empowered Businesses Worldwide to Achieve Measurable Results
             </h2>
           </div>
 
           <div className="portfolio-case-studies">
-            {/* Lernen – full width */}
+            {/* Truckin – full width */}
             <div className="portfolio-case-study-item full-width">
               <div className="portfolio-case-study-figure">
                 <Image
-                  src="https://cdn.prod.website-files.com/68d276a2319df5bdcc752026/695622ae093c1cca3a5e771d_lernen-works.png"
+                  src={`${CDN}/69563467d1f25eb9ecb88226_Mobile-service-img-01.png`}
                   loading="lazy"
                   alt="Portfolio Case Study Image"
                   width={800}
@@ -437,7 +439,7 @@ export default function CustomSoftwareDevelopmentPage() {
                   <div className="text-block-12">Read case study</div>
                   <Image
                     alt="arrow-top-right"
-                    src="https://cdn.prod.website-files.com/68d276a2319df5bdcc752026/68dd105094d90e0a289e4185_arrow-top-right-white.svg"
+                    src={`${CDN}/68dd105094d90e0a289e4185_arrow-top-right-white.svg`}
                     width={16}
                     height={16}
                     className="button-icon"
@@ -447,44 +449,42 @@ export default function CustomSoftwareDevelopmentPage() {
               <div className="portfolio-case-study-content v2">
                 <div className="portfolio-case-study-content-head">
                   <h3 className="portfolio-case-study-title">
-                    Lernen – Key Challenges &amp; Value Delivered
+                    Truckin – On-Demand Truck Booking App
                   </h3>
                   <p className="portfolio-case-study-sub-title">
-                    We built Lernen to connect students with expert tutors seamlessly. With a
-                    mobile-friendly, intuitive platform, customizable sessions, real-time messaging,
-                    and scheduling tools, it empowers students and tutors in a complete marketplace.
+                    We built Truckin to simplify home and office shifting, connecting users with
+                    truck drivers through a seamless, on-demand app. It ensures fast, reliable, and
+                    efficient transportation of goods for a hassle-free moving experience.
                   </p>
                 </div>
                 <div className="portfolio-case-study-content-footer">
                   <div className="portfolio-stat-card">
-                    <p className="portfolio-stat-card-title">
-                      <strong className="bold-text-4">Our Impact</strong>
-                    </p>
+                    <p className="portfolio-stat-card-title">Our impact</p>
                     <p className="portfolio-stat-card-info">
                       <span
                         data-suffix="%"
-                        data-target="70"
+                        data-target="40"
                         className="amt-counter amt-counter-two portfolio"
                       >
-                        70%
+                        40%
                       </span>
-                      Improved learning efficiency, smoother session management, and higher student
-                      satisfaction.
+                      Faster deliveries and improved customer satisfaction.
                     </p>
                   </div>
                 </div>
               </div>
             </div>
 
-            {/* Workreap + Doctreat */}
+            {/* Gigfleet + Lernen App */}
             <div
-              id="w-node-b0faa46a-4a6e-54fb-bafc-3a1a241d348d-1494fcae"
+              id="w-node-b0faa46a-4a6e-54fb-bafc-3a1a241d348d-6dea9209"
               className="portfolio-case-study-item v2"
             >
+              {/* Gigfleet */}
               <div className="portfolio-case-study-sub-item">
                 <div className="portfolio-case-study-figure">
                   <Image
-                    src="https://cdn.prod.website-files.com/68d276a2319df5bdcc752026/695d1bbd7d1a666f4f84bb62_img-09.jpg"
+                    src={`${CDN}/695d1bbd9c1d82c15d69cbec_img-07.jpg`}
                     loading="lazy"
                     alt="Portfolio Case Study Image"
                     width={600}
@@ -498,7 +498,7 @@ export default function CustomSoftwareDevelopmentPage() {
                     <div className="text-block-12">Read case study</div>
                     <Image
                       alt="arrow-top-right"
-                      src="https://cdn.prod.website-files.com/68d276a2319df5bdcc752026/68dd105094d90e0a289e4185_arrow-top-right-white.svg"
+                      src={`${CDN}/68dd105094d90e0a289e4185_arrow-top-right-white.svg`}
                       width={16}
                       height={16}
                       className="button-icon"
@@ -508,17 +508,74 @@ export default function CustomSoftwareDevelopmentPage() {
                 <div className="portfolio-case-study-content">
                   <div className="portfolio-case-study-content-head">
                     <h3 className="portfolio-case-study-title">
-                      Workreap – Powerful Freelance Marketplaces
+                      Gigfleet App – Freelance Marketplace on Mobile
                     </h3>
                     <p className="section-head-subtitle-content portfolio">
-                      We built Workreap to create feature-rich, user-friendly freelance
-                      marketplaces, enabling freelancers and employers to connect, collaborate, and
-                      grow efficiently with a scalable, engaging, and intuitive platform.
+                      We built the Gigfleet App with React Native for freelancers and employers,
+                      enabling project management, seamless communication, and transactions. With
+                      dual-role support, advanced search, and full customization, it delivers a
+                      dynamic, user-friendly experience on Android and iOS.
                     </p>
                   </div>
                   <div className="portfolio-case-study-content-footer">
                     <div className="portfolio-stat-card">
-                      <p className="portfolio-stat-card-title">Our Impact</p>
+                      <p className="portfolio-stat-card-title">Our impact</p>
+                      <p className="portfolio-stat-card-info">
+                        <span
+                          data-suffix="%"
+                          data-target="70"
+                          className="amt-counter amt-counter-two portfolio"
+                        >
+                          70%
+                        </span>
+                        Faster deliveries and improved customer satisfaction.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Lernen App */}
+              <div className="portfolio-case-study-sub-item">
+                <div className="portfolio-case-study-figure">
+                  <Image
+                    src={`${CDN}/695d1bbd27d812d075ffb703_img-08.jpg`}
+                    loading="lazy"
+                    alt="Portfolio Case Study Image"
+                    width={600}
+                    height={400}
+                    className="portfolio-case-study-image"
+                  />
+                  <Link
+                    href="/contact-us"
+                    className="button-primary-dark portfolio-primary-btn responsive w-inline-block"
+                  >
+                    <div className="text-block-12">Read case study</div>
+                    <Image
+                      alt="arrow-top-right"
+                      src={`${CDN}/68dd105094d90e0a289e4185_arrow-top-right-white.svg`}
+                      width={16}
+                      height={16}
+                      className="button-icon"
+                    />
+                  </Link>
+                </div>
+                <div className="portfolio-case-study-content">
+                  <div className="portfolio-case-study-content-head">
+                    <h3 className="portfolio-case-study-title">
+                      Lernen App – Elevating Online Learning
+                    </h3>
+                    <p className="section-head-subtitle-content portfolio">
+                      We built the Lernen App with Flutter for the Lernen LMS, offering educators
+                      and institutions a user-friendly, fully customizable platform with advanced
+                      tools, secure performance, and scalable architecture to deliver seamless,
+                      engaging, and top-tier e-learning experiences across Android and iOS for
+                      modern digital education needs.
+                    </p>
+                  </div>
+                  <div className="portfolio-case-study-content-footer">
+                    <div className="portfolio-stat-card">
+                      <p className="portfolio-stat-card-title">Our impact</p>
                       <p className="portfolio-stat-card-info">
                         <span
                           data-suffix="%"
@@ -527,61 +584,7 @@ export default function CustomSoftwareDevelopmentPage() {
                         >
                           55%
                         </span>
-                        Faster hiring cycles, improved freelancer engagement, and smoother project
-                        collaboration.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div className="portfolio-case-study-sub-item">
-                <div className="portfolio-case-study-figure">
-                  <Image
-                    src="https://cdn.prod.website-files.com/68d276a2319df5bdcc752026/69576f55b4cbbc51040f438a_doctreat-work.png"
-                    loading="lazy"
-                    alt="Portfolio Case Study Image"
-                    width={600}
-                    height={400}
-                    className="portfolio-case-study-image"
-                  />
-                  <Link
-                    href="/contact-us"
-                    className="button-primary-dark portfolio-primary-btn responsive w-inline-block"
-                  >
-                    <div className="text-block-12">Read case study</div>
-                    <Image
-                      alt="arrow-top-right"
-                      src="https://cdn.prod.website-files.com/68d276a2319df5bdcc752026/68dd105094d90e0a289e4185_arrow-top-right-white.svg"
-                      width={16}
-                      height={16}
-                      className="button-icon"
-                    />
-                  </Link>
-                </div>
-                <div className="portfolio-case-study-content">
-                  <div className="portfolio-case-study-content-head">
-                    <h3 className="portfolio-case-study-title">
-                      Doctreat – Transforming Online Healthcare
-                    </h3>
-                    <p className="section-head-subtitle-content portfolio">
-                      We built Doctreat to connect patients and doctors seamlessly. With a
-                      user-friendly, research-backed design, it has enabled 5,000+ patients and
-                      1,000+ doctors to complete 20,000+ consultations efficiently.
-                    </p>
-                  </div>
-                  <div className="portfolio-case-study-content-footer">
-                    <div className="portfolio-stat-card">
-                      <p className="portfolio-stat-card-title">Our Impact</p>
-                      <p className="portfolio-stat-card-info">
-                        <span
-                          data-suffix="%"
-                          data-target="40"
-                          className="amt-counter amt-counter-two portfolio"
-                        >
-                          40%
-                        </span>
-                        Improved appointment efficiency and enhanced patient engagement.
+                        Faster deliveries and improved customer satisfaction.
                       </p>
                     </div>
                   </div>
@@ -602,7 +605,7 @@ export default function CustomSoftwareDevelopmentPage() {
                   <div className="text-block-12">Start a project</div>
                   <Image
                     alt="arrow-top-right"
-                    src="https://cdn.prod.website-files.com/68d276a2319df5bdcc752026/68dd105094d90e0a289e4185_arrow-top-right-white.svg"
+                    src={`${CDN}/68dd105094d90e0a289e4185_arrow-top-right-white.svg`}
                     width={16}
                     height={16}
                     className="button-icon"
@@ -612,14 +615,14 @@ export default function CustomSoftwareDevelopmentPage() {
                   <div className="button-secondary-dark-text">Book a meeting</div>
                   <div className="arrows-container cta">
                     <Image
-                      src="https://cdn.prod.website-files.com/68d276a2319df5bdcc752026/6937e4382716cdf25ad0f3d5_date-icon-light.svg"
+                      src={`${CDN}/6937e4382716cdf25ad0f3d5_date-icon-light.svg`}
                       alt="Icon"
                       width={16}
                       height={16}
                       className="arrow-button _16"
                     />
                     <Image
-                      src="https://cdn.prod.website-files.com/68d276a2319df5bdcc752026/6937e33ae69eb8ce6ab3de51_date-icon-dark.svg"
+                      src={`${CDN}/6937e33ae69eb8ce6ab3de51_date-icon-dark.svg`}
                       alt="Icon"
                       width={16}
                       height={16}
@@ -642,7 +645,7 @@ export default function CustomSoftwareDevelopmentPage() {
               <p className="section-head-subtitle-content subtitle-primary-content">Our process</p>
             </div>
             <h2 className="title-h2 title-h2-two process-title">
-              Our Transparent Process for Developing Custom Software
+              How We Build Powerful Mobile Applications
             </h2>
           </div>
 
@@ -651,22 +654,22 @@ export default function CustomSoftwareDevelopmentPage() {
               {
                 num: "01.",
                 title: "Discovery & Planning",
-                desc: "We align on business goals, user needs, scope, feasibility, and a clear roadmap.",
+                desc: "Align goals, users, and success metrics into a clear, prioritized roadmap guiding every decision.",
               },
               {
                 num: "02.",
                 title: "Design & Prototyping",
-                desc: "User-first UX/UI and interactive prototypes that reflect your brand and drive adoption.",
+                desc: "User-first interfaces and tested prototypes focused on clarity, accessibility, and real-world conversion.",
               },
               {
                 num: "03.",
-                title: "Agile Development & Testing",
-                desc: "Iterative development with continuous testing to ensure stability, security, and performance.",
+                title: "Agile Development & QA",
+                desc: "Iterative sprints with continuous testing ensure stable, secure, high-performing software.",
               },
               {
                 num: "04.",
                 title: "Launch, Support & Growth",
-                desc: "Smooth deployment, team training, system integration, and ongoing improvements as you scale.",
+                desc: "Smooth deployment, monitoring, and ongoing improvements keep your product evolving with users.",
               },
             ].map((p) => (
               <div key={p.num} className="process-cycle-items">
@@ -718,7 +721,7 @@ export default function CustomSoftwareDevelopmentPage() {
                         {[...Array(5)].map((_, i) => (
                           <Image
                             key={i}
-                            src="https://cdn.prod.website-files.com/68d276a2319df5bdcc752026/693ff758fbcd58bad0d563bc_star.svg"
+                            src={`${CDN}/693ff758fbcd58bad0d563bc_star.svg`}
                             loading="lazy"
                             alt="star-svg"
                             width={16}
@@ -730,7 +733,7 @@ export default function CustomSoftwareDevelopmentPage() {
                       <p className="testimonial-description">{t.text}</p>
                       <div className="testimonial-profile-content">
                         <Image
-                          src="https://cdn.prod.website-files.com/68d276a2319df5bdcc752026/6953e25f2b41648999029475_Avatar.svg"
+                          src={`${CDN}/6953e25f2b41648999029475_Avatar.svg`}
                           loading="lazy"
                           alt="Client Profile Image"
                           width={48}
@@ -738,7 +741,7 @@ export default function CustomSoftwareDevelopmentPage() {
                           className="testimonial-profile-img"
                         />
                         <div className="testimonial-user-info">
-                          <h5 className="testimonial-user-name">{t.name}</h5>
+                          <h3 className="testimonial-user-name">{t.name}</h3>
                           <div className="testimonial-user-designation">{t.role}</div>
                         </div>
                       </div>
@@ -760,7 +763,6 @@ export default function CustomSoftwareDevelopmentPage() {
 
       {/* ── CONTACT SECTION ─────────────────────────────────────────────── */}
       <ContactSection />
-
       {/* ── FAQ ─────────────────────────────────────────────────────────── */}
       <div className="section">
         <div className="container-3 w-container">
@@ -773,12 +775,10 @@ export default function CustomSoftwareDevelopmentPage() {
                 </p>
               </div>
               <div
-                id="w-node-d329edd4-9e27-731a-dad8-b3b5b4765177-1494fcae"
+                id="w-node-d329edd4-9e27-731a-dad8-b3b5b4765177-6dea9209"
                 className="title title-two faq-title"
               >
-                <h2 className="title-h2 title-h2-two">
-                  Get All Your Questions Answered Here!
-                </h2>
+                <h2 className="title-h2 title-h2-two">Get All Your Questions Answered Here!</h2>
                 <p className="section-title-description service-faq-description">
                   If you have other questions or want to know anything else feel free to reach out
                   at:{" "}
@@ -792,23 +792,28 @@ export default function CustomSoftwareDevelopmentPage() {
             <div className="w-layout-vflex accordion-wrap service-accordion-wrap">
               {[
                 {
-                  q: "How long does a custom software project take?",
-                  a: "Timelines vary depending on complexity but typically range from 3 to 9 months.",
+                  q: "Do you build apps for both iOS and Android?",
+                  a: "Yes, we develop for both platforms, natively or through cross-platform frameworks.",
                   open: true,
                 },
                 {
-                  q: "How much does it cost to build software?",
-                  a: "Costs depend on features, technology stack, and engagement model. We provide transparent estimates after the discovery phase.",
+                  q: "Can you integrate third-party APIs or legacy systems?",
+                  a: "Absolutely. Our team specializes in seamless integrations and system modernization.",
                   open: false,
                 },
                 {
-                  q: "Do you offer ongoing support?",
-                  a: "Yes, we offer long-term maintenance, upgrades, and technical assistance.",
+                  q: "What is the typical cost and timeline for a mobile app?",
+                  a: "It depends on complexity and scope — we provide a tailored estimate after discovery.",
                   open: false,
                 },
                 {
-                  q: "How do you ensure software security?",
-                  a: "We follow global compliance standards (ISO, GDPR, HIPAA) with advanced encryption and data protection.",
+                  q: "Do you handle publishing to app stores?",
+                  a: "Yes, we manage testing, submission, and deployment for both the App Store and Play Store.",
+                  open: false,
+                },
+                {
+                  q: "Do you offer maintenance and post-launch support?",
+                  a: "Yes, ongoing monitoring, updates, and scaling support are part of every engagement.",
                   open: false,
                 },
               ].map((faq) => (
@@ -822,14 +827,14 @@ export default function CustomSoftwareDevelopmentPage() {
                     </h3>
                     <div className="accordion-panel-title-icon-wrap">
                       <Image
-                        src="https://cdn.prod.website-files.com/68d276a2319df5bdcc752026/694011d3bc5973f861427aea_minus-icon.svg"
+                        src={`${CDN}/694011d3bc5973f861427aea_minus-icon.svg`}
                         alt="icon"
                         width={16}
                         height={16}
                         className={`accordion-panel-title-icon-close${faq.open ? " accordion-panel-title-icon-close-two" : ""}`}
                       />
                       <Image
-                        src="https://cdn.prod.website-files.com/68d276a2319df5bdcc752026/694011fba4478e87df631290_plus-icon.svg"
+                        src={`${CDN}/694011fba4478e87df631290_plus-icon.svg`}
                         alt="icon"
                         width={16}
                         height={16}
@@ -852,6 +857,74 @@ export default function CustomSoftwareDevelopmentPage() {
             </div>
           </div>
         </div>
+      </div>
+
+      {/* ── CTA SECTION ─────────────────────────────────────────────────── */}
+      <div className="section section-bg cta-section">
+        <div className="container-3 w-container">
+          <div
+            id="w-node-_013008c0-fd1a-1dd3-788c-0a0474a3a8e1-6dea9209"
+            className="title center-title-2 cta-title-wrap"
+          >
+            <div className="call-to-action-tag-wrap">
+              <Image
+                src={`${CDN}/691c33cdf7bd671c4f9ffdfc_call-to-action.svg`}
+                alt="image"
+                width={24}
+                height={24}
+                className="call-to-action-tag-img"
+              />
+              <p className="call-to-action-tag call-to-action-tag-two">Pull the Trigger!</p>
+            </div>
+            <h2 className="title-h2 center-title-h2-2">
+              Let&apos;s Shape the Future of{" "}
+              <span className="text-span-19">Your Web Application</span>
+            </h2>
+            <p className="paragraph-large center-title-description">
+              Your vision deserves more than code, it deserves a partner who understands growth,
+              scalability, and long-term value.
+            </p>
+          </div>
+          <div className="button-wrap cta-buttons">
+            <Link href="/contact-us" className="button-primary w-inline-block">
+              <div className="text-block-12">Start Your Web App Journey</div>
+              <Image
+                alt="arrow-top-right"
+                src={`${CDN}/68dd105094d90e0a289e4185_arrow-top-right-white.svg`}
+                width={16}
+                height={16}
+                className="button-icon"
+              />
+            </Link>
+            <Link href="/contact-us" className="title-button transition-none w-inline-block">
+              <div className="button-text">Talk to Our Experts</div>
+              <div className="arrows-container cta">
+                <Image
+                  src={`${CDN}/68dd0ede1e60a7db30b19932_arrow-top-right.svg`}
+                  alt="Icon"
+                  width={16}
+                  height={16}
+                  className="dark-arrow _16"
+                />
+                <Image
+                  src={`${CDN}/68dbd9d8c78e82683455072e_arrow-top-right.svg`}
+                  alt="Icon"
+                  width={16}
+                  height={16}
+                  className="arrow-button _16"
+                />
+              </div>
+            </Link>
+          </div>
+        </div>
+        <figure className="figure-6 service-banner-bg-1">
+          <Image
+            src={`${CDN}/691b1e5bb78f2cc930ef1e56_bg-img-01.png`}
+            alt="Banner BG"
+            width={1000}
+            height={600}
+          />
+        </figure>
       </div>
     </>
   );
