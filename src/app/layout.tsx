@@ -6,6 +6,7 @@ import Navbar from "@/component/Navbar";
 import CTASection from "@/component/CTASection";
 import Footer from "@/component/Footer";
 import FloatingCTA from "@/component/FloatingCTA";
+import { head } from "framer-motion/client";
 
 export const metadata: Metadata = {
   title: "Custom Software, Web & Mobile App Development | Greater works technologies",

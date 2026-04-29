@@ -17,11 +17,10 @@ export default function MobileAppDevelopmentPage() {
               <p className="section-head-subtitle-content">Booking for Q1 2026</p>
             </div>
             <h2 className="banner-title-2 service-banner-content-title">
-              We Build World Class Mobile Experiences, Not Just Apps
+              Streamline Operations with Expert DevOps & CloudOps Consulting
             </h2>
             <p className="service-banner-content-description">
-              We design and develop mobile applications that don&apos;t just meet business goals,
-              they create lasting digital relationships.
+             We help teams ship faster, operate smarter, and maintain resilience from infrastructure to code to monitoring.
             </p>
             <div className="button-wrap service-banner-button">
               <Link href="/contact-us" className="button-primary w-inline-block">
@@ -174,8 +173,8 @@ export default function MobileAppDevelopmentPage() {
             </div>
             <div className="approach-content">
               <p className="approach-content-description-content">
-                A great mobile app isn&apos;t just about functionality, it&apos;s about creating a
-                connection that inspires action. We help brands build apps that solve real problems.
+               
+                We prioritise automation, align teams and tools for seamless collaboration, and build solutions that are scalable and future-ready.
               </p>
             </div>
           </div>
@@ -197,11 +196,10 @@ export default function MobileAppDevelopmentPage() {
               className="title title-two"
             >
               <h2 className="title-h2 title-h2-two our-app-title">
-                Mobile App Development Services That Drive Growth
+               Our Solutions Designed for Efficiency and Scale
               </h2>
               <p className="section-title-description">
-                Our mobile app solutions are built around your specific industry, guaranteeing a
-                match for your workflow, regulations, and user expectations.
+                From infrastructure automation and continuous integration to IT strategy and advisory, we provide expert solutions tailored to your unique needs
               </p>
             </div>
           </div>
@@ -211,38 +209,38 @@ export default function MobileAppDevelopmentPage() {
               {
                 num: "S / 001",
                 icon: "69567e155eaa5f8c9854daf3_Mobile-service-card-01.svg",
-                title: "IOS App Development",
-                desc: "Immersive, fast, secure iPhone and iPad apps built with Swift and best practices.",
+                title: "Infrastructure as Code (IaC)",
+                desc: "Manage and provision systems reliably using automated, version-controlled code.",
               },
               {
                 num: "S / 002",
                 icon: "69567e1500edc02978a81b0f_Mobile-service-card-02.svg",
-                title: "Android App Development",
-                desc: "High-performance Android apps with Kotlin and Java, optimized for speed, reliability, and compatibility.",
+                title: "Continuous Integration / Continuous Delivery (CI/CD)",
+                desc: "Automate builds, testing, and deployments for faster, consistent releases.",
               },
               {
                 num: "S / 003",
                 icon: "69562ff469e9daf9f20bb00e_cross-platform-icon.png",
-                title: "Cross-Platform App Development",
-                desc: "One codebase, multiple platforms using Flutter or React Native for consistent, high-quality experiences.",
+                title: "Containerization & Orchestration",
+                desc: "Ensure consistent environments using Docker, Kubernetes, and container orchestration tools.",
               },
               {
                 num: "S / 004",
                 icon: "695630b97d4a0e93dab04e5e_ai-technology-icon.png",
-                title: "AI-Powered Mobile Apps",
-                desc: "Intelligent apps leveraging predictive analytics and automation to personalize experiences and boost engagement.",
+                title: "Intranet & Employee Portals",
+                desc: "Secure internal portals enabling communication, collaboration, document access, and employee self-service.",
               },
               {
                 num: "S / 005",
                 icon: "69567e151fd4da55fde4cc11_Mobile-service-card-05.svg",
-                title: "App Maintenance & Feature Enhancements",
-                desc: "Ongoing updates, bug fixes, and feature improvements to keep your app performing optimally.",
+                title: "Security & Compliance Automation",
+                desc: "Integrate automated security checks and compliance into development pipelines.",
               },
               {
                 num: "S / 006",
                 icon: "69566d029643f586cf9f0265_d-service-card-06.svg",
-                title: "App Store Deployment & Optimization",
-                desc: "Seamless app launches with App Store/Play Store optimization for visibility, downloads, and performance.",
+                title: "DevOps as a Service / Support",
+                desc: "Upgrade outdated systems into modern, scalable platforms without disrupting business operations.",
               },
             ].map((s) => (
               <li key={s.num} className="our-technology-listi-tem">
@@ -329,6 +327,8 @@ export default function MobileAppDevelopmentPage() {
           </div>
         </div>
       </div>
+      {/* ── OUR IMPACT ──────────────────────────────────────────────────── */}
+      <ImpactSection />
 
       {/* ── WHY CHOOSE US ───────────────────────────────────────────────── */}
       <section className="section choose-us-section">
@@ -402,239 +402,10 @@ export default function MobileAppDevelopmentPage() {
         </div>
       </section>
 
-      {/* ── OUR IMPACT ──────────────────────────────────────────────────── */}
-      <ImpactSection />
+
 
       {/* ── PORTFOLIO ───────────────────────────────────────────────────── */}
-      <section className="section portfolio-section">
-        <div className="w-layout-blockcontainer container-3 w-container">
-          <div className="protfolio-header">
-            <div className="section-head-content-subtitle">
-              <div className="section-head-subtitle-dot" />
-              <p className="section-head-subtitle-content subtitle-secondary-content">
-                Selected works ( 2024 - 2025 )
-              </p>
-            </div>
-            <h2 className="title-h2 title-h2-two portfolio">
-              Our Solutions Have Empowered Businesses Worldwide to Achieve Measurable Results
-            </h2>
-          </div>
 
-          <div className="portfolio-case-studies">
-            {/* Truckin – full width */}
-            <div className="portfolio-case-study-item full-width">
-              <div className="portfolio-case-study-figure">
-                <Image
-                  src={`${CDN}/69563467d1f25eb9ecb88226_Mobile-service-img-01.png`}
-                  loading="lazy"
-                  alt="Portfolio Case Study Image"
-                  width={800}
-                  height={500}
-                  className="portfolio-case-study-image v2"
-                />
-                <Link
-                  href="/contact-us"
-                  className="button-primary-dark portfolio-primary-btn responsive w-inline-block"
-                >
-                  <div className="text-block-12">Read case study</div>
-                  <Image
-                    alt="arrow-top-right"
-                    src={`${CDN}/68dd105094d90e0a289e4185_arrow-top-right-white.svg`}
-                    width={16}
-                    height={16}
-                    className="button-icon"
-                  />
-                </Link>
-              </div>
-              <div className="portfolio-case-study-content v2">
-                <div className="portfolio-case-study-content-head">
-                  <h3 className="portfolio-case-study-title">
-                    Truckin – On-Demand Truck Booking App
-                  </h3>
-                  <p className="portfolio-case-study-sub-title">
-                    We built Truckin to simplify home and office shifting, connecting users with
-                    truck drivers through a seamless, on-demand app. It ensures fast, reliable, and
-                    efficient transportation of goods for a hassle-free moving experience.
-                  </p>
-                </div>
-                <div className="portfolio-case-study-content-footer">
-                  <div className="portfolio-stat-card">
-                    <p className="portfolio-stat-card-title">Our impact</p>
-                    <p className="portfolio-stat-card-info">
-                      <span
-                        data-suffix="%"
-                        data-target="40"
-                        className="amt-counter amt-counter-two portfolio"
-                      >
-                        40%
-                      </span>
-                      Faster deliveries and improved customer satisfaction.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Gigfleet + Lernen App */}
-            <div
-              id="w-node-b0faa46a-4a6e-54fb-bafc-3a1a241d348d-6dea9209"
-              className="portfolio-case-study-item v2"
-            >
-              {/* Gigfleet */}
-              <div className="portfolio-case-study-sub-item">
-                <div className="portfolio-case-study-figure">
-                  <Image
-                    src={`${CDN}/695d1bbd9c1d82c15d69cbec_img-07.jpg`}
-                    loading="lazy"
-                    alt="Portfolio Case Study Image"
-                    width={600}
-                    height={400}
-                    className="portfolio-case-study-image"
-                  />
-                  <Link
-                    href="/contact-us"
-                    className="button-primary-dark portfolio-primary-btn responsive w-inline-block"
-                  >
-                    <div className="text-block-12">Read case study</div>
-                    <Image
-                      alt="arrow-top-right"
-                      src={`${CDN}/68dd105094d90e0a289e4185_arrow-top-right-white.svg`}
-                      width={16}
-                      height={16}
-                      className="button-icon"
-                    />
-                  </Link>
-                </div>
-                <div className="portfolio-case-study-content">
-                  <div className="portfolio-case-study-content-head">
-                    <h3 className="portfolio-case-study-title">
-                      Gigfleet App – Freelance Marketplace on Mobile
-                    </h3>
-                    <p className="section-head-subtitle-content portfolio">
-                      We built the Gigfleet App with React Native for freelancers and employers,
-                      enabling project management, seamless communication, and transactions. With
-                      dual-role support, advanced search, and full customization, it delivers a
-                      dynamic, user-friendly experience on Android and iOS.
-                    </p>
-                  </div>
-                  <div className="portfolio-case-study-content-footer">
-                    <div className="portfolio-stat-card">
-                      <p className="portfolio-stat-card-title">Our impact</p>
-                      <p className="portfolio-stat-card-info">
-                        <span
-                          data-suffix="%"
-                          data-target="70"
-                          className="amt-counter amt-counter-two portfolio"
-                        >
-                          70%
-                        </span>
-                        Faster deliveries and improved customer satisfaction.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Lernen App */}
-              <div className="portfolio-case-study-sub-item">
-                <div className="portfolio-case-study-figure">
-                  <Image
-                    src={`${CDN}/695d1bbd27d812d075ffb703_img-08.jpg`}
-                    loading="lazy"
-                    alt="Portfolio Case Study Image"
-                    width={600}
-                    height={400}
-                    className="portfolio-case-study-image"
-                  />
-                  <Link
-                    href="/contact-us"
-                    className="button-primary-dark portfolio-primary-btn responsive w-inline-block"
-                  >
-                    <div className="text-block-12">Read case study</div>
-                    <Image
-                      alt="arrow-top-right"
-                      src={`${CDN}/68dd105094d90e0a289e4185_arrow-top-right-white.svg`}
-                      width={16}
-                      height={16}
-                      className="button-icon"
-                    />
-                  </Link>
-                </div>
-                <div className="portfolio-case-study-content">
-                  <div className="portfolio-case-study-content-head">
-                    <h3 className="portfolio-case-study-title">
-                      Lernen App – Elevating Online Learning
-                    </h3>
-                    <p className="section-head-subtitle-content portfolio">
-                      We built the Lernen App with Flutter for the Lernen LMS, offering educators
-                      and institutions a user-friendly, fully customizable platform with advanced
-                      tools, secure performance, and scalable architecture to deliver seamless,
-                      engaging, and top-tier e-learning experiences across Android and iOS for
-                      modern digital education needs.
-                    </p>
-                  </div>
-                  <div className="portfolio-case-study-content-footer">
-                    <div className="portfolio-stat-card">
-                      <p className="portfolio-stat-card-title">Our impact</p>
-                      <p className="portfolio-stat-card-info">
-                        <span
-                          data-suffix="%"
-                          data-target="55"
-                          className="amt-counter amt-counter-two portfolio"
-                        >
-                          55%
-                        </span>
-                        Faster deliveries and improved customer satisfaction.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Portfolio CTA */}
-          <div className="portfolio-cta">
-            <div className="portfolio-cta-content-wrap">
-              <h3 className="portfolio-cta-content-title">
-                Looking for something similar? We&apos;re always excited about starting a new
-                project.
-              </h3>
-              <div className="button-wrap portfolio-cta-button-wrap">
-                <Link href="/contact-us" className="button-primary-dark w-inline-block">
-                  <div className="text-block-12">Start a project</div>
-                  <Image
-                    alt="arrow-top-right"
-                    src={`${CDN}/68dd105094d90e0a289e4185_arrow-top-right-white.svg`}
-                    width={16}
-                    height={16}
-                    className="button-icon"
-                  />
-                </Link>
-                <Link href="/contact-us" className="button-secondary-dark w-inline-block">
-                  <div className="button-secondary-dark-text">Book a meeting</div>
-                  <div className="arrows-container cta">
-                    <Image
-                      src={`${CDN}/6937e4382716cdf25ad0f3d5_date-icon-light.svg`}
-                      alt="Icon"
-                      width={16}
-                      height={16}
-                      className="arrow-button _16"
-                    />
-                    <Image
-                      src={`${CDN}/6937e33ae69eb8ce6ab3de51_date-icon-dark.svg`}
-                      alt="Icon"
-                      width={16}
-                      height={16}
-                      className="dark-arrow _16"
-                    />
-                  </div>
-                </Link>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* ── PROCESS + TESTIMONIALS ──────────────────────────────────────── */}
       <section className="section process-section">

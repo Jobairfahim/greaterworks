@@ -3,6 +3,7 @@
 import { useEffect, useState, useRef, useCallback } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 const services = [
     { title: "Custom Software Development", desc: "Tailored solutions to boost your business growth and success.", icon: "https://res.cloudinary.com/dsoilebvu/image/upload/v1777048245/custom_kyjfrj.svg", href: "/custom-software-development" },
@@ -148,9 +149,13 @@ function DropdownList({ children, className = "" }: { children: React.ReactNode;
 }
 
 export default function Navbar() {
+    const pathname = usePathname();
     const [scrolled, setScrolled] = useState(false);
     const [mobileOpen, setMobileOpen] = useState(false);
     const [activeHireTab, setActiveHireTab] = useState(0);
+    
+    // Check if current page is homepage
+    const isHomepage = pathname === "/";
 
     useEffect(() => {
         const handleScroll = () => setScrolled(window.scrollY > 50);
@@ -183,7 +188,7 @@ export default function Navbar() {
             data-easing="ease"
             data-easing2="ease"
             role="banner"
-            className={`navbar-2 navbar-transparent w-nav ${scrolled ? "scrolled" : ""}`}
+            className={`navbar-2 navbar-transparent w-nav ${scrolled ? "scrolled" : ""} ${!isHomepage ? "navbar-dark-text" : ""}`}
         >
             <div className="container-2 full-with-text-container w-container">
                 {/* Desktop menu */}
@@ -957,6 +962,23 @@ export default function Navbar() {
                     top: 0;
                     width: 100%;
                     z-index: 1100;
+                }
+                .navbar-2.navbar-dark-text .nav-item-title.nav-title-white,
+                .navbar-2.navbar-dark-text .nav-link.nav-title-white {
+                    color: #666 !important;
+                }
+                .navbar-2.navbar-dark-text .nav-dropdown-icon-white {
+                    color: #666 !important;
+                }
+                .navbar-2.navbar-dark-text .button-secondary-light.nav-btn {
+                    background: rgba(0, 0, 0, 0.1);
+                    border: 1px solid rgba(0, 0, 0, 0.2);
+                }
+                .navbar-2.navbar-dark-text .button-secondary-light-text-3.nav-btn {
+                    color: #666 !important;
+                }
+                .navbar-2.navbar-dark-text .nav-icon-dark {
+                    filter: none !important;
                 }
                 .navbar-2.scrolled {
                     background: rgba(17, 24, 39, 0.78) !important;
