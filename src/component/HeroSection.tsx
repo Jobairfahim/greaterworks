@@ -2,20 +2,10 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { useState } from "react";
 
 export default function HeroSection() {
-    const lightboxJson = JSON.stringify({
-        items: [{
-            url: "https://www.youtube.com/watch?v=PZXhLjXE88o",
-            originalUrl: "https://www.youtube.com/watch?v=PZXhLjXE88o",
-            width: 940,
-            height: 528,
-            thumbnailUrl: "https://i.ytimg.com/vi/PZXhLjXE88o/hqdefault.jpg",
-            html: "<iframe class=\"embedly-embed\" src=\"//cdn.embedly.com/widgets/media.html?src=https%3A%2F%2Fwww.youtube.com%2Fembed%2FPZXhLjXE88o%3Ffeature%3Doembed&display_name=YouTube&url=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DPZXhLjXE88o&image=https%3A%2F%2Fi.ytimg.com%2Fvi%2FPZXhLjXE88o%2Fhqdefault.jpg&type=text%2Fhtml&schema=youtube\" width=\"940\" height=\"528\" scrolling=\"no\" title=\"YouTube embed\" frameborder=\"0\" allow=\"autoplay; fullscreen; encrypted-media; picture-in-picture;\" allowfullscreen=\"true\"></iframe>",
-            type: "video"
-        }],
-        group: ""
-    });
+    const [showVideo, setShowVideo] = useState(false);
 
     return (
         <>
@@ -71,26 +61,24 @@ export default function HeroSection() {
                                     </div>
                                 </Link>
                             </div>
-                            <a href="#" className="video-player-wrap responsive-style w-inline-block w-lightbox">
+                            <button onClick={() => setShowVideo(true)} className="video-player-wrap responsive-style w-inline-block">
                                 <div className="play-button-wrap">
                                     <div className="play-btn">
                                         <Image src="https://res.cloudinary.com/dsoilebvu/image/upload/v1777057659/poly_f74kga.svg" loading="lazy" alt="Play-icon" width={48} height={48} className="play-icon" />
                                     </div>
                                 </div>
                                 <div className="intro-text">Watch Intro</div>
-                                <script type="application/json" className="w-json" dangerouslySetInnerHTML={{ __html: lightboxJson }}></script>
-                            </a>
+                            </button>
                         </div>
                         <div className="hero-banner-content-right">
-                            <a href="#" className="video-player-wrap w-inline-block w-lightbox">
+                            <button onClick={() => setShowVideo(true)} className="video-player-wrap w-inline-block">
                                 <div className="play-button-wrap">
                                     <div className="play-btn">
                                         <Image src="https://res.cloudinary.com/dsoilebvu/image/upload/v1777057659/poly_f74kga.svg" loading="lazy" alt="Play-icon" width={48} height={48} className="play-icon" />
                                     </div>
                                 </div>
                                 <div className="intro-text">Watch Intro</div>
-                                <script type="application/json" className="w-json" dangerouslySetInnerHTML={{ __html: lightboxJson }}></script>
-                            </a>
+                            </button>
                             <p className="hero-banner-content-description">Crafting custom software that accelerates growth, solves complex challenges, and brings your vision to life through scalable, reliable solutions.</p>
                             <div className="button-wrap hero-banner-button-wrap responsive-style">
                                 <Link href="#" data-gn-book-meeting="modal" className="button-primary-3 hero-banner w-inline-block">
@@ -135,6 +123,36 @@ export default function HeroSection() {
                     }
                 }
             `}</style>
+
+            {/* Video Popup */}
+            {showVideo && (
+                <div 
+                    className="fixed inset-0 bg-black bg-opacity-75 z-40 flex items-center justify-center p-4"
+                    onClick={() => setShowVideo(false)}
+                >
+                    <div 
+                        className="relative w-full max-w-4xl"
+                        onClick={(e) => e.stopPropagation()}
+                    >
+                        <button
+                            onClick={() => setShowVideo(false)}
+                            className="absolute -top-12 right-0 text-white hover:text-gray-300 text-2xl font-bold"
+                        >
+                            ×
+                        </button>
+                        <div className="relative pb-[56.25%] h-0">
+                            <iframe
+                                className="absolute top-0 left-0 w-full h-full"
+                                src="https://www.youtube.com/embed/x5Vmxo435Eg?autoplay=1"
+                                title="YouTube video player"
+                                frameBorder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowFullScreen
+                            />
+                        </div>
+                    </div>
+                </div>
+            )}
         </>
     );
 }

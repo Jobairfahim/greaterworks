@@ -30,7 +30,7 @@ const industries = [
 
 const approaches = [
     { title: "Product Development", desc: "Developing strategic roadmaps, MVPs, and agile solutions for faster time-to-market, scalable growth, and cross-platform reach.", icon: "https://res.cloudinary.com/dsoilebvu/image/upload/v1777057659/box_xpqyic.svg", href: "/contact-us" },
-    { title: "Staff Augmentation", desc: "On-demand access to skilled developers and IT specialists, seamlessly scaling your team across front-end, back-end, and emerging tech.", icon: "https://res.cloudinary.com/dsoilebvu/image/upload/v1777057660/arrow-right_vll07y.svg", href: "/contact-us" },
+    { title: "Custom Product Development", desc: "Turn your ideas into fully functional digital products. We design and build tailored solutions that align with your goals, from initial concept to final launch.", icon: "https://res.cloudinary.com/dsoilebvu/image/upload/v1777057660/arrow-right_vll07y.svg", href: "/contact-us" },
     { title: "Dedicated Teams", desc: "End-to-end project ownership with smooth integration, diverse expertise, and continuous delivery for long-term innovation.", icon: "https://res.cloudinary.com/dsoilebvu/image/upload/v1777048239/qa_gfbujp.svg", href: "/contact-us" },
 ];
 

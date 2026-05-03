@@ -154,7 +154,7 @@ export default function QualityAssuranceTestingPage() {
             <div className="award-winning">
               <Image
                 alt="left shade"
-                src={`${CDN}/6937d7440f57acbe2b3fb811_award-shade.svg`}
+                src={`https://res.cloudinary.com/dsoilebvu/image/upload/v1777048239/rating-l_ngsvxg.svg`}
                 width={40}
                 height={40}
                 className="award-winning-shade-img"
@@ -164,7 +164,7 @@ export default function QualityAssuranceTestingPage() {
               </p>
               <Image
                 alt="right shade"
-                src={`${CDN}/6937d852b619fec95dcec38d_award-shade-right.svg`}
+                src={`https://res.cloudinary.com/dsoilebvu/image/upload/v1777048240/rating-r_vlkuz4.svg`}
                 width={40}
                 height={40}
                 className="award-winning-shade-img"
@@ -232,7 +232,7 @@ export default function QualityAssuranceTestingPage() {
                             <div className="button-text active-button-text">Start a project</div>
                             <div className="arrows-container cta">
                               <Image
-                                src={`${CDN}/68dd0ede1e60a7db30b19932_arrow-top-right.svg`}
+                                src={`https://res.cloudinary.com/dsoilebvu/image/upload/v1777064837/arrow-up_ktln9z.svg`}
                                 alt="icon"
                                 width={16}
                                 height={16}
