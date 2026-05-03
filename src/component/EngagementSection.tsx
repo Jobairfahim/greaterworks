@@ -146,15 +146,15 @@ export default function EngagementSection() {
 
                         <div className="sticky top-24 self-start z-10">
                             <div className="relative flex justify-center overflow-hidden">
-                                <div className="relative aspect-square w-full max-w-[700px] sm:max-w-[700px] md:max-w-[800px] lg:h-[800px] lg:w-[1000px] xl:h-[900px] xl:w-[1100px]">
+                                <div className="relative aspect-square w-full max-w-[500px] sm:max-w-[500px] md:max-w-[600px] lg:h-[600px] lg:w-[700px] xl:h-[700px] xl:w-[800px]">
                                     <Image
-                                        src="https://res.cloudinary.com/dsoilebvu/image/upload/v1777048316/hire_yvjiek.png"
+                                        src="https://res.cloudinary.com/dsoilebvu/image/upload/v1777844280/cld-sample-5.png"
                                         alt="Hire developers"
                                         fill
                                         className="object-contain rounded-2xl"
                                     />
-                                    <div className="absolute bottom-[25%] left-1/2 -translate-x-1/2">
-                                        <Link href="/contact-us" className="flex items-center gap-2 whitespace-nowrap rounded-full bg-[#0a1a0f] px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-[#1a3525] sm:px-7 sm:py-3.5">
+                                    <div className="absolute bottom-[10%] left-1/2 -translate-x-1/2">
+                                        <Link href="/contact-us" className="!flex !items-center !gap-2 !whitespace-nowrap !rounded-full !bg-black !border-2 !border-white !px-5 !py-3 !text-sm !font-semibold !text-white !transition-all hover:!bg-gray-800 hover:!border-gray-300 !shadow-lg sm:!px-7 sm:!py-3.5" style={{ zIndex: 50, position: 'relative' }}>
                                             Get in touch
                                         </Link>
                                     </div>
