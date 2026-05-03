@@ -18,11 +18,10 @@ export default function MobileAppDevelopmentPage() {
               <p className="section-head-subtitle-content">Booking for Q1 2026</p>
             </div>
             <h2 className="banner-title-2 service-banner-content-title">
-              We Build World Class Mobile Experiences, Not Just Apps
+              Crafting Innovative Web App Development Solutions
             </h2>
             <p className="service-banner-content-description">
-              We design and develop mobile applications that don&apos;t just meet business goals,
-              they create lasting digital relationships.
+              We craft secure, high-performing web applications that streamline operations, engage users, and fuel business growth.
             </p>
             <div className="button-wrap service-banner-button">
               <Link href="/contact-us" className="button-primary w-inline-block">
@@ -175,8 +174,7 @@ export default function MobileAppDevelopmentPage() {
             </div>
             <div className="approach-content">
               <p className="approach-content-description-content">
-                A great mobile app isn&apos;t just about functionality, it&apos;s about creating a
-                connection that inspires action. We help brands build apps that solve real problems.
+                Don&apos;t settle for off-the-shelf solutions. We build custom web applications that are tailored to your specific needs and scale with your ambitions.
               </p>
             </div>
           </div>
@@ -198,11 +196,10 @@ export default function MobileAppDevelopmentPage() {
               className="title title-two"
             >
               <h2 className="title-h2 title-h2-two our-app-title">
-                Mobile App Development Services That Drive Growth
+                Web App Services That Move Businesses Forward
               </h2>
               <p className="section-title-description">
-                Our mobile app solutions are built around your specific industry, guaranteeing a
-                match for your workflow, regulations, and user expectations.
+                Our solutions are tailored to your industry, ensuring they meet your specific workflow, regulatory, and user expectations.
               </p>
             </div>
           </div>
@@ -212,38 +209,38 @@ export default function MobileAppDevelopmentPage() {
               {
                 num: "S / 001",
                 icon: "69567e155eaa5f8c9854daf3_Mobile-service-card-01.svg",
-                title: "IOS App Development",
-                desc: "Immersive, fast, secure iPhone and iPad apps built with Swift and best practices.",
+                title: "Powerful Backend Engineering",
+                desc: "Secure, responsive web applications built for scalability, cross-device compatibility, and custom feature integration",
               },
               {
                 num: "S / 002",
                 icon: "69567e1500edc02978a81b0f_Mobile-service-card-02.svg",
-                title: "Android App Development",
-                desc: "High-performance Android apps with Kotlin and Java, optimized for speed, reliability, and compatibility.",
+                title: "Engaging Front-End Experiences",
+                desc: "Fast, intuitive, responsive interfaces that work seamlessly across devices and browsers.",
               },
               {
                 num: "S / 003",
                 icon: "69562ff469e9daf9f20bb00e_cross-platform-icon.png",
-                title: "Cross-Platform App Development",
-                desc: "One codebase, multiple platforms using Flutter or React Native for consistent, high-quality experiences.",
+                title: "Human-Centered Design & UX",
+                desc: "User-focused experiences that are clear, purposeful, natural, and conversion-driven.",
               },
               {
                 num: "S / 004",
                 icon: "695630b97d4a0e93dab04e5e_ai-technology-icon.png",
-                title: "AI-Powered Mobile Apps",
-                desc: "Intelligent apps leveraging predictive analytics and automation to personalize experiences and boost engagement.",
+                title: "MVPs Development That Hit the Market Fast",
+                desc: "Lean MVPs with essential features, rapid development, and quick market validation.",
               },
               {
                 num: "S / 005",
                 icon: "69567e151fd4da55fde4cc11_Mobile-service-card-05.svg",
-                title: "App Maintenance & Feature Enhancements",
-                desc: "Ongoing updates, bug fixes, and feature improvements to keep your app performing optimally.",
+                title: "Seamless API & System Integrations",
+                desc: "Reliable, secure API integrations connecting internal and third-party systems effortlessly.",
               },
               {
                 num: "S / 006",
                 icon: "69566d029643f586cf9f0265_d-service-card-06.svg",
-                title: "App Store Deployment & Optimization",
-                desc: "Seamless app launches with App Store/Play Store optimization for visibility, downloads, and performance.",
+                title: "Future-Proof App Modernization",
+                desc: "Modernize legacy systems for efficiency, scalability, performance, security, and long-term value",
               },
             ].map((s) => (
               <li key={s.num} className="our-technology-listi-tem">
@@ -350,38 +347,38 @@ export default function MobileAppDevelopmentPage() {
               {
                 icon: "69567b82006c105bfc41926e_w-choose-us-img-05.svg",
                 alt: "Octagon Icon",
-                title: "Full IP Ownership",
-                desc: "You retain full rights to your code, product, and IP complete control, always.",
+                title: "Complete Ownership",
+                desc: "You own 100% of the code, product, and IP. No lock-ins. No hidden dependencies",
               },
               {
                 icon: "69567b827695f581f7b31b50_w-choose-us-img-03.svg",
                 alt: "Quality-standard-icon",
-                title: "Agile Collaboration",
-                desc: "Transparent communication, and iterative development keep you involved at every stage.",
+                title: "Enterprise-Grade Quality",
+                desc: "Built for security, scalability, and performance using proven enterprise-grade standards.",
               },
               {
                 icon: "69567b82049528fdedba9c45_w-choose-us-img-02.svg",
                 alt: "Globe",
-                title: "Quality Engineering",
-                desc: "Secure, scalable, high-performance apps built to meet user expectations and enterprise standards.",
+                title: "Flexible Collaboration Models",
+                desc: "Choose from flexible models, dedicated teams, staff augmentation, or project-based solutions.",
               },
               {
                 icon: "695632a1744dc836e5123af3_mentoring.png",
                 alt: "communication-icon",
-                title: "Design-Led Approach",
-                desc: "Screens and interactions crafted for usability, and engaging user experiences.",
+                title: "Radical Transparency",
+                desc: "Clear communication, sprint visibility, and real-time progress updates. No surprises.",
               },
               {
                 icon: "69566d029643f586cf9f0265_d-service-card-06.svg",
                 alt: "business-icon",
-                title: "Dedicated Support",
-                desc: "Post-launch updates, and feature enhancements ensure your app grows successfully over time.",
+                title: "Tailored to Your Business",
+                desc: "Custom-built around your workflows, industry requirements, and long-term growth goals.",
               },
               {
                 icon: "695632c6d77988747920302e_continuous-icon.png",
                 alt: "settings-icon",
-                title: "Continuous Optimization",
-                desc: "Post-deployment monitoring, retraining, and fine-tuning for lasting performance.",
+                title: "Long-Term Partnership",
+                desc: "Ongoing support, scaling, and improvements beyond launch to support your business.",
               },
             ].map((w) => (
               <div key={w.title} className="choose-us-item">
@@ -794,24 +791,24 @@ export default function MobileAppDevelopmentPage() {
               cdnBase={CDN}
               items={[
                 {
-                  q: "Do you build apps for both iOS and Android?",
-                  a: "Yes, we develop for both platforms, natively or through cross-platform frameworks.",
+                  q: "What does application development include?",
+                  a: "Application development includes planning, design, development, testing, deployment, and ongoing maintenance of web and mobile applications.",
                 },
                 {
-                  q: "Can you integrate third-party APIs or legacy systems?",
-                  a: "Absolutely. Our team specializes in seamless integrations and system modernization.",
+                  q: "What kinds of applications can you build?",
+                  a: "We build everything from custom web apps and SaaS platforms to enterprise systems, dashboards, marketplaces, CRMs, ERPs, and on-demand solutions. Whether it’s simple or complex, we tailor it to your business goals and workflows.",
                 },
                 {
-                  q: "What is the typical cost and timeline for a mobile app?",
-                  a: "It depends on complexity and scope — we provide a tailored estimate after discovery.",
+                  q: "Do you create apps for both iOS and Android?",
+                  a: "Yes, if your project requires mobile access, we can build responsive web apps that work flawlessly on all devices or develop dedicated mobile apps (native or cross-platform). You choose the approach that fits your audience best.",
                 },
                 {
-                  q: "Do you handle publishing to app stores?",
-                  a: "Yes, we manage testing, submission, and deployment for both the App Store and Play Store.",
+                  q: "Can my app connect with third-party tools and APIs?",
+                  a: "Absolutely. We integrate your app with payment gateways, CRM systems, analytics tools, AI services, cloud platforms, and any other third-party APIs you need. Smooth, secure connectivity is a key part of our development process.",
                 },
                 {
-                  q: "Do you offer maintenance and post-launch support?",
-                  a: "Yes, ongoing monitoring, updates, and scaling support are part of every engagement.",
+                  q: "What factors determine the cost of development?",
+                  a: "The cost depends on features, complexity, integrations, design requirements, scalability needs, and the tech stack. After understanding your goals, we provide a detailed estimate so you know exactly what to expect, no surprises.",
                 },
               ]}
             />

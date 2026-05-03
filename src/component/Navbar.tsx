@@ -513,7 +513,7 @@ export default function Navbar() {
                         </Dropdown>
 
                         <Link
-                            href="https://www.notion.so/amentotech/Job-Board-AMENTO-TECH-2951664c06b48032a384e228b1deb169"
+                            href="/insights"
                             target="_blank"
                             className="nav-link nav-title-white w-nav-link"
                         >
@@ -906,8 +906,7 @@ export default function Navbar() {
                         </div>
 
                         <Link
-                            href="https://www.notion.so/amentotech/Job-Board-AMENTO-TECH-2951664c06b48032a384e228b1deb169"
-                            target="_blank"
+                            href="/insights"
                             className="nav-link w-nav-link"
                         >
                             Insights 

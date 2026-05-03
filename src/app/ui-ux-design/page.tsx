@@ -18,11 +18,10 @@ export default function MobileAppDevelopmentPage() {
               <p className="section-head-subtitle-content">Booking for Q1 2026</p>
             </div>
             <h2 className="banner-title-2 service-banner-content-title">
-              We Build World Class Mobile Experiences, Not Just Apps
+              Elevating User Experience Through Strategic UI/UX Design
             </h2>
             <p className="service-banner-content-description">
-              We design and develop mobile applications that don&apos;t just meet business goals,
-              they create lasting digital relationships.
+              We design more than just interfaces, we craft digital experiences that captivate, convert, and connect.
             </p>
             <div className="button-wrap service-banner-button">
               <Link href="/contact-us" className="button-primary w-inline-block">
@@ -175,8 +174,8 @@ export default function MobileAppDevelopmentPage() {
             </div>
             <div className="approach-content">
               <p className="approach-content-description-content">
-                A great mobile app isn&apos;t just about functionality, it&apos;s about creating a
-                connection that inspires action. We help brands build apps that solve real problems.
+                
+                  Exceptional UI/UX isn&apos;t just visually appealing; it&apos;s about forging a user journey that converts interest into action.
               </p>
             </div>
           </div>
@@ -198,11 +197,10 @@ export default function MobileAppDevelopmentPage() {
               className="title title-two"
             >
               <h2 className="title-h2 title-h2-two our-app-title">
-                Mobile App Development Services That Drive Growth
+                UI/UX Solutions That Drive User Engagement
               </h2>
               <p className="section-title-description">
-                Our mobile app solutions are built around your specific industry, guaranteeing a
-                match for your workflow, regulations, and user expectations.
+                Our UI/UX solutions are tailored to enhance usability, ensuring a seamless and intuitive experience for every user.
               </p>
             </div>
           </div>
@@ -212,38 +210,38 @@ export default function MobileAppDevelopmentPage() {
               {
                 num: "S / 001",
                 icon: "69567e155eaa5f8c9854daf3_Mobile-service-card-01.svg",
-                title: "IOS App Development",
-                desc: "Immersive, fast, secure iPhone and iPad apps built with Swift and best practices.",
+                title: "UI/UX Design for Mobile Apps",
+                desc: "Secure, responsive web applications built for scalability, cross-device compatibility, and custom feature integration.",
               },
               {
                 num: "S / 002",
                 icon: "69567e1500edc02978a81b0f_Mobile-service-card-02.svg",
-                title: "Android App Development",
-                desc: "High-performance Android apps with Kotlin and Java, optimized for speed, reliability, and compatibility.",
+                title: "Web Application UI/UX Design",
+                desc: "Secure, responsive web applications built for scalability, cross-device compatibility, and custom feature integration.",
               },
               {
                 num: "S / 003",
                 icon: "69562ff469e9daf9f20bb00e_cross-platform-icon.png",
-                title: "Cross-Platform App Development",
-                desc: "One codebase, multiple platforms using Flutter or React Native for consistent, high-quality experiences.",
+                title: "Corporate Website & Landing Page Design",
+                desc: "Secure, responsive web applications built for scalability, cross-device compatibility, and custom feature integration.",
               },
               {
                 num: "S / 004",
                 icon: "695630b97d4a0e93dab04e5e_ai-technology-icon.png",
-                title: "AI-Powered Mobile Apps",
-                desc: "Intelligent apps leveraging predictive analytics and automation to personalize experiences and boost engagement.",
+                title: "E-commerce UI/UX Design",
+                desc: "Secure, responsive web applications built for scalability, cross-device compatibility, and custom feature integration",
               },
               {
                 num: "S / 005",
                 icon: "69567e151fd4da55fde4cc11_Mobile-service-card-05.svg",
-                title: "App Maintenance & Feature Enhancements",
-                desc: "Ongoing updates, bug fixes, and feature improvements to keep your app performing optimally.",
+                title: "Admin Dashboard & Analytics UI/UX",
+                desc: "Secure, responsive web applications built for scalability, cross-device compatibility, and custom feature integration.",
               },
               {
                 num: "S / 006",
                 icon: "69566d029643f586cf9f0265_d-service-card-06.svg",
-                title: "App Store Deployment & Optimization",
-                desc: "Seamless app launches with App Store/Play Store optimization for visibility, downloads, and performance.",
+                title: "SaaS App UI/UX Design",
+                desc: "Secure, responsive web applications built for scalability, cross-device compatibility, and custom feature integration.",
               },
             ].map((s) => (
               <li key={s.num} className="our-technology-listi-tem">
@@ -342,7 +340,7 @@ export default function MobileAppDevelopmentPage() {
               </p>
             </div>
             <h2 className="title-h2 title-h2-two choose-us choose-us-two-title-two">
-              Partner With Us for Mobile App Development
+              Partner With Us for UI/UX Excellence
             </h2>
           </div>
           <div className="choose-us-content">
@@ -350,38 +348,38 @@ export default function MobileAppDevelopmentPage() {
               {
                 icon: "69567b82006c105bfc41926e_w-choose-us-img-05.svg",
                 alt: "Octagon Icon",
-                title: "Full IP Ownership",
-                desc: "You retain full rights to your code, product, and IP complete control, always.",
+                title: "Human-Centered Approach",
+                desc: "Every design starts with real user behavior and business goals.",
               },
               {
                 icon: "69567b827695f581f7b31b50_w-choose-us-img-03.svg",
                 alt: "Quality-standard-icon",
-                title: "Agile Collaboration",
-                desc: "Transparent communication, and iterative development keep you involved at every stage.",
+                title: "Conversion-Focused Design",
+                desc: "We build experiences that don’t just look good, they drive action",
               },
               {
                 icon: "69567b82049528fdedba9c45_w-choose-us-img-02.svg",
                 alt: "Globe",
-                title: "Quality Engineering",
-                desc: "Secure, scalable, high-performance apps built to meet user expectations and enterprise standards.",
+                title: "Consistent Brand Identity",
+                desc: "Cohesive visuals across platforms to strengthen your brand presence.",
               },
               {
                 icon: "695632a1744dc836e5123af3_mentoring.png",
                 alt: "communication-icon",
-                title: "Design-Led Approach",
-                desc: "Screens and interactions crafted for usability, and engaging user experiences.",
+                title: "Seamless Collaboration",
+                desc: "Our designers work hand-in-hand with developers for flawless execution.",
               },
               {
                 icon: "69566d029643f586cf9f0265_d-service-card-06.svg",
                 alt: "business-icon",
-                title: "Dedicated Support",
-                desc: "Post-launch updates, and feature enhancements ensure your app grows successfully over time.",
+                title: "Scalable Design Systems",
+                desc: "Reusable components that evolve as your product grows.",
               },
               {
                 icon: "695632c6d77988747920302e_continuous-icon.png",
                 alt: "settings-icon",
-                title: "Continuous Optimization",
-                desc: "Post-deployment monitoring, retraining, and fine-tuning for lasting performance.",
+                title: "Tested for Impact",
+                desc: "Every design is validated for usability, accessibility, and engagement.",
               },
             ].map((w) => (
               <div key={w.title} className="choose-us-item">
@@ -794,24 +792,24 @@ export default function MobileAppDevelopmentPage() {
               cdnBase={CDN}
               items={[
                 {
-                  q: "Do you build apps for both iOS and Android?",
-                  a: "Yes, we develop for both platforms, natively or through cross-platform frameworks.",
+                  q: "What exactly is UI vs UX design?",
+                  a: "UX (User Experience) design focuses on how your app or website works and how easy it is for users to navigate. UI (User Interface) design focuses on how it looks, colors, buttons, fonts, and visual interactions. Both work together to create a smooth and engaging experience",
                 },
                 {
-                  q: "Can you integrate third-party APIs or legacy systems?",
-                  a: "Absolutely. Our team specializes in seamless integrations and system modernization.",
+                  q: "What’s included in a typical UI/UX design project?",
+                  a: "A full project usually covers understanding your users, planning flows, creating wireframes, designing visuals, building interactive prototypes, testing usability, and providing assets ready for developers.",
                 },
                 {
-                  q: "What is the typical cost and timeline for a mobile app?",
-                  a: "It depends on complexity and scope — we provide a tailored estimate after discovery.",
+                  q: "How long does UI/UX design take?",
+                  a: "The timeline depends on the project’s complexity, but most projects take between 4 to 12 weeks from research to final design.",
                 },
                 {
-                  q: "Do you handle publishing to app stores?",
-                  a: "Yes, we manage testing, submission, and deployment for both the App Store and Play Store.",
+                  q: "What factors affect the cost?",
+                  a: "Costs depend on project size, number of screens or features, platforms (web, mobile, or both), level of research, and testing required.",
                 },
                 {
-                  q: "Do you offer maintenance and post-launch support?",
-                  a: "Yes, ongoing monitoring, updates, and scaling support are part of every engagement.",
+                  q: "Can you help with design handoff to developers?",
+                  a: "Absolutely. We provide all design files, specifications, and guidelines to ensure developers can implement the design accurately and efficiently.",
                 },
               ]}
             />
