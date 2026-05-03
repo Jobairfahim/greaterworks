@@ -24,7 +24,7 @@ export default function StaffAugmentationSection() {
                     <div className="section-head section-head-two staff-augmentation">
                         <div className="section-head-content-subtitle">
                             <div className="section-head-subtitle-dot" />
-                            <p className="section-head-subtitle-content subtitle-secondary-content">Staff Augmentation</p>
+                            <p className="section-head-subtitle-content subtitle-secondary-content">Tech Stack</p>
                         </div>
                         <div className="title title-two">
                             <h2 className="title-h2-2 title-h2-two staff-augmentation">Shape Your Perfect Team of Expert Developers Skilled in Leading Technologies</h2>

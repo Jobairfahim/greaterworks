@@ -36,14 +36,14 @@ const footerCompany = [
 ];
 
 const footerHire = [
-    { label: "Python Developer", href: "/contact-us" },
-    { label: "Flutter Developer", href: "/contact-us" },
-    { label: "SaaS Developer", href: "/contact-us" },
-    { label: "Elixir Developer", href: "/contact-us" },
-    { label: "React Js Developer", href: "/contact-us" },
-    { label: "Node Js Developer", href: "/contact-us" },
-    { label: "ROR Developer", href: "/contact-us" },
-    { label: "MERN Stack Developer", href: "/contact-us" },
+    { label: "Restaurant Management System", href: "/contact-us" },
+    { label: "Booking & Reservation System", href: "/contact-us" },
+    { label: "Real Estate Management System", href: "/contact-us" },
+    { label: "ERP System", href: "/contact-us" },
+    { label: "E-commerce Website", href: "/contact-us" },
+    { label: "Livestock Management System", href: "/contact-us" },
+    { label: "School Management System", href: "/contact-us" },
+    { label: "StitchMate", href: "/contact-us" },
 ];
 
 const socials = [
@@ -79,7 +79,10 @@ export default function Footer() {
                                     <div className="footer-author">
                                         <Image src="https://cdn.prod.website-files.com/68d276a2319df5bdcc752026/693686de8bf6a11d6c5e4739_Elite%20Badge.svg" alt="" width={40} height={40} className="footer-author-logo" />
                                         <Link href="https://themeforest.net/user/amentotech/portfolio" target="_blank" className="w-inline-block">
-                                            <Image src="https://cdn.prod.website-files.com/68d276a2319df5bdcc752026/693686decf47d76c7fffa679_Envato%20Logo.svg" alt="" width={80} height={20} className="footer-author-logo-2" />
+                                            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                                                <Image src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" alt="" width={80} height={20} className="footer-author-logo-2" />
+                                                <span style={{ fontSize: '16px', fontWeight: '500', color: 'white' }}>Google</span>
+                                            </div>
                                             <p className="footer-author-info">Elite Author Since 2018</p>
                                         </Link>
                                     </div>
@@ -106,7 +109,7 @@ export default function Footer() {
                                 ))}
                             </div>
                             <div className="footer-link-wrapper footer-hire-dev">
-                                <h5 className="footer-links-header">Hire devs</h5>
+                                <h5 className="footer-links-header">Our Solutions</h5>
                                 {footerHire.map((s, i) => (
                                     <Link key={i} href={s.href} className={`footer-link ${i === 0 ? "margin-top-0" : ""}`}>{s.label}</Link>
                                 ))}

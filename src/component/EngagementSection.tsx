@@ -8,13 +8,13 @@ import { motion, useScroll, useTransform } from "framer-motion";
 const engagements = [
     {
         counter: "01",
-        title: "Staff Augmentation",
-        desc: "Extend your team with top-tier developers and IT specialists.",
+        title: "Custom Product Development",
+        desc: "Turn your ideas into fully functional digital products",
         items: [
-            "On-demand access to expert talent across stacks",
-            "Seamless integration with existing workflows",
-            "Flexible scaling for projects & deadlines",
-            "Cost-effective resourcing without quality compromise",
+            "Tailored solutions built to match your business goals",
+            "From concept to launch with a structured development approach",
+            "Scalable and future-ready product architecture",
+            "High-quality delivery with performance and usability focus",
         ],
     },
     {
@@ -30,13 +30,13 @@ const engagements = [
     },
     {
         counter: "03",
-        title: "Dedicated Teams",
-        desc: "Fully managed teams aligned with your vision and goals.",
+        title: "End-to-End Product Delivery",
+        desc: "We manage the entire product lifecycle with precision and efficiency.",
         items: [
-            "End-to-End Project Ownership with measurable outcomes",
-            "Deep integration with your culture & workflows",
-            "Multi-domain expertise across industries",
-            "Long-term collaboration ensuring consistent innovation",
+            "Complete ownership from planning to deployment",
+            "Seamless coordination across design, development, and testing",
+            "Agile workflows ensuring timely and flexible delivery",
+            "Consistent quality with measurable outcomes throughout the process",
         ],
     },
 ];

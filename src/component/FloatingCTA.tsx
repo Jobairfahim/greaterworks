@@ -43,6 +43,7 @@ export default function FloatingCTA() {
                     transform: translateY(-3px);
                     box-shadow: 0 22px 38px rgba(126, 34, 206, 0.4);
                     background: linear-gradient(135deg, #9333ea 0%, #6b21a8 100%);
+                    color: #fff;
                 }
 
                 .floating-cta__icon {

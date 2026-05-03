@@ -36,46 +36,53 @@ const approaches = [
 
 const hireTabs = [
     {
-        label: "Backend Developers",
+        label: "Management Systems",
         icon: "https://res.cloudinary.com/dsoilebvu/image/upload/v1777048243/web_bvejup.svg",
         items: [
-            { title: "Node.js Developers", desc: "Build fast, scalable, and real-time applications using JavaScript/TypeScript." },
-            { title: "Python Developers (Django/Flask)", desc: "Develop secure and efficient backend systems for modern web apps." },
-            { title: "Java Developers (Spring Boot)", desc: "Enterprise-grade applications with high performance and reliability." },
-            { title: "PHP Developers (Laravel/Symfony)", desc: "Create dynamic websites and APIs with PHP frameworks." },
-            { title: "Ruby on Rails Developers", desc: "Scalable and maintainable web applications with Ruby on Rails." },
-            { title: "Go (Golang) Developers", desc: "High-performance backend services and microservices." },
-            { title: ".NET Developers", desc: "Build enterprise solutions with C# and .NET Core." },
-            { title: "Database Developers", desc: "Design, manage, and optimize relational and NoSQL databases." },
-            { title: "API Developers", desc: "Develop RESTful and GraphQL APIs for seamless integrations." },
-            { title: "Cloud & DevOps Backend Developers", desc: "Create dynamic websites and APIs with PHP frameworks." },
+            { title: "Restaurant Management System", desc: "Complete restaurant operations management with ordering, inventory, and billing." },
+            { title: "Booking & Reservation System", desc: "Streamlined booking and reservation management for businesses and services." },
+            { title: "Real Estate Management System", desc: "Comprehensive property management with listings, bookings, and client management." },
+            { title: "ERP System", desc: "Enterprise Resource Planning system for integrated business process management." },
         ],
     },
     {
-        label: "Frontend Developers",
+        label: "Business Solutions",
         icon: "https://res.cloudinary.com/dsoilebvu/image/upload/v1777048239/qa_gfbujp.svg",
         items: [
-            { title: "React.js Developers", desc: "Build dynamic and responsive web applications with modern React frameworks." },
-            { title: "Angular Developers", desc: "Create scalable, maintainable, and high-performance frontend solutions." },
-            { title: "Vue.js Developers", desc: "Develop elegant, lightweight, and fast user interfaces." },
-            { title: "HTML/CSS Developers", desc: "Design pixel-perfect layouts with clean, semantic code." },
-            { title: "JavaScript Developers", desc: "Enhance interactivity and functionality across web applications." },
-            { title: "TypeScript Developers", desc: "Build scalable, maintainable, and error-free frontend applications." },
-            { title: "UI/UX Developers", desc: "Translate design mockups into intuitive and engaging user experiences." },
-            { title: "Mobile Frontend Developers", desc: "Build responsive web apps and hybrid mobile applications." },
+            { title: "E-commerce Website", desc: "Full-featured online shopping platform with payment integration and inventory management." },
+            { title: "Livestock Management System", desc: "Digital solution for livestock tracking, health monitoring, and farm management." },
+            { title: "School Management System", desc: "Complete educational institution management with student records and academic tracking." },
+            { title: "StitchMate", desc: "Tailored garment and textile management solution for fashion businesses." },
         ],
     },
     {
-        label: "Mobile App developers",
-        icon: "https://res.cloudinary.com/dsoilebvu/image/upload/v1777048242/mobile_ndbr6y.svg",
+        label: "Healthcare Solutions",
+        icon: "https://res.cloudinary.com/dsoilebvu/image/upload/v1777048241/healthcare_kge1kk.svg",
         items: [
-            { title: "iOS Developers (Swift/Objective-C)", desc: "Build fast, secure, and native iOS applications." },
-            { title: "Android Developers (Kotlin/Java)", desc: "Develop robust, scalable, and feature-rich Android apps." },
-            { title: "Cross-Platform Developers (Flutter, React Native)", desc: "Create apps that run smoothly on both iOS and Android." },
-            { title: "UI/UX Mobile Developers", desc: "Design intuitive, engaging, and visually appealing mobile interfaces." },
-            { title: "Mobile Backend Integration Developers", desc: "Connect apps with secure, efficient backend systems." },
-            { title: "Hybrid Mobile App Developers", desc: "Build cost-effective hybrid apps for multiple platforms." },
-            { title: "Mobile Game Developers", desc: "Develop engaging, interactive mobile games with smooth performance." },
+            { title: "Hospital Management System", desc: "Complete healthcare facility management with patient records and appointments." },
+            { title: "Telemedicine Platform", desc: "Remote healthcare consultation platform with video calls and prescriptions." },
+            { title: "Pharmacy Management System", desc: "Digital pharmacy operations with inventory and prescription management." },
+            { title: "Healthcare CRM", desc: "Patient relationship management system for healthcare providers." },
+        ],
+    },
+    {
+        label: "Financial Solutions",
+        icon: "https://res.cloudinary.com/dsoilebvu/image/upload/v1777048241/fintech_zot6im.svg",
+        items: [
+            { title: "Banking Management System", desc: "Comprehensive banking operations with accounts, loans, and transactions." },
+            { title: "Payment Gateway", desc: "Secure online payment processing platform for businesses." },
+            { title: "Investment Management Platform", desc: "Digital investment tracking and portfolio management system." },
+            { title: "Insurance Management System", desc: "Complete insurance operations with policies and claims management." },
+        ],
+    },
+    {
+        label: "Educational Platforms",
+        icon: "https://res.cloudinary.com/dsoilebvu/image/upload/v1777048239/edtech_itagwl.svg",
+        items: [
+            { title: "Learning Management System", desc: "Online learning platform with courses, assessments, and progress tracking." },
+            { title: "Virtual Classroom", desc: "Interactive online classroom with live sessions and collaboration tools." },
+            { title: "Student Information System", desc: "Comprehensive student data management with academic records." },
+            { title: "E-learning Platform", desc: "Customizable e-learning solution with multimedia content delivery." },
         ],
     },
 ];
@@ -1012,27 +1019,15 @@ export default function Navbar() {
                     position: relative;
                     display: inline-block;
                 }
-                .dropdown-toggle {
-                    display: flex;
-                    align-items: center;
-                    gap: 6px;
-                    cursor: default;
-                    padding: 8px 0;
-                }
                 .dropdown .w-dropdown-list {
-                    position: absolute;
-                    top: 100%;
-                    left: 0;
                     display: block !important;
                     opacity: 0;
                     visibility: hidden;
-                    transform: translateY(-8px);
                     transition:
                         opacity 0.25s cubic-bezier(0.4, 0, 0.2, 1),
-                        transform 0.25s cubic-bezier(0.4, 0, 0.2, 1),
                         visibility 0.25s cubic-bezier(0.4, 0, 0.2, 1);
                     pointer-events: none;
-                    will-change: opacity, transform, visibility;
+                    will-change: opacity, visibility;
                     z-index: 999;
                     min-width: 400px;
                     padding: 40px;
@@ -1041,38 +1036,33 @@ export default function Navbar() {
                 .dropdown.w--open .w-dropdown-list {
                     opacity: 1 !important;
                     visibility: visible !important;
-                    transform: translateY(0) !important;
                     pointer-events: auto;
                 }
                 .dropdown .nav-dropdown-icon {
-                    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
                     width: 20px;
                     height: 20px;
                 }
-                .dropdown.w--open .nav-dropdown-icon {
-                    transform: rotate(180deg);
+                .dropdown-toggle {
+                    display: flex;
+                    align-items: center;
+                    gap: 6px;
+                    cursor: default;
                 }
                 .mega-menu-wrap {
                     max-height: none;
                     overflow: visible;
                 }
                 .menu-service-list-card {
-                    transition:
-                        background-color 0.2s ease,
-                        transform 0.2s ease;
+                    transition: background-color 0.2s ease;
                 }
                 .menu-service-list-card:hover {
                     background-color: rgba(255, 255, 255, 0.05);
-                    transform: translateX(4px);
                 }
                 .menu-service-list-arrow-icon {
-                    transition:
-                        opacity 0.2s ease,
-                        transform 0.2s ease;
+                    transition: opacity 0.2s ease;
                 }
                 .menu-service-list-card:hover .menu-service-list-arrow-icon {
                     opacity: 1;
-                    transform: translateX(2px);
                 }
                 .menu-contact-us-card-link {
                     transition: color 0.2s ease;

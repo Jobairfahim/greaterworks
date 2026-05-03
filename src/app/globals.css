@@ -33561,25 +33561,19 @@ html.wf-design-mode .preloader {
 
 /* Menu item hover animations */
 .menu-service-list-card {
-  transition:
-    background-color 0.2s ease,
-    transform 0.2s ease;
+  transition: background-color 0.2s ease;
 }
 
 .menu-service-list-card:hover {
   background-color: rgba(255, 255, 255, 0.05);
-  transform: translateX(4px);
 }
 
 .menu-service-list-arrow-icon {
-  transition:
-    opacity 0.2s ease,
-    transform 0.2s ease;
+  transition: opacity 0.2s ease;
 }
 
 .menu-service-list-card:hover .menu-service-list-arrow-icon {
   opacity: 1;
-  transform: translateX(2px);
 }
 
 /* Contact card hover */
