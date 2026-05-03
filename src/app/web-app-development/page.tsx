@@ -150,7 +150,7 @@ export default function MobileAppDevelopmentPage() {
             <div className="award-winning">
               <Image
                 alt="Marquee Image"
-                src={`${CDN}/6937d7440f57acbe2b3fb811_award-shade.svg`}
+                src={`https://res.cloudinary.com/dsoilebvu/image/upload/v1777048239/rating-l_ngsvxg.svg`}
                 width={40}
                 height={40}
                 className="award-winning-shade-img"

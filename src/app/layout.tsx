@@ -7,6 +7,7 @@ import CTASection from "@/component/CTASection";
 import Footer from "@/component/Footer";
 import FloatingCTA from "@/component/FloatingCTA";
 import { head } from "framer-motion/client";
+import Preloader from "@/component/Preloader";
 
 export const metadata: Metadata = {
   title: "Custom Software, Web & Mobile App Development | Greater works technologies",
@@ -50,6 +51,7 @@ export default function RootLayout({
 
       </head>
       <body>
+        <Preloader />
         <Navbar />
         {children}
         <CTASection />

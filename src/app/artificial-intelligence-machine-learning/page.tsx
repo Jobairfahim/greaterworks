@@ -18,11 +18,10 @@ export default function MobileAppDevelopmentPage() {
               <p className="section-head-subtitle-content">Booking for Q1 2026</p>
             </div>
             <h2 className="banner-title-2 service-banner-content-title">
-              We Build World Class Mobile Experiences, Not Just Apps
+             Future-Proof Your Business with AI and Machine Learning
             </h2>
             <p className="service-banner-content-description">
-              We design and develop mobile applications that don&apos;t just meet business goals,
-              they create lasting digital relationships.
+              We design and develop AI-driven solutions that help enterprises automate workflows, uncover insights, and make data-driven decisions faster than ever.
             </p>
             <div className="button-wrap service-banner-button">
               <Link href="/contact-us" className="button-primary w-inline-block">
@@ -175,8 +174,8 @@ export default function MobileAppDevelopmentPage() {
             </div>
             <div className="approach-content">
               <p className="approach-content-description-content">
-                A great mobile app isn&apos;t just about functionality, it&apos;s about creating a
-                connection that inspires action. We help brands build apps that solve real problems.
+                
+                From predictive analytics to computer vision and NLP, our AI expertise transforms your challenges into smart, self-learning opportunities.
               </p>
             </div>
           </div>
@@ -198,11 +197,10 @@ export default function MobileAppDevelopmentPage() {
               className="title title-two"
             >
               <h2 className="title-h2 title-h2-two our-app-title">
-                Mobile App Development Services That Drive Growth
+                Explore Our Intelligent AI and Machine Learning Solutions
               </h2>
               <p className="section-title-description">
-                Our mobile app solutions are built around your specific industry, guaranteeing a
-                match for your workflow, regulations, and user expectations.
+               We provide end-to-end AI and machine learning development, from model design to deployment, helping you unlock the full potential of data and automation.
               </p>
             </div>
           </div>
@@ -212,38 +210,38 @@ export default function MobileAppDevelopmentPage() {
               {
                 num: "S / 001",
                 icon: "69567e155eaa5f8c9854daf3_Mobile-service-card-01.svg",
-                title: "IOS App Development",
-                desc: "Immersive, fast, secure iPhone and iPad apps built with Swift and best practices.",
+                title: "Custom AI Solution Development",
+                desc: "AI systems tailored to your business goals, from automation engines to recommendation systems.",
               },
               {
                 num: "S / 002",
                 icon: "69567e1500edc02978a81b0f_Mobile-service-card-02.svg",
-                title: "Android App Development",
-                desc: "High-performance Android apps with Kotlin and Java, optimized for speed, reliability, and compatibility.",
+                title: "Machine Learning Model Engineering",
+                desc: "Supervised, unsupervised, and reinforcement models trained to deliver measurable accuracy.",
               },
               {
                 num: "S / 003",
                 icon: "69562ff469e9daf9f20bb00e_cross-platform-icon.png",
-                title: "Cross-Platform App Development",
-                desc: "One codebase, multiple platforms using Flutter or React Native for consistent, high-quality experiences.",
+                title: "Natural Language Processing (NLP)",
+                desc: "Chatbots, voice recognition, and sentiment analysis that understand and respond like humans.",
               },
               {
                 num: "S / 004",
                 icon: "695630b97d4a0e93dab04e5e_ai-technology-icon.png",
-                title: "AI-Powered Mobile Apps",
-                desc: "Intelligent apps leveraging predictive analytics and automation to personalize experiences and boost engagement.",
+                title: "Computer Vision Solutions",
+                desc: "Image recognition, facial detection, and object tracking for industries like retail, security, and healthcare.",
               },
               {
                 num: "S / 005",
                 icon: "69567e151fd4da55fde4cc11_Mobile-service-card-05.svg",
-                title: "App Maintenance & Feature Enhancements",
-                desc: "Ongoing updates, bug fixes, and feature improvements to keep your app performing optimally.",
+                title: "AI-Powered Automation & Integration",
+                desc: "Streamline repetitive tasks and boost efficiency across workflows, logistics, and customer operations.",
               },
               {
                 num: "S / 006",
                 icon: "69566d029643f586cf9f0265_d-service-card-06.svg",
-                title: "App Store Deployment & Optimization",
-                desc: "Seamless app launches with App Store/Play Store optimization for visibility, downloads, and performance.",
+                title: "Data Engineering & Model Training",
+                desc: "Build robust data pipelines and scalable models ready for production.",
               },
             ].map((s) => (
               <li key={s.num} className="our-technology-listi-tem">
@@ -350,32 +348,32 @@ export default function MobileAppDevelopmentPage() {
               {
                 icon: "69567b82006c105bfc41926e_w-choose-us-img-05.svg",
                 alt: "Octagon Icon",
-                title: "Full IP Ownership",
-                desc: "You retain full rights to your code, product, and IP complete control, always.",
+                title: "End-to-End Expertise",
+                desc: "From ideation to production-level deployment and continuous refinement",
               },
               {
                 icon: "69567b827695f581f7b31b50_w-choose-us-img-03.svg",
                 alt: "Quality-standard-icon",
-                title: "Agile Collaboration",
-                desc: "Transparent communication, and iterative development keep you involved at every stage.",
+                title: "Data Security at Core",
+                desc: "Compliant with GDPR, HIPAA, and enterprise-grade data protection.",
               },
               {
                 icon: "69567b82049528fdedba9c45_w-choose-us-img-02.svg",
                 alt: "Globe",
-                title: "Quality Engineering",
-                desc: "Secure, scalable, high-performance apps built to meet user expectations and enterprise standards.",
+                title: "Cross-Industry Experience",
+                desc: "Deep domain knowledge across FinTech, Healthcare, Retail, and more.",
               },
               {
                 icon: "695632a1744dc836e5123af3_mentoring.png",
                 alt: "communication-icon",
-                title: "Design-Led Approach",
-                desc: "Screens and interactions crafted for usability, and engaging user experiences.",
+                title: "Agile Collaboration",
+                desc: "Transparent process with frequent updates and shared progress visibility.",
               },
               {
                 icon: "69566d029643f586cf9f0265_d-service-card-06.svg",
                 alt: "business-icon",
-                title: "Dedicated Support",
-                desc: "Post-launch updates, and feature enhancements ensure your app grows successfully over time.",
+                title: "Scalable Infrastructure",
+                desc: "Cloud-ready and containerized AI solutions for future growth.",
               },
               {
                 icon: "695632c6d77988747920302e_continuous-icon.png",
@@ -794,24 +792,24 @@ export default function MobileAppDevelopmentPage() {
               cdnBase={CDN}
               items={[
                 {
-                  q: "Do you build apps for both iOS and Android?",
-                  a: "Yes, we develop for both platforms, natively or through cross-platform frameworks.",
+                  q: "How long does it take to develop an AI or ML solution?",
+                  a: "Timelines depend on complexity, MVPs can take 2–3 months, while enterprise-grade AI systems may require 6–12 months.",
                 },
                 {
-                  q: "Can you integrate third-party APIs or legacy systems?",
-                  a: "Absolutely. Our team specializes in seamless integrations and system modernization.",
+                  q: "What kind of data do I need to start an AI project?",
+                  a: "Structured or unstructured, we help clean, label, and prepare your data to train accurate, high-performing models.",
                 },
                 {
-                  q: "What is the typical cost and timeline for a mobile app?",
-                  a: "It depends on complexity and scope — we provide a tailored estimate after discovery.",
+                  q: "Can AI be integrated into my existing systems?",
+                  a: "Absolutely. We design modular AI components that seamlessly connect to your ERP, CRM, or other enterprise tools.",
                 },
                 {
-                  q: "Do you handle publishing to app stores?",
-                  a: "Yes, we manage testing, submission, and deployment for both the App Store and Play Store.",
+                  q: "What industries benefit most from AI adoption?",
+                  a: "AI adds value anywhere data is abundant, from finance and retail to healthcare, manufacturing, and logistics.",
                 },
                 {
-                  q: "Do you offer maintenance and post-launch support?",
-                  a: "Yes, ongoing monitoring, updates, and scaling support are part of every engagement.",
+                  q: "How do you ensure the accuracy and reliability of AI models?",
+                  a: "We follow continuous evaluation, retraining, and validation cycles to maintain model precision and reliability.",
                 },
               ]}
             />

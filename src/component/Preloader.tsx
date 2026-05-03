@@ -5,6 +5,7 @@ import { gsap } from "gsap";
 
 export default function Preloader() {
     const [hidden, setHidden] = useState(false);
+    const [isNavigation, setIsNavigation] = useState(false);
     const preloaderRef = useRef<HTMLDivElement>(null);
     const svgPathRef = useRef<SVGPathElement>(null);
     const logoTextRef = useRef<HTMLDivElement>(null);
@@ -61,6 +62,40 @@ export default function Preloader() {
                 display: "none",
             });
         }
+
+        // Add navigation click detection
+        const handleNavigationClick = (e: MouseEvent) => {
+            const target = e.target as HTMLElement;
+            const link = target.closest('a');
+            
+            if (link && 
+                link.href && 
+                link.href !== window.location.href &&
+                !link.href.includes('mailto:') &&
+                !link.href.includes('tel:') &&
+                !link.href.includes('#') &&
+                link.hostname === window.location.hostname) {
+                
+                // Prevent default navigation temporarily
+                e.preventDefault();
+                
+                // Show preloader for navigation
+                setHidden(false);
+                setIsNavigation(true);
+                document.body.classList.add("loading");
+                
+                // Navigate after showing preloader
+                setTimeout(() => {
+                    window.location.href = link.href;
+                }, 800);
+            }
+        };
+
+        document.addEventListener('click', handleNavigationClick);
+        
+        return () => {
+            document.removeEventListener('click', handleNavigationClick);
+        };
     }, []);
 
     if (hidden) return null;

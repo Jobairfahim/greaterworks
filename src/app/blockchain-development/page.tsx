@@ -18,11 +18,10 @@ export default function MobileAppDevelopmentPage() {
               <p className="section-head-subtitle-content">Booking for Q1 2026</p>
             </div>
             <h2 className="banner-title-2 service-banner-content-title">
-              We Build World Class Mobile Experiences, Not Just Apps
+             Scalable Blockchain Solutions for Your Business
             </h2>
             <p className="service-banner-content-description">
-              We design and develop mobile applications that don&apos;t just meet business goals,
-              they create lasting digital relationships.
+              We help you transform your business model with decentralised solutions built for scalability, security, and transparency.
             </p>
             <div className="button-wrap service-banner-button">
               <Link href="/contact-us" className="button-primary w-inline-block">
@@ -175,8 +174,8 @@ export default function MobileAppDevelopmentPage() {
             </div>
             <div className="approach-content">
               <p className="approach-content-description-content">
-                A great mobile app isn&apos;t just about functionality, it&apos;s about creating a
-                connection that inspires action. We help brands build apps that solve real problems.
+                
+                Our blockchain developers combine technical depth with industry knowledge to deliver solutions that truly move markets forward.
               </p>
             </div>
           </div>
@@ -198,11 +197,10 @@ export default function MobileAppDevelopmentPage() {
               className="title title-two"
             >
               <h2 className="title-h2 title-h2-two our-app-title">
-                Mobile App Development Services That Drive Growth
+                Blockchain Solutions Tailored for Your Business
               </h2>
               <p className="section-title-description">
-                Our mobile app solutions are built around your specific industry, guaranteeing a
-                match for your workflow, regulations, and user expectations.
+                We provide a full spectrum of blockchain services that help enterprises, startups, and innovators leverage decentralization for real-world impact.
               </p>
             </div>
           </div>
@@ -212,38 +210,38 @@ export default function MobileAppDevelopmentPage() {
               {
                 num: "S / 001",
                 icon: "69567e155eaa5f8c9854daf3_Mobile-service-card-01.svg",
-                title: "IOS App Development",
-                desc: "Immersive, fast, secure iPhone and iPad apps built with Swift and best practices.",
+                title: "Custom Blockchain App Development",
+                desc: "End-to-end decentralized applications tailored to your business logic and ecosystem..",
               },
               {
                 num: "S / 002",
                 icon: "69567e1500edc02978a81b0f_Mobile-service-card-02.svg",
-                title: "Android App Development",
-                desc: "High-performance Android apps with Kotlin and Java, optimized for speed, reliability, and compatibility.",
+                title: "Smart Contract Development",
+                desc: "Secure, automated agreements written in Solidity, Rust, or Vyper for Ethereum, Hyperledger, or Solana.",
               },
               {
                 num: "S / 003",
                 icon: "69562ff469e9daf9f20bb00e_cross-platform-icon.png",
-                title: "Cross-Platform App Development",
-                desc: "One codebase, multiple platforms using Flutter or React Native for consistent, high-quality experiences.",
+                title: "DeFi Development",
+                desc: "Power lending, staking, trading, and yield farming platforms with robust tokenomics and smart contract logic.",
               },
               {
                 num: "S / 004",
                 icon: "695630b97d4a0e93dab04e5e_ai-technology-icon.png",
-                title: "AI-Powered Mobile Apps",
-                desc: "Intelligent apps leveraging predictive analytics and automation to personalize experiences and boost engagement.",
+                title: "NFT Platforms",
+                desc: "Mint, trade, and manage digital assets with secure NFT marketplaces & metadata integration.",
               },
               {
                 num: "S / 005",
                 icon: "69567e151fd4da55fde4cc11_Mobile-service-card-05.svg",
-                title: "App Maintenance & Feature Enhancements",
-                desc: "Ongoing updates, bug fixes, and feature improvements to keep your app performing optimally.",
+                title: "Crypto Wallet Solutions",
+                desc: "Multi-currency, cross-chain wallets with high-grade encryption and user-friendly interfaces",
               },
               {
                 num: "S / 006",
                 icon: "69566d029643f586cf9f0265_d-service-card-06.svg",
-                title: "App Store Deployment & Optimization",
-                desc: "Seamless app launches with App Store/Play Store optimization for visibility, downloads, and performance.",
+                title: "Token Development (Utility, Security, NFTs)",
+                desc: "Create tokens that align with your ecosystem and fuel engagement across networks.",
               },
             ].map((s) => (
               <li key={s.num} className="our-technology-listi-tem">
@@ -350,38 +348,38 @@ export default function MobileAppDevelopmentPage() {
               {
                 icon: "69567b82006c105bfc41926e_w-choose-us-img-05.svg",
                 alt: "Octagon Icon",
-                title: "Full IP Ownership",
-                desc: "You retain full rights to your code, product, and IP complete control, always.",
+                title: "Business-First Mindset",
+                desc: "We align blockchain solutions with tangible business outcomes, not just tech specs",
               },
               {
                 icon: "69567b827695f581f7b31b50_w-choose-us-img-03.svg",
                 alt: "Quality-standard-icon",
-                title: "Agile Collaboration",
-                desc: "Transparent communication, and iterative development keep you involved at every stage.",
+                title: "Security at Core",
+                desc: "All systems undergo smart contract audits, penetration testing, and compliance verification.",
               },
               {
                 icon: "69567b82049528fdedba9c45_w-choose-us-img-02.svg",
                 alt: "Globe",
-                title: "Quality Engineering",
-                desc: "Secure, scalable, high-performance apps built to meet user expectations and enterprise standards.",
+                title: "Future-Ready Architecture",
+                desc: "Modular, scalable design that adapts to changing protocols and user needs.",
               },
               {
                 icon: "695632a1744dc836e5123af3_mentoring.png",
                 alt: "communication-icon",
-                title: "Design-Led Approach",
-                desc: "Screens and interactions crafted for usability, and engaging user experiences.",
+                title: "Proven Industry Experience",
+                desc: "Successful delivery of blockchain projects across FinTech, Supply Chain, and Healthcare.",
               },
               {
                 icon: "69566d029643f586cf9f0265_d-service-card-06.svg",
                 alt: "business-icon",
-                title: "Dedicated Support",
-                desc: "Post-launch updates, and feature enhancements ensure your app grows successfully over time.",
+                title: "Collaborative Process",
+                desc: "Transparent communication, agile delivery, and continuous improvement cycles.",
               },
               {
                 icon: "695632c6d77988747920302e_continuous-icon.png",
                 alt: "settings-icon",
-                title: "Continuous Optimization",
-                desc: "Post-deployment monitoring, retraining, and fine-tuning for lasting performance.",
+                title: "End-to-End Ownership",
+                desc: "From ideation to deployment, we handle the full lifecycle of your blockchain product.",
               },
             ].map((w) => (
               <div key={w.title} className="choose-us-item">
@@ -406,236 +404,7 @@ export default function MobileAppDevelopmentPage() {
       {/* ── OUR IMPACT ──────────────────────────────────────────────────── */}
       <ImpactSection />
 
-      {/* ── PORTFOLIO ───────────────────────────────────────────────────── */}
-      <section className="section portfolio-section">
-        <div className="w-layout-blockcontainer container-3 w-container">
-          <div className="protfolio-header">
-            <div className="section-head-content-subtitle">
-              <div className="section-head-subtitle-dot" />
-              <p className="section-head-subtitle-content subtitle-secondary-content">
-                Selected works ( 2024 - 2025 )
-              </p>
-            </div>
-            <h2 className="title-h2 title-h2-two portfolio">
-              Our Solutions Have Empowered Businesses Worldwide to Achieve Measurable Results
-            </h2>
-          </div>
 
-          <div className="portfolio-case-studies">
-            {/* Truckin – full width */}
-            <div className="portfolio-case-study-item full-width">
-              <div className="portfolio-case-study-figure">
-                <Image
-                  src={`${CDN}/69563467d1f25eb9ecb88226_Mobile-service-img-01.png`}
-                  loading="lazy"
-                  alt="Portfolio Case Study Image"
-                  width={800}
-                  height={500}
-                  className="portfolio-case-study-image v2"
-                />
-                <Link
-                  href="/contact-us"
-                  className="button-primary-dark portfolio-primary-btn responsive w-inline-block"
-                >
-                  <div className="text-block-12">Read case study</div>
-                  <Image
-                    alt="arrow-top-right"
-                    src={`${CDN}/68dd105094d90e0a289e4185_arrow-top-right-white.svg`}
-                    width={16}
-                    height={16}
-                    className="button-icon"
-                  />
-                </Link>
-              </div>
-              <div className="portfolio-case-study-content v2">
-                <div className="portfolio-case-study-content-head">
-                  <h3 className="portfolio-case-study-title">
-                    Truckin – On-Demand Truck Booking App
-                  </h3>
-                  <p className="portfolio-case-study-sub-title">
-                    We built Truckin to simplify home and office shifting, connecting users with
-                    truck drivers through a seamless, on-demand app. It ensures fast, reliable, and
-                    efficient transportation of goods for a hassle-free moving experience.
-                  </p>
-                </div>
-                <div className="portfolio-case-study-content-footer">
-                  <div className="portfolio-stat-card">
-                    <p className="portfolio-stat-card-title">Our impact</p>
-                    <p className="portfolio-stat-card-info">
-                      <span
-                        data-suffix="%"
-                        data-target="40"
-                        className="amt-counter amt-counter-two portfolio"
-                      >
-                        40%
-                      </span>
-                      Faster deliveries and improved customer satisfaction.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Gigfleet + Lernen App */}
-            <div
-              id="w-node-b0faa46a-4a6e-54fb-bafc-3a1a241d348d-6dea9209"
-              className="portfolio-case-study-item v2"
-            >
-              {/* Gigfleet */}
-              <div className="portfolio-case-study-sub-item">
-                <div className="portfolio-case-study-figure">
-                  <Image
-                    src={`${CDN}/695d1bbd9c1d82c15d69cbec_img-07.jpg`}
-                    loading="lazy"
-                    alt="Portfolio Case Study Image"
-                    width={600}
-                    height={400}
-                    className="portfolio-case-study-image"
-                  />
-                  <Link
-                    href="/contact-us"
-                    className="button-primary-dark portfolio-primary-btn responsive w-inline-block"
-                  >
-                    <div className="text-block-12">Read case study</div>
-                    <Image
-                      alt="arrow-top-right"
-                      src={`${CDN}/68dd105094d90e0a289e4185_arrow-top-right-white.svg`}
-                      width={16}
-                      height={16}
-                      className="button-icon"
-                    />
-                  </Link>
-                </div>
-                <div className="portfolio-case-study-content">
-                  <div className="portfolio-case-study-content-head">
-                    <h3 className="portfolio-case-study-title">
-                      Gigfleet App – Freelance Marketplace on Mobile
-                    </h3>
-                    <p className="section-head-subtitle-content portfolio">
-                      We built the Gigfleet App with React Native for freelancers and employers,
-                      enabling project management, seamless communication, and transactions. With
-                      dual-role support, advanced search, and full customization, it delivers a
-                      dynamic, user-friendly experience on Android and iOS.
-                    </p>
-                  </div>
-                  <div className="portfolio-case-study-content-footer">
-                    <div className="portfolio-stat-card">
-                      <p className="portfolio-stat-card-title">Our impact</p>
-                      <p className="portfolio-stat-card-info">
-                        <span
-                          data-suffix="%"
-                          data-target="70"
-                          className="amt-counter amt-counter-two portfolio"
-                        >
-                          70%
-                        </span>
-                        Faster deliveries and improved customer satisfaction.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Lernen App */}
-              <div className="portfolio-case-study-sub-item">
-                <div className="portfolio-case-study-figure">
-                  <Image
-                    src={`${CDN}/695d1bbd27d812d075ffb703_img-08.jpg`}
-                    loading="lazy"
-                    alt="Portfolio Case Study Image"
-                    width={600}
-                    height={400}
-                    className="portfolio-case-study-image"
-                  />
-                  <Link
-                    href="/contact-us"
-                    className="button-primary-dark portfolio-primary-btn responsive w-inline-block"
-                  >
-                    <div className="text-block-12">Read case study</div>
-                    <Image
-                      alt="arrow-top-right"
-                      src={`${CDN}/68dd105094d90e0a289e4185_arrow-top-right-white.svg`}
-                      width={16}
-                      height={16}
-                      className="button-icon"
-                    />
-                  </Link>
-                </div>
-                <div className="portfolio-case-study-content">
-                  <div className="portfolio-case-study-content-head">
-                    <h3 className="portfolio-case-study-title">
-                      Lernen App – Elevating Online Learning
-                    </h3>
-                    <p className="section-head-subtitle-content portfolio">
-                      We built the Lernen App with Flutter for the Lernen LMS, offering educators
-                      and institutions a user-friendly, fully customizable platform with advanced
-                      tools, secure performance, and scalable architecture to deliver seamless,
-                      engaging, and top-tier e-learning experiences across Android and iOS for
-                      modern digital education needs.
-                    </p>
-                  </div>
-                  <div className="portfolio-case-study-content-footer">
-                    <div className="portfolio-stat-card">
-                      <p className="portfolio-stat-card-title">Our impact</p>
-                      <p className="portfolio-stat-card-info">
-                        <span
-                          data-suffix="%"
-                          data-target="55"
-                          className="amt-counter amt-counter-two portfolio"
-                        >
-                          55%
-                        </span>
-                        Faster deliveries and improved customer satisfaction.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Portfolio CTA */}
-          <div className="portfolio-cta">
-            <div className="portfolio-cta-content-wrap">
-              <h3 className="portfolio-cta-content-title">
-                Looking for something similar? We&apos;re always excited about starting a new
-                project.
-              </h3>
-              <div className="button-wrap portfolio-cta-button-wrap">
-                <Link href="/contact-us" className="button-primary-dark w-inline-block">
-                  <div className="text-block-12">Start a project</div>
-                  <Image
-                    alt="arrow-top-right"
-                    src={`${CDN}/68dd105094d90e0a289e4185_arrow-top-right-white.svg`}
-                    width={16}
-                    height={16}
-                    className="button-icon"
-                  />
-                </Link>
-                <Link href="/contact-us" className="button-secondary-dark w-inline-block">
-                  <div className="button-secondary-dark-text">Book a meeting</div>
-                  <div className="arrows-container cta">
-                    <Image
-                      src={`${CDN}/6937e4382716cdf25ad0f3d5_date-icon-light.svg`}
-                      alt="Icon"
-                      width={16}
-                      height={16}
-                      className="arrow-button _16"
-                    />
-                    <Image
-                      src={`${CDN}/6937e33ae69eb8ce6ab3de51_date-icon-dark.svg`}
-                      alt="Icon"
-                      width={16}
-                      height={16}
-                      className="dark-arrow _16"
-                    />
-                  </div>
-                </Link>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* ── PROCESS + TESTIMONIALS ──────────────────────────────────────── */}
       <section className="section process-section">
@@ -794,24 +563,24 @@ export default function MobileAppDevelopmentPage() {
               cdnBase={CDN}
               items={[
                 {
-                  q: "Do you build apps for both iOS and Android?",
-                  a: "Yes, we develop for both platforms, natively or through cross-platform frameworks.",
+                  q: "How long does it take to build a blockchain application?",
+                  a: "It depends on the complexity. MVPs can take 2–3 months, while full-scale enterprise solutions typically range from 6–12 months.",
                 },
                 {
-                  q: "Can you integrate third-party APIs or legacy systems?",
-                  a: "Absolutely. Our team specializes in seamless integrations and system modernization.",
+                  q: "Which industries benefit most from blockchain adoption?",
+                  a: "Industries where transparency, traceability, and data integrity matter most — such as finance, healthcare, logistics, and government.",
                 },
                 {
-                  q: "What is the typical cost and timeline for a mobile app?",
-                  a: "It depends on complexity and scope — we provide a tailored estimate after discovery.",
+                  q: "How do you ensure the security of smart contracts?",
+                  a: "Every smart contract undergoes automated vulnerability scans, manual code reviews, and third-party audits before deployment.",
                 },
                 {
-                  q: "Do you handle publishing to app stores?",
-                  a: "Yes, we manage testing, submission, and deployment for both the App Store and Play Store.",
+                  q: "Can you integrate blockchain with our existing systems?",
+                  a: "Absolutely. We design hybrid architectures that connect your existing ERP, CRM, or cloud systems with blockchain-based layers.",
                 },
                 {
-                  q: "Do you offer maintenance and post-launch support?",
-                  a: "Yes, ongoing monitoring, updates, and scaling support are part of every engagement.",
+                  q: "How can blockchain reduce my operational costs?",
+                  a: "By removing intermediaries, automating verification, and minimizing data disputes, blockchain helps businesses cut costs and streamline workflows.",
                 },
               ]}
             />
