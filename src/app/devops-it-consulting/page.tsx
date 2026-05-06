@@ -209,37 +209,37 @@ export default function MobileAppDevelopmentPage() {
             {[
               {
                 num: "S / 001",
-                icon: "69567e155eaa5f8c9854daf3_Mobile-service-card-01.svg",
+                icon: "69566d02b993d21fb5c04f20_d-service-card-01_4_qibzhd.svg",
                 title: "Infrastructure as Code (IaC)",
                 desc: "Manage and provision systems reliably using automated, version-controlled code.",
               },
               {
                 num: "S / 002",
-                icon: "69567e1500edc02978a81b0f_Mobile-service-card-02.svg",
+                icon: "69566d02c1c544a04b306382_d-service-card-02_1_cvwks6.svg",
                 title: "Continuous Integration / Continuous Delivery (CI/CD)",
                 desc: "Automate builds, testing, and deployments for faster, consistent releases.",
               },
               {
                 num: "S / 003",
-                icon: "69562ff469e9daf9f20bb00e_cross-platform-icon.png",
+                icon: "69566d02a63cda4af42d39c4_d-service-card-03_1_fueojo.svg",
                 title: "Containerization & Orchestration",
                 desc: "Ensure consistent environments using Docker, Kubernetes, and container orchestration tools.",
               },
               {
                 num: "S / 004",
-                icon: "695630b97d4a0e93dab04e5e_ai-technology-icon.png",
+                icon: "6956718d46ce46a451fe9d53_q-service-card-img-04_1_qtbrot.svg",
                 title: "Intranet & Employee Portals",
                 desc: "Secure internal portals enabling communication, collaboration, document access, and employee self-service.",
               },
               {
                 num: "S / 005",
-                icon: "69567e151fd4da55fde4cc11_Mobile-service-card-05.svg",
+                icon: "69565ac1cf1b35986b9eab38_service-card-icon-04_2_sfy9zv.svg",
                 title: "Security & Compliance Automation",
                 desc: "Integrate automated security checks and compliance into development pipelines.",
               },
               {
                 num: "S / 006",
-                icon: "69566d029643f586cf9f0265_d-service-card-06.svg",
+                icon: "69567adc94209566fdd240d1_w-service-card-02_2_cpsscz.svg",
                 title: "DevOps as a Service / Support",
                 desc: "Upgrade outdated systems into modern, scalable platforms without disrupting business operations.",
               },
@@ -249,7 +249,7 @@ export default function MobileAppDevelopmentPage() {
                   <div className="technology-shade" />
                   <figure className="our-technology-list-image">
                     <Image
-                      src={`${CDN}/${s.icon}`}
+                      src={`https://res.cloudinary.com/dsoilebvu/image/upload/v1778074611/${s.icon}`}
                       alt="image description"
                       width={48}
                       height={48}

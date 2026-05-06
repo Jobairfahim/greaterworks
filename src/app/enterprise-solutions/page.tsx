@@ -209,37 +209,37 @@ export default function MobileAppDevelopmentPage() {
             {[
               {
                 num: "S / 001",
-                icon: "69567e155eaa5f8c9854daf3_Mobile-service-card-01.svg",
+                icon: "69565ac1cabb30f8416c5650_service-card-icon-01_1_iwzkpx.svg",
                 title: "Enterprise Resource Planning (ERP) Systems",
                 desc: "Centralized ERP systems streamlining operations, finance, supply chain, and decision-making across your organization",
               },
               {
                 num: "S / 002",
-                icon: "69567e1500edc02978a81b0f_Mobile-service-card-02.svg",
+                icon: "69565ac1ec543390f650a405_service-card-icon-02_1_qksrr7.svg",
                 title: "Customer Relationship Management Solutions",
                 desc: "CRM platforms to manage leads, customers, sales pipelines, and long-term client relationships effectively.",
               },
               {
                 num: "S / 003",
-                icon: "69562ff469e9daf9f20bb00e_cross-platform-icon.png",
+                icon: "69565ac170a7ce8bd2dd7c17_service-card-icon-03_1_hgvism.svg",
                 title: "Custom Workflow Automation Platforms",
                 desc: "Automate internal processes to reduce manual work, errors, and operational delays at scale.",
               },
               {
                 num: "S / 004",
-                icon: "695630b97d4a0e93dab04e5e_ai-technology-icon.png",
+                icon: "69565ac1cf1b35986b9eab38_service-card-icon-04_1_kvtxel.svg",
                 title: "Intranet & Employee Portals",
                 desc: "Secure internal portals enabling communication, collaboration, document access, and employee self-service.",
               },
               {
                 num: "S / 005",
-                icon: "69567e151fd4da55fde4cc11_Mobile-service-card-05.svg",
+                icon: "69565ac1e7cb58faa64f1929_service-card-icon-05_1_ui1pmh.svg",
                 title: "Data Analytics,BI Dashboards & Reporting Systems",
                 desc: "Real-time dashboards transforming complex data into clear insights for faster, smarter decisions.",
               },
               {
                 num: "S / 006",
-                icon: "69566d029643f586cf9f0265_d-service-card-06.svg",
+                icon: "69565ac1e933763da8705277_service-card-icon-06_1_f8tb7e.svg",
                 title: "Legacy System Modernization",
                 desc: "Upgrade outdated systems into modern, scalable platforms without disrupting business operations.",
               },
@@ -249,7 +249,7 @@ export default function MobileAppDevelopmentPage() {
                   <div className="technology-shade" />
                   <figure className="our-technology-list-image">
                     <Image
-                      src={`${CDN}/${s.icon}`}
+                      src={`https://res.cloudinary.com/dsoilebvu/image/upload/v1778080440/${s.icon}`}
                       alt="image description"
                       width={48}
                       height={48}
@@ -348,37 +348,37 @@ export default function MobileAppDevelopmentPage() {
           <div className="choose-us-content">
             {[
               {
-                icon: "69567b82006c105bfc41926e_w-choose-us-img-05.svg",
+                icon: "69565d22001b61b69df1f678_choose-us-icon-05_1_hzbyow.svg",
                 alt: "Octagon Icon",
                 title: "Full IP Ownership",
                 desc: "You retain full rights to your code, product, and IP complete control, always.",
               },
               {
-                icon: "69567b827695f581f7b31b50_w-choose-us-img-03.svg",
+                icon: "69567b82006c105bfc41926e_w-choose-us-img-05_4_bujohb.svg",
                 alt: "Quality-standard-icon",
                 title: "Agile Collaboration",
                 desc: "Transparent communication, and iterative development keep you involved at every stage.",
               },
               {
-                icon: "69567b82049528fdedba9c45_w-choose-us-img-02.svg",
+                icon: "69567b82049528fdedba9c45_w-choose-us-img-02_4_gxzfoe.svg",
                 alt: "Globe",
                 title: "Quality Engineering",
                 desc: "Secure, scalable, high-performance apps built to meet user expectations and enterprise standards.",
               },
               {
-                icon: "695632a1744dc836e5123af3_mentoring.png",
+                icon: "69567b820738559f1070439c_w-choose-us-img-04_2_o3bngu.svg",
                 alt: "communication-icon",
                 title: "Design-Led Approach",
                 desc: "Screens and interactions crafted for usability, and engaging user experiences.",
               },
               {
-                icon: "69566d029643f586cf9f0265_d-service-card-06.svg",
+                icon: "69566d029643f586cf9f0265_d-service-card-06_5_v692hw.svg",
                 alt: "business-icon",
                 title: "Dedicated Support",
                 desc: "Post-launch updates, and feature enhancements ensure your app grows successfully over time.",
               },
               {
-                icon: "695632c6d77988747920302e_continuous-icon.png",
+                icon: "69565d3b32ce962f53e61d1f_choose-us-icon-07_1_mcjcog.svg",
                 alt: "settings-icon",
                 title: "Continuous Optimization",
                 desc: "Post-deployment monitoring, retraining, and fine-tuning for lasting performance.",
@@ -386,7 +386,7 @@ export default function MobileAppDevelopmentPage() {
             ].map((w) => (
               <div key={w.title} className="choose-us-item">
                 <Image
-                  src={`${CDN}/${w.icon}`}
+                  src={`https://res.cloudinary.com/dsoilebvu/image/upload/v1778078934/${w.icon}`}
                   loading="lazy"
                   alt={w.alt}
                   width={48}

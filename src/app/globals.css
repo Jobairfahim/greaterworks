@@ -33487,9 +33487,18 @@ html.wf-design-mode .preloader {
 }
 
 .navbar-2.scrolled .button-secondary-light.nav-btn {
-  background: rgba(255, 255, 255, 0.9);
-  border: 1px solid rgba(0, 0, 0, 0.1);
+  background: #000;
+  border: 1px solid #000;
 }
+
+.navbar-2.scrolled .button-secondary-light.nav-btn .button-secondary-light-text-3 {
+  color: #fff;
+}
+
+.navbar-2.scrolled .button-secondary-light.nav-btn .nav-icon-dark {
+  filter: brightness(0) invert(1);
+}
+
 
 /* Dropdown positioning */
 .dropdown {

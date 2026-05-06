@@ -77,13 +77,9 @@ export default function Footer() {
                                 </div>
                                 <div className="footer-header-card">
                                     <div className="footer-author">
-                                        <Image src="https://cdn.prod.website-files.com/68d276a2319df5bdcc752026/693686de8bf6a11d6c5e4739_Elite%20Badge.svg" alt="" width={40} height={40} className="footer-author-logo" />
+                                        <Image src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" alt="" width={40} height={40} className="footer-author-logo" />
                                         <Link href="https://themeforest.net/user/amentotech/portfolio" target="_blank" className="w-inline-block">
-                                            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                                                <Image src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" alt="" width={80} height={20} className="footer-author-logo-2" />
-                                                <span style={{ fontSize: '16px', fontWeight: '500', color: 'white' }}>Google</span>
-                                            </div>
-                                            <p className="footer-author-info">Elite Author Since 2018</p>
+                                            <p style={{ fontWeight: 'bold', color: 'lightgray', fontSize: '28px' }}>Google</p>
                                         </Link>
                                     </div>
                                 </div>

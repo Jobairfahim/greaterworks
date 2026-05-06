@@ -35,7 +35,7 @@ export default function ServicesSection() {
                             {services.map((s, i) => (
                                 <Link key={i} href={s.href} className="services-listing-item w-inline-block">
                                     <div className="services-listing-title">{s.title}</div>
-                                    <Image alt="arrow-top-right" src="https://cdn.prod.website-files.com/68d276a2319df5bdcc752026/6942b9e5f1fc8e824dd90462_arrow-up-right-green.png" width={16} height={16} className="button-icon service-listing-icon-white" />
+                                    <Image alt="arrow-top-right" src="https://res.cloudinary.com/dsoilebvu/image/upload/v1778074601/68dd0ede1e60a7db30b19932_arrow-top-right_1_ufxclp.svg" width={16} height={16} className="button-icon service-listing-icon-white" />
                                     <Image alt="arrow-top-right" src="https://cdn.prod.website-files.com/68d276a2319df5bdcc752026/6942b22dc1dbf27cb5b5a394_arrow-up-right-grey.png" width={16} height={16} className="button-icon service-listing-icon" />
                                 </Link>
                             ))}

@@ -4,6 +4,7 @@ import { useEffect, useState, useRef, useCallback } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { HiMenu } from "react-icons/hi";
 
 const services = [
     { title: "Custom Software Development", desc: "Tailored solutions to boost your business growth and success.", icon: "https://res.cloudinary.com/dsoilebvu/image/upload/v1777048245/custom_kyjfrj.svg", href: "/custom-software-development" },
@@ -203,7 +204,7 @@ export default function Navbar() {
                     <div className="header-logo">
                         <Link href="/" aria-current="page" className="w-nav-brand w--current">
                             <Image
-                                src="https://res.cloudinary.com/dsoilebvu/image/upload/v1777048314/logo_kxjvlv.png"
+                                src={isHomepage || scrolled ? "https://res.cloudinary.com/dsoilebvu/image/upload/v1777048314/logo_kxjvlv.png" : "https://res.cloudinary.com/dsoilebvu/image/upload/v1778082292/Logo_-_Black_oysy60.png"}
                                 alt=""
                                 width={100}
                                 height={40}
@@ -560,7 +561,7 @@ export default function Navbar() {
                         <Link href="/" aria-current="page" className="brand-2 w-nav-brand w--current">
                             <Image
                                 alt=""
-                                src="https://res.cloudinary.com/dsoilebvu/image/upload/v1777048314/logo_kxjvlv.png"
+                                src={isHomepage || scrolled ? "https://res.cloudinary.com/dsoilebvu/image/upload/v1777048314/logo_kxjvlv.png" : "https://res.cloudinary.com/dsoilebvu/image/upload/v1778082292/Logo_-_Black_oysy60.png"}
                                 width={100}
                                 height={30}
                                 className="image-37"
@@ -907,6 +908,7 @@ export default function Navbar() {
 
                         <Link
                             href="/insights"
+                            target="_blank"
                             className="nav-link w-nav-link"
                         >
                             Insights 
@@ -936,13 +938,11 @@ export default function Navbar() {
                         aria-label="menu"
                         onClick={() => setMobileOpen(!mobileOpen)}
                     >
-                        <Image
-                            alt=""
-                            src="https://cdn.prod.website-files.com/68d276a2319df5bdcc752026/694a88ebb10efa81d36a292a_hamberger-icon.png"
-                            width={24}
-                            height={24}
-                            className="menu-button-icon"
-                        />
+                        {!isHomepage && !scrolled ? (
+                            <HiMenu size={28} color="black" className="menu-button-icon" />
+                        ) : (
+                            <HiMenu size={28} color="white" className="menu-button-icon" />
+                        )}
                         <Image
                             alt="icon"
                             src="https://cdn.prod.website-files.com/68d276a2319df5bdcc752026/68ff282557646735ec3746f4_close.svg"
@@ -1001,10 +1001,23 @@ export default function Navbar() {
                     color: #fff !important;
                 }
                 .navbar-2.scrolled .button-secondary-light.nav-btn {
-                    background: rgba(255, 255, 255, 0.14);
-                    border: 1px solid rgba(255, 255, 255, 0.18);
+                    background: #000;
+                    border: 1px solid #000;
                 }
-                .header-contact-us .button-secondary-light.nav-btn:hover {
+                .navbar-2.scrolled .button-secondary-light.nav-btn .button-secondary-light-text-3 {
+                    color: #fff !important;
+                }
+                .navbar-2.scrolled .button-secondary-light.nav-btn .nav-icon-dark {
+                    filter: brightness(0) invert(1);
+                }
+                .nav-menu-wrapper-responsive .nav-link,
+                .nav-menu-wrapper-responsive nav .nav-link {
+                    padding-left: 10px !important;
+                    margin-left: 0 !important;
+                    display: block;
+                    width: 100%;
+                }
+                                .header-contact-us .button-secondary-light.nav-btn:hover {
                     background: rgba(255, 255, 255, 0.1) !important;
                     border-color: rgba(255, 255, 255, 0.16) !important;
                 }

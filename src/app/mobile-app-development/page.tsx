@@ -4,7 +4,7 @@ import { ServiceFaqAccordion } from "@/component/ServiceFaqAccordion";
 import Image from "next/image";
 import Link from "next/link";
 
-const CDN = "https://cdn.prod.website-files.com/68d276a2319df5bdcc752026";
+const CDN = "https://cdn.prod.website-files.com/68d276a2319df5bdcc752026/";
 
 export default function MobileAppDevelopmentPage() {
   return (
@@ -211,37 +211,37 @@ export default function MobileAppDevelopmentPage() {
             {[
               {
                 num: "S / 001",
-                icon: "69567e155eaa5f8c9854daf3_Mobile-service-card-01.svg",
+                icon: "69567e155eaa5f8c9854daf3_Mobile-service-card-01_1_lc7mpu.svg",
                 title: "IOS App Development",
                 desc: "Immersive, fast, secure iPhone and iPad apps built with Swift and best practices.",
               },
               {
                 num: "S / 002",
-                icon: "69567e1500edc02978a81b0f_Mobile-service-card-02.svg",
+                icon: "69567e1500edc02978a81b0f_Mobile-service-card-02_1_unobbh.svg",
                 title: "Android App Development",
                 desc: "High-performance Android apps with Kotlin and Java, optimized for speed, reliability, and compatibility.",
               },
               {
                 num: "S / 003",
-                icon: "69562ff469e9daf9f20bb00e_cross-platform-icon.png",
+                icon: "69566d02b993d21fb5c04f20_d-service-card-01_4_qibzhd.svg",
                 title: "Cross-Platform App Development",
                 desc: "One codebase, multiple platforms using Flutter or React Native for consistent, high-quality experiences.",
               },
               {
                 num: "S / 004",
-                icon: "695630b97d4a0e93dab04e5e_ai-technology-icon.png",
+                icon: "695661b4d586ab121afe99f6_bc-choose-us-icon-3_1_r8nkyb.svg",
                 title: "AI-Powered Mobile Apps",
                 desc: "Intelligent apps leveraging predictive analytics and automation to personalize experiences and boost engagement.",
               },
               {
                 num: "S / 005",
-                icon: "69567e151fd4da55fde4cc11_Mobile-service-card-05.svg",
+                icon: "695654cdce229f1813d414cf_Group_1_w9b94r.svg",
                 title: "App Maintenance & Feature Enhancements",
                 desc: "Ongoing updates, bug fixes, and feature improvements to keep your app performing optimally.",
               },
               {
                 num: "S / 006",
-                icon: "69566d029643f586cf9f0265_d-service-card-06.svg",
+                icon: "69566d029643f586cf9f0265_d-service-card-06_4_lnqdyd.svg",
                 title: "App Store Deployment & Optimization",
                 desc: "Seamless app launches with App Store/Play Store optimization for visibility, downloads, and performance.",
               },
@@ -251,7 +251,7 @@ export default function MobileAppDevelopmentPage() {
                   <div className="technology-shade" />
                   <figure className="our-technology-list-image">
                     <Image
-                      src={`${CDN}/${s.icon}`}
+                      src={`https://res.cloudinary.com/dsoilebvu/image/upload/v1778074609/${s.icon}`}
                       alt="image description"
                       width={48}
                       height={48}
@@ -348,37 +348,37 @@ export default function MobileAppDevelopmentPage() {
           <div className="choose-us-content">
             {[
               {
-                icon: "69567b82006c105bfc41926e_w-choose-us-img-05.svg",
+                icon: "69567b82006c105bfc41926e_w-choose-us-img-05_4_bujohb.svg",
                 alt: "Octagon Icon",
                 title: "Full IP Ownership",
                 desc: "You retain full rights to your code, product, and IP complete control, always.",
               },
               {
-                icon: "69567b827695f581f7b31b50_w-choose-us-img-03.svg",
+                icon: "695657cc93405ab37a5e556b_choose-us-icon-03_1_ecehat.svg",
                 alt: "Quality-standard-icon",
                 title: "Agile Collaboration",
                 desc: "Transparent communication, and iterative development keep you involved at every stage.",
               },
               {
-                icon: "69567b82049528fdedba9c45_w-choose-us-img-02.svg",
+                icon: "69567b827695f581f7b31b50_w-choose-us-img-03_4_cgot6w.svg",
                 alt: "Globe",
                 title: "Quality Engineering",
                 desc: "Secure, scalable, high-performance apps built to meet user expectations and enterprise standards.",
               },
               {
-                icon: "695632a1744dc836e5123af3_mentoring.png",
+                icon: "69567b82049528fdedba9c45_w-choose-us-img-02_4_gxzfoe.svg",
                 alt: "communication-icon",
                 title: "Design-Led Approach",
                 desc: "Screens and interactions crafted for usability, and engaging user experiences.",
               },
               {
-                icon: "69566d029643f586cf9f0265_d-service-card-06.svg",
+                icon: "69566d029643f586cf9f0265_d-service-card-06_4_lnqdyd.svg",
                 alt: "business-icon",
                 title: "Dedicated Support",
                 desc: "Post-launch updates, and feature enhancements ensure your app grows successfully over time.",
               },
               {
-                icon: "695632c6d77988747920302e_continuous-icon.png",
+                icon: "695668b5f8ed100057b7cf08_ai-service-card-04_1_ycl3ov.svg",
                 alt: "settings-icon",
                 title: "Continuous Optimization",
                 desc: "Post-deployment monitoring, retraining, and fine-tuning for lasting performance.",
@@ -386,7 +386,7 @@ export default function MobileAppDevelopmentPage() {
             ].map((w) => (
               <div key={w.title} className="choose-us-item">
                 <Image
-                  src={`${CDN}/${w.icon}`}
+                  src={`https://res.cloudinary.com/dsoilebvu/image/upload/v1778074609/${w.icon}`}
                   loading="lazy"
                   alt={w.alt}
                   width={48}
