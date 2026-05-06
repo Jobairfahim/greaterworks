@@ -208,37 +208,37 @@ export default function CustomSoftwareDevelopmentPage() {
             {[
               {
                 num: "S / 001",
-                icon: "69566f0cfd5b251dab6cb856_d-choose-us-img-02.svg",
+                icon: "69566f0cfd5b251dab6cb856_d-choose-us-img-02_3_kfjzqz.svg",
                 title: "Web Application Development",
                 desc: "Secure, responsive web applications built for scalability, cross-device compatibility, and custom feature integration.",
               },
               {
                 num: "S / 002",
-                icon: "69566d02b993d21fb5c04f20_d-service-card-01.svg",
+                icon: "69566d02b993d21fb5c04f20_d-service-card-01_3_pq3sxg.svg",
                 title: "API & System Integration",
                 desc: "Robust APIs and seamless integration of legacy systems with new tools, supporting real-time or batch sync and microservices.",
               },
               {
                 num: "S / 003",
-                icon: "69567adc2f0bcbb6107b04d4_w-service-card-01.svg",
+                icon: "6956795cc329e420ceeece35_q-choose-us-img-02_1_p4uwvo.svg",
                 title: "Enterprise Data Solutions & Analytics",
                 desc: "End-to-end data solutions including ETL pipelines, real-time dashboards, predictive analytics, and data warehousing.",
               },
               {
                 num: "S / 004",
-                icon: "69567adc94209566fdd240d1_w-service-card-02.svg",
+                icon: "695654920fcdb2da81023066_bussiness_1_fvajfy.svg",
                 title: "Cloud & Infrastructure Engineering",
                 desc: "Cloud migration (AWS, Azure, GCP), server less architectures, containerization, DevOps pipelines, infrastructure as code, and monitoring.",
               },
               {
                 num: "S / 005",
-                icon: "69567adc6712f4c48d005dcb_w-service-card-03.svg",
+                icon: "69567c9a2c612e8ca6f24b8f_m-service-card-01_1_zjo3xx.svg",
                 title: "UI/UX Design & Prototyping",
                 desc: "User research, journey mapping, wireframes, interactive prototypes, visual and interaction design, and usability testing.",
               },
               {
                 num: "S / 006",
-                icon: "69566d029643f586cf9f0265_d-service-card-06.svg",
+                icon: "69566d029643f586cf9f0265_d-service-card-06_5_v692hw.svg",
                 title: "Maintenance & Support",
                 desc: "Comprehensive maintenance including bug fixes, feature updates, performance optimization, security compliance, and managed SLA support.",
               },
@@ -248,7 +248,7 @@ export default function CustomSoftwareDevelopmentPage() {
                   <div className="technology-shade" />
                   <figure className="our-technology-list-image">
                     <Image
-                      src={`https://cdn.prod.website-files.com/68d276a2319df5bdcc752026/${s.icon}`}
+                      src={`https://res.cloudinary.com/dsoilebvu/image/upload/v1778074611/${s.icon}`}
                       alt="image description"
                       width={48}
                       height={48}
@@ -345,37 +345,37 @@ export default function CustomSoftwareDevelopmentPage() {
           <div className="choose-us-content">
             {[
               {
-                icon: "69567b82006c105bfc41926e_w-choose-us-img-05.svg",
+                icon: "69567b82006c105bfc41926e_w-choose-us-img-05_4_bujohb.svg",
                 alt: "Octagon Icon",
                 title: "Full Ownership & IP Rights",
                 desc: "You have complete ownership and all intellectual property rights to your product.",
               },
               {
-                icon: "69567b8201311900976bab07_w-choose-us-img-01.svg",
+                icon: "695657cc93405ab37a5e556b_choose-us-icon-03_1_ecehat.svg",
                 alt: "Quality-standard-icon",
                 title: "Assured Quality Standards",
                 desc: "Dependable software solutions through strong design, careful testing, and clear maintenance.",
               },
               {
-                icon: "69567b82049528fdedba9c45_w-choose-us-img-02.svg",
+                icon: "69567b82049528fdedba9c45_w-choose-us-img-02_4_gxzfoe.svg",
                 alt: "Globe",
                 title: "Flexible Engagement Models",
                 desc: "Choose from flexible models, dedicated teams, staff augmentation, or project-based solutions.",
               },
               {
-                icon: "69567b827695f581f7b31b50_w-choose-us-img-03.svg",
+                icon: "69567b827695f581f7b31b50_w-choose-us-img-03_4_cgot6w.svg",
                 alt: "communication-icon",
                 title: "Transparent Communication",
                 desc: "Stay informed with transparent project tracking, frequent updates, and concise agile reports.",
               },
               {
-                icon: "69567b820738559f1070439c_w-choose-us-img-04.svg",
+                icon: "69567b820738559f1070439c_w-choose-us-img-04_2_o3bngu.svg",
                 alt: "business-icon",
                 title: "Business-Centric Solutions",
                 desc: "Solutions crafted to mirror your business strategy, ensuring alignment with your industry landscape.",
               },
               {
-                icon: "69566d029643f586cf9f0265_d-service-card-06.svg",
+                icon: "69566d029643f586cf9f0265_d-service-card-06_4_lnqdyd.svg",
                 alt: "settings-icon",
                 title: "Ongoing Support & Growth",
                 desc: "Reliable maintenance, continuous updates, and scalable solutions for performance and growth.",
@@ -383,7 +383,7 @@ export default function CustomSoftwareDevelopmentPage() {
             ].map((w) => (
               <div key={w.title} className="choose-us-item">
                 <Image
-                  src={`https://cdn.prod.website-files.com/68d276a2319df5bdcc752026/${w.icon}`}
+                  src={`https://res.cloudinary.com/dsoilebvu/image/upload/v1778074611/${w.icon}`}
                   loading="lazy"
                   alt={w.alt}
                   width={48}
