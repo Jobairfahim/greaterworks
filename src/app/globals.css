@@ -33585,14 +33585,7 @@ html.wf-design-mode .preloader {
   opacity: 1;
 }
 
-/* Contact card hover */
-.menu-contact-us-card-link {
-  transition: color 0.2s ease;
-}
-
-.menu-contact-us-card-link:hover {
-  color: #9433e9;
-}
+/* Contact card hover - removed hover effect */
 
 /* Button hover animations */
 .button-primary,

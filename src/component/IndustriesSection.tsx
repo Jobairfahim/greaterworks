@@ -261,6 +261,23 @@ export default function IndustriesSection() {
                         transform: translate(0, 305px);
                     }
                 }
+                /* Override View More button hover effect */
+                .title-button:hover {
+                    background-color: transparent !important;
+                    background-image: none !important;
+                }
+                .active-button:hover {
+                    background-color: transparent !important;
+                    background-image: none !important;
+                }
+                .title-button.transition-none.active-button:hover {
+                    background-color: transparent !important;
+                    color: var(--primary) !important;
+                }
+                .industries-slider-content .title-button.transition-none.active-button:hover {
+                    background-color: transparent !important;
+                    color: var(--primary) !important;
+                }
                 @media only screen and (max-width: 1320px) {
                     #industry-container {
                         padding-left: 0 !important;

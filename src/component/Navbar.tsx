@@ -1076,12 +1076,7 @@ export default function Navbar() {
                 .menu-service-list-card:hover .menu-service-list-arrow-icon {
                     opacity: 1;
                 }
-                .menu-contact-us-card-link {
-                    transition: color 0.2s ease;
-                }
-                .menu-contact-us-card-link:hover {
-                    color: #5abb4a;
-                }
+                /* menu-contact-us-card-link hover effect removed */
                 @media (max-width: 767px) {
                     .button-icon.service-listing-icon-white {
                         right: 0;

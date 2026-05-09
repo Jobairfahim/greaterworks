@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { useState } from "react";
 
 const services = [
     { title: "Custom Software Development", href: "/custom-software-development" },
@@ -16,6 +17,8 @@ const services = [
 ];
 
 export default function ServicesSection() {
+    const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+
     return (
         <>
             <section className="section section-v2">
@@ -33,10 +36,28 @@ export default function ServicesSection() {
                     <div className="our-service-wrapper">
                         <div className="services-content-left">
                             {services.map((s, i) => (
-                                <Link key={i} href={s.href} className="services-listing-item w-inline-block">
+                                <Link 
+                                    key={i} 
+                                    href={s.href} 
+                                    className="services-listing-item w-inline-block"
+                                    onMouseEnter={() => setHoveredIndex(i)}
+                                    onMouseLeave={() => setHoveredIndex(null)}
+                                >
                                     <div className="services-listing-title">{s.title}</div>
-                                    <Image alt="arrow-top-right" src="https://res.cloudinary.com/dsoilebvu/image/upload/v1778074601/68dd0ede1e60a7db30b19932_arrow-top-right_1_ufxclp.svg" width={16} height={16} className="button-icon service-listing-icon-white" />
-                                    <Image alt="arrow-top-right" src="https://cdn.prod.website-files.com/68d276a2319df5bdcc752026/6942b22dc1dbf27cb5b5a394_arrow-up-right-grey.png" width={16} height={16} className="button-icon service-listing-icon" />
+                                    <Image 
+                                        alt="arrow-top-right" 
+                                        src={hoveredIndex === i ? "https://res.cloudinary.com/dsoilebvu/image/upload/v1778074601/68dd0ede1e60a7db30b19932_arrow-top-right_1_ufxclp.svg" : "https://cdn.prod.website-files.com/68d276a2319df5bdcc752026/68dd105094d90e0a289e4185_arrow-top-right-white.svg"} 
+                                        width={24} 
+                                        height={24} 
+                                        className="button-icon service-listing-icon-white" 
+                                    />
+                                    <Image 
+                                        alt="arrow-top-right" 
+                                        src={hoveredIndex === i ? "https://res.cloudinary.com/dsoilebvu/image/upload/v1778074601/68dd0ede1e60a7db30b19932_arrow-top-right_1_ufxclp.svg" : "https://cdn.prod.website-files.com/68d276a2319df5bdcc752026/6942b22dc1dbf27cb5b5a394_arrow-up-right-grey.png"} 
+                                        width={24} 
+                                        height={24} 
+                                        className="button-icon service-listing-icon" 
+                                    />
                                 </Link>
                             ))}
                         </div>
@@ -56,6 +77,21 @@ export default function ServicesSection() {
                 </div>
             </section>
             <style>{`
+            .services-listing-item:hover .button-icon.service-listing-icon-white {
+                opacity: 1 !important;
+                filter: none !important;
+                transform: scale(1.3) !important;
+                transition: transform 0.2s ease !important;
+            }
+            .services-listing-item:hover .button-icon.service-listing-icon {
+                opacity: 1 !important;
+                transform: scale(1.3) !important;
+                transition: transform 0.2s ease !important;
+            }
+            .button-icon.service-listing-icon-white,
+            .button-icon.service-listing-icon {
+                transition: transform 0.2s ease !important;
+            }
             @media only screen and (min-width: 992px) and (max-width: 1280px) {
                 .discussion-content {
                     padding: 20px;

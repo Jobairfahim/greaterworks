@@ -440,14 +440,14 @@ export default function InsightsPage() {
           font-size: 48px;
           font-weight: 700;
           margin-bottom: 20px;
-          font-family: "Inter", sans-serif;
+          font-family: "Satoshi", sans-serif;
         }
 
         .insights-subtitle {
           font-size: 20px;
           line-height: 1.6;
           opacity: 0.9;
-          font-family: "Inter", sans-serif;
+          font-family: "Satoshi", sans-serif;
         }
 
         /* Content Layout */
@@ -551,7 +551,7 @@ export default function InsightsPage() {
           font-weight: 700;
           margin-bottom: 20px;
           color: #1a202c;
-          font-family: "Inter", sans-serif;
+          font-family: "Satoshi", sans-serif;
         }
 
         .section-description {
@@ -559,7 +559,7 @@ export default function InsightsPage() {
           line-height: 1.7;
           color: #4a5568;
           margin-bottom: 30px;
-          font-family: "Inter", sans-serif;
+          font-family: "Satoshi", sans-serif;
         }
 
         .insights-grid {
@@ -587,7 +587,7 @@ export default function InsightsPage() {
           font-weight: 600;
           margin-bottom: 12px;
           color: #1a202c;
-          font-family: "Inter", sans-serif;
+          font-family: "Satoshi", sans-serif;
         }
 
         .insight-description {
@@ -595,7 +595,7 @@ export default function InsightsPage() {
           line-height: 1.6;
           color: #4a5568;
           margin-bottom: 20px;
-          font-family: "Inter", sans-serif;
+          font-family: "Satoshi", sans-serif;
         }
 
         .insight-link {
@@ -627,7 +627,7 @@ export default function InsightsPage() {
           font-size: 32px;
           font-weight: 700;
           margin-bottom: 16px;
-          font-family: "Inter", sans-serif;
+          font-family: "Satoshi", sans-serif;
         }
 
         .subscription-description {
@@ -635,7 +635,7 @@ export default function InsightsPage() {
           line-height: 1.6;
           margin-bottom: 40px;
           opacity: 0.9;
-          font-family: "Inter", sans-serif;
+          font-family: "Satoshi", sans-serif;
         }
 
         .subscription-form {
@@ -690,7 +690,7 @@ export default function InsightsPage() {
           font-size: 14px;
           color: rgba(255, 255, 255, 0.7);
           margin-top: 16px;
-          font-family: "Inter", sans-serif;
+          font-family: "Satoshi", sans-serif;
         }
 
         .subscription-success {

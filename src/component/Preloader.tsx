@@ -114,7 +114,7 @@ export default function Preloader() {
                 </div>
                 <div ref={logoTextRef} className="logo-text-wrapper">
                     <div className="logo-text-inner">
-                        {"Greater Works Tech".split("").map((char, i) => (
+                        {"Greater Works Technologies".split("").map((char, i) => (
                             <div key={i} className="logo-text-span">
                                 {char}
                             </div>

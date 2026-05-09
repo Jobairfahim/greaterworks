@@ -99,6 +99,14 @@ export default function ApproachUsSection() {
                     font-weight: 700;
                     line-height: 1;
                 }
+                /* Pause marquee on hover */
+                .logos-inner:hover .ui-logo-marquee {
+                    animation-play-state: paused;
+                }
+                .logos-inner:hover {
+                    cursor: pointer;
+                }
+                }
                 @media only screen and (min-width: 992px) and (max-width: 1280px) {
                     .approach-us-wrap .trusted-company {
                         padding: 30px;

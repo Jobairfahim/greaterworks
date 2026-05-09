@@ -78,7 +78,7 @@ export default function Footer() {
                                 <div className="footer-header-card">
                                     <div className="footer-author">
                                         <Image src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" alt="" width={40} height={40} className="footer-author-logo" />
-                                        <Link href="https://themeforest.net/user/amentotech/portfolio" target="_blank" className="w-inline-block">
+                                        <Link href="https://share.google/eBCe9dSE8o3Y3MIwy" target="_blank" className="w-inline-block">
                                             <p style={{ fontWeight: 'bold', color: 'lightgray', fontSize: '28px' }}>Google</p>
                                         </Link>
                                     </div>
