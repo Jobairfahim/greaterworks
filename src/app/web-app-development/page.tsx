@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 const CDN = "https://cdn.prod.website-files.com/68d276a2319df5bdcc752026";
+const CDN1 = "https://res.cloudinary.com/dsoilebvu/image/upload/v1778074604";
 
 export default function MobileAppDevelopmentPage() {
   return (
@@ -208,37 +209,37 @@ export default function MobileAppDevelopmentPage() {
             {[
               {
                 num: "S / 001",
-                icon: "69567e155eaa5f8c9854daf3_Mobile-service-card-01.svg",
+                icon: "69566d02b993d21fb5c04f20_d-service-card-01_3_pq3sxg.svg",
                 title: "Powerful Backend Engineering",
                 desc: "Secure, responsive web applications built for scalability, cross-device compatibility, and custom feature integration",
               },
               {
                 num: "S / 002",
-                icon: "69567e1500edc02978a81b0f_Mobile-service-card-02.svg",
+                icon: "69566f0cfd5b251dab6cb856_d-choose-us-img-02_3_kfjzqz.svg",
                 title: "Engaging Front-End Experiences",
                 desc: "Fast, intuitive, responsive interfaces that work seamlessly across devices and browsers.",
               },
               {
                 num: "S / 003",
-                icon: "69562ff469e9daf9f20bb00e_cross-platform-icon.png",
+                icon: "69565ac1e7cb58faa64f1929_service-card-icon-05_1_ui1pmh.svg",
                 title: "Human-Centered Design & UX",
                 desc: "User-focused experiences that are clear, purposeful, natural, and conversion-driven.",
               },
               {
                 num: "S / 004",
-                icon: "695630b97d4a0e93dab04e5e_ai-technology-icon.png",
+                icon: "69567ca9c55d1fbc25f25ff8_m-service-card-02_1_wziwfc.svg",
                 title: "MVPs Development That Hit the Market Fast",
                 desc: "Lean MVPs with essential features, rapid development, and quick market validation.",
               },
               {
                 num: "S / 005",
-                icon: "69567e151fd4da55fde4cc11_Mobile-service-card-05.svg",
+                icon: "69567cbe0dcd01b4b10faea0_m-service-card-03_1_iuflmd.svg",
                 title: "Seamless API & System Integrations",
                 desc: "Reliable, secure API integrations connecting internal and third-party systems effortlessly.",
               },
               {
                 num: "S / 006",
-                icon: "69566d029643f586cf9f0265_d-service-card-06.svg",
+                icon: "69567e151fd4da55fde4cc11_Mobile-service-card-05_1_uekiek.svg",
                 title: "Future-Proof App Modernization",
                 desc: "Modernize legacy systems for efficiency, scalability, performance, security, and long-term value",
               },
@@ -248,7 +249,7 @@ export default function MobileAppDevelopmentPage() {
                   <div className="technology-shade" />
                   <figure className="our-technology-list-image">
                     <Image
-                      src={`${CDN}/${s.icon}`}
+                      src={`${CDN1}/${s.icon}`}
                       alt="image description"
                       width={48}
                       height={48}
@@ -699,17 +700,17 @@ export default function MobileAppDevelopmentPage() {
                 {[
                   {
                     name: "Raustyle",
-                    role: "Envato Customer",
+                    role: "Google Customer",
                     text: "The most extensive and well-designed theme of this type that I've seen available. Constantly updated, great support, feature requests added to the theme and constantly getting better. Really hope it keeps improving and evolving for a long time. Great work!",
                   },
                   {
                     name: "paulthinkgrow",
-                    role: "Envato Customer",
+                    role: "Google Customer",
                     text: "Very GREAT customer support. I am blown away. Great price for the template and very beautiful. I contacted support for something I thought was impossible and they were so kind and helped me without any hesitation. Thank you so much.",
                   },
                   {
                     name: "BuxRecord",
-                    role: "Envato Customer",
+                    role: "Google Customer",
                     text: "Great job. I have use many other freelancers script theme, fiverr clone script and theme since years, and no one like this in design, and features. So i decide to remove previous script from my domain and install workreap. Now i am happy. Thanks for your support too",
                   },
                 ].map((t) => (
@@ -719,7 +720,7 @@ export default function MobileAppDevelopmentPage() {
                         {[...Array(5)].map((_, i) => (
                           <Image
                             key={i}
-                            src={`${CDN}/693ff758fbcd58bad0d563bc_star.svg`}
+                            src={`https://res.cloudinary.com/dsoilebvu/image/upload/v1777057659/star_o6pixh.svg`}
                             loading="lazy"
                             alt="star-svg"
                             width={16}

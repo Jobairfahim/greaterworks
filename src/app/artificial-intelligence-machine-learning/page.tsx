@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 const CDN = "https://cdn.prod.website-files.com/68d276a2319df5bdcc752026";
+const CDN1 = "https://res.cloudinary.com/dsoilebvu/image/upload/v1778074604";
 
 export default function MobileAppDevelopmentPage() {
   return (
@@ -209,37 +210,37 @@ export default function MobileAppDevelopmentPage() {
             {[
               {
                 num: "S / 001",
-                icon: "69567e155eaa5f8c9854daf3_Mobile-service-card-01.svg",
+                icon: "695668b532ce962f53e7600e_ai-service-card-01_1_uq0kok.svg",
                 title: "Custom AI Solution Development",
                 desc: "AI systems tailored to your business goals, from automation engines to recommendation systems.",
               },
               {
                 num: "S / 002",
-                icon: "69567e1500edc02978a81b0f_Mobile-service-card-02.svg",
+                icon: "695668b5e933763da871a960_ai-service-card-02_1_rzd5ii.svg",
                 title: "Machine Learning Model Engineering",
                 desc: "Supervised, unsupervised, and reinforcement models trained to deliver measurable accuracy.",
               },
               {
                 num: "S / 003",
-                icon: "69562ff469e9daf9f20bb00e_cross-platform-icon.png",
+                icon: "695668b5f5dce4e0a6333298_ai-service-card-03_1_sf35ow.svg",
                 title: "Natural Language Processing (NLP)",
                 desc: "Chatbots, voice recognition, and sentiment analysis that understand and respond like humans.",
               },
               {
                 num: "S / 004",
-                icon: "695630b97d4a0e93dab04e5e_ai-technology-icon.png",
+                icon: "695668b5f8ed100057b7cf08_ai-service-card-04_1_ycl3ov.svg",
                 title: "Computer Vision Solutions",
                 desc: "Image recognition, facial detection, and object tracking for industries like retail, security, and healthcare.",
               },
               {
                 num: "S / 005",
-                icon: "69567e151fd4da55fde4cc11_Mobile-service-card-05.svg",
+                icon: "695668b5d27c53c72f83fb22_ai-service-card-05_1_usqz0y.svg",
                 title: "AI-Powered Automation & Integration",
                 desc: "Streamline repetitive tasks and boost efficiency across workflows, logistics, and customer operations.",
               },
               {
                 num: "S / 006",
-                icon: "69566d029643f586cf9f0265_d-service-card-06.svg",
+                icon: "69565ac170a7ce8bd2dd7c17_service-card-icon-03_1_hgvism.svg",
                 title: "Data Engineering & Model Training",
                 desc: "Build robust data pipelines and scalable models ready for production.",
               },
@@ -249,7 +250,7 @@ export default function MobileAppDevelopmentPage() {
                   <div className="technology-shade" />
                   <figure className="our-technology-list-image">
                     <Image
-                      src={`${CDN}/${s.icon}`}
+                      src={`${CDN1}/${s.icon}`}
                       alt="image description"
                       width={48}
                       height={48}
@@ -700,17 +701,17 @@ export default function MobileAppDevelopmentPage() {
                 {[
                   {
                     name: "Raustyle",
-                    role: "Envato Customer",
+                    role: "Google Customer",
                     text: "The most extensive and well-designed theme of this type that I've seen available. Constantly updated, great support, feature requests added to the theme and constantly getting better. Really hope it keeps improving and evolving for a long time. Great work!",
                   },
                   {
                     name: "paulthinkgrow",
-                    role: "Envato Customer",
+                    role: "Google Customer",
                     text: "Very GREAT customer support. I am blown away. Great price for the template and very beautiful. I contacted support for something I thought was impossible and they were so kind and helped me without any hesitation. Thank you so much.",
                   },
                   {
                     name: "BuxRecord",
-                    role: "Envato Customer",
+                    role: "Google Customer",
                     text: "Great job. I have use many other freelancers script theme, fiverr clone script and theme since years, and no one like this in design, and features. So i decide to remove previous script from my domain and install workreap. Now i am happy. Thanks for your support too",
                   },
                 ].map((t) => (
@@ -720,7 +721,7 @@ export default function MobileAppDevelopmentPage() {
                         {[...Array(5)].map((_, i) => (
                           <Image
                             key={i}
-                            src={`${CDN}/693ff758fbcd58bad0d563bc_star.svg`}
+                            src={`https://res.cloudinary.com/dsoilebvu/image/upload/v1777057659/star_o6pixh.svg`}
                             loading="lazy"
                             alt="star-svg"
                             width={16}
@@ -732,7 +733,7 @@ export default function MobileAppDevelopmentPage() {
                       <p className="testimonial-description">{t.text}</p>
                       <div className="testimonial-profile-content">
                         <Image
-                          src={`${CDN}/6953e25f2b41648999029475_Avatar.svg`}
+                          src={`https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg`}
                           loading="lazy"
                           alt="Client Profile Image"
                           width={48}

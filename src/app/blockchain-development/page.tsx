@@ -5,8 +5,9 @@ import Image from "next/image";
 import Link from "next/link";
 
 const CDN = "https://cdn.prod.website-files.com/68d276a2319df5bdcc752026";
+const CDN1 = "https://res.cloudinary.com/dsoilebvu/image/upload/v1778074604";
 
-export default function MobileAppDevelopmentPage() {
+export default function BlockchainDevelopmentPage() {
   return (
     <>
       {/* ── SERVICE BANNER ─────────────────────────────────────────────── */}
@@ -209,38 +210,38 @@ export default function MobileAppDevelopmentPage() {
             {[
               {
                 num: "S / 001",
-                icon: "69567e155eaa5f8c9854daf3_Mobile-service-card-01.svg",
+                icon: "block_zyz4vf.svg",
                 title: "Custom Blockchain App Development",
                 desc: "End-to-end decentralized applications tailored to your business logic and ecosystem..",
               },
               {
                 num: "S / 002",
-                icon: "69567e1500edc02978a81b0f_Mobile-service-card-02.svg",
+                icon: "69565ac1ec543390f650a405_service-card-icon-02_1_qksrr7.svg",
                 title: "Smart Contract Development",
                 desc: "Secure, automated agreements written in Solidity, Rust, or Vyper for Ethereum, Hyperledger, or Solana.",
               },
               {
                 num: "S / 003",
-                icon: "69562ff469e9daf9f20bb00e_cross-platform-icon.png",
+                icon: "695657c307b1e3b58352f35a_choose-us-icon-02_1_yskjbo.svg",
                 title: "DeFi Development",
                 desc: "Power lending, staking, trading, and yield farming platforms with robust tokenomics and smart contract logic.",
               },
               {
                 num: "S / 004",
-                icon: "695630b97d4a0e93dab04e5e_ai-technology-icon.png",
+                icon: "69565ac1e7cb58faa64f1929_service-card-icon-05_1_ui1pmh.svg",
                 title: "NFT Platforms",
                 desc: "Mint, trade, and manage digital assets with secure NFT marketplaces & metadata integration.",
               },
               {
                 num: "S / 005",
-                icon: "69567e151fd4da55fde4cc11_Mobile-service-card-05.svg",
+                icon: "69567adc2f0bcbb6107b04d4_w-service-card-01_2_dznpk7.svg",
                 title: "Crypto Wallet Solutions",
                 desc: "Multi-currency, cross-chain wallets with high-grade encryption and user-friendly interfaces",
               },
               {
                 num: "S / 006",
-                icon: "69566d029643f586cf9f0265_d-service-card-06.svg",
-                title: "Token Development (Utility, Security, NFTs)",
+                icon: "69567b820738559f1070439c_w-choose-us-img-04_3_gtsvtj.svg",
+                title: "Token Development (Utility, Security, NFTs)",
                 desc: "Create tokens that align with your ecosystem and fuel engagement across networks.",
               },
             ].map((s) => (
@@ -249,7 +250,7 @@ export default function MobileAppDevelopmentPage() {
                   <div className="technology-shade" />
                   <figure className="our-technology-list-image">
                     <Image
-                      src={`${CDN}/${s.icon}`}
+                      src={`${CDN1}/${s.icon}`}
                       alt="image description"
                       width={48}
                       height={48}
@@ -471,17 +472,17 @@ export default function MobileAppDevelopmentPage() {
                 {[
                   {
                     name: "Raustyle",
-                    role: "Envato Customer",
+                    role: "Google Customer",
                     text: "The most extensive and well-designed theme of this type that I've seen available. Constantly updated, great support, feature requests added to the theme and constantly getting better. Really hope it keeps improving and evolving for a long time. Great work!",
                   },
                   {
                     name: "paulthinkgrow",
-                    role: "Envato Customer",
+                    role: "Google Customer",
                     text: "Very GREAT customer support. I am blown away. Great price for the template and very beautiful. I contacted support for something I thought was impossible and they were so kind and helped me without any hesitation. Thank you so much.",
                   },
                   {
                     name: "BuxRecord",
-                    role: "Envato Customer",
+                    role: "Google Customer",
                     text: "Great job. I have use many other freelancers script theme, fiverr clone script and theme since years, and no one like this in design, and features. So i decide to remove previous script from my domain and install workreap. Now i am happy. Thanks for your support too",
                   },
                 ].map((t) => (
@@ -491,7 +492,7 @@ export default function MobileAppDevelopmentPage() {
                         {[...Array(5)].map((_, i) => (
                           <Image
                             key={i}
-                            src={`${CDN}/693ff758fbcd58bad0d563bc_star.svg`}
+                            src={`https://res.cloudinary.com/dsoilebvu/image/upload/v1777057659/star_o6pixh.svg`}
                             loading="lazy"
                             alt="star-svg"
                             width={16}
@@ -503,7 +504,7 @@ export default function MobileAppDevelopmentPage() {
                       <p className="testimonial-description">{t.text}</p>
                       <div className="testimonial-profile-content">
                         <Image
-                          src={`${CDN}/6953e25f2b41648999029475_Avatar.svg`}
+                          src={`https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg`}
                           loading="lazy"
                           alt="Client Profile Image"
                           width={48}

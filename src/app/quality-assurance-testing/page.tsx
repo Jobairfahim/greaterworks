@@ -5,41 +5,42 @@ import Image from "next/image";
 import Link from "next/link";
 
 const CDN = "https://cdn.prod.website-files.com/68d276a2319df5bdcc752026";
+const CDN1 = "https://res.cloudinary.com/dsoilebvu/image/upload/v1778074604";
 
 const qaServices = [
   {
     num: "S / 001",
-    icon: "6956718d9276112f4000c0f8_q-service-card-img-01.svg",
+    icon: "69565d4fb25c83fd6c44cc5e_choose-us-icon-06_1_l97vth.svg",
     title: "Manual Testing",
     desc: "Expert human feedback ensures a user-friendly design and optimal usability.",
   },
   {
     num: "S / 002",
-    icon: "69566d02e94e0dc5a7874b63_d-service-card-04.png",
+    icon: "69567ca9c55d1fbc25f25ff8_m-service-card-02_1_wziwfc.svg",
     title: "Automation Testing",
     desc: "Automated CI/CD pipelines enable faster, more reliable software release cycles.",
   },
   {
     num: "S / 003",
-    icon: "6956718eb13e5f18c934b25d_q-service-card-img-02.svg",
+    icon: "6956718eb13e5f18c934b25d_q-service-card-img-02_1_ar2mrb.svg",
     title: "Performance & Load Testing",
     desc: "Robust testing ensures your product remains performant under increasing user load.",
   },
   {
     num: "S / 004",
-    icon: "6956718d46ce46a451fe9d53_q-service-card-img-04.svg",
+    icon: "69567cbe0dcd01b4b10faea0_m-service-card-03_1_iuflmd.svg",
     title: "API Testing",
     desc: "Rigorous API testing guarantees seamless and error-free system communication always.",
   },
   {
     num: "S / 005",
-    icon: "69567867d861ff8935385903_q-service-card-img-05.svg",
+    icon: "69567c9a2c612e8ca6f24b8f_m-service-card-01_1_zjo3xx.svg",
     title: "Functional Testing",
     desc: "Comprehensive testing confirms every feature delivers the intended user experience.",
   },
   {
     num: "S / 006",
-    icon: "69566d029643f586cf9f0265_d-service-card-06.svg",
+    icon: "69566d029643f586cf9f0265_d-service-card-06_4_lnqdyd.svg",
     title: "Security Testing",
     desc: "Advanced security protocols protect your data and infrastructure from cyber threats.",
   },
@@ -100,7 +101,7 @@ export default function QualityAssuranceTestingPage() {
                 <div className="text-block-12">Get in touch</div>
                 <Image
                   alt="arrow-top-right"
-                  src={`${CDN}/68dd105094d90e0a289e4185_arrow-top-right-white.svg`}
+                  src={`https://res.cloudinary.com/dsoilebvu/image/upload/v1778080440/68dd105094d90e0a289e4185_arrow-top-right-white_2_m9d15r.svg`}
                   width={16}
                   height={16}
                   className="button-icon"
@@ -211,7 +212,7 @@ export default function QualityAssuranceTestingPage() {
                   <div className="technology-shade" />
                   <figure className="our-technology-list-image">
                     <Image
-                      src={`${CDN}/${service.icon}`}
+                      src={`${CDN1}/${service.icon}`}
                       alt={service.title}
                       width={48}
                       height={48}

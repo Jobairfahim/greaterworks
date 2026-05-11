@@ -702,17 +702,17 @@ export default function MobileAppDevelopmentPage() {
                 {[
                   {
                     name: "Raustyle",
-                    role: "Envato Customer",
+                    role: "Google Customer",
                     text: "The most extensive and well-designed theme of this type that I've seen available. Constantly updated, great support, feature requests added to the theme and constantly getting better. Really hope it keeps improving and evolving for a long time. Great work!",
                   },
                   {
                     name: "paulthinkgrow",
-                    role: "Envato Customer",
+                    role: "Google Customer",
                     text: "Very GREAT customer support. I am blown away. Great price for the template and very beautiful. I contacted support for something I thought was impossible and they were so kind and helped me without any hesitation. Thank you so much.",
                   },
                   {
                     name: "BuxRecord",
-                    role: "Envato Customer",
+                    role: "Google Customer",
                     text: "Great job. I have use many other freelancers script theme, fiverr clone script and theme since years, and no one like this in design, and features. So i decide to remove previous script from my domain and install workreap. Now i am happy. Thanks for your support too",
                   },
                 ].map((t) => (
@@ -722,7 +722,7 @@ export default function MobileAppDevelopmentPage() {
                         {[...Array(5)].map((_, i) => (
                           <Image
                             key={i}
-                            src={`${CDN}/693ff758fbcd58bad0d563bc_star.svg`}
+                            src={`https://res.cloudinary.com/dsoilebvu/image/upload/v1777057659/star_o6pixh.svg`}
                             loading="lazy"
                             alt="star-svg"
                             width={16}
@@ -734,7 +734,7 @@ export default function MobileAppDevelopmentPage() {
                       <p className="testimonial-description">{t.text}</p>
                       <div className="testimonial-profile-content">
                         <Image
-                          src={`${CDN}/6953e25f2b41648999029475_Avatar.svg`}
+                          src={`https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg`}
                           loading="lazy"
                           alt="Client Profile Image"
                           width={48}
