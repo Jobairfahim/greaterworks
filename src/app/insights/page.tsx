@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef, useMemo } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { guides, updates } from "@/data/insightsData";
 
 export default function InsightsPage() {
   const [activeSection, setActiveSection] = useState("introduction");
@@ -61,61 +62,6 @@ export default function InsightsPage() {
     }
   };
 
-  const guides = [
-    {
-      id: "scalable-web-apps",
-      title: "How to Build a Scalable Web Application",
-      description: "Learn core principles of scalable architecture, from database design to deployment strategies.",
-    },
-    {
-      id: "mern-stack",
-      title: "Getting Started with MERN Stack Development",
-      description: "A practical beginner-friendly guide to building full-stack applications using MongoDB, Express, React, and Node.js.",
-    },
-    {
-      id: "ui-ux-practices",
-      title: "UI/UX Best Practices for Modern Web Apps",
-      description: "Design intuitive and engaging user experiences that convert and retain users.",
-    },
-    {
-      id: "api-design",
-      title: "API Design: Best Practices for Developers",
-      description: "Build clean, secure, and efficient APIs that scale with your application.",
-    },
-    {
-      id: "performance-optimization",
-      title: "Optimizing Website Performance",
-      description: "Techniques to improve loading speed, SEO ranking, and overall user experience.",
-    },
-  ];
-
-  const updates = [
-    {
-      id: "web-dev-trends",
-      title: "Top Web Development Trends in 2026",
-      description: "Explore the latest technologies shaping the future of web development.",
-    },
-    {
-      id: "ai-development",
-      title: "The Rise of AI in Software Development",
-      description: "How AI tools are transforming the way developers build and deploy applications.",
-    },
-    {
-      id: "cloud-trends",
-      title: "Cloud Computing Trends You Should Know",
-      description: "Key updates in cloud infrastructure, DevOps, and scalability.",
-    },
-    {
-      id: "cybersecurity",
-      title: "Cybersecurity in Modern Applications",
-      description: "Emerging threats and how to protect your systems effectively.",
-    },
-    {
-      id: "ecommerce-future",
-      title: "The Future of E-commerce Platforms",
-      description: "Innovations changing how online businesses operate and grow.",
-    },
-  ];
 
   return (
     <div className="insights-page">
@@ -182,7 +128,7 @@ export default function InsightsPage() {
         </div>
       </section> */}
 
-      <div className="insights-content-wrapper">
+      <div className="insights-content-wrapper w-layout-blockcontainer container-3 w-container">
         {/* Sidebar */}
         <aside className="insights-sidebar">
           <div className="sidebar-content">
@@ -327,9 +273,12 @@ export default function InsightsPage() {
             <div className="insights-grid">
               {guides.map((guide) => (
                 <article key={guide.id} id={guide.id} className="insight-card">
+                  <div className="insight-image-wrapper">
+                    <Image src={guide.image} alt={guide.title} width={400} height={250} className="insight-image" />
+                  </div>
                   <h3 className="insight-title">{guide.title}</h3>
                   <p className="insight-description">{guide.description}</p>
-                  <Link href="#" className="insight-link">
+                  <Link href={`/insights/${guide.id}`} className="insight-link">
                     Read More →
                   </Link>
                 </article>
@@ -343,9 +292,12 @@ export default function InsightsPage() {
             <div className="insights-grid">
               {updates.map((update) => (
                 <article key={update.id} id={update.id} className="insight-card">
+                  <div className="insight-image-wrapper">
+                    <Image src={update.image} alt={update.title} width={400} height={250} className="insight-image" />
+                  </div>
                   <h3 className="insight-title">{update.title}</h3>
                   <p className="insight-description">{update.description}</p>
-                  <Link href="#" className="insight-link">
+                  <Link href={`/insights/${update.id}`} className="insight-link">
                     Read More →
                   </Link>
                 </article>
@@ -357,7 +309,7 @@ export default function InsightsPage() {
 
       {/* Subscription Section */}
       <section className="insights-subscription">
-        <div className="container">
+        <div className="container-3 w-container">
           <div className="subscription-content">
             <h2 className="subscription-title">Stay Updated with Insights</h2>
             <p className="subscription-description">
@@ -417,11 +369,6 @@ export default function InsightsPage() {
           background: #f8fafc;
         }
 
-        .container {
-          max-width: 1200px;
-          margin: 0 auto;
-          padding: 0 20px;
-        }
 
         /* Hero Section */
         .insights-hero {
@@ -438,7 +385,7 @@ export default function InsightsPage() {
 
         .insights-title {
           font-size: 48px;
-          font-weight: 700;
+          font-weight: 400;
           margin-bottom: 20px;
           font-family: "Satoshi", sans-serif;
         }
@@ -453,9 +400,8 @@ export default function InsightsPage() {
         /* Content Layout */
         .insights-content-wrapper {
           display: flex;
-          max-width: 1200px;
-          margin: 0 auto;
-          padding: 60px 20px;
+          padding-top: 60px;
+          padding-bottom: 60px;
           gap: 40px;
         }
 
@@ -475,7 +421,7 @@ export default function InsightsPage() {
 
         .sidebar-title {
           font-size: 18px;
-          font-weight: 600;
+          font-weight: 400;
           margin-bottom: 20px;
           color: #1a202c;
         }
@@ -497,7 +443,7 @@ export default function InsightsPage() {
           cursor: pointer;
           transition: all 0.2s ease;
           color: #4a5568;
-          font-weight: 500;
+          font-weight: 400;
         }
 
         .sidebar-link:hover {
@@ -548,7 +494,7 @@ export default function InsightsPage() {
 
         .section-title {
           font-size: 32px;
-          font-weight: 700;
+          font-weight: 400;
           margin-bottom: 20px;
           color: #1a202c;
           font-family: "Satoshi", sans-serif;
@@ -582,9 +528,28 @@ export default function InsightsPage() {
           box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
         }
 
+        .insight-image-wrapper {
+          width: 100%;
+          height: 200px;
+          border-radius: 8px;
+          overflow: hidden;
+          margin-bottom: 20px;
+        }
+
+        .insight-image {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          transition: transform 0.3s ease;
+        }
+
+        .insight-card:hover .insight-image {
+          transform: scale(1.05);
+        }
+
         .insight-title {
           font-size: 20px;
-          font-weight: 600;
+          font-weight: 400;
           margin-bottom: 12px;
           color: #1a202c;
           font-family: "Satoshi", sans-serif;
@@ -601,7 +566,7 @@ export default function InsightsPage() {
         .insight-link {
           color: #667eea;
           text-decoration: none;
-          font-weight: 600;
+          font-weight: 400;
           font-size: 16px;
           transition: color 0.2s ease;
         }
@@ -625,7 +590,7 @@ export default function InsightsPage() {
 
         .subscription-title {
           font-size: 32px;
-          font-weight: 700;
+          font-weight: 400;
           margin-bottom: 16px;
           font-family: "Satoshi", sans-serif;
         }
@@ -676,7 +641,7 @@ export default function InsightsPage() {
           border: none;
           border-radius: 8px;
           font-size: 16px;
-          font-weight: 600;
+          font-weight: 400;
           cursor: pointer;
           transition: all 0.2s ease;
         }
@@ -702,7 +667,7 @@ export default function InsightsPage() {
 
         .subscription-success h3 {
           font-size: 24px;
-          font-weight: 600;
+          font-weight: 400;
           margin-bottom: 12px;
           color: #68d391;
         }
@@ -720,7 +685,8 @@ export default function InsightsPage() {
 
           .insights-content-wrapper {
             flex-direction: column;
-            padding: 40px 20px;
+            padding-top: 40px;
+            padding-bottom: 40px;
           }
 
           .insights-sidebar {
