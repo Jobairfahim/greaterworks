@@ -520,6 +520,13 @@ export default function Navbar() {
                         >
                             Insights 
                         </Link>
+                        <Link
+                            href="https://portal.greaterworks.tech/company/careers"
+                            target="_blank"
+                            className="nav-link nav-title-white w-nav-link"
+                        >
+                            Careers 
+                        </Link>
                     </nav>
                     <div className="div-block-3 contact-us header-contact-us">
                         <Link
@@ -912,6 +919,13 @@ export default function Navbar() {
                             className="nav-link w-nav-link"
                         >
                             Insights 
+                        </Link>
+                        <Link
+                            href="https://portal.greaterworks.tech/company/careers"
+                            target="_blank"
+                            className="nav-link w-nav-link"
+                        >
+                            Careers 
                         </Link>
                         <div className="div-block-3 contact-us">
                             <Link href="/contact-us" className="link-block w-inline-block">
