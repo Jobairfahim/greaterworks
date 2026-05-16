@@ -1,711 +1,598 @@
 "use client";
 
-import { useState, useEffect, useRef, useMemo } from "react";
+import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { guides, updates } from "@/data/insightsData";
+import { allInsights } from "@/data/insightsData";
+import { 
+  FaFacebookF, 
+  FaXTwitter, 
+  FaInstagram, 
+  FaPinterestP, 
+  FaYoutube, 
+  FaLinkedinIn, 
+  FaGithub 
+} from "react-icons/fa6";
+import { IoSearchOutline } from "react-icons/io5";
+import ContactSection from "@/component/ContactSection";
 
 export default function InsightsPage() {
-  const [activeSection, setActiveSection] = useState("introduction");
-  const [email, setEmail] = useState("");
-  const [fullName, setFullName] = useState("");
-  const [isSubscribed, setIsSubscribed] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
+  const ITEMS_PER_PAGE = 12;
 
-  const introductionRef = useRef<HTMLDivElement>(null);
-  const guidesRef = useRef<HTMLDivElement>(null);
-  const updatesRef = useRef<HTMLDivElement>(null);
-
-  const sectionRefs = useMemo(() => ({
-    introduction: introductionRef,
-    guides: guidesRef,
-    updates: updatesRef,
-  }), []);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrollPosition = window.scrollY + 100;
-      
-      Object.entries(sectionRefs).forEach(([section, ref]) => {
-        if (ref.current) {
-          const { offsetTop, offsetHeight } = ref.current;
-          if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
-            setActiveSection(section);
-          }
-        }
-      });
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [sectionRefs]);
-
-  const scrollToSection = (sectionId: string) => {
-    let element: HTMLElement | null = null;
-    if (sectionId === "introduction") element = introductionRef.current;
-    else if (sectionId === "guides") element = guidesRef.current;
-    else if (sectionId === "updates") element = updatesRef.current;
-    
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-    }
+  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchQuery(e.target.value);
+    setCurrentPage(1);
   };
 
-  const handleSubscribe = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (fullName && email) {
-      setIsSubscribed(true);
-      setTimeout(() => {
-        setIsSubscribed(false);
-        setFullName("");
-        setEmail("");
-      }, 3000);
-    }
-  };
+  const featuredBlogs = allInsights.slice(0, 3);
+  const baseLatestBlogs = allInsights.slice(3);
 
+  const filteredInsights = allInsights.filter(insight => 
+    insight.title.toLowerCase().includes(searchQuery.toLowerCase()) || 
+    insight.description.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
+  const isSearching = searchQuery.trim() !== "";
+  const sourceList = isSearching ? filteredInsights : baseLatestBlogs;
+  
+  const totalPages = Math.ceil(sourceList.length / ITEMS_PER_PAGE);
+  const currentDisplayBlogs = sourceList.slice(
+    (currentPage - 1) * ITEMS_PER_PAGE, 
+    currentPage * ITEMS_PER_PAGE
+  );
 
   return (
-    <div className="insights-page">
+    <div className="insights-hub-page">
       {/* Hero Section */}
-      {/* <section className="hero-section">
-        <div className="w-layout-blockcontainer container-3 hero-banner w-container">
-          <div className="home-banner-video-wrap">
-            <div className="home-banner-video-bg-color" />
-            <div className="glass-filter services" />
-            <div className="glass-overlay services" />
-            <div className="glass-specular services" />
-          </div>
-          <div className="hero-banner-content-wrap">
-            <div className="hero-banner-content-left">
-              <div className="section-head-content-subtitle subtitle-primary-content">
-                <div className="section-head-subtitle-dot" />
-                <p className="section-head-subtitle-content hero-primary-content">Expert Insights & Resources</p>
-              </div>
-              <h2 className="hero-banner-title">Beyond Technology, We Build Trust</h2>
-              <p className="hero-banner-content-description">Stay ahead with actionable guides, expert tips, and latest industry trends. Whether you&apos;re building a product, scaling a business, or exploring new technologies, our insights are designed to help you make smarter decisions.</p>
-              <div className="button-wrap hero-banner-button-wrap">
-                <Link href="#guides" className="button-primary-3 hero-banner w-inline-block">
-                  <div className="text-block-16">Explore Guides</div>
-                  <Image 
-                  alt="arrow-top-right" 
-                  src="https://cdn.prod.website-files.com/68d276a2319df5bdcc752026/68dd105094d90e0a289e4185_arrow-top-right-white.svg" 
-                  width={16} 
-                  height={16} 
-                  className="button-icon" 
-                />
-                </Link>
-                <Link href="/contact-us" data-gn-book-meeting="modal" data-w-id="617f6bfb-f59f-e3a1-a068-c20d1b82a49a" className="button-secondary-light hero-secondary-button w-inline-block">
-                  <div className="button-secondary-light-text-2">Get Started</div>
-                  <div className="arrows-container cta">
-                    <Image 
-                      alt="Icon" 
-                      src="https://cdn.prod.website-files.com/68d276a2319df5bdcc752026/6937e4382716cdf25ad0f3d5_date-icon-light.svg" 
-                      width={16} 
-                      height={16} 
-                      className="dark-arrow _16" 
-                    />
-                    <Image 
-                      alt="Icon" 
-                      src="https://cdn.prod.website-files.com/68d276a2319df5bdcc752026/6937e33ae69eb8ce6ab3de51_date-icon-dark.svg" 
-                      width={16} 
-                      height={16} 
-                      className="arrow-button _16" 
-                    />
-                  </div>
-                </Link>
-              </div>
-            </div>
-            <div className="hero-banner-content-right">
-              <a href="#" className="video-player-wrap responsive-style w-inline-block w-lightbox">
-                <div className="play-button-wrap">
-                  <div className="play-btn">
-                    <Image src="https://res.cloudinary.com/dsoilebvu/image/upload/v1777057659/poly_f74kga.svg" loading="lazy" alt="Play-icon" width={48} height={48} className="play-icon" />
-                  </div>
-                </div>
-                <div className="intro-text">Watch Intro</div>
-              </a>
-            </div>
-          </div>
+      <section className="hub-hero">
+        <h1 className="hub-title">Latest Tech and Trends</h1>
+        <p className="hub-subtitle">
+          Get ahead with fresh insights, hands-on guides, and smart strategies to help you navigate the world of tech, eCommerce, and digital marketing with confidence.
+        </p>
+        
+        <div className="search-container">
+          <input 
+            type="text" 
+            placeholder="Search" 
+            className="hub-search-input"
+            value={searchQuery}
+            onChange={handleSearch}
+          />
+          <span className="search-icon-wrapper">
+            <IoSearchOutline size={20} />
+          </span>
         </div>
-      </section> */}
 
-      <div className="insights-content-wrapper w-layout-blockcontainer container-3 w-container">
-        {/* Sidebar */}
-        <aside className="insights-sidebar">
-          <div className="sidebar-content">
-            <h3 className="sidebar-title">Table of Contents</h3>
-            <nav className="sidebar-nav">
-              <button
-                onClick={() => scrollToSection("introduction")}
-                className={`sidebar-link ${activeSection === "introduction" ? "active" : ""}`}
-              >
-                Introduction
-              </button>
-              <button
-                onClick={() => scrollToSection("guides")}
-                className={`sidebar-link ${activeSection === "guides" ? "active" : ""}`}
-              >
-                Guides
-              </button>
-              <button
-                onClick={() => scrollToSection("updates")}
-                className={`sidebar-link ${activeSection === "updates" ? "active" : ""}`}
-              >
-                Updates
-              </button>
-            </nav>
-
-            {activeSection === "guides" && (
-              <div className="subsection-nav">
-                <button
-                  onClick={() => {
-                    const element = document.getElementById("scalable-web-apps");
-                    element?.scrollIntoView({ behavior: "smooth" });
-                  }}
-                  className="subsection-link"
-                >
-                  Scalable Web Apps
-                </button>
-                <button
-                  onClick={() => {
-                    const element = document.getElementById("mern-stack");
-                    element?.scrollIntoView({ behavior: "smooth" });
-                  }}
-                  className="subsection-link"
-                >
-                  MERN Stack Guide
-                </button>
-                <button
-                  onClick={() => {
-                    const element = document.getElementById("ui-ux-practices");
-                    element?.scrollIntoView({ behavior: "smooth" });
-                  }}
-                  className="subsection-link"
-                >
-                  UI/UX Best Practices
-                </button>
-                <button
-                  onClick={() => {
-                    const element = document.getElementById("api-design");
-                    element?.scrollIntoView({ behavior: "smooth" });
-                  }}
-                  className="subsection-link"
-                >
-                  API Design
-                </button>
-                <button
-                  onClick={() => {
-                    const element = document.getElementById("performance-optimization");
-                    element?.scrollIntoView({ behavior: "smooth" });
-                  }}
-                  className="subsection-link"
-                >
-                  Performance Optimization
-                </button>
-              </div>
-            )}
-
-            {activeSection === "updates" && (
-              <div className="subsection-nav">
-                <button
-                  onClick={() => {
-                    const element = document.getElementById("web-dev-trends");
-                    element?.scrollIntoView({ behavior: "smooth" });
-                  }}
-                  className="subsection-link"
-                >
-                  Web Dev Trends
-                </button>
-                <button
-                  onClick={() => {
-                    const element = document.getElementById("ai-development");
-                    element?.scrollIntoView({ behavior: "smooth" });
-                  }}
-                  className="subsection-link"
-                >
-                  AI in Development
-                </button>
-                <button
-                  onClick={() => {
-                    const element = document.getElementById("cloud-trends");
-                    element?.scrollIntoView({ behavior: "smooth" });
-                  }}
-                  className="subsection-link"
-                >
-                  Cloud Trends
-                </button>
-                <button
-                  onClick={() => {
-                    const element = document.getElementById("cybersecurity");
-                    element?.scrollIntoView({ behavior: "smooth" });
-                  }}
-                  className="subsection-link"
-                >
-                  Cybersecurity
-                </button>
-                <button
-                  onClick={() => {
-                    const element = document.getElementById("ecommerce-future");
-                    element?.scrollIntoView({ behavior: "smooth" });
-                  }}
-                  className="subsection-link"
-                >
-                  E-commerce Future
-                </button>
-              </div>
-            )}
-          </div>
-        </aside>
-
-        {/* Main Content */}
-        <main className="insights-main">
-          {/* Introduction Section */}
-          <section ref={introductionRef} className="insights-section">
-            <h2 className="section-title">Introduction</h2>
-            <p className="section-description">
-              Stay ahead with actionable guides, expert tips, and latest industry trends. Whether you&apos;re building a product, 
-              scaling a business, or exploring new technologies, our insights are designed to help you make smarter decisions.
-            </p>
-          </section>
-
-          {/* Guides Section */}
-          <section ref={guidesRef} className="insights-section">
-            <h2 className="section-title">Guides (How-tos, Tutorials)</h2>
-            <div className="insights-grid">
-              {guides.map((guide) => (
-                <article key={guide.id} id={guide.id} className="insight-card">
-                  <div className="insight-image-wrapper">
-                    <Image src={guide.image} alt={guide.title} width={400} height={250} className="insight-image" />
-                  </div>
-                  <h3 className="insight-title">{guide.title}</h3>
-                  <p className="insight-description">{guide.description}</p>
-                  <Link href={`/insights/${guide.id}`} className="insight-link">
-                    Read More →
-                  </Link>
-                </article>
-              ))}
-            </div>
-          </section>
-
-          {/* Updates Section */}
-          <section ref={updatesRef} className="insights-section">
-            <h2 className="section-title">Updates (News, Trends)</h2>
-            <div className="insights-grid">
-              {updates.map((update) => (
-                <article key={update.id} id={update.id} className="insight-card">
-                  <div className="insight-image-wrapper">
-                    <Image src={update.image} alt={update.title} width={400} height={250} className="insight-image" />
-                  </div>
-                  <h3 className="insight-title">{update.title}</h3>
-                  <p className="insight-description">{update.description}</p>
-                  <Link href={`/insights/${update.id}`} className="insight-link">
-                    Read More →
-                  </Link>
-                </article>
-              ))}
-            </div>
-          </section>
-        </main>
-      </div>
-
-      {/* Subscription Section */}
-      <section className="insights-subscription">
-        <div className="container-3 w-container">
-          <div className="subscription-content">
-            <h2 className="subscription-title">Stay Updated with Insights</h2>
-            <p className="subscription-description">
-              Get the latest guides, tips, and industry updates delivered straight to your inbox.
-            </p>
-            
-            {isSubscribed ? (
-              <div className="subscription-success">
-                <h3>Thank you for subscribing!</h3>
-                <p>You&apos;ll receive our latest insights soon.</p>
-              </div>
-            ) : (
-              <form onSubmit={handleSubscribe} className="subscription-form">
-                <div className="form-group">
-                  <input
-                    type="text"
-                    placeholder="Full Name"
-                    value={fullName}
-                    onChange={(e) => setFullName(e.target.value)}
-                    required
-                    className="form-input"
-                  />
-                </div>
-                <div className="form-group">
-                  <input
-                    type="email"
-                    placeholder="Email Address"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    required
-                    className="form-input"
-                  />
-                </div>
-                {/* Honeypot field for bot protection */}
-                <input
-                  type="text"
-                  name="website"
-                  tabIndex={-1}
-                  autoComplete="off"
-                  style={{ display: "none" }}
-                />
-                <button type="submit" className="subscription-button">
-                  Subscribe Now
-                </button>
-                <p className="privacy-note">
-                  We respect your privacy. No spam, only valuable insights.
-                </p>
-              </form>
-            )}
+        <div className="hub-socials">
+          <span className="social-text">Follow us for the latest insights →</span>
+          <div className="social-icons">
+            <a href="#" className="s-icon fb"><FaFacebookF size={18} /></a>
+            <a href="#" className="s-icon x"><FaXTwitter size={18} /></a>
+            <a href="#" className="s-icon ig"><FaInstagram size={18} /></a>
+            <a href="#" className="s-icon pin"><FaPinterestP size={18} /></a>
+            <a href="#" className="s-icon yt"><FaYoutube size={18} /></a>
+            <a href="#" className="s-icon li"><FaLinkedinIn size={18} /></a>
+            <a href="#" className="s-icon gh"><FaGithub size={18} /></a>
           </div>
         </div>
       </section>
 
+      {searchQuery.trim() !== "" ? (
+        <section className="latest-section">
+          <h2 className="section-title">Search Results</h2>
+          <p className="section-subtitle">
+            Showing results for "{searchQuery}"
+          </p>
+
+          {filteredInsights.length > 0 ? (
+            <>
+              <div className="latest-grid">
+                {currentDisplayBlogs.map((blog) => (
+                  <div key={blog.id} className="latest-card">
+                    <div className="latest-img-wrap">
+                      <Image src={blog.image} alt={blog.title} fill className="latest-img" style={{ objectFit: 'cover' }} />
+                    </div>
+                    <div className="latest-card-content">
+                      <h3 className="latest-title">{blog.title}</h3>
+                      <p className="latest-date">{blog.date}</p>
+                      <Link href={`/insights/${blog.id}`} className="btn-outline">
+                        Read Article
+                      </Link>
+                    </div>
+                  </div>
+                ))}
+              </div>
+              
+              {totalPages > 1 && (
+                <div className="pagination">
+                  <button 
+                    className="page-btn" 
+                    onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
+                    disabled={currentPage === 1}
+                  >
+                    Previous
+                  </button>
+                  <span className="page-info">Page {currentPage} of {totalPages}</span>
+                  <button 
+                    className="page-btn" 
+                    onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
+                    disabled={currentPage === totalPages}
+                  >
+                    Next
+                  </button>
+                </div>
+              )}
+            </>
+          ) : (
+            <p style={{ textAlign: "center", color: "#6b7280", padding: "40px 0" }}>
+              No blogs found matching your search.
+            </p>
+          )}
+        </section>
+      ) : (
+        <>
+          {/* Featured Blogs */}
+          <section className="featured-section">
+            <h2 className="section-title">Featured Blogs</h2>
+            <p className="section-subtitle">
+              Check out our top blogs, packed with expert tips, smart strategies, and fresh insights to keep you ahead in tech, eCommerce, and digital trends.
+            </p>
+
+            {featuredBlogs.length >= 3 && (
+              <div className="featured-grid">
+                {/* Left Large Card */}
+                <div className="feat-card-large">
+                  <div className="feat-img-wrap-large">
+                    <Link href={`/insights/${featuredBlogs[0].id}`} className="block-link" style={{ width: '100%', height: '100%', display: 'block' }}>
+                      <Image src={featuredBlogs[0].image} alt={featuredBlogs[0].title} fill className="feat-img" style={{ objectFit: 'cover' }} />
+                    </Link>
+                  </div>
+                  <div className="feat-content">
+                    <h3 className="feat-title-large">{featuredBlogs[0].title}</h3>
+                    <p className="feat-date">{featuredBlogs[0].date}</p>
+                    <Link href={`/insights/${featuredBlogs[0].id}`} className="btn-outline" style={{ marginTop: '16px' }}>
+                      Read Article
+                    </Link>
+                  </div>
+                </div>
+
+                {/* Right Stack */}
+                <div className="feat-right-stack">
+                  <div className="feat-card-small">
+                    <div className="feat-img-wrap-small">
+                      <Link href={`/insights/${featuredBlogs[1].id}`} className="block-link" style={{ width: '100%', height: '100%', display: 'block' }}>
+                        <Image src={featuredBlogs[1].image} alt={featuredBlogs[1].title} fill className="feat-img" style={{ objectFit: 'cover' }} />
+                      </Link>
+                    </div>
+                    <div className="feat-content-small">
+                      <h3 className="feat-title-small">{featuredBlogs[1].title}</h3>
+                      <p className="feat-date">{featuredBlogs[1].date}</p>
+                      <Link href={`/insights/${featuredBlogs[1].id}`} className="btn-outline" style={{ marginTop: '12px' }}>
+                        Read Article
+                      </Link>
+                    </div>
+                  </div>
+                  
+                  <div className="feat-card-small">
+                    <div className="feat-img-wrap-small">
+                      <Link href={`/insights/${featuredBlogs[2].id}`} className="block-link" style={{ width: '100%', height: '100%', display: 'block' }}>
+                        <Image src={featuredBlogs[2].image} alt={featuredBlogs[2].title} fill className="feat-img" style={{ objectFit: 'cover' }} />
+                      </Link>
+                    </div>
+                    <div className="feat-content-small">
+                      <h3 className="feat-title-small">{featuredBlogs[2].title}</h3>
+                      <p className="feat-date">{featuredBlogs[2].date}</p>
+                      <Link href={`/insights/${featuredBlogs[2].id}`} className="btn-outline" style={{ marginTop: '12px' }}>
+                        Read Article
+                      </Link>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
+          </section>
+
+          {/* Latest Blogs */}
+          <section className="latest-section">
+            <h2 className="section-title">Latest Blogs</h2>
+            <p className="section-subtitle">
+              Your go-to spot for fresh ideas, expert tips, and breakthrough insights in the digital world.
+            </p>
+
+            <div className="latest-grid">
+              {currentDisplayBlogs.map((blog) => (
+                <div key={blog.id} className="latest-card">
+                  <div className="latest-img-wrap">
+                    <Image src={blog.image} alt={blog.title} fill className="latest-img" style={{ objectFit: 'cover' }} />
+                  </div>
+                  <div className="latest-card-content">
+                    <h3 className="latest-title">{blog.title}</h3>
+                    <p className="latest-date">{blog.date}</p>
+                    <Link href={`/insights/${blog.id}`} className="btn-outline">
+                      Read Article
+                    </Link>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {totalPages > 1 && (
+              <div className="pagination">
+                <button 
+                  className="page-btn" 
+                  onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
+                  disabled={currentPage === 1}
+                >
+                  Previous
+                </button>
+                <span className="page-info">Page {currentPage} of {totalPages}</span>
+                <button 
+                  className="page-btn" 
+                  onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
+                  disabled={currentPage === totalPages}
+                >
+                  Next
+                </button>
+              </div>
+            )}
+          </section>
+          <ContactSection isSimple={true} />
+        </>
+      )}
+
       <style jsx>{`
-        .insights-page {
-          min-height: 100vh;
-          background: #f8fafc;
+        .insights-hub-page, .insights-hub-page * {
+          font-family: "Satoshi", sans-serif !important;
+          font-weight: 400 !important;
         }
 
+        .insights-hub-page {
+          min-height: 100vh;
+          background: #ffffff;
+          padding-bottom: 100px;
+          font-family: "Satoshi", sans-serif;
+        }
 
         /* Hero Section */
-        .insights-hero {
-          background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-          color: white;
-          padding: 80px 0;
+        .hub-hero {
           text-align: center;
-        }
-
-        .insights-hero-content {
-          max-width: 800px;
+          padding: 100px 20px 80px;
+          max-width: 900px;
           margin: 0 auto;
         }
 
-        .insights-title {
+        .hub-title {
           font-size: 48px;
-          font-weight: 400;
-          margin-bottom: 20px;
-          font-family: "Satoshi", sans-serif;
+          font-weight: 800;
+          color: #000;
+          margin-bottom: 24px;
         }
 
-        .insights-subtitle {
-          font-size: 20px;
-          line-height: 1.6;
-          opacity: 0.9;
-          font-family: "Satoshi", sans-serif;
-        }
-
-        /* Content Layout */
-        .insights-content-wrapper {
-          display: flex;
-          padding-top: 60px;
-          padding-bottom: 60px;
-          gap: 40px;
-        }
-
-        .insights-sidebar {
-          width: 280px;
-          position: sticky;
-          top: 100px;
-          height: fit-content;
-        }
-
-        .sidebar-content {
-          background: white;
-          border-radius: 12px;
-          padding: 24px;
-          box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-
-        .sidebar-title {
-          font-size: 18px;
-          font-weight: 400;
-          margin-bottom: 20px;
-          color: #1a202c;
-        }
-
-        .sidebar-nav {
-          display: flex;
-          flex-direction: column;
-          gap: 8px;
-          margin-bottom: 20px;
-        }
-
-        .sidebar-link {
-          text-align: left;
-          padding: 12px 16px;
-          border: none;
-          background: none;
-          border-radius: 8px;
+        .hub-subtitle {
           font-size: 16px;
-          cursor: pointer;
-          transition: all 0.2s ease;
-          color: #4a5568;
-          font-weight: 400;
+          line-height: 1.6;
+          color: #4b5563;
+          margin-bottom: 40px;
+          padding: 0 40px;
         }
 
-        .sidebar-link:hover {
-          background: #f7fafc;
-          color: #2d3748;
+        .search-container {
+          position: relative;
+          max-width: 500px;
+          margin: 0 auto 40px;
         }
 
-        .sidebar-link.active {
-          background: #9633ec !important;
-          color: white !important;
+        .hub-search-input {
+          width: 100%;
+          padding: 16px 48px 16px 20px;
+          border-radius: 8px;
+          border: 1px solid #e5e7eb;
+          font-size: 16px;
+          outline: none;
+          color: #111827;
+          transition: border-color 0.2s ease;
         }
 
-        .subsection-nav {
+        .hub-search-input:focus {
+          border-color: #0052ff;
+        }
+
+        .hub-search-input::placeholder {
+          color: #9ca3af;
+        }
+
+        .search-icon-wrapper {
+          position: absolute;
+          right: 20px;
+          top: 50%;
+          transform: translateY(-50%);
+          color: #9ca3af;
+          pointer-events: none;
           display: flex;
-          flex-direction: column;
-          gap: 6px;
-          margin-left: 16px;
-          padding-left: 16px;
-          border-left: 2px solid #e2e8f0;
+          align-items: center;
+          justify-content: center;
         }
 
-        .subsection-link {
-          text-align: left;
-          padding: 8px 12px;
-          border: none;
-          background: none;
-          border-radius: 6px;
-          font-size: 14px;
-          cursor: pointer;
-          transition: all 0.2s ease;
-          color: #718096;
-          font-weight: 400;
+        .hub-socials {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 16px;
         }
 
-        .subsection-link:hover {
-          background: #f7fafc;
-          color: #4a5568;
+        .social-text {
+          font-size: 15px;
+          font-weight: 600;
+          color: #374151;
         }
 
-        .insights-main {
-          flex: 1;
-          min-width: 0;
+        .social-icons {
+          display: flex;
+          gap: 12px;
         }
 
-        .insights-section {
-          margin-bottom: 60px;
+        .s-icon {
+          color: #000;
+          transition: transform 0.2s ease, opacity 0.2s ease;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+
+        .s-icon:hover {
+          transform: translateY(-2px);
+          opacity: 0.8;
+        }
+
+        .s-icon.fb { color: #1877F2; }
+        .s-icon.ig { color: #E4405F; }
+        .s-icon.pin { color: #E60023; }
+        .s-icon.yt { color: #FF0000; }
+        .s-icon.li { color: #0A66C2; }
+
+        /* Shared Section Styles */
+        .featured-section, .latest-section {
+          max-width: 1400px;
+          margin: 0 auto;
+          padding: 0 40px;
+          margin-bottom: 80px;
         }
 
         .section-title {
           font-size: 32px;
           font-weight: 400;
-          margin-bottom: 20px;
-          color: #1a202c;
-          font-family: "Satoshi", sans-serif;
+          text-align: center;
+          color: #000;
+          margin-bottom: 16px;
         }
 
-        .section-description {
-          font-size: 18px;
-          line-height: 1.7;
-          color: #4a5568;
-          margin-bottom: 30px;
-          font-family: "Satoshi", sans-serif;
+        .section-subtitle {
+          font-size: 15px;
+          color: #4b5563;
+          text-align: center;
+          max-width: 700px;
+          margin: 0 auto 48px;
+          line-height: 1.6;
         }
 
-        .insights-grid {
+        /* Featured Grid */
+        .featured-grid {
           display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-          gap: 30px;
-          margin-top: 30px;
+          grid-template-columns: 1.5fr 1fr;
+          gap: 24px;
         }
 
-        .insight-card {
-          background: white;
-          border-radius: 12px;
-          padding: 30px;
-          box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-          transition: transform 0.2s ease, box-shadow 0.2s ease;
+        .feat-card-large {
+          display: flex;
+          flex-direction: column;
         }
 
-        .insight-card:hover {
-          transform: translateY(-4px);
-          box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        .block-link {
+          display: block;
         }
 
-        .insight-image-wrapper {
+        .feat-img-wrap-large {
+          position: relative;
           width: 100%;
-          height: 200px;
-          border-radius: 8px;
+          height: 480px;
+          border-radius: 12px;
           overflow: hidden;
           margin-bottom: 20px;
+          background: #f8fafc;
         }
 
-        .insight-image {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-          transition: transform 0.3s ease;
-        }
-
-        .insight-card:hover .insight-image {
-          transform: scale(1.05);
-        }
-
-        .insight-title {
-          font-size: 20px;
-          font-weight: 400;
-          margin-bottom: 12px;
-          color: #1a202c;
-          font-family: "Satoshi", sans-serif;
-        }
-
-        .insight-description {
-          font-size: 16px;
-          line-height: 1.6;
-          color: #4a5568;
-          margin-bottom: 20px;
-          font-family: "Satoshi", sans-serif;
-        }
-
-        .insight-link {
-          color: #667eea;
-          text-decoration: none;
-          font-weight: 400;
-          font-size: 16px;
-          transition: color 0.2s ease;
-        }
-
-        .insight-link:hover {
-          color: #5a67d8;
-        }
-
-        /* Subscription Section */
-        .insights-subscription {
-          background: #ffffffff;
-          color: white;
-          padding: 80px 0;
-        }
-
-        .subscription-content {
-          max-width: 600px;
-          margin: 0 auto;
-          text-align: center;
-        }
-
-        .subscription-title {
-          font-size: 32px;
-          font-weight: 400;
-          margin-bottom: 16px;
-          font-family: "Satoshi", sans-serif;
-        }
-
-        .subscription-description {
-          font-size: 18px;
-          line-height: 1.6;
-          margin-bottom: 40px;
-          opacity: 0.9;
-          font-family: "Satoshi", sans-serif;
-        }
-
-        .subscription-form {
-          display: flex;
-          flex-direction: column;
-          gap: 20px;
-        }
-
-        .form-group {
-          display: flex;
-          flex-direction: column;
-        }
-
-        .form-input {
-          padding: 16px 20px;
-          border: 1px solid #726e6eff;
-          border-radius: 8px;
-          background: rgba(255, 255, 255, 0.1);
-          color: #757575ff;
-          font-size: 16px;
-          transition: all 0.2s ease;
-        }
-
-        .form-input::placeholder {
-          color: #757575ff;
-        }
-
-        .form-input:focus {
-          outline: none;
-          border-color: #667eea;
-          background: rgba(255, 255, 255, 0.15);
-        }
-
-        .subscription-button {
-          padding: 16px 32px;
-          background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-          color: white;
-          border: none;
-          border-radius: 8px;
-          font-size: 16px;
-          font-weight: 400;
-          cursor: pointer;
-          transition: all 0.2s ease;
-        }
-
-        .subscription-button:hover {
-          transform: translateY(-2px);
-          box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
-        }
-
-        .privacy-note {
-          font-size: 14px;
-          color: rgba(255, 255, 255, 0.7);
-          margin-top: 16px;
-          font-family: "Satoshi", sans-serif;
-        }
-
-        .subscription-success {
-          text-align: center;
-          padding: 40px;
-          background: rgba(255, 255, 255, 0.1);
-          border-radius: 12px;
-        }
-
-        .subscription-success h3 {
+        .feat-title-large {
           font-size: 24px;
           font-weight: 400;
           margin-bottom: 12px;
-          color: #68d391;
+          color: #111827;
         }
 
-        .subscription-success p {
-          font-size: 16px;
-          color: rgba(255, 255, 255, 0.9);
+        .feat-right-stack {
+          display: flex;
+          flex-direction: column;
+          gap: 24px;
         }
 
-        /* Responsive Design */
-        @media (max-width: 768px) {
-          .insights-title {
+        .feat-card-small {
+          display: flex;
+          flex-direction: column;
+        }
+
+        .feat-img-wrap-small {
+          position: relative;
+          width: 100%;
+          height: 228px;
+          border-radius: 12px;
+          overflow: hidden;
+          margin-bottom: 16px;
+          background: #f8fafc;
+        }
+
+        .feat-title-small {
+          font-size: 18px;
+          font-weight: 700;
+          margin-bottom: 8px;
+          color: #111827;
+        }
+
+        .feat-content {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+        }
+
+        .feat-content-small {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+        }
+
+        .feat-date, .latest-date {
+          font-size: 13px;
+          color: #6b7280;
+          font-weight: 400;
+        }
+
+        /* Latest Grid */
+        .latest-grid {
+          display: grid;
+          grid-template-columns: repeat(4, 1fr);
+          gap: 24px;
+        }
+
+        .latest-card {
+          display: flex;
+          flex-direction: column;
+          border-radius: 12px;
+          border: 1px solid #f3f4f6;
+          overflow: hidden;
+          background: #fff;
+          transition: box-shadow 0.2s ease, transform 0.2s ease;
+        }
+
+        .latest-card:hover {
+          box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
+          transform: translateY(-4px);
+        }
+
+        .latest-img-wrap {
+          position: relative;
+          width: 100%;
+          height: 200px;
+          background: #f8fafc;
+        }
+
+        .latest-card-content {
+          padding: 24px 20px;
+          display: flex;
+          flex-direction: column;
+          flex-grow: 1;
+        }
+
+        .latest-title {
+          font-size: 18px;
+          font-weight: 400;
+          margin-bottom: 12px;
+          color: #111827;
+          line-height: 1.4;
+        }
+
+        .latest-date {
+          margin-bottom: 24px;
+        }
+
+        .btn-outline {
+          margin-top: auto;
+          display: inline-block;
+          width: max-content;
+          padding: 8px 20px;
+          border: 1.5px solid #0052ff;
+          color: #0052ff;
+          border-radius: 6px;
+          font-weight: 400;
+          font-size: 14px;
+          text-decoration: none;
+          transition: all 0.2s ease;
+        }
+
+        .btn-outline:hover {
+          background: #0052ff;
+          color: #fff;
+        }
+
+        /* Pagination */
+        .pagination {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 16px;
+          margin-top: 48px;
+        }
+
+        .page-btn {
+          padding: 8px 16px;
+          border: 1px solid #e5e7eb;
+          background: #fff;
+          border-radius: 6px;
+          font-size: 14px;
+          font-weight: 400;
+          color: #374151;
+          cursor: pointer;
+          transition: all 0.2s ease;
+          font-family: "Satoshi", sans-serif;
+        }
+
+        .page-btn:hover:not(:disabled) {
+          border-color: #0052ff;
+          color: #0052ff;
+        }
+
+        .page-btn:disabled {
+          opacity: 0.5;
+          cursor: not-allowed;
+          background: #f9fafb;
+        }
+
+        .page-info {
+          font-size: 14px;
+          color: #6b7280;
+          font-weight: 400;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 1024px) {
+          .featured-grid {
+            grid-template-columns: 1fr;
+          }
+          .latest-grid {
+            grid-template-columns: repeat(2, 1fr);
+          }
+          .hub-title {
             font-size: 36px;
           }
+        }
 
-          .insights-content-wrapper {
+        @media (max-width: 640px) {
+          .hub-hero {
+            padding: 60px 20px 40px;
+          }
+          .hub-socials {
             flex-direction: column;
-            padding-top: 40px;
-            padding-bottom: 40px;
           }
-
-          .insights-sidebar {
-            width: 100%;
-            position: static;
-            margin-bottom: 30px;
-          }
-
-          .insights-grid {
+          .latest-grid {
             grid-template-columns: 1fr;
-            gap: 20px;
           }
-
-          .insight-card {
-            padding: 20px;
+          .feat-img-wrap-large {
+            height: 300px;
           }
-
-          .subscription-form {
-            gap: 16px;
+          .feat-img-wrap-small {
+            height: 200px;
+          }
+          .featured-section, .latest-section {
+            padding: 0 20px;
           }
         }
       `}</style>

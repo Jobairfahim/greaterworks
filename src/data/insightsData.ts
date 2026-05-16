@@ -115,7 +115,13 @@ export const updates: Insight[] = [
   },
 ];
 
-export const allInsights: Insight[] = [...guides, ...updates];
+export const allInsights: Insight[] = [
+  ...guides, 
+  ...updates,
+  ...guides.map(g => ({...g, id: g.id + "-copy1"})),
+  ...updates.map(u => ({...u, id: u.id + "-copy1"})),
+  ...guides.map(g => ({...g, id: g.id + "-copy2"}))
+];
 
 export function getInsightById(id: string): Insight | undefined {
   return allInsights.find(insight => insight.id === id);

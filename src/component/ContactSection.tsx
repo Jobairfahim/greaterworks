@@ -13,7 +13,7 @@ const techOptions = [
     "UI/UX Designing", "AI/ML Engineering", "Project Management", "Other Custom Work",
 ];
 
-export default function ContactSection() {
+export default function ContactSection({ isSimple = false }: { isSimple?: boolean }) {
     const [engagementType, setEngagementType] = useState("Staff Augmentation");
 
     return (
@@ -108,44 +108,48 @@ export default function ContactSection() {
                                             <input className="field-form full service-form-field w-input" maxLength={256} name="Email-Address" data-name="Email Address" placeholder="Enter your email address" type="email" id="Email-Address" required />
                                         </div>
                                     </div>
-                                    <div className="fields-wrap">
-                                        <div className="form-group service-form-group">
-                                            <p className="from-group-title service-form-title">Phone</p>
-                                            <input className="field-form full text-field-2 service-form-field w-input" maxLength={256} name="Phone-Number" data-name="Phone Number" placeholder="Enter your phone number" type="tel" id="Phone-Number" />
-                                        </div>
-                                        <div className="form-group service-form-group">
-                                            <p className="from-group-title service-form-title">Preferred Tech</p>
-                                            <select id="Preferred" name="Preferred" data-name="Preferred" className="contact-form-select service-form-field w-select">
-                                                <option value="">Select preferred tech stack</option>
-                                                {techOptions.map((opt, i) => (
-                                                    <option key={i} value={opt}>{opt}</option>
-                                                ))}
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div className="form-group service-form-group">
-                                        <p className="from-group-title service-form-title">Message*</p>
-                                        <textarea id="Message" name="Message" maxLength={5000} data-name="Message" placeholder="Tel us how can we help" required className="field-form full-textarea service-form-field w-input" />
-                                    </div>
-                                    <div className="form-group service-form-group engagement-type">
-                                        <p className="from-group-title service-form-title">Engagement type</p>
-                                        <div className="radio-wrap service-radio-wrap">
-                                            {["Custom Product Development", "End-to-End Product Delivery", "Fixed Project"].map((type) => (
-                                                <label key={type} className="radio-button-field service-radio-field w-radio">
-                                                    <input
-                                                        type="radio"
-                                                        name="From-Type"
-                                                        value={type}
-                                                        checked={engagementType === type}
-                                                        onChange={() => setEngagementType(type)}
-                                                        style={{ opacity: 0, position: "absolute", zIndex: -1 }}
-                                                    />
-                                                    <div className={`radio-button w-radio-input ${engagementType === type ? "w--redirected-checked" : ""}`} />
-                                                    <span className="radio-button-label w-form-label">{type}</span>
-                                                </label>
-                                            ))}
-                                        </div>
-                                    </div>
+                                    {!isSimple && (
+                                        <>
+                                            <div className="fields-wrap">
+                                                <div className="form-group service-form-group">
+                                                    <p className="from-group-title service-form-title">Phone</p>
+                                                    <input className="field-form full text-field-2 service-form-field w-input" maxLength={256} name="Phone-Number" data-name="Phone Number" placeholder="Enter your phone number" type="tel" id="Phone-Number" />
+                                                </div>
+                                                <div className="form-group service-form-group">
+                                                    <p className="from-group-title service-form-title">Preferred Tech</p>
+                                                    <select id="Preferred" name="Preferred" data-name="Preferred" className="contact-form-select service-form-field w-select">
+                                                        <option value="">Select preferred tech stack</option>
+                                                        {techOptions.map((opt, i) => (
+                                                            <option key={i} value={opt}>{opt}</option>
+                                                        ))}
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div className="form-group service-form-group">
+                                                <p className="from-group-title service-form-title">Message*</p>
+                                                <textarea id="Message" name="Message" maxLength={5000} data-name="Message" placeholder="Tel us how can we help" required className="field-form full-textarea service-form-field w-input" />
+                                            </div>
+                                            <div className="form-group service-form-group engagement-type">
+                                                <p className="from-group-title service-form-title">Engagement type</p>
+                                                <div className="radio-wrap service-radio-wrap">
+                                                    {["Custom Product Development", "End-to-End Product Delivery", "Fixed Project"].map((type) => (
+                                                        <label key={type} className="radio-button-field service-radio-field w-radio">
+                                                            <input
+                                                                type="radio"
+                                                                name="From-Type"
+                                                                value={type}
+                                                                checked={engagementType === type}
+                                                                onChange={() => setEngagementType(type)}
+                                                                style={{ opacity: 0, position: "absolute", zIndex: -1 }}
+                                                            />
+                                                            <div className={`radio-button w-radio-input ${engagementType === type ? "w--redirected-checked" : ""}`} />
+                                                            <span className="radio-button-label w-form-label">{type}</span>
+                                                        </label>
+                                                    ))}
+                                                </div>
+                                            </div>
+                                        </>
+                                    )}
                                     <div className="from-footer">
                                         <input type="submit" data-wait="Please wait..." className="button-primary service-button-primary w-button" value="Submit your message" />
                                     </div>
