@@ -34584,3 +34584,25 @@ body:has(.preloader.amt-loading[style*="display: none"]) {
     margin-top: 16px;
   }
 }
+
+/* ===== Insights Hub: Read Article button overrides ===== */
+a.btn-outline {
+  color: #9433e9 !important;
+  box-shadow: 0 0 0 1.5px #9433e9 !important;
+  border-width: 1.5px !important;
+  border-style: solid !important;
+  border-color: #9433e9 !important;
+  border-radius: 6px !important;
+  padding: 8px 20px !important;
+  font-size: 14px !important;
+  text-decoration: none !important;
+  display: inline-block !important;
+  transition: background 0.2s ease, color 0.2s ease, box-shadow 0.2s ease !important;
+  background: transparent !important;
+}
+
+a.btn-outline:hover {
+  background: #9433e9 !important;
+  color: #fff !important;
+  box-shadow: 0 0 0 1.5px #9433e9 !important;
+}

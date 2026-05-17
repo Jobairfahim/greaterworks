@@ -509,8 +509,8 @@ export default function InsightsPage() {
           display: inline-block;
           width: max-content;
           padding: 8px 20px;
-          border: 1.5px solid #0052ff;
-          color: #0052ff;
+          border: 1.5px solid #9433e9 !important;
+          color: #9433e9 !important;
           border-radius: 6px;
           font-weight: 400;
           font-size: 14px;
@@ -519,8 +519,8 @@ export default function InsightsPage() {
         }
 
         .btn-outline:hover {
-          background: #0052ff;
-          color: #fff;
+          background: #9433e9 !important;
+          color: #fff !important;
         }
 
         /* Pagination */
@@ -546,8 +546,8 @@ export default function InsightsPage() {
         }
 
         .page-btn:hover:not(:disabled) {
-          border-color: #0052ff;
-          color: #0052ff;
+          border-color: #9433e9;
+          color: #9433e9;
         }
 
         .page-btn:disabled {
