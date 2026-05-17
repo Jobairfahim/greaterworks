@@ -112,7 +112,7 @@ export default function InsightPostPage({ params }: { params: Promise<{ id: stri
             <div className="author-info">
               <div className="author-name">{insight.author || "Jobair Fahim"}</div>
               <div className="author-details">
-                {insight.date && <span>{insight.date}</span>}
+
                 {insight.date && <span className="meta-dot">·</span>}
                 <span>Updated on: {insight.date || "April 20, 2026"}</span>
                 {insight.readTime && <span className="meta-dot">·</span>}
@@ -204,8 +204,17 @@ export default function InsightPostPage({ params }: { params: Promise<{ id: stri
             <div className="promo-icon outline-icon"><svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 24 24" height="24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"></path></svg></div>
             <h3 className="promo-title">Stay Updated</h3>
             <p className="promo-text">Join thousands of readers<br />getting smarter every week.</p>
-            <input type="email" placeholder="Email Address" className="promo-input" />
-            <button className="promo-btn block">Subscribe</button>
+            <form className="promo-form" onSubmit={(e) => e.preventDefault()}>
+              <div className="promo-input-group">
+                <label className="promo-label">Full Name <span className="required">*</span></label>
+                <input type="text" required className="promo-input" />
+              </div>
+              <div className="promo-input-group">
+                <label className="promo-label">Email Address <span className="required">*</span></label>
+                <input type="email" required className="promo-input" />
+              </div>
+              <button type="submit" className="promo-btn block">Subscribe</button>
+            </form>
           </div>
         </aside>
       </div>
@@ -572,13 +581,44 @@ export default function InsightPostPage({ params }: { params: Promise<{ id: stri
           background: #8129d1;
         }
 
+        .promo-form {
+          width: 100%;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+        }
+
+        .promo-input-group {
+          width: 100%;
+          text-align: left;
+          margin-bottom: 16px;
+          display: flex;
+          flex-direction: column;
+          gap: 6px;
+        }
+
+        .promo-input-group .promo-input {
+          margin-bottom: 0;
+        }
+
+        .promo-label {
+          font-size: 13px;
+          color: #374151;
+          display: flex;
+          align-items: center;
+        }
+
+        .promo-label .required {
+          color: #ef4444;
+          margin-left: 2px;
+        }
+
         .promo-input {
           width: 100%;
           padding: 14px 16px;
           border: 1px solid #e2e8f0;
           border-radius: 8px;
           font-size: 14px;
-          margin-bottom: 16px;
           outline: none;
           transition: border-color 0.2s ease;
           font-family: "Satoshi", sans-serif;
