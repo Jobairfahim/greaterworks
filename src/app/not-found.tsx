@@ -381,18 +381,25 @@ const NotFound = () => {
         }
       }
 
-      // 6. Enemy Shooting
-      const enemyShotInterval = Math.max(300, 1600 - localLevel * 180);
-      if (timestamp - lastEnemyShotTime > enemyShotInterval && activeInvaders.length > 0) {
-        const shooter = activeInvaders[Math.floor(Math.random() * activeInvaders.length)];
-        enemyBullets.push({
-          x: shooter.x + shooter.width / 2 - 1.5,
-          y: shooter.y + shooter.height,
-          width: 3,
-          height: 10,
-          vy: 3.5 + Math.min(3, localLevel * 0.35),
-          color: "#f43f5e", // Neon Coral bullet
-        });
+      // 6. Enemy Shooting - Random intervals with multiple bullets from different positions
+      const baseShotInterval = Math.max(300, 1600 - localLevel * 180);
+      // Add randomness: between 70% and 130% of base interval
+      const randomizedInterval = baseShotInterval * (0.7 + Math.random() * 0.6);
+      if (timestamp - lastEnemyShotTime > randomizedInterval && activeInvaders.length > 0) {
+        // Randomly shoot 1, 2, or 3 bullets at once from different invaders
+        const bulletCount = Math.random() < 0.5 ? 1 : Math.random() < 0.7 ? 2 : 3;
+        
+        for (let b = 0; b < bulletCount; b++) {
+          const shooter = activeInvaders[Math.floor(Math.random() * activeInvaders.length)];
+          enemyBullets.push({
+            x: shooter.x + shooter.width / 2 - 1.5,
+            y: shooter.y + shooter.height,
+            width: 3,
+            height: 10,
+            vy: 3.5 + Math.min(3, localLevel * 0.35),
+            color: "#f43f5e", // Neon Coral bullet
+          });
+        }
         lastEnemyShotTime = timestamp;
       }
 
@@ -424,7 +431,7 @@ const NotFound = () => {
             setScore(localScore);
 
             // Spawn Particles
-            const particleColors = ["#1e293b", "#475569", "#0d9488", "#7c3aed"];
+            const particleColors = ["#1e293b", "#475569", "#9434e9", "#7c3aed"];
             for (let p = 0; p < 8; p++) {
               particles.push({
                 x: inv.x + inv.width / 2,
@@ -664,7 +671,7 @@ const NotFound = () => {
       // Draw Floating Scores/Text Popups
       ctx.textAlign = "center";
       for (const t of textPopups) {
-        ctx.font = "bold 13px Satoshi, Inter, sans-serif";
+        ctx.font = "400 13px Satoshi, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif";
         ctx.fillStyle = t.color;
         ctx.globalAlpha = t.alpha;
         ctx.fillText(t.text, t.x, t.y);
@@ -688,7 +695,7 @@ const NotFound = () => {
   }, []); // Run effect ONCE on mount to ensure completely uninterrupted game loop stability
 
   return (
-    <div className="min-h-screen bg-gray-100 text-[#1f2937] flex flex-col items-center justify-between py-8 sm:py-12 md:py-16 px-3 sm:px-4 select-none relative selection:bg-black selection:text-white">
+    <div className="not-found-page min-h-screen bg-gray-100 text-[#1f2937] flex flex-col items-center justify-between py-8 sm:py-12 md:py-16 px-3 sm:px-4 select-none relative selection:bg-black selection:text-white">
       {/* Background ambient aesthetic blurs */}
       <div className="absolute top-[5%] left-[10%] w-[45%] aspect-square rounded-full bg-gray-200/40 blur-[120px] pointer-events-none"></div>
       <div className="absolute bottom-[5%] right-[10%] w-[45%] aspect-square rounded-full bg-gray-200/35 blur-[120px] pointer-events-none"></div>
@@ -703,18 +710,18 @@ const NotFound = () => {
         </p>
 
         {/* HUD Glassmorphism stats cockpit bar */}
-        <div className="flex flex-col sm:flex-row flex-wrap items-center justify-center gap-2 sm:gap-3 md:gap-6 lg:gap-10 text-[10px] sm:text-xs md:text-sm font-bold tracking-widest text-gray-500 mb-4 sm:mb-5 md:mb-6 bg-white/70 border border-gray-200/80 px-4 sm:px-6 md:px-8 py-2.5 sm:py-3 md:py-3.5 rounded-full shadow-sm backdrop-blur-md w-full sm:w-auto max-w-full">
+        <div className="flex flex-row flex-wrap items-center justify-center gap-2 sm:gap-3 md:gap-6 lg:gap-10 text-[10px] sm:text-xs md:text-sm font-bold tracking-widest text-gray-500 mb-4 sm:mb-5 md:mb-6 bg-white/70 border border-gray-200/80 px-4 sm:px-6 md:px-8 py-2.5 sm:py-3 md:py-3.5 rounded-full shadow-sm backdrop-blur-md w-full sm:w-auto max-w-full">
           <div className="flex items-center gap-x-1 sm:gap-x-2">
             <span className="w-1.5 h-1.5 rounded-full bg-teal-500 animate-ping"></span>
-            SCORE: <span className="font-extrabold text-gray-900 text-sm sm:text-base font-mono ml-0.5 sm:ml-1">{score}</span>
+            SCORE: <span className="font-extrabold text-gray-900 text-sm sm:text-base font-satoshi ml-0.5 sm:ml-1">{score}</span>
           </div>
           <div className="hidden sm:block w-px h-3 sm:h-4 bg-gray-200 my-auto"></div>
           <div className="flex items-center gap-x-1 sm:gap-x-2">
-            LIVES: <span className="font-extrabold text-rose-600 text-sm sm:text-base font-mono ml-0.5 sm:ml-1">{lives}</span>
+            LIVES: <span className="font-extrabold text-rose-600 text-sm sm:text-base font-satoshi ml-0.5 sm:ml-1">{lives}</span>
           </div>
           <div className="hidden sm:block w-px h-3 sm:h-4 bg-gray-200 my-auto"></div>
           <div className="flex items-center gap-x-1 sm:gap-x-2">
-            LEVEL: <span className="font-extrabold text-amber-600 text-sm sm:text-base font-mono ml-0.5 sm:ml-1">{level}</span>
+            LEVEL: <span className="font-extrabold text-amber-600 text-sm sm:text-base font-satoshi ml-0.5 sm:ml-1">{level}</span>
           </div>
         </div>
       </div>
@@ -739,7 +746,7 @@ const NotFound = () => {
               MISSION FAILED
             </h2>
             <p className="text-xs md:text-sm text-gray-500 mb-8 font-satoshi font-bold tracking-widest uppercase">
-              Final Score: <span className="font-extrabold text-black text-base font-mono ml-1">{score}</span> | Level: <span className="font-extrabold text-black text-base font-mono ml-1">{level}</span>
+              Final Score: <span className="font-extrabold text-black text-base font-satoshi ml-1">{score}</span> | Level: <span className="font-extrabold text-black text-base font-satoshi ml-1">{level}</span>
             </p>
             <button
               onClick={restartGame}
@@ -752,44 +759,98 @@ const NotFound = () => {
       </div>
 
       {/* Instructions */}
-      <div className="text-center text-[9px] sm:text-[10px] md:text-xs tracking-widest font-extrabold text-gray-400 mb-4 sm:mb-5 md:mb-8 font-satoshi uppercase px-2">
+      <div className="text-center text-[9px] sm:text-[10px] md:text-xs tracking-widest font-extrabold text-black mb-4 sm:mb-5 md:mb-8 font-satoshi uppercase px-2">
         Use Left/Right arrow keys or A/D to move. Spacebar to shoot.
       </div>
 
       {/* Mobile touch controls panel */}
-      <div className="flex md:hidden gap-x-2 sm:gap-x-3 mb-4 sm:mb-6 md:mb-8 z-10 w-full justify-center flex-wrap">
+      <div className="flex md:hidden gap-x-4 sm:gap-x-6 mb-4 sm:mb-6 md:mb-8 z-10 w-full px-4 sm:px-6 justify-between items-center">
+        {/* Left side arrows - horizontal alignment */}
+        <div className="flex gap-x-2 sm:gap-x-3 items-center">
+          <button
+            onTouchStart={(e) => {
+              e.preventDefault();
+              keysRef.current.left = true;
+            }}
+            onTouchEnd={(e) => {
+              e.preventDefault();
+              keysRef.current.left = false;
+            }}
+            onPointerDown={() => {
+              keysRef.current.left = true;
+            }}
+            onPointerUp={() => {
+              keysRef.current.left = false;
+            }}
+            onPointerLeave={() => {
+              keysRef.current.left = false;
+            }}
+            className="bg-white/80 border border-gray-200 active:bg-gray-100 text-gray-700 w-12 h-12 sm:w-16 sm:h-16 rounded-full flex items-center justify-center font-bold text-xl sm:text-2xl select-none shadow-sm active:scale-95 transition-transform"
+            style={{ touchAction: "manipulation" }}
+          >
+            ←
+          </button>
+          <button
+            onTouchStart={(e) => {
+              e.preventDefault();
+              keysRef.current.right = true;
+            }}
+            onTouchEnd={(e) => {
+              e.preventDefault();
+              keysRef.current.right = false;
+            }}
+            onPointerDown={() => {
+              keysRef.current.right = true;
+            }}
+            onPointerUp={() => {
+              keysRef.current.right = false;
+            }}
+            onPointerLeave={() => {
+              keysRef.current.right = false;
+            }}
+            className="bg-white/80 border border-gray-200 active:bg-gray-100 text-gray-700 w-12 h-12 sm:w-16 sm:h-16 rounded-full flex items-center justify-center font-bold text-xl sm:text-2xl select-none shadow-sm active:scale-95 transition-transform"
+            style={{ touchAction: "manipulation" }}
+          >
+            →
+          </button>
+        </div>
+
+        {/* Target icon fire button on right */}
         <button
-          onTouchStart={() => {
-            keysRef.current.left = true;
-          }}
-          onTouchEnd={() => {
-            keysRef.current.left = false;
-          }}
-          className="bg-white/80 border border-gray-200 active:bg-gray-100 text-gray-700 w-12 h-12 sm:w-16 sm:h-16 rounded-full flex items-center justify-center font-bold text-xl sm:text-2xl select-none shadow-sm active:scale-95 transition-transform"
-        >
-          ←
-        </button>
-        <button
-          onTouchStart={() => {
+          onTouchStart={(e) => {
+            e.preventDefault();
             (keysRef.current as any).touchShoot = true;
           }}
-          onTouchEnd={() => {
+          onTouchEnd={(e) => {
+            e.preventDefault();
             (keysRef.current as any).touchShoot = false;
           }}
-          className="bg-black text-white px-8 sm:px-12 h-12 sm:h-16 rounded-full flex items-center justify-center font-bold tracking-widest text-xs sm:text-sm select-none shadow-md active:scale-95 transition-transform"
-        >
-          FIRE
-        </button>
-        <button
-          onTouchStart={() => {
-            keysRef.current.right = true;
+          onPointerDown={() => {
+            (keysRef.current as any).touchShoot = true;
           }}
-          onTouchEnd={() => {
-            keysRef.current.right = false;
+          onPointerUp={() => {
+            (keysRef.current as any).touchShoot = false;
           }}
-          className="bg-white/80 border border-gray-200 active:bg-gray-100 text-gray-700 w-12 h-12 sm:w-16 sm:h-16 rounded-full flex items-center justify-center font-bold text-xl sm:text-2xl select-none shadow-sm active:scale-95 transition-transform"
+          onPointerLeave={() => {
+            (keysRef.current as any).touchShoot = false;
+          }}
+          className="bg-black text-white w-12 h-12 sm:w-16 sm:h-16 rounded-full flex items-center justify-center font-bold select-none shadow-md active:scale-95 transition-transform flex-shrink-0"
+          style={{ touchAction: "manipulation" }}
         >
-          →
+          <svg
+            className="w-6 h-6 sm:w-8 sm:h-8"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            pointerEvents="none"
+          >
+            <circle cx="12" cy="12" r="10" />
+            <circle cx="12" cy="12" r="6" />
+            <circle cx="12" cy="12" r="2" />
+          </svg>
         </button>
       </div>
 
@@ -812,4 +873,4 @@ const NotFound = () => {
   );
 };
 
-export default NotFound;
+export default NotFound;    
