@@ -5,7 +5,7 @@ import Link from "next/link";
 export default function FloatingCTA() {
     return (
         <>
-            <Link href="https://wa.me/233595824341" className="floating-cta" aria-label="Talk to us" target="_blank">
+            <Link href="https://api.whatsapp.com/send/?phone=233595824341&text=Hello%2C%20I%E2%80%99m%20from%20your%20website%20and%20would%20like%20to%20make%20an%20enquiry.&type=phone_number&app_absent=0" className="floating-cta" aria-label="Talk to us" target="_blank">
                 <span className="floating-cta__icon" aria-hidden="true">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
                         <rect x="3.5" y="5.5" width="17" height="15" rx="3" />

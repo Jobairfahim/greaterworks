@@ -1,3 +1,4 @@
+//eslint
 "use client";
 
 import { useEffect, useState, useRef, useCallback } from "react";
@@ -5,970 +6,1338 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { HiMenu } from "react-icons/hi";
+import { NavbarData } from "@/types/navbar";
 
 const services = [
-    { title: "Custom Software Development", desc: "Tailored solutions to boost your business growth and success.", icon: "https://res.cloudinary.com/dsoilebvu/image/upload/v1777048245/custom_kyjfrj.svg", href: "/custom-software-development" },
-    { title: "Web Development", desc: "Robust and responsive websites to enhance online presence.", icon: "https://res.cloudinary.com/dsoilebvu/image/upload/v1777048243/web_bvejup.svg", href: "/web-app-development" },
-    { title: "Mobile App development", desc: "High-performance mobile apps to strengthen user experience across platforms.", icon: "https://res.cloudinary.com/dsoilebvu/image/upload/v1777048242/mobile_ndbr6y.svg", href: "/mobile-app-development" },
-    { title: "UI/UX Design", desc: "intuitive interfaces to deliver seamless experiences, driving customer satisfaction", icon: "https://res.cloudinary.com/dsoilebvu/image/upload/v1777048243/ui-ux_jmvfmm.svg", href: "/ui-ux-design" },
-    { title: "Enterprise Solutions", desc: "Custom enterprise solutions to optimize your business operations", icon: "https://res.cloudinary.com/dsoilebvu/image/upload/v1777048240/enterprise_fzmrry.svg", href: "/enterprise-solutions" },
-    { title: "Artificial Intelligence & Machine Learning", desc: "Leverage AI and ML to enhance predictive capabilities for smarter business decisions", icon: "https://res.cloudinary.com/dsoilebvu/image/upload/v1777048244/ai_ml_uof8se.svg", href: "/artificial-intelligence-machine-learning" },
-    { title: "DevOps & IT Consulting", desc: "Optimize your SDLC with expert DevOps solutions and IT strategy consulting", icon: "https://res.cloudinary.com/dsoilebvu/image/upload/v1777048239/devops_yytzvd.svg", href: "/devops-it-consulting" },
-    { title: "Blockchain Development", desc: "Secure, scalable blockchain solutions and DApps, fostering trust and innovation across industries.", icon: "https://res.cloudinary.com/dsoilebvu/image/upload/v1777048244/block-chain_jyxqsp.svg", href: "/blockchain-development" },
-    { title: "Quality Assurance & Testing", desc: "Ensure software quality with SQA and automated testing for flawless performance", icon: "https://res.cloudinary.com/dsoilebvu/image/upload/v1777048239/qa_gfbujp.svg", href: "/quality-assurance-testing" },
+  {
+    title: "Custom Software Development",
+    desc: "Tailored solutions to boost your business growth and success.",
+    icon: "https://res.cloudinary.com/dsoilebvu/image/upload/v1777048245/custom_kyjfrj.svg",
+    href: "/custom-software-development",
+  },
+  {
+    title: "Web Development",
+    desc: "Robust and responsive websites to enhance online presence.",
+    icon: "https://res.cloudinary.com/dsoilebvu/image/upload/v1777048243/web_bvejup.svg",
+    href: "/web-app-development",
+  },
+  {
+    title: "Mobile App development",
+    desc: "High-performance mobile apps to strengthen user experience across platforms.",
+    icon: "https://res.cloudinary.com/dsoilebvu/image/upload/v1777048242/mobile_ndbr6y.svg",
+    href: "/mobile-app-development",
+  },
+  {
+    title: "UI/UX Design",
+    desc: "intuitive interfaces to deliver seamless experiences, driving customer satisfaction",
+    icon: "https://res.cloudinary.com/dsoilebvu/image/upload/v1777048243/ui-ux_jmvfmm.svg",
+    href: "/ui-ux-design",
+  },
+  {
+    title: "Enterprise Solutions",
+    desc: "Custom enterprise solutions to optimize your business operations",
+    icon: "https://res.cloudinary.com/dsoilebvu/image/upload/v1777048240/enterprise_fzmrry.svg",
+    href: "/enterprise-solutions",
+  },
+  {
+    title: "Artificial Intelligence & Machine Learning",
+    desc: "Leverage AI and ML to enhance predictive capabilities for smarter business decisions",
+    icon: "https://res.cloudinary.com/dsoilebvu/image/upload/v1777048244/ai_ml_uof8se.svg",
+    href: "/artificial-intelligence-machine-learning",
+  },
+  {
+    title: "DevOps & IT Consulting",
+    desc: "Optimize your SDLC with expert DevOps solutions and IT strategy consulting",
+    icon: "https://res.cloudinary.com/dsoilebvu/image/upload/v1777048239/devops_yytzvd.svg",
+    href: "/devops-it-consulting",
+  },
+  {
+    title: "Blockchain Development",
+    desc: "Secure, scalable blockchain solutions and DApps, fostering trust and innovation across industries.",
+    icon: "https://res.cloudinary.com/dsoilebvu/image/upload/v1777048244/block-chain_jyxqsp.svg",
+    href: "/blockchain-development",
+  },
+  {
+    title: "Quality Assurance & Testing",
+    desc: "Ensure software quality with SQA and automated testing for flawless performance",
+    icon: "https://res.cloudinary.com/dsoilebvu/image/upload/v1777048239/qa_gfbujp.svg",
+    href: "/quality-assurance-testing",
+  },
 ];
 
 const industries = [
-    { title: "E-commerce", icon: "https://res.cloudinary.com/dsoilebvu/image/upload/v1777048239/e-commerce_w4jeni.svg", href: "/contact-us" },
-    { title: "Fintech", icon: "https://res.cloudinary.com/dsoilebvu/image/upload/v1777048241/fintech_zot6im.svg", href: "/contact-us" },
-    { title: "Healthcare", icon: "https://res.cloudinary.com/dsoilebvu/image/upload/v1777048241/healthcare_kge1kk.svg", href: "/contact-us" },
-    { title: "Ed-tech", icon: "https://res.cloudinary.com/dsoilebvu/image/upload/v1777048239/edtech_itagwl.svg", href: "/contact-us" },
-    { title: "On-Demand", icon: "https://res.cloudinary.com/dsoilebvu/image/upload/v1777048242/ondemand_di1yay.svg", href: "/contact-us" },
-    { title: "Food & Groceries", icon: "https://res.cloudinary.com/dsoilebvu/image/upload/v1777048239/food_e1kwys.svg", href: "/contact-us" },
-    { title: "Real Estate", icon: "https://res.cloudinary.com/dsoilebvu/image/upload/v1777048241/real-state_hrrvkv.svg", href: "/contact-us" },
-    { title: "Blockchain", icon: "https://res.cloudinary.com/dsoilebvu/image/upload/v1777048244/block-chain_jyxqsp.svg", href: "/contact-us" },
+  {
+    title: "E-commerce",
+    icon: "https://res.cloudinary.com/dsoilebvu/image/upload/v1777048239/e-commerce_w4jeni.svg",
+    href: "/contact-us",
+  },
+  {
+    title: "Fintech",
+    icon: "https://res.cloudinary.com/dsoilebvu/image/upload/v1777048241/fintech_zot6im.svg",
+    href: "/contact-us",
+  },
+  {
+    title: "Healthcare",
+    icon: "https://res.cloudinary.com/dsoilebvu/image/upload/v1777048241/healthcare_kge1kk.svg",
+    href: "/contact-us",
+  },
+  {
+    title: "Ed-tech",
+    icon: "https://res.cloudinary.com/dsoilebvu/image/upload/v1777048239/edtech_itagwl.svg",
+    href: "/contact-us",
+  },
+  {
+    title: "On-Demand",
+    icon: "https://res.cloudinary.com/dsoilebvu/image/upload/v1777048242/ondemand_di1yay.svg",
+    href: "/contact-us",
+  },
+  {
+    title: "Food & Groceries",
+    icon: "https://res.cloudinary.com/dsoilebvu/image/upload/v1777048239/food_e1kwys.svg",
+    href: "/contact-us",
+  },
+  {
+    title: "Real Estate",
+    icon: "https://res.cloudinary.com/dsoilebvu/image/upload/v1777048241/real-state_hrrvkv.svg",
+    href: "/contact-us",
+  },
+  {
+    title: "Blockchain",
+    icon: "https://res.cloudinary.com/dsoilebvu/image/upload/v1777048244/block-chain_jyxqsp.svg",
+    href: "/contact-us",
+  },
 ];
 
 const approaches = [
-    { title: "Product Development", desc: "Developing strategic roadmaps, MVPs, and agile solutions for faster time-to-market, scalable growth, and cross-platform reach.", icon: "https://res.cloudinary.com/dsoilebvu/image/upload/v1777057659/box_xpqyic.svg", href: "/contact-us" },
-    { title: "Custom Product Development", desc: "Turn your ideas into fully functional digital products. We design and build tailored solutions that align with your goals, from initial concept to final launch.", icon: "https://res.cloudinary.com/dsoilebvu/image/upload/v1777057660/arrow-right_vll07y.svg", href: "/contact-us" },
-    { title: "Dedicated Teams", desc: "End-to-end project ownership with smooth integration, diverse expertise, and continuous delivery for long-term innovation.", icon: "https://res.cloudinary.com/dsoilebvu/image/upload/v1777048239/qa_gfbujp.svg", href: "/contact-us" },
+  {
+    title: "Product Development",
+    desc: "Developing strategic roadmaps, MVPs, and agile solutions for faster time-to-market, scalable growth, and cross-platform reach.",
+    icon: "https://res.cloudinary.com/dsoilebvu/image/upload/v1777057659/box_xpqyic.svg",
+    href: "/contact-us",
+  },
+  {
+    title: "Custom Product Development",
+    desc: "Turn your ideas into fully functional digital products. We design and build tailored solutions that align with your goals, from initial concept to final launch.",
+    icon: "https://res.cloudinary.com/dsoilebvu/image/upload/v1777057660/arrow-right_vll07y.svg",
+    href: "/contact-us",
+  },
+  {
+    title: "Dedicated Teams",
+    desc: "End-to-end project ownership with smooth integration, diverse expertise, and continuous delivery for long-term innovation.",
+    icon: "https://res.cloudinary.com/dsoilebvu/image/upload/v1777048239/qa_gfbujp.svg",
+    href: "/contact-us",
+  },
 ];
 
 const hireTabs = [
-    {
-        label: "Management Systems",
-        icon: "https://res.cloudinary.com/dsoilebvu/image/upload/v1777048243/web_bvejup.svg",
-        items: [
-            { title: "Restaurant Management System", desc: "Complete restaurant operations management with ordering, inventory, and billing." },
-            { title: "Booking & Reservation System", desc: "Streamlined booking and reservation management for businesses and services." },
-            { title: "Real Estate Management System", desc: "Comprehensive property management with listings, bookings, and client management." },
-            { title: "ERP System", desc: "Enterprise Resource Planning system for integrated business process management." },
-        ],
-    },
-    {
-        label: "Business Solutions",
-        icon: "https://res.cloudinary.com/dsoilebvu/image/upload/v1777048239/qa_gfbujp.svg",
-        items: [
-            { title: "E-commerce Website", desc: "Full-featured online shopping platform with payment integration and inventory management." },
-            { title: "Livestock Management System", desc: "Digital solution for livestock tracking, health monitoring, and farm management." },
-            { title: "School Management System", desc: "Complete educational institution management with student records and academic tracking." },
-            { title: "StitchMate", desc: "Tailored garment and textile management solution for fashion businesses." },
-        ],
-    },
-    {
-        label: "Healthcare Solutions",
-        icon: "https://res.cloudinary.com/dsoilebvu/image/upload/v1777048241/healthcare_kge1kk.svg",
-        items: [
-            { title: "Hospital Management System", desc: "Complete healthcare facility management with patient records and appointments." },
-            { title: "Telemedicine Platform", desc: "Remote healthcare consultation platform with video calls and prescriptions." },
-            { title: "Pharmacy Management System", desc: "Digital pharmacy operations with inventory and prescription management." },
-            { title: "Healthcare CRM", desc: "Patient relationship management system for healthcare providers." },
-        ],
-    },
-    {
-        label: "Financial Solutions",
-        icon: "https://res.cloudinary.com/dsoilebvu/image/upload/v1777048241/fintech_zot6im.svg",
-        items: [
-            { title: "Banking Management System", desc: "Comprehensive banking operations with accounts, loans, and transactions." },
-            { title: "Payment Gateway", desc: "Secure online payment processing platform for businesses." },
-            { title: "Investment Management Platform", desc: "Digital investment tracking and portfolio management system." },
-            { title: "Insurance Management System", desc: "Complete insurance operations with policies and claims management." },
-        ],
-    },
-    {
-        label: "Educational Platforms",
-        icon: "https://res.cloudinary.com/dsoilebvu/image/upload/v1777048239/edtech_itagwl.svg",
-        items: [
-            { title: "Learning Management System", desc: "Online learning platform with courses, assessments, and progress tracking." },
-            { title: "Virtual Classroom", desc: "Interactive online classroom with live sessions and collaboration tools." },
-            { title: "Student Information System", desc: "Comprehensive student data management with academic records." },
-            { title: "E-learning Platform", desc: "Customizable e-learning solution with multimedia content delivery." },
-        ],
-    },
+  {
+    label: "Management Systems",
+    icon: "https://res.cloudinary.com/dsoilebvu/image/upload/v1777048243/web_bvejup.svg",
+    items: [
+      {
+        title: "Restaurant Management System",
+        desc: "Complete restaurant operations management with ordering, inventory, and billing.",
+      },
+      {
+        title: "Booking & Reservation System",
+        desc: "Streamlined booking and reservation management for businesses and services.",
+      },
+      {
+        title: "Real Estate Management System",
+        desc: "Comprehensive property management with listings, bookings, and client management.",
+      },
+      {
+        title: "ERP System",
+        desc: "Enterprise Resource Planning system for integrated business process management.",
+      },
+    ],
+  },
+  {
+    label: "Business Solutions",
+    icon: "https://res.cloudinary.com/dsoilebvu/image/upload/v1777048239/qa_gfbujp.svg",
+    items: [
+      {
+        title: "E-commerce Website",
+        desc: "Full-featured online shopping platform with payment integration and inventory management.",
+      },
+      {
+        title: "Livestock Management System",
+        desc: "Digital solution for livestock tracking, health monitoring, and farm management.",
+      },
+      {
+        title: "School Management System",
+        desc: "Complete educational institution management with student records and academic tracking.",
+      },
+      {
+        title: "StitchMate",
+        desc: "Tailored garment and textile management solution for fashion businesses.",
+      },
+    ],
+  },
+  {
+    label: "Healthcare Solutions",
+    icon: "https://res.cloudinary.com/dsoilebvu/image/upload/v1777048241/healthcare_kge1kk.svg",
+    items: [
+      {
+        title: "Hospital Management System",
+        desc: "Complete healthcare facility management with patient records and appointments.",
+      },
+      {
+        title: "Telemedicine Platform",
+        desc: "Remote healthcare consultation platform with video calls and prescriptions.",
+      },
+      {
+        title: "Pharmacy Management System",
+        desc: "Digital pharmacy operations with inventory and prescription management.",
+      },
+      {
+        title: "Healthcare CRM",
+        desc: "Patient relationship management system for healthcare providers.",
+      },
+    ],
+  },
+  {
+    label: "Financial Solutions",
+    icon: "https://res.cloudinary.com/dsoilebvu/image/upload/v1777048241/fintech_zot6im.svg",
+    items: [
+      {
+        title: "Banking Management System",
+        desc: "Comprehensive banking operations with accounts, loans, and transactions.",
+      },
+      {
+        title: "Payment Gateway",
+        desc: "Secure online payment processing platform for businesses.",
+      },
+      {
+        title: "Investment Management Platform",
+        desc: "Digital investment tracking and portfolio management system.",
+      },
+      {
+        title: "Insurance Management System",
+        desc: "Complete insurance operations with policies and claims management.",
+      },
+    ],
+  },
+  {
+    label: "Educational Platforms",
+    icon: "https://res.cloudinary.com/dsoilebvu/image/upload/v1777048239/edtech_itagwl.svg",
+    items: [
+      {
+        title: "Learning Management System",
+        desc: "Online learning platform with courses, assessments, and progress tracking.",
+      },
+      {
+        title: "Virtual Classroom",
+        desc: "Interactive online classroom with live sessions and collaboration tools.",
+      },
+      {
+        title: "Student Information System",
+        desc: "Comprehensive student data management with academic records.",
+      },
+      {
+        title: "E-learning Platform",
+        desc: "Customizable e-learning solution with multimedia content delivery.",
+      },
+    ],
+  },
 ];
 
 interface DropdownProps {
-    children: React.ReactNode;
-    className?: string;
+  children: React.ReactNode;
+  className?: string;
 }
 
 function Dropdown({ children, className = "" }: DropdownProps) {
-    const [open, setOpen] = useState(false);
-    const closeTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-    const containerRef = useRef<HTMLDivElement>(null);
+  const [open, setOpen] = useState(false);
+  const closeTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
 
-    const clearPendingClose = useCallback(() => {
-        if (closeTimeoutRef.current) {
-            clearTimeout(closeTimeoutRef.current);
-            closeTimeoutRef.current = null;
-        }
-    }, []);
+  const clearPendingClose = useCallback(() => {
+    if (closeTimeoutRef.current) {
+      clearTimeout(closeTimeoutRef.current);
+      closeTimeoutRef.current = null;
+    }
+  }, []);
 
-    const handleEnter = useCallback(() => {
+  const handleEnter = useCallback(() => {
+    clearPendingClose();
+    setOpen(true);
+  }, [clearPendingClose]);
+
+  const handleLeave = useCallback(() => {
+    clearPendingClose();
+    closeTimeoutRef.current = setTimeout(() => {
+      setOpen(false);
+    }, 200);
+  }, [clearPendingClose]);
+
+  // Close on Escape
+  useEffect(() => {
+    const handleKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
         clearPendingClose();
-        setOpen(true);
-    }, [clearPendingClose]);
+        setOpen(false);
+      }
+    };
+    window.addEventListener("keydown", handleKey);
+    return () => {
+      window.removeEventListener("keydown", handleKey);
+      clearPendingClose();
+    };
+  }, [clearPendingClose]);
 
-    const handleLeave = useCallback(() => {
-        clearPendingClose();
-        closeTimeoutRef.current = setTimeout(() => {
-            setOpen(false);
-        }, 200);
-    }, [clearPendingClose]);
-
-    // Close on Escape
-    useEffect(() => {
-        const handleKey = (e: KeyboardEvent) => {
-            if (e.key === "Escape") {
-                clearPendingClose();
-                setOpen(false);
-            }
-        };
-        window.addEventListener("keydown", handleKey);
-        return () => {
-            window.removeEventListener("keydown", handleKey);
-            clearPendingClose();
-        };
-    }, [clearPendingClose]);
-
-    return (
-        <div
-            ref={containerRef}
-            className={`dropdown w-dropdown ${className} ${open ? "w--open" : ""}`}
-            onMouseEnter={handleEnter}
-            onMouseLeave={handleLeave}
-        >
-            {children}
-        </div>
-    );
+  return (
+    <div
+      ref={containerRef}
+      className={`dropdown w-dropdown ${className} ${open ? "w--open" : ""}`}
+      onMouseEnter={handleEnter}
+      onMouseLeave={handleLeave}
+    >
+      {children}
+    </div>
+  );
 }
 
 function DropdownToggle({ children }: { children: React.ReactNode }) {
-    return <div className="dropdown-toggle w-dropdown-toggle">{children}</div>;
+  return <div className="dropdown-toggle w-dropdown-toggle">{children}</div>;
 }
 
-function DropdownList({ children, className = "" }: { children: React.ReactNode; className?: string }) {
-    return (
-        <nav className={`w-dropdown-list ${className}`}>
-            {children}
-        </nav>
-    );
+function DropdownList({
+  children,
+  className = "",
+}: {
+  children: React.ReactNode;
+  className?: string;
+}) {
+  return <nav className={`w-dropdown-list ${className}`}>{children}</nav>;
 }
 
-export default function Navbar() {
-    const pathname = usePathname();
-    const [scrolled, setScrolled] = useState(false);
-    const [mobileOpen, setMobileOpen] = useState(false);
-    const [activeHireTab, setActiveHireTab] = useState(0);
-    
-    // Check if current page is homepage
-    const isHomepage = pathname === "/";
+export default function Navbar({ data }: { data?: NavbarData | null }) {
+  const pathname = usePathname();
+  const [scrolled, setScrolled] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const [activeHireTab, setActiveHireTab] = useState(0);
 
-    useEffect(() => {
-        const handleScroll = () => setScrolled(window.scrollY > 50);
-        window.addEventListener("scroll", handleScroll);
-        return () => window.removeEventListener("scroll", handleScroll);
-    }, []);
+  // Check if current page is homepage
+  const isHomepage = pathname === "/";
 
-    useEffect(() => {
-        if (mobileOpen) {
-            document.body.style.overflow = "hidden";
-        } else {
-            document.body.style.overflow = "";
-        }
-        return () => {
-            document.body.style.overflow = "";
-        };
-    }, [mobileOpen]);
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 50);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
-    // Mobile accordion dropdown
-    const [mobileDropdowns, setMobileDropdowns] = useState<Record<string, boolean>>({});
-    const toggleMobileDropdown = (key: string) => {
-        setMobileDropdowns((prev) => ({ ...prev, [key]: !prev[key] }));
+  useEffect(() => {
+    if (mobileOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
     };
+  }, [mobileOpen]);
 
-    return (
-        <div
-            data-animation="default"
-            data-collapse="medium"
-            data-duration="400"
-            data-easing="ease"
-            data-easing2="ease"
-            role="banner"
-            className={`navbar-2 navbar-transparent w-nav ${scrolled ? "scrolled" : ""} ${!isHomepage ? "navbar-dark-text" : ""}`}
-        >
-            <div className="container-2 full-with-text-container w-container">
-                {/* Desktop menu */}
-                <div className="nav-menu-wrapper hidden-responsive">
-                    <div className="header-logo">
-                        <Link href="/" aria-current="page" className="w-nav-brand w--current">
-                            <Image
-                                src={isHomepage || scrolled ? "https://res.cloudinary.com/dsoilebvu/image/upload/v1777048314/logo_kxjvlv.png" : "https://res.cloudinary.com/dsoilebvu/image/upload/v1778082292/Logo_-_Black_oysy60.png"}
-                                alt=""
-                                width={100}
-                                height={40}
-                                className="image-34"
-                            />
-                        </Link>
-                    </div>
-                    <nav role="navigation" className="nav-menu-2 w-nav-menu">
-                        {/* Our Services */}
-                        <Dropdown className="mega-menu-wrap-dropdown">
-                            <DropdownToggle>
-                                <div className="link-text-wrap">
-                                    <p className="nav-item-title nav-title-white">Our services</p>
-                                </div>
-                                <svg
-                                    className="nav-dropdown-icon nav-dropdown-icon-white w-icon-dropdown-toggle"
-                                    viewBox="0 0 24 24"
-                                    fill="none"
-                                    stroke="currentColor"
-                                    strokeWidth="3"
-                                >
-                                    <polyline points="6 9 12 15 18 9" />
-                                </svg>
-                                <div className="nav-hover" />
-                            </DropdownToggle>
-                            <DropdownList className="mega-menu-wrap">
-                                <div className="mega-menu-container">
-                                    <div className="nav-dropdown-column menu-left-side">
-                                        <div className="nav-dropdown-link-wrapper">
-                                            <ul role="list" className="menu-service-list">
-                                                {services.map((s, i) => (
-                                                    <li key={i} className="menu-service-list-item">
-                                                        <Link href={s.href} className="menu-service-list-card w-inline-block">
-                                                            <Image
-                                                                src={s.icon}
-                                                                alt="icon"
-                                                                width={24}
-                                                                height={24}
-                                                                className="menu-service-list-icon"
-                                                            />
-                                                            <p className="menu-service-list-title">
-                                                                <strong className="bold-text-2">{s.title} </strong>
-                                                                {s.desc}
-                                                            </p>
-                                                            <Image
-                                                                src="https://res.cloudinary.com/dsoilebvu/image/upload/v1777048244/arrow_kaivth.svg"
-                                                                alt="icon"
-                                                                width={16}
-                                                                height={16}
-                                                                className="menu-service-list-arrow-icon"
-                                                            />
-                                                        </Link>
-                                                    </li>
-                                                ))}
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div className="menu-right-side">
-                                        <div className="menu-company-header">
-                                            <h3 className="menu-company-header-title">Not Sure where to start?</h3>
-                                            <p className="menu-company-header-description">
-                                                Connect with our experts to receive a free estimate and streamline your workflow at no extra cost. Why wait? Give it a try today!
-                                            </p>
-                                        </div>
-                                        <div className="header-link-wrapper">
-                                            <div className="contact-us-card">
-                                                <div className="contact-us-card-icon menu-contact-us-card-icon">
-                                                    <Image
-                                                        src="https://cdn.prod.website-files.com/68d276a2319df5bdcc752026/68e51aa310530dbf53f8f4c2_email-black.svg"
-                                                        alt="icon"
-                                                        width={20}
-                                                        height={20}
-                                                        className="image-22 menu-contact-us-card-icon-img"
-                                                    />
-                                                </div>
-                                                <Link
-                                                    href="mailto:sales@greaterworks.tech"
-                                                    className="link-2 menu-contact-us-card-link"
-                                                >
-                                                    Talk To Sales{" "}
-                                                    <span className="menu-contact-us-card-link-info menu-contact-us-card-link-info-header">
-                                                        sales@greaterworks.tech
-                                                    </span>
-                                                </Link>
-                                            </div>
-                                        </div>
-                                        <figure className="menu-contact-wrap">
-                                            <Link href="/contact-us" className="w-inline-block">
-                                                <Image
-                                                    src="https://cdn.prod.website-files.com/68d276a2319df5bdcc752026/68e51d8ba178421e5a3e8949_header%20menu%20image.jpg"
-                                                    alt=""
-                                                    width={1000}
-                                                    height={1000}
-                                                    className="menu-contact-wrap-image"
-                                                />
-                                            </Link>
-                                        </figure>
-                                    </div>
-                                </div>
-                            </DropdownList>
-                        </Dropdown>
+  // Mobile accordion dropdown
+  const [mobileDropdowns, setMobileDropdowns] = useState<
+    Record<string, boolean>
+  >({});
+  const toggleMobileDropdown = (key: string) => {
+    setMobileDropdowns((prev) => ({ ...prev, [key]: !prev[key] }));
+  };
 
-                        {/* Industries */}
-                        <Dropdown>
-                            <DropdownToggle>
-                                <div className="link-text-wrap">
-                                    <p className="nav-item-title nav-title-white">Industries</p>
-                                </div>
-                                <svg
-                                    className="nav-dropdown-icon nav-dropdown-icon-white w-icon-dropdown-toggle"
-                                    viewBox="0 0 24 24"
-                                    fill="none"
-                                    stroke="currentColor"
-                                    strokeWidth="3"
-                                >
-                                    <polyline points="6 9 12 15 18 9" />
-                                </svg>
-                                <div className="nav-hover" />
-                            </DropdownToggle>
-                            <DropdownList className="nav-dropdown-list">
-                                <div className="nav-dropdown-column">
-                                    <div className="nav-dropdown-link-wrapper nav-dropdown-link-wrapper-single">
-                                        <ul role="list" className="menu-service-list menu-service-list-single">
-                                            {industries.map((ind, i) => (
-                                                <li key={i} className="menu-service-list-item menu-service-list-item-single">
-                                                    <Link href={ind.href} className="menu-service-list-card w-inline-block">
-                                                        <Image
-                                                            src={ind.icon}
-                                                            alt="icon"
-                                                            width={24}
-                                                            height={24}
-                                                            className="menu-service-list-icon"
-                                                        />
-                                                        <p className="menu-service-list-title">
-                                                            <strong className="bold-text-2 mb-0">{ind.title}</strong>
-                                                        </p>
-                                                        <Image
-                                                            src="https://res.cloudinary.com/dsoilebvu/image/upload/v1777048244/arrow_kaivth.svg"
-                                                            alt="icon"
-                                                            width={16}
-                                                            height={16}
-                                                            className="menu-service-list-arrow-icon"
-                                                        />
-                                                    </Link>
-                                                </li>
-                                            ))}
-                                        </ul>
-                                    </div>
-                                </div>
-                            </DropdownList>
-                        </Dropdown>
+  // Dynamic brand logo URL and fallback logic
+  const logoUrl = data?.navbarIcom?.url
+    ? `${process.env.NEXT_PUBLIC_SERVER_URL}${data.navbarIcom.url}`
+    : isHomepage || scrolled
+      ? "https://res.cloudinary.com/dsoilebvu/image/upload/v1777048314/logo_kxjvlv.png"
+      : "https://res.cloudinary.com/dsoilebvu/image/upload/v1778082292/Logo_-_Black_oysy60.png";
 
-                        {/* Our Approach */}
-                        <Dropdown>
-                            <DropdownToggle>
-                                <div className="link-text-wrap">
-                                    <p className="nav-item-title nav-title-white">Our approach</p>
-                                </div>
-                                <svg
-                                    className="nav-dropdown-icon nav-dropdown-icon-white w-icon-dropdown-toggle"
-                                    viewBox="0 0 24 24"
-                                    fill="none"
-                                    stroke="currentColor"
-                                    strokeWidth="3"
-                                >
-                                    <polyline points="6 9 12 15 18 9" />
-                                </svg>
-                                <div className="nav-hover" />
-                            </DropdownToggle>
-                            <DropdownList className="nav-dropdown-list">
-                                <div className="nav-dropdown-column">
-                                    <div className="nav-dropdown-link-wrapper nav-dropdown-link-wrapper-single">
-                                        <ul role="list" className="menu-service-list menu-service-list-single">
-                                            {approaches.map((a, i) => (
-                                                <li key={i} className="menu-service-list-item menu-service-list-item-single">
-                                                    <Link href={a.href} className="menu-service-list-card w-inline-block">
-                                                        <Image
-                                                            src={a.icon}
-                                                            alt="icon"
-                                                            width={24}
-                                                            height={24}
-                                                            className="menu-service-list-icon"
-                                                        />
-                                                        <p className="menu-service-list-title">
-                                                            <strong className="bold-text-2">{a.title}</strong>
-                                                            {a.desc}
-                                                        </p>
-                                                        <Image
-                                                            src="https://res.cloudinary.com/dsoilebvu/image/upload/v1777048244/arrow_kaivth.svg"
-                                                            alt="icon"
-                                                            width={16}
-                                                            height={16}
-                                                            className="menu-service-list-arrow-icon"
-                                                        />
-                                                    </Link>
-                                                </li>
-                                            ))}
-                                        </ul>
-                                    </div>
-                                </div>
-                            </DropdownList>
-                        </Dropdown>
+  const logoUnoptimized = !!data?.navbarIcom?.url;
 
-                        {/* Hire Talent */}
-                        <Dropdown className="mega-menu-wrap-dropdown">
-                            <DropdownToggle>
-                                <div className="link-text-wrap">
-                                    <p className="nav-item-title nav-title-white">Our Solutions</p>
-                                </div>
-                                <svg
-                                    className="nav-dropdown-icon nav-dropdown-icon-white w-icon-dropdown-toggle"
-                                    viewBox="0 0 24 24"
-                                    fill="none"
-                                    stroke="currentColor"
-                                    strokeWidth="3"
-                                >
-                                    <polyline points="6 9 12 15 18 9" />
-                                </svg>
-                                <div className="nav-hover" />
-                            </DropdownToggle>
-                            <DropdownList className="mega-menu-wrap">
-                                <div className="mega-menu-container">
-                                    <div className="mega_menu-tab-wrap w-tabs">
-                                        <div className="mega_menu-tab-items w-tab-menu">
-                                            {hireTabs.map((tab, i) => (
-                                                <button
-                                                    key={i}
-                                                    type="button"
-                                                    onClick={() => setActiveHireTab(i)}
-                                                    className={`mega_menu-tab-item w-inline-block w-tab-link ${activeHireTab === i ? "w--current" : ""}`}
-                                                >
-                                                    <div className="menu-tab-card">
-                                                        <Image
-                                                            src={tab.icon}
-                                                            alt="icon"
-                                                            width={24}
-                                                            height={24}
-                                                            className="menu-service-list-icon"
-                                                        />
-                                                        <p className="menu-service-list-title">
-                                                            <strong className="bold-text-2 mb-0">{tab.label}</strong>
-                                                        </p>
-                                                        <Image
-                                                            src="https://res.cloudinary.com/dsoilebvu/image/upload/v1777048244/arrow_kaivth.svg"
-                                                            alt="icon"
-                                                            width={16}
-                                                            height={16}
-                                                            className="menu-service-list-arrow-icon"
-                                                        />
-                                                    </div>
-                                                </button>
-                                            ))}
-                                        </div>
-                                        <div className="tabs-content-3 w-tab-content">
-                                            <div className="w-tab-pane w--tab-active">
-                                                <div className="menu-approach-list">
-                                                    <ul role="list" className="menu-service-list">
-                                                        {hireTabs[activeHireTab].items.map((item, i) => (
-                                                            <li key={i} className="menu-service-list-item">
-                                                                <Link
-                                                                    href="/contact-us"
-                                                                    className="menu-service-list-card w-inline-block"
-                                                                >
-                                                                    <Image
-                                                                        src="https://res.cloudinary.com/dsoilebvu/image/upload/v1777048244/arrow_kaivth.svg"
-                                                                        alt="icon"
-                                                                        width={16}
-                                                                        height={16}
-                                                                        className="menu-service-list-arrow-icon"
-                                                                    />
-                                                                    <p className="menu-service-list-title">
-                                                                        <strong className="bold-text-2">{item.title}</strong>
-                                                                        {item.desc}
-                                                                    </p>
-                                                                </Link>
-                                                            </li>
-                                                        ))}
-                                                    </ul>
-                                                </div>
-                                                <Link href="/contact-us" className="contact-us-link w-inline-block">
-                                                    <div className="menu-contact-us-info">
-                                                        <Image
-                                                            src="https://res.cloudinary.com/dsoilebvu/image/upload/v1777048239/qa_gfbujp.svg"
-                                                            alt="image"
-                                                            width={24}
-                                                            height={24}
-                                                            className="menu-service-list-icon"
-                                                        />
-                                                        <Image
-                                                            src="https://res.cloudinary.com/dsoilebvu/image/upload/v1777048244/arrow_kaivth.svg"
-                                                            alt="icon"
-                                                            width={16}
-                                                            height={16}
-                                                            className="menu-service-list-arrow-icon"
-                                                        />
-                                                        <p className="menu-service-list-title">
-                                                            <strong className="bold-text-2">Contact Us</strong>
-                                                            Get in touch with our 24/7 active support team to get your query resolve.
-                                                        </p>
-                                                    </div>
-                                                </Link>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </DropdownList>
-                        </Dropdown>
+  // Services dynamic mapping and filtering
+  const displayServices =
+    data?.services && data.services.length > 0
+      ? data.services
+          .filter((s) => s.service)
+          .map((s) => {
+            const title = s.service!.serviceTitle;
+            const desc = s.serviceDescription || "";
+            const icon = s.serviceIcon?.url
+              ? `${process.env.NEXT_PUBLIC_SERVER_URL}${s.serviceIcon.url}`
+              : "https://res.cloudinary.com/dsoilebvu/image/upload/v1777048245/custom_kyjfrj.svg";
+            const href = `/services/${s.service!.slug.startsWith("/") ? s.service!.slug.slice(1) : s.service!.slug}`;
+            return {
+              title,
+              desc,
+              icon,
+              href,
+              isLocalIcon: !!s.serviceIcon?.url,
+            };
+          })
+      : services.map((s) => ({ ...s, isLocalIcon: false }));
 
-                        <Link
-                            href="/insights"
-                            target="_blank"
-                            className="nav-link nav-title-white w-nav-link"
-                        >
-                            Insights 
-                        </Link>
-                        <Link
-                            href="https://portal.greaterworks.tech/company/careers"
-                            target="_blank"
-                            className="nav-link nav-title-white w-nav-link"
-                        >
-                            Careers 
-                        </Link>
-                    </nav>
-                    <div className="div-block-3 contact-us header-contact-us">
-                        <Link
-                            href="/contact-us"
-                            data-gn-book-meeting="modal"
-                            data-w-id="18496b83-ef74-3196-87a5-0e0002e3ed11"
-                            className="button-secondary-light nav-btn w-inline-block"
-                        >
-                            <div className="arrows-container cta">
-                                <Image
-                                    alt="Icon"
-                                    src="https://cdn.prod.website-files.com/68d276a2319df5bdcc752026/68e4b7bde312a6e238715c90_email.svg"
-                                    width={16}
-                                    height={16}
-                                    className="dark-arrow _16 nav-icon-dark"
-                                />
-                                <Image
-                                    alt="Icon"
-                                    src="https://cdn.prod.website-files.com/68d276a2319df5bdcc752026/68e51aa310530dbf53f8f4c2_email-black.svg"
-                                    width={16}
-                                    height={16}
-                                    className="arrow-button _16 nav-icon-dark"
-                                />
-                            </div>
-                            <div className="button-secondary-light-text-3 nav-btn">Get in Touch</div>
-                        </Link>
-                    </div>
+  // Services Sidebar dynamic data
+  const serviceSidebarTitle =
+    data?.serviceSidbarTitle || "Not Sure where to start?";
+  const serviceSidebarDescription =
+    data?.serviceSidbarDescription ||
+    "Connect with our experts to receive a free estimate and streamline your workflow at no extra cost. Why wait? Give it a try today!";
+  const serviceSidebarContactEmail =
+    data?.serviceSidbarContactEmail || "sales@greaterworks.tech";
+
+  const serviceSidebarImageUrl = data?.ServiceSidbarImage?.url
+    ? `${process.env.NEXT_PUBLIC_SERVER_URL}${data.ServiceSidbarImage.url}`
+    : "https://cdn.prod.website-files.com/68d276a2319df5bdcc752026/68e51d8ba178421e5a3e8949_header%20menu%20image.jpg";
+  const serviceSidebarImageUnoptimized = !!data?.ServiceSidbarImage?.url;
+
+  const serviceSidebarContactLink = data?.contactLink || "/contact-us";
+
+  // Industries dynamic mapping and filtering
+  const displayIndustries =
+    data?.industries && data.industries.length > 0
+      ? data.industries
+          .filter((ind) => ind.industryTitle)
+          .map((ind) => {
+            const title = ind.industryTitle!;
+            const icon = ind.industryIcon?.url
+              ? `${process.env.NEXT_PUBLIC_SERVER_URL}${ind.industryIcon.url}`
+              : "https://res.cloudinary.com/dsoilebvu/image/upload/v1777048239/e-commerce_w4jeni.svg";
+            const href = "/contact-us";
+            return { title, icon, href, isLocalIcon: !!ind.industryIcon?.url };
+          })
+      : industries.map((ind) => ({ ...ind, isLocalIcon: false }));
+
+  // Approaches dynamic mapping and filtering
+  const displayApproaches =
+    data?.approach && data.approach.length > 0
+      ? data.approach
+          .filter((a) => a.approachTitle)
+          .map((a) => {
+            const title = a.approachTitle!;
+            const desc = a.approachDescription || "";
+            const icon = a.approachIcon?.url
+              ? `${process.env.NEXT_PUBLIC_SERVER_URL}${a.approachIcon.url}`
+              : "https://res.cloudinary.com/dsoilebvu/image/upload/v1777057659/box_xpqyic.svg";
+            const href = "/contact-us";
+            return {
+              title,
+              desc,
+              icon,
+              href,
+              isLocalIcon: !!a.approachIcon?.url,
+            };
+          })
+      : approaches.map((a) => ({ ...a, isLocalIcon: false }));
+
+  // Solutions Categories (for Our Solutions dropdown) - matching hireTabs structure
+  // If CMS provides solutionCategories, use them; otherwise fallback to static hireTabs
+  const solutionCategories =
+    data?.solutionCategories && data.solutionCategories.length > 0
+      ? data.solutionCategories.map((cat) => ({
+          label: cat.label,
+          icon: cat.icon?.url
+            ? `${process.env.NEXT_PUBLIC_SERVER_URL}${cat.icon.url}`
+            : "https://res.cloudinary.com/dsoilebvu/image/upload/v1777048243/web_bvejup.svg",
+          items: cat.items.map((item) => ({
+            title: item.title,
+            desc: item.desc,
+          })),
+          isLocalIcon: !!cat.icon?.url,
+        }))
+      : hireTabs.map((tab) => ({ ...tab, isLocalIcon: false }));
+
+  // Solution sidebar data for contact link
+  const solutionSidebarDescription =
+    data?.solutionSidbarDescription ||
+    "Get in touch with our 24/7 active support team to get your query resolve.";
+
+  return (
+    <div
+      data-animation="default"
+      data-collapse="medium"
+      data-duration="400"
+      data-easing="ease"
+      data-easing2="ease"
+      role="banner"
+      className={`navbar-2 navbar-transparent w-nav ${scrolled ? "scrolled" : ""} ${!isHomepage ? "navbar-dark-text" : ""}`}
+    >
+      <div className="container-2 full-with-text-container w-container">
+        {/* Desktop menu */}
+        <div className="nav-menu-wrapper hidden-responsive">
+          <div className="header-logo">
+            <Link
+              href="/"
+              aria-current="page"
+              className="w-nav-brand w--current"
+            >
+              <Image
+                src={logoUrl}
+                alt=""
+                width={100}
+                height={40}
+                className="image-34"
+                unoptimized={logoUnoptimized}
+              />
+            </Link>
+          </div>
+          <nav role="navigation" className="nav-menu-2 w-nav-menu">
+            {/* Our Services */}
+            <Dropdown className="mega-menu-wrap-dropdown">
+              <DropdownToggle>
+                <div className="link-text-wrap">
+                  <p className="nav-item-title nav-title-white">Our services</p>
                 </div>
-
-                {/* Responsive menu */}
-                {mobileOpen && (
-                    <div
-                        className="mobile-nav-backdrop"
-                        onClick={() => setMobileOpen(false)}
-                    />
-                )}
-                <div className="nav-menu-wrapper nav-menu-wrapper-responsive">
-                    <div className="header-logo">
-                        <Link href="/" aria-current="page" className="brand-2 w-nav-brand w--current">
-                            <Image
-                                alt=""
-                                src={isHomepage || scrolled ? "https://res.cloudinary.com/dsoilebvu/image/upload/v1777048314/logo_kxjvlv.png" : "https://res.cloudinary.com/dsoilebvu/image/upload/v1778082292/Logo_-_Black_oysy60.png"}
-                                width={100}
-                                height={30}
-                                className="image-37"
-                            />
-                        </Link>
-                    </div>
-                    <nav
-                        role="navigation"
-                        className={`nav-menu-2 w-nav-menu ${mobileOpen ? "w--nav-menu-open" : ""}`}
-                    >
-                        {/* Mobile Our Services */}
-                        <div className={`dropdown mega-menu-wrap-dropdown ${mobileDropdowns.services ? "w--open" : ""}`}>
-                            <button
-                                type="button"
-                                className="dropdown-toggle w-dropdown-toggle"
-                                onClick={() => toggleMobileDropdown("services")}
+                <svg
+                  className="nav-dropdown-icon nav-dropdown-icon-white w-icon-dropdown-toggle"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="3"
+                >
+                  <polyline points="6 9 12 15 18 9" />
+                </svg>
+                <div className="nav-hover" />
+              </DropdownToggle>
+              <DropdownList className="mega-menu-wrap">
+                <div className="mega-menu-container">
+                  <div className="nav-dropdown-column menu-left-side">
+                    <div className="nav-dropdown-link-wrapper">
+                      <ul role="list" className="menu-service-list">
+                        {displayServices.map((s, i) => (
+                          <li key={i} className="menu-service-list-item">
+                            <Link
+                              href={s.href}
+                              className="menu-service-list-card w-inline-block"
                             >
-                                <svg
-                                    className="nav-dropdown-icon w-icon-dropdown-toggle"
-                                    viewBox="0 0 24 24"
-                                    fill="none"
-                                    stroke="currentColor"
-                                    strokeWidth="3"
-                                >
-                                    <polyline points="6 9 12 15 18 9" />
-                                </svg>
-                                <div className="link-text-wrap">
-                                    <p className="nav-item-title">Our services</p>
-                                </div>
-                                <div className="nav-hover" />
-                            </button>
-                            <nav className={`mega-menu-wrap w-dropdown-list ${mobileDropdowns.services ? "w--open" : ""}`}>
-                                <div className="mega-menu-container">
-                                    <div className="nav-dropdown-column menu-left-side">
-                                        <div className="nav-dropdown-link-wrapper">
-                                            <ul role="list" className="menu-service-list">
-                                                {services.map((s, i) => (
-                                                    <li key={i} className="menu-service-list-item">
-                                                        <Link href={s.href} className="menu-service-list-card w-inline-block">
-                                                            <Image
-                                                                src={s.icon}
-                                                                alt="icon"
-                                                                width={24}
-                                                                height={24}
-                                                                className="menu-service-list-icon"
-                                                            />
-                                                            <p className="menu-service-list-title">
-                                                                <strong className="bold-text-2">{s.title} </strong>
-                                                                {s.desc}
-                                                            </p>
-                                                            <Image
-                                                                src="https://res.cloudinary.com/dsoilebvu/image/upload/v1777048244/arrow_kaivth.svg"
-                                                                alt="icon"
-                                                                width={16}
-                                                                height={16}
-                                                                className="menu-service-list-arrow-icon"
-                                                            />
-                                                        </Link>
-                                                    </li>
-                                                ))}
-                                            </ul>
-                                        </div>
-                                        <Link
-                                            href="/coming-soon"
-                                            className="button-primary button-primary-gray w-inline-block"
-                                        >
-                                            <div className="text-block-12">View More</div>
-                                            <Image
-                                                loading="lazy"
-                                                src="https://cdn.prod.website-files.com/68d276a2319df5bdcc752026/68dbd9d8c78e82683455072e_arrow-top-right.svg"
-                                                alt="arrow-top-right"
-                                                width={16}
-                                                height={16}
-                                                className="button-icon"
-                                            />
-                                        </Link>
-                                    </div>
-                                    <div className="menu-right-side">
-                                        <div className="menu-company-header">
-                                            <h3 className="menu-company-header-title">Not Sure where to start?</h3>
-                                            <p className="menu-company-header-description">
-                                                Connect with our experts to receive a free estimate and streamline your workflow at no extra cost. Why wait? Give it a try today!
-                                            </p>
-                                        </div>
-                                        <div className="header-link-wrapper">
-                                            <div className="contact-us-card">
-                                                <div className="contact-us-card-icon menu-contact-us-card-icon">
-                                                    <Image
-                                                        src="https://cdn.prod.website-files.com/68d276a2319df5bdcc752026/68e51aa310530dbf53f8f4c2_email-black.svg"
-                                                        alt="icon"
-                                                        width={20}
-                                                        height={20}
-                                                        className="image-22 menu-contact-us-card-icon-img"
-                                                    />
-                                                </div>
-                                                <Link
-                                                    href="mailto:sales@greaterworks.tech"
-                                                    className="link-2 menu-contact-us-card-link"
-                                                >
-                                                    Talk To Sales{" "}
-                                                    <span className="menu-contact-us-card-link-info menu-contact-us-card-link-info-header">
-                                                        sales@greaterworks.tech
-                                                    </span>
-                                                </Link>
-                                            </div>
-                                        </div>
-                                        <figure className="menu-contact-wrap">
-                                            <Link
-                                                href="https://amentotech.com/get-a-quote"
-                                                target="_blank"
-                                                className="w-inline-block"
-                                            >
-                                                <Image
-                                                    loading="lazy"
-                                                    src="https://cdn.prod.website-files.com/68d276a2319df5bdcc752026/68e51d8ba178421e5a3e8949_header%20menu%20image.jpg"
-                                                    alt=""
-                                                    width={280}
-                                                    height={160}
-                                                    className="menu-contact-wrap-image"
-                                                />
-                                            </Link>
-                                        </figure>
-                                    </div>
-                                </div>
-                            </nav>
-                        </div>
-
-                        {/* Mobile Industries */}
-                        <div className={`dropdown ${mobileDropdowns.industries ? "w--open" : ""}`}>
-                            <button
-                                type="button"
-                                className="dropdown-toggle w-dropdown-toggle"
-                                onClick={() => toggleMobileDropdown("industries")}
-                            >
-                                <svg
-                                    className="nav-dropdown-icon w-icon-dropdown-toggle"
-                                    viewBox="0 0 24 24"
-                                    fill="none"
-                                    stroke="currentColor"
-                                    strokeWidth="3"
-                                >
-                                    <polyline points="6 9 12 15 18 9" />
-                                </svg>
-                                <div className="link-text-wrap">
-                                    <p className="nav-item-title">Who we serve</p>
-                                </div>
-                                <div className="nav-hover" />
-                            </button>
-                            <nav className={`nav-dropdown-list w-dropdown-list ${mobileDropdowns.industries ? "w--open" : ""}`}>
-                                <div className="nav-dropdown-column">
-                                    <div className="nav-dropdown-link-wrapper nav-dropdown-link-wrapper-single">
-                                        <ul role="list" className="menu-service-list menu-service-list-single">
-                                            {industries.map((ind, i) => (
-                                                <li key={i} className="menu-service-list-item menu-service-list-item-single">
-                                                    <Link href={ind.href} className="menu-service-list-card w-inline-block">
-                                                        <Image
-                                                            src={ind.icon}
-                                                            alt="icon"
-                                                            width={24}
-                                                            height={24}
-                                                            className="menu-service-list-icon"
-                                                        />
-                                                        <p className="menu-service-list-title">
-                                                            <strong className="bold-text-2">{ind.title}</strong>
-                                                            Tailored solutions to boost your business growth in the new market of technology.
-                                                        </p>
-                                                        <Image
-                                                            src="https://res.cloudinary.com/dsoilebvu/image/upload/v1777048244/arrow_kaivth.svg"
-                                                            alt="icon"
-                                                            width={16}
-                                                            height={16}
-                                                            className="menu-service-list-arrow-icon"
-                                                        />
-                                                    </Link>
-                                                </li>
-                                            ))}
-                                        </ul>
-                                    </div>
-                                </div>
-                            </nav>
-                        </div>
-
-                        {/* Mobile Our Approach */}
-                        <div className={`dropdown mega-menu-wrap-dropdown ${mobileDropdowns.approach ? "w--open" : ""}`}>
-                            <button
-                                type="button"
-                                className="dropdown-toggle w-dropdown-toggle"
-                                onClick={() => toggleMobileDropdown("approach")}
-                            >
-                                <svg
-                                    className="nav-dropdown-icon w-icon-dropdown-toggle"
-                                    viewBox="0 0 24 24"
-                                    fill="none"
-                                    stroke="currentColor"
-                                    strokeWidth="3"
-                                >
-                                    <polyline points="6 9 12 15 18 9" />
-                                </svg>
-                                <div className="link-text-wrap">
-                                    <p className="nav-item-title">Our approach</p>
-                                </div>
-                                <div className="nav-hover" />
-                            </button>
-                            <nav className={`mega-menu-wrap w-dropdown-list ${mobileDropdowns.approach ? "w--open" : ""}`}>
-                                <div className="mega-menu-container">
-                                    <ul role="list" className="menu-service-list menu-service-list-single">
-                                        {approaches.map((a, i) => (
-                                            <li key={i} className="menu-service-list-item menu-service-list-item-single">
-                                                <Link href={a.href} className="menu-service-list-card w-inline-block">
-                                                    <Image
-                                                        src={a.icon}
-                                                        alt="icon"
-                                                        width={24}
-                                                        height={24}
-                                                        className="menu-service-list-icon"
-                                                    />
-                                                    <p className="menu-service-list-title">
-                                                        <strong className="bold-text-2">{a.title}</strong>
-                                                        {a.desc}
-                                                    </p>
-                                                    <Image
-                                                        src="https://res.cloudinary.com/dsoilebvu/image/upload/v1777048244/arrow_kaivth.svg"
-                                                        alt="icon"
-                                                        width={16}
-                                                        height={16}
-                                                        className="menu-service-list-arrow-icon"
-                                                    />
-                                                </Link>
-                                            </li>
-                                        ))}
-                                    </ul>
-                                </div>
-                            </nav>
-                        </div>
-
-                        {/* Mobile Hire Talent */}
-                        <div className={`dropdown mega-menu-wrap-dropdown ${mobileDropdowns.hire ? "w--open" : ""}`}>
-                            <button
-                                type="button"
-                                className="dropdown-toggle w-dropdown-toggle"
-                                onClick={() => toggleMobileDropdown("hire")}
-                            >
-                                <svg
-                                    className="nav-dropdown-icon w-icon-dropdown-toggle"
-                                    viewBox="0 0 24 24"
-                                    fill="none"
-                                    stroke="currentColor"
-                                    strokeWidth="3"
-                                >
-                                    <polyline points="6 9 12 15 18 9" />
-                                </svg>
-                                <div className="link-text-wrap">
-                                    <p className="nav-item-title">Our Solutions</p>
-                                </div>
-                                <div className="nav-hover" />
-                            </button>
-                            <nav className={`mega-menu-wrap w-dropdown-list ${mobileDropdowns.hire ? "w--open" : ""}`}>
-                                <div className="mega-menu-container">
-                                    <div className="mega_menu-tab-wrap w-tabs">
-                                        <div className="mega_menu-tab-items w-tab-menu">
-                                            {hireTabs.map((tab, i) => (
-                                                <button
-                                                    key={i}
-                                                    type="button"
-                                                    onClick={() => setActiveHireTab(i)}
-                                                    className={`mega_menu-tab-item w-inline-block w-tab-link ${activeHireTab === i ? "w--current" : ""}`}
-                                                >
-                                                    <div className="menu-tab-card">
-                                                        <Image
-                                                            src={tab.icon}
-                                                            alt="icon"
-                                                            width={24}
-                                                            height={24}
-                                                            className="menu-service-list-icon"
-                                                        />
-                                                        <Image
-                                                            src="https://res.cloudinary.com/dsoilebvu/image/upload/v1777048244/arrow_kaivth.svg"
-                                                            alt="icon"
-                                                            width={16}
-                                                            height={16}
-                                                            className="menu-service-list-arrow-icon"
-                                                        />
-                                                        <p className="menu-service-list-title">
-                                                            <strong className="bold-text-2 mb-0">{tab.label}</strong>
-                                                        </p>
-                                                    </div>
-                                                </button>
-                                            ))}
-                                        </div>
-                                        <div className="tabs-content-3 w-tab-content">
-                                            <div className="w-tab-pane w--tab-active">
-                                                <div className="menu-approach-list">
-                                                    <ul role="list" className="menu-service-list">
-                                                        {hireTabs[activeHireTab].items.map((item, i) => (
-                                                            <li key={i} className="menu-service-list-item">
-                                                                <Link
-                                                                    href="/contact-us"
-                                                                    className="menu-service-list-card w-inline-block"
-                                                                >
-                                                                    <Image
-                                                                        src="https://res.cloudinary.com/dsoilebvu/image/upload/v1777048244/arrow_kaivth.svg"
-                                                                        alt="icon"
-                                                                        width={16}
-                                                                        height={16}
-                                                                        className="menu-service-list-arrow-icon"
-                                                                    />
-                                                                    <p className="menu-service-list-title">
-                                                                        <strong className="bold-text-2">{item.title}</strong>
-                                                                        {item.desc}
-                                                                    </p>
-                                                                </Link>
-                                                            </li>
-                                                        ))}
-                                                    </ul>
-                                                </div>
-                                                <Link href="/contact-us" className="contact-us-link w-inline-block">
-                                                    <div className="menu-contact-us-info">
-                                                        <Image
-                                                            src="https://res.cloudinary.com/dsoilebvu/image/upload/v1777048239/qa_gfbujp.svg"
-                                                            alt="image"
-                                                            width={24}
-                                                            height={24}
-                                                            className="menu-service-list-icon"
-                                                        />
-                                                        <p className="menu-service-list-title">
-                                                            <strong className="bold-text-2">Contact Us</strong>
-                                                            Get in touch with our 24/7 active support team to get your query resolve.
-                                                        </p>
-                                                        <Image
-                                                            src="https://res.cloudinary.com/dsoilebvu/image/upload/v1777048244/arrow_kaivth.svg"
-                                                            alt="icon"
-                                                            width={16}
-                                                            height={16}
-                                                            className="menu-service-list-arrow-icon"
-                                                        />
-                                                    </div>
-                                                </Link>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </nav>
-                        </div>
-
-                        <Link
-                            href="/insights"
-                            target="_blank"
-                            className="nav-link w-nav-link"
-                        >
-                            Insights 
-                        </Link>
-                        <Link
-                            href="https://portal.greaterworks.tech/company/careers"
-                            target="_blank"
-                            className="nav-link w-nav-link"
-                        >
-                            Careers 
-                        </Link>
-                        <div className="div-block-3 contact-us">
-                            <Link href="/contact-us" className="link-block w-inline-block">
-                                <div className="div-block-4">
-                                    <Image
-                                        loading="lazy"
-                                        src="https://cdn.prod.website-files.com/68d276a2319df5bdcc752026/68e51aa310530dbf53f8f4c2_email-black.svg"
-                                        alt="icon"
-                                        width={20}
-                                        height={20}
-                                        className="image-7"
-                                    />
-                                </div>
-                                <div className="button-text">
-                                    <span className="text-span-7">Contact Us</span> Get in Touch
-                                </div>
+                              <Image
+                                src={s.icon}
+                                alt="icon"
+                                width={24}
+                                height={24}
+                                className="menu-service-list-icon"
+                                unoptimized={s.isLocalIcon}
+                              />
+                              <p className="menu-service-list-title">
+                                <strong className="bold-text-2">
+                                  {s.title}{" "}
+                                </strong>
+                                {s.desc}
+                              </p>
+                              <Image
+                                src="https://res.cloudinary.com/dsoilebvu/image/upload/v1777048244/arrow_kaivth.svg"
+                                alt="icon"
+                                width={16}
+                                height={16}
+                                className="menu-service-list-arrow-icon"
+                              />
                             </Link>
-                        </div>
-                    </nav>
-                    <button
-                        type="button"
-                        className="menu-button-2 w-nav-button"
-                        aria-expanded={mobileOpen}
-                        aria-label="menu"
-                        onClick={() => setMobileOpen(!mobileOpen)}
-                    >
-                        {!isHomepage && !scrolled ? (
-                            <HiMenu size={28} color="black" className="menu-button-icon" />
-                        ) : (
-                            <HiMenu size={28} color="white" className="menu-button-icon" />
-                        )}
-                        <Image
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+                  <div className="menu-right-side">
+                    <div className="menu-company-header">
+                      <h3 className="menu-company-header-title">
+                        {serviceSidebarTitle}
+                      </h3>
+                      <p className="menu-company-header-description">
+                        {serviceSidebarDescription}
+                      </p>
+                    </div>
+                    <div className="header-link-wrapper">
+                      <div className="contact-us-card">
+                        <div className="contact-us-card-icon menu-contact-us-card-icon">
+                          <Image
+                            src="https://cdn.prod.website-files.com/68d276a2319df5bdcc752026/68e51aa310530dbf53f8f4c2_email-black.svg"
                             alt="icon"
-                            src="https://cdn.prod.website-files.com/68d276a2319df5bdcc752026/68ff282557646735ec3746f4_close.svg"
+                            width={20}
+                            height={20}
+                            className="image-22 menu-contact-us-card-icon-img"
+                          />
+                        </div>
+                        <Link
+                          href={`mailto:${serviceSidebarContactEmail}`}
+                          className="link-2 menu-contact-us-card-link"
+                        >
+                          Talk To Sales{" "}
+                          <span className="menu-contact-us-card-link-info menu-contact-us-card-link-info-header">
+                            {serviceSidebarContactEmail}
+                          </span>
+                        </Link>
+                      </div>
+                    </div>
+                    <figure className="menu-contact-wrap">
+                      <Link
+                        href={serviceSidebarContactLink}
+                        className="w-inline-block"
+                      >
+                        <Image
+                          src={serviceSidebarImageUrl}
+                          alt=""
+                          width={1000}
+                          height={1000}
+                          className="menu-contact-wrap-image"
+                          unoptimized={serviceSidebarImageUnoptimized}
+                        />
+                      </Link>
+                    </figure>
+                  </div>
+                </div>
+              </DropdownList>
+            </Dropdown>
+
+            {/* Industries */}
+            <Dropdown>
+              <DropdownToggle>
+                <div className="link-text-wrap">
+                  <p className="nav-item-title nav-title-white">Industries</p>
+                </div>
+                <svg
+                  className="nav-dropdown-icon nav-dropdown-icon-white w-icon-dropdown-toggle"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="3"
+                >
+                  <polyline points="6 9 12 15 18 9" />
+                </svg>
+                <div className="nav-hover" />
+              </DropdownToggle>
+              <DropdownList className="nav-dropdown-list">
+                <div className="nav-dropdown-column">
+                  <div className="nav-dropdown-link-wrapper nav-dropdown-link-wrapper-single">
+                    <ul
+                      role="list"
+                      className="menu-service-list menu-service-list-single"
+                    >
+                      {displayIndustries.map((ind, i) => (
+                        <li
+                          key={i}
+                          className="menu-service-list-item menu-service-list-item-single"
+                        >
+                          <Link
+                            href={ind.href}
+                            className="menu-service-list-card w-inline-block"
+                          >
+                            <Image
+                              src={ind.icon}
+                              alt="icon"
+                              width={24}
+                              height={24}
+                              className="menu-service-list-icon"
+                              unoptimized={ind.isLocalIcon}
+                            />
+                            <p className="menu-service-list-title">
+                              <strong className="bold-text-2 mb-0">
+                                {ind.title}
+                              </strong>
+                            </p>
+                            <Image
+                              src="https://res.cloudinary.com/dsoilebvu/image/upload/v1777048244/arrow_kaivth.svg"
+                              alt="icon"
+                              width={16}
+                              height={16}
+                              className="menu-service-list-arrow-icon"
+                            />
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              </DropdownList>
+            </Dropdown>
+
+            {/* Our Approach */}
+            <Dropdown>
+              <DropdownToggle>
+                <div className="link-text-wrap">
+                  <p className="nav-item-title nav-title-white">Our approach</p>
+                </div>
+                <svg
+                  className="nav-dropdown-icon nav-dropdown-icon-white w-icon-dropdown-toggle"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="3"
+                >
+                  <polyline points="6 9 12 15 18 9" />
+                </svg>
+                <div className="nav-hover" />
+              </DropdownToggle>
+              <DropdownList className="nav-dropdown-list">
+                <div className="nav-dropdown-column">
+                  <div className="nav-dropdown-link-wrapper nav-dropdown-link-wrapper-single">
+                    <ul
+                      role="list"
+                      className="menu-service-list menu-service-list-single"
+                    >
+                      {displayApproaches.map((a, i) => (
+                        <li
+                          key={i}
+                          className="menu-service-list-item menu-service-list-item-single"
+                        >
+                          <Link
+                            href={a.href}
+                            className="menu-service-list-card w-inline-block"
+                          >
+                            <Image
+                              src={a.icon}
+                              alt="icon"
+                              width={24}
+                              height={24}
+                              className="menu-service-list-icon"
+                              unoptimized={a.isLocalIcon}
+                            />
+                            <p className="menu-service-list-title">
+                              <strong className="bold-text-2">{a.title}</strong>
+                              {a.desc}
+                            </p>
+                            <Image
+                              src="https://res.cloudinary.com/dsoilebvu/image/upload/v1777048244/arrow_kaivth.svg"
+                              alt="icon"
+                              width={16}
+                              height={16}
+                              className="menu-service-list-arrow-icon"
+                            />
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              </DropdownList>
+            </Dropdown>
+
+            {/* Our Solutions - matching unintegrated design exactly with tab structure */}
+            <Dropdown className="mega-menu-wrap-dropdown">
+              <DropdownToggle>
+                <div className="link-text-wrap">
+                  <p className="nav-item-title nav-title-white">
+                    Our Solutions
+                  </p>
+                </div>
+                <svg
+                  className="nav-dropdown-icon nav-dropdown-icon-white w-icon-dropdown-toggle"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="3"
+                >
+                  <polyline points="6 9 12 15 18 9" />
+                </svg>
+                <div className="nav-hover" />
+              </DropdownToggle>
+              <DropdownList className="mega-menu-wrap">
+                <div className="mega-menu-container">
+                  <div className="mega_menu-tab-wrap w-tabs">
+                    <div className="mega_menu-tab-items w-tab-menu">
+                      {solutionCategories.map((tab, i) => (
+                        <button
+                          key={i}
+                          type="button"
+                          onClick={() => setActiveHireTab(i)}
+                          className={`mega_menu-tab-item w-inline-block w-tab-link ${activeHireTab === i ? "w--current" : ""}`}
+                        >
+                          <div className="menu-tab-card">
+                            <Image
+                              src={tab.icon}
+                              alt="icon"
+                              width={24}
+                              height={24}
+                              className="menu-service-list-icon"
+                              unoptimized={tab.isLocalIcon}
+                            />
+                            <p className="menu-service-list-title">
+                              <strong className="bold-text-2 mb-0">
+                                {tab.label}
+                              </strong>
+                            </p>
+                            <Image
+                              src="https://res.cloudinary.com/dsoilebvu/image/upload/v1777048244/arrow_kaivth.svg"
+                              alt="icon"
+                              width={16}
+                              height={16}
+                              className="menu-service-list-arrow-icon"
+                            />
+                          </div>
+                        </button>
+                      ))}
+                    </div>
+                    <div className="tabs-content-3 w-tab-content">
+                      <div className="w-tab-pane w--tab-active">
+                        <div className="menu-approach-list">
+                          <ul role="list" className="menu-service-list">
+                            {solutionCategories[activeHireTab]?.items.map(
+                              (item, i) => (
+                                <li key={i} className="menu-service-list-item">
+                                  <Link
+                                    href="/contact-us"
+                                    className="menu-service-list-card w-inline-block"
+                                  >
+                                    <Image
+                                      src="https://res.cloudinary.com/dsoilebvu/image/upload/v1777048244/arrow_kaivth.svg"
+                                      alt="icon"
+                                      width={16}
+                                      height={16}
+                                      className="menu-service-list-arrow-icon"
+                                    />
+                                    <p className="menu-service-list-title">
+                                      <strong className="bold-text-2">
+                                        {item.title}
+                                      </strong>
+                                      {item.desc}
+                                    </p>
+                                  </Link>
+                                </li>
+                              ),
+                            )}
+                          </ul>
+                        </div>
+                        <Link
+                          href="/contact-us"
+                          className="contact-us-link w-inline-block"
+                        >
+                          <div className="menu-contact-us-info">
+                            <Image
+                              src="https://res.cloudinary.com/dsoilebvu/image/upload/v1777048239/qa_gfbujp.svg"
+                              alt="image"
+                              width={24}
+                              height={24}
+                              className="menu-service-list-icon"
+                            />
+                            <Image
+                              src="https://res.cloudinary.com/dsoilebvu/image/upload/v1777048244/arrow_kaivth.svg"
+                              alt="icon"
+                              width={16}
+                              height={16}
+                              className="menu-service-list-arrow-icon"
+                            />
+                            <p className="menu-service-list-title">
+                              <strong className="bold-text-2">
+                                Contact Us
+                              </strong>
+                              {solutionSidebarDescription}
+                            </p>
+                          </div>
+                        </Link>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </DropdownList>
+            </Dropdown>
+
+            <Link
+              href="/insights"
+              target="_blank"
+              className="nav-link nav-title-white w-nav-link"
+            >
+              Insights
+            </Link>
+            <Link
+              href="https://portal.greaterworks.tech/company/careers"
+              target="_blank"
+              className="nav-link nav-title-white w-nav-link"
+            >
+              Careers
+            </Link>
+          </nav>
+          <div className="div-block-3 contact-us header-contact-us">
+            <Link
+              href="/contact-us"
+              data-gn-book-meeting="modal"
+              data-w-id="18496b83-ef74-3196-87a5-0e0002e3ed11"
+              className="button-secondary-light nav-btn w-inline-block"
+            >
+              <div className="arrows-container cta">
+                <Image
+                  alt="Icon"
+                  src="https://cdn.prod.website-files.com/68d276a2319df5bdcc752026/68e4b7bde312a6e238715c90_email.svg"
+                  width={16}
+                  height={16}
+                  className="dark-arrow _16 nav-icon-dark"
+                />
+                <Image
+                  alt="Icon"
+                  src="https://cdn.prod.website-files.com/68d276a2319df5bdcc752026/68e51aa310530dbf53f8f4c2_email-black.svg"
+                  width={16}
+                  height={16}
+                  className="arrow-button _16 nav-icon-dark"
+                />
+              </div>
+              <div className="button-secondary-light-text-3 nav-btn">
+                Get in Touch
+              </div>
+            </Link>
+          </div>
+        </div>
+
+        {/* Responsive menu */}
+        {mobileOpen && (
+          <div
+            className="mobile-nav-backdrop"
+            onClick={() => setMobileOpen(false)}
+          />
+        )}
+        <div className="nav-menu-wrapper nav-menu-wrapper-responsive">
+          <div className="header-logo">
+            <Link
+              href="/"
+              aria-current="page"
+              className="brand-2 w-nav-brand w--current"
+            >
+              <Image
+                alt=""
+                src={logoUrl}
+                width={100}
+                height={30}
+                className="image-37"
+                unoptimized={logoUnoptimized}
+              />
+            </Link>
+          </div>
+          <nav
+            role="navigation"
+            className={`nav-menu-2 w-nav-menu ${mobileOpen ? "w--nav-menu-open" : ""}`}
+          >
+            {/* Mobile Our Services */}
+            <div
+              className={`dropdown mega-menu-wrap-dropdown ${mobileDropdowns.services ? "w--open" : ""}`}
+            >
+              <button
+                type="button"
+                className="dropdown-toggle w-dropdown-toggle"
+                onClick={() => toggleMobileDropdown("services")}
+              >
+                <svg
+                  className="nav-dropdown-icon w-icon-dropdown-toggle"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="3"
+                >
+                  <polyline points="6 9 12 15 18 9" />
+                </svg>
+                <div className="link-text-wrap">
+                  <p className="nav-item-title">Our services</p>
+                </div>
+                <div className="nav-hover" />
+              </button>
+              <nav
+                className={`mega-menu-wrap w-dropdown-list ${mobileDropdowns.services ? "w--open" : ""}`}
+              >
+                <div className="mega-menu-container">
+                  <div className="nav-dropdown-column menu-left-side">
+                    <div className="nav-dropdown-link-wrapper">
+                      <ul role="list" className="menu-service-list">
+                        {displayServices.map((s, i) => (
+                          <li key={i} className="menu-service-list-item">
+                            <Link
+                              href={s.href}
+                              className="menu-service-list-card w-inline-block"
+                            >
+                              <Image
+                                src={s.icon}
+                                alt="icon"
+                                width={24}
+                                height={24}
+                                className="menu-service-list-icon"
+                                unoptimized={s.isLocalIcon}
+                              />
+                              <p className="menu-service-list-title">
+                                <strong className="bold-text-2">
+                                  {s.title}{" "}
+                                </strong>
+                                {s.desc}
+                              </p>
+                              <Image
+                                src="https://res.cloudinary.com/dsoilebvu/image/upload/v1777048244/arrow_kaivth.svg"
+                                alt="icon"
+                                width={16}
+                                height={16}
+                                className="menu-service-list-arrow-icon"
+                              />
+                            </Link>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+                  <div className="menu-right-side">
+                    <div className="menu-company-header">
+                      <h3 className="menu-company-header-title">
+                        {serviceSidebarTitle}
+                      </h3>
+                      <p className="menu-company-header-description">
+                        {serviceSidebarDescription}
+                      </p>
+                    </div>
+                    <div className="header-link-wrapper">
+                      <div className="contact-us-card">
+                        <div className="contact-us-card-icon menu-contact-us-card-icon">
+                          <Image
+                            src="https://cdn.prod.website-files.com/68d276a2319df5bdcc752026/68e51aa310530dbf53f8f4c2_email-black.svg"
+                            alt="icon"
+                            width={20}
+                            height={20}
+                            className="image-22 menu-contact-us-card-icon-img"
+                          />
+                        </div>
+                        <Link
+                          href={`mailto:${serviceSidebarContactEmail}`}
+                          className="link-2 menu-contact-us-card-link"
+                        >
+                          Talk To Sales{" "}
+                          <span className="menu-contact-us-card-link-info menu-contact-us-card-link-info-header">
+                            {serviceSidebarContactEmail}
+                          </span>
+                        </Link>
+                      </div>
+                    </div>
+                    <figure className="menu-contact-wrap">
+                      <Link
+                        href={serviceSidebarContactLink}
+                        className="w-inline-block"
+                      >
+                        <Image
+                          loading="lazy"
+                          src={serviceSidebarImageUrl}
+                          alt=""
+                          width={280}
+                          height={160}
+                          className="menu-contact-wrap-image"
+                          unoptimized={serviceSidebarImageUnoptimized}
+                        />
+                      </Link>
+                    </figure>
+                  </div>
+                </div>
+              </nav>
+            </div>
+
+            {/* Mobile Industries */}
+            <div
+              className={`dropdown ${mobileDropdowns.industries ? "w--open" : ""}`}
+            >
+              <button
+                type="button"
+                className="dropdown-toggle w-dropdown-toggle"
+                onClick={() => toggleMobileDropdown("industries")}
+              >
+                <svg
+                  className="nav-dropdown-icon w-icon-dropdown-toggle"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="3"
+                >
+                  <polyline points="6 9 12 15 18 9" />
+                </svg>
+                <div className="link-text-wrap">
+                  <p className="nav-item-title">Who we serve</p>
+                </div>
+                <div className="nav-hover" />
+              </button>
+              <nav
+                className={`nav-dropdown-list w-dropdown-list ${mobileDropdowns.industries ? "w--open" : ""}`}
+              >
+                <div className="nav-dropdown-column">
+                  <div className="nav-dropdown-link-wrapper nav-dropdown-link-wrapper-single">
+                    <ul
+                      role="list"
+                      className="menu-service-list menu-service-list-single"
+                    >
+                      {displayIndustries.map((ind, i) => (
+                        <li
+                          key={i}
+                          className="menu-service-list-item menu-service-list-item-single"
+                        >
+                          <Link
+                            href={ind.href}
+                            className="menu-service-list-card w-inline-block"
+                          >
+                            <Image
+                              src={ind.icon}
+                              alt="icon"
+                              width={24}
+                              height={24}
+                              className="menu-service-list-icon"
+                              unoptimized={ind.isLocalIcon}
+                            />
+                            <p className="menu-service-list-title">
+                              <strong className="bold-text-2">
+                                {ind.title}
+                              </strong>
+                              Tailored solutions to boost your business growth
+                              in the new market of technology.
+                            </p>
+                            <Image
+                              src="https://res.cloudinary.com/dsoilebvu/image/upload/v1777048244/arrow_kaivth.svg"
+                              alt="icon"
+                              width={16}
+                              height={16}
+                              className="menu-service-list-arrow-icon"
+                            />
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              </nav>
+            </div>
+
+            {/* Mobile Our Approach */}
+            <div
+              className={`dropdown mega-menu-wrap-dropdown ${mobileDropdowns.approach ? "w--open" : ""}`}
+            >
+              <button
+                type="button"
+                className="dropdown-toggle w-dropdown-toggle"
+                onClick={() => toggleMobileDropdown("approach")}
+              >
+                <svg
+                  className="nav-dropdown-icon w-icon-dropdown-toggle"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="3"
+                >
+                  <polyline points="6 9 12 15 18 9" />
+                </svg>
+                <div className="link-text-wrap">
+                  <p className="nav-item-title">Our approach</p>
+                </div>
+                <div className="nav-hover" />
+              </button>
+              <nav
+                className={`mega-menu-wrap w-dropdown-list ${mobileDropdowns.approach ? "w--open" : ""}`}
+              >
+                <div className="mega-menu-container">
+                  <ul
+                    role="list"
+                    className="menu-service-list menu-service-list-single"
+                  >
+                    {displayApproaches.map((a, i) => (
+                      <li
+                        key={i}
+                        className="menu-service-list-item menu-service-list-item-single"
+                      >
+                        <Link
+                          href={a.href}
+                          className="menu-service-list-card w-inline-block"
+                        >
+                          <Image
+                            src={a.icon}
+                            alt="icon"
                             width={24}
                             height={24}
-                            className="menu-button-icon-open"
-                        />
-                        <div className="icon w-icon-nav-menu" />
-                    </button>
+                            className="menu-service-list-icon"
+                            unoptimized={a.isLocalIcon}
+                          />
+                          <p className="menu-service-list-title">
+                            <strong className="bold-text-2">{a.title}</strong>
+                            {a.desc}
+                          </p>
+                          <Image
+                            src="https://res.cloudinary.com/dsoilebvu/image/upload/v1777048244/arrow_kaivth.svg"
+                            alt="icon"
+                            width={16}
+                            height={16}
+                            className="menu-service-list-arrow-icon"
+                          />
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
+              </nav>
             </div>
-            <style>{`
+
+            {/* Mobile Our Solutions - matching unintegrated tab structure */}
+            <div
+              className={`dropdown mega-menu-wrap-dropdown ${mobileDropdowns.hire ? "w--open" : ""}`}
+            >
+              <button
+                type="button"
+                className="dropdown-toggle w-dropdown-toggle"
+                onClick={() => toggleMobileDropdown("hire")}
+              >
+                <svg
+                  className="nav-dropdown-icon w-icon-dropdown-toggle"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="3"
+                >
+                  <polyline points="6 9 12 15 18 9" />
+                </svg>
+                <div className="link-text-wrap">
+                  <p className="nav-item-title">Our Solutions</p>
+                </div>
+                <div className="nav-hover" />
+              </button>
+              <nav
+                className={`mega-menu-wrap w-dropdown-list ${mobileDropdowns.hire ? "w--open" : ""}`}
+              >
+                <div className="mega-menu-container">
+                  <div className="mega_menu-tab-wrap w-tabs">
+                    <div className="mega_menu-tab-items w-tab-menu">
+                      {solutionCategories.map((tab, i) => (
+                        <button
+                          key={i}
+                          type="button"
+                          onClick={() => setActiveHireTab(i)}
+                          className={`mega_menu-tab-item w-inline-block w-tab-link ${activeHireTab === i ? "w--current" : ""}`}
+                        >
+                          <div className="menu-tab-card">
+                            <Image
+                              src={tab.icon}
+                              alt="icon"
+                              width={24}
+                              height={24}
+                              className="menu-service-list-icon"
+                              unoptimized={tab.isLocalIcon}
+                            />
+                            <Image
+                              src="https://res.cloudinary.com/dsoilebvu/image/upload/v1777048244/arrow_kaivth.svg"
+                              alt="icon"
+                              width={16}
+                              height={16}
+                              className="menu-service-list-arrow-icon"
+                            />
+                            <p className="menu-service-list-title">
+                              <strong className="bold-text-2 mb-0">
+                                {tab.label}
+                              </strong>
+                            </p>
+                          </div>
+                        </button>
+                      ))}
+                    </div>
+                    <div className="tabs-content-3 w-tab-content">
+                      <div className="w-tab-pane w--tab-active">
+                        <div className="menu-approach-list">
+                          <ul role="list" className="menu-service-list">
+                            {solutionCategories[activeHireTab]?.items.map(
+                              (item, i) => (
+                                <li key={i} className="menu-service-list-item">
+                                  <Link
+                                    href="/contact-us"
+                                    className="menu-service-list-card w-inline-block"
+                                  >
+                                    <Image
+                                      src="https://res.cloudinary.com/dsoilebvu/image/upload/v1777048244/arrow_kaivth.svg"
+                                      alt="icon"
+                                      width={16}
+                                      height={16}
+                                      className="menu-service-list-arrow-icon"
+                                    />
+                                    <p className="menu-service-list-title">
+                                      <strong className="bold-text-2">
+                                        {item.title}
+                                      </strong>
+                                      {item.desc}
+                                    </p>
+                                  </Link>
+                                </li>
+                              ),
+                            )}
+                          </ul>
+                        </div>
+                        <Link
+                          href="/contact-us"
+                          className="contact-us-link w-inline-block"
+                        >
+                          <div className="menu-contact-us-info">
+                            <Image
+                              src="https://res.cloudinary.com/dsoilebvu/image/upload/v1777048239/qa_gfbujp.svg"
+                              alt="image"
+                              width={24}
+                              height={24}
+                              className="menu-service-list-icon"
+                            />
+                            <p className="menu-service-list-title">
+                              <strong className="bold-text-2">
+                                Contact Us
+                              </strong>
+                              {solutionSidebarDescription}
+                            </p>
+                            <Image
+                              src="https://res.cloudinary.com/dsoilebvu/image/upload/v1777048244/arrow_kaivth.svg"
+                              alt="icon"
+                              width={16}
+                              height={16}
+                              className="menu-service-list-arrow-icon"
+                            />
+                          </div>
+                        </Link>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </nav>
+            </div>
+
+            <Link
+              href="/insights"
+              target="_blank"
+              className="nav-link w-nav-link"
+            >
+              Insights
+            </Link>
+            <Link
+              href="https://portal.greaterworks.tech/company/careers"
+              target="_blank"
+              className="nav-link w-nav-link"
+            >
+              Careers
+            </Link>
+            <div className="div-block-3 contact-us">
+              <Link href="/contact-us" className="link-block w-inline-block">
+                <div className="div-block-4">
+                  <Image
+                    loading="lazy"
+                    src="https://cdn.prod.website-files.com/68d276a2319df5bdcc752026/68e51aa310530dbf53f8f4c2_email-black.svg"
+                    alt="icon"
+                    width={20}
+                    height={20}
+                    className="image-7"
+                  />
+                </div>
+                <div className="button-text">
+                  <span className="text-span-7">Contact Us</span> Get in Touch
+                </div>
+              </Link>
+            </div>
+          </nav>
+          <button
+            type="button"
+            className="menu-button-2 w-nav-button"
+            aria-expanded={mobileOpen}
+            aria-label="menu"
+            onClick={() => setMobileOpen(!mobileOpen)}
+          >
+            {!isHomepage && !scrolled ? (
+              <HiMenu size={28} color="black" className="menu-button-icon" />
+            ) : (
+              <HiMenu size={28} color="white" className="menu-button-icon" />
+            )}
+            <Image
+              alt="icon"
+              src="https://cdn.prod.website-files.com/68d276a2319df5bdcc752026/68ff282557646735ec3746f4_close.svg"
+              width={24}
+              height={24}
+              className="menu-button-icon-open"
+            />
+            <div className="icon w-icon-nav-menu" />
+          </button>
+        </div>
+      </div>
+      <style>{`
                 .arrows-container.cta:has(.nav-icon-dark) {
                     display: flex;
                     align-items: center;
@@ -1287,6 +1656,6 @@ export default function Navbar() {
                     }
                 }
             `}</style>
-        </div>
-    );
+    </div>
+  );
 }

@@ -1,5 +1,6 @@
 "use client";
 
+import { EngagementModelSectionData, EngagementModel } from "@/types/homepage";
 import Image from "next/image";
 import Link from "next/link";
 import { useRef } from "react";
@@ -105,9 +106,26 @@ function ParallaxCards({ cards, className = '' }: ParallaxCardsProps) {
   );
 }
 
-export default function EngagementSection() {
-    // Create cards data for parallax component
-    const cards = engagements.map((engagement) => ({
+export default function EngagementSection({ 
+    data, 
+    engagementModels = [] 
+}: { 
+    data?: EngagementModelSectionData;
+    engagementModels?: EngagementModel[];
+}) {
+    const imageUrl = `${process.env.NEXT_PUBLIC_SERVER_URL}${data?.engagementModelImage?.url}`;
+
+    // Map fetched models or fallback to static engagements if empty
+    const activeEngagements = engagementModels.length > 0
+        ? engagementModels.map((model, i) => ({
+            counter: String(i + 1).padStart(2, "0"),
+            title: model.title,
+            desc: model.description,
+            items: model.details ? model.details.map(d => d.details) : []
+        }))
+        : engagements;
+
+    const cards = activeEngagements.map((engagement) => ({
         content: (
             <div>
                 <div className="counter">{engagement.counter}</div>
@@ -138,7 +156,7 @@ export default function EngagementSection() {
                                     <p className="section-head-subtitle-content subtitle-secondary-content">Engagement models</p>
                                 </div>
                                 <div className="title title-two">
-                                    <h2 className="title-h2-2 title-h2-two engagement-modal-title">Strategic Engagement Models Designed to Scale Your Business with Confidence</h2>
+                                    <h2 className="title-h2-2 title-h2-two engagement-modal-title">{data?.engagementModelTitle || "Strategic Engagement Models Designed to Scale Your Business with Confidence"}</h2>
                                 </div>
                             </div>
                             <ParallaxCards cards={cards} />
@@ -148,9 +166,10 @@ export default function EngagementSection() {
                             <div className="relative flex justify-center overflow-hidden">
                                 <div className="relative aspect-square w-full max-w-[500px] sm:max-w-[500px] md:max-w-[600px] lg:h-[600px] lg:w-[700px] xl:h-[700px] xl:w-[800px]">
                                     <Image
-                                        src="https://res.cloudinary.com/dsoilebvu/image/upload/v1777844280/cld-sample-5.png"
+                                        src={imageUrl}
                                         alt="Hire developers"
                                         fill
+                                        unoptimized
                                         className="object-contain rounded-2xl"
                                     />
                                     <div className="absolute bottom-[10%] left-1/2 -translate-x-1/2">
@@ -174,12 +193,12 @@ export default function EngagementSection() {
                             <p className="section-head-subtitle-content subtitle-secondary-content">Engagement models</p>
                         </div>
                         <div className="title title-two">
-                            <h2 className="title-h2-2 title-h2-two engagement-modal-title">Strategic Engagement Models Designed to Scale Your Business with Confidence</h2>
+                            <h2 className="title-h2-2 title-h2-two engagement-modal-title">{data?.engagementModelTitle || "Strategic Engagement Models Designed to Scale Your Business with Confidence"}</h2>
                         </div>
                     </div>
                     <div className="engagement-content-wrap">
                         <div className="engagement-list">
-                            {engagements.map((e, i) => (
+                            {activeEngagements.map((e, i) => (
                                 <div key={i} className={`engagement-list-item ${i > 0 ? `engagement-list-item-${i + 1}` : ""}`}>
                                     <div className="counter">{e.counter}</div>
                                     <h3 className="on-demand-title engangement-titel">{e.title}</h3>

@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
+import { ServiceSectionData } from "@/types/homepage";
 
 const services = [
     { title: "Custom Software Development", href: "/custom-software-development" },
@@ -16,8 +17,23 @@ const services = [
     { title: "Quality Assurance & Testing", href: "/quality-assurance-testing" },
 ];
 
-export default function ServicesSection() {
+export default function ServicesSection({ data }: { data?: ServiceSectionData }) {
     const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+
+    const subtitle = data?.serviceTagline || "What we offer";
+    const title = data?.serviceTitle || "IT Solutions That Propel Your Business Forward";
+    const description = data?.serviceDiscripction || "At Greater Works Technologies, we lead change with technology consulting and advanced software solutions. We help businesses embrace digital transformation through cloud solutions, enterprise software, and AI development.";
+    
+    const imageUrl = data?.serviceImage?.url
+        ? `${process.env.NEXT_PUBLIC_SERVER_URL}${data.serviceImage.url}`
+        : "https://cdn.prod.website-files.com/68d276a2319df5bdcc752026/6942ab995c9897a7f0810d41_discussion-img.png";
+
+    const displayServices = data?.services && data.services.length > 0
+        ? data.services.map(s => ({
+            title: s.serviceTitle,
+            href: s.slug.startsWith("/") ? `services/${s.slug}` : `/services/${s.slug}`
+          }))
+        : services;
 
     return (
         <>
@@ -26,16 +42,16 @@ export default function ServicesSection() {
                     <div className="section-head section-head-two">
                         <div className="section-head-content-subtitle">
                             <div className="section-head-subtitle-dot" />
-                            <p className="section-head-subtitle-content subtitle-secondary-content">What we offer</p>
+                            <p className="section-head-subtitle-content subtitle-secondary-content">{subtitle}</p>
                         </div>
                         <div className="title title-two">
-                            <h2 className="title-h2-2 title-h2-two">IT Solutions That Propel Your Business Forward</h2>
-                            <p className="section-title-description">At Greater Works Technologies, we lead change with technology consulting and advanced software solutions. We help businesses embrace digital transformation through cloud solutions, enterprise software, and AI development.</p>
+                            <h2 className="title-h2-2 title-h2-two">{title}</h2>
+                            <p className="section-title-description">{description}</p>
                         </div>
                     </div>
                     <div className="our-service-wrapper">
                         <div className="services-content-left">
-                            {services.map((s, i) => (
+                            {displayServices.map((s, i) => (
                                 <Link 
                                     key={i} 
                                     href={s.href} 
@@ -71,7 +87,15 @@ export default function ServicesSection() {
                                     </Link>
                                 </div>
                             </div>
-                            <Image src="https://cdn.prod.website-files.com/68d276a2319df5bdcc752026/6942ab995c9897a7f0810d41_discussion-img.png" width={1000} height={1000} loading="lazy" alt="Discussion-image" className="discussion-image" />
+                            <Image 
+                                src={imageUrl} 
+                                width={1000} 
+                                height={1000} 
+                                loading="lazy" 
+                                alt="Discussion-image" 
+                                className="discussion-image" 
+                                unoptimized={!!data?.serviceImage?.url}
+                            />
                         </div>
                     </div>
                 </div>

@@ -1,5 +1,6 @@
 "use client";
 
+import { TechStackSectionData } from "@/types/homepage";
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
@@ -14,7 +15,7 @@ const tabs = [
     { label: "AI & ML", image: "https://cdn.prod.website-files.com/68d276a2319df5bdcc752026/6953e65253f794174c6919f8_ai-ml.webp" },
 ];
 
-export default function StaffAugmentationSection() {
+export default function StaffAugmentationSection({ data }: { data?: TechStackSectionData }) {
     const [activeTab, setActiveTab] = useState(0);
 
     return (
@@ -27,7 +28,7 @@ export default function StaffAugmentationSection() {
                             <p className="section-head-subtitle-content subtitle-secondary-content">Tech Stack</p>
                         </div>
                         <div className="title title-two">
-                            <h2 className="title-h2-2 title-h2-two staff-augmentation">Shape Your Perfect Team of Expert Developers Skilled in Leading Technologies</h2>
+                            <h2 className="title-h2-2 title-h2-two staff-augmentation">{data?.techStackTitle || "Shape Your Perfect Team of Expert Developers Skilled in Leading Technologies"}</h2>
                         </div>
                     </div>
                     <div className="software-technologies-tabs w-tabs">
@@ -41,7 +42,7 @@ export default function StaffAugmentationSection() {
                         <div className="software-technology-tab-content w-tab-content">
                             {tabs.map((tab, i) => (
                                 <div key={i} className={`software-technology-tab-pane w-tab-pane ${activeTab === i ? "w--tab-active" : ""}`} style={{ display: activeTab === i ? "block" : "none" }}>
-                                    <Image src={tab.image} loading="eager" alt="tech-img" width={2000} height={2000} className="technology-image" />
+                                    <Image src={tab.image} loading="eager" alt="tech-img" width={2000} height={2000} unoptimized className="technology-image" />
                                 </div>
                             ))}
                         </div>
@@ -50,9 +51,9 @@ export default function StaffAugmentationSection() {
                         <div className="technology-cta-content-wrap">
                             <div className="technoloy-left-content">
                                 <p className="technology-stats-card-info-two">
-                                    <span className="amt-counter amt-counter-two tech-number">120+</span>
+                                    <span className="amt-counter amt-counter-two tech-number">{data?.techStackTechNumber || 120}+</span>
                                 </p>
-                                <p className="section-title-description technology-description">Technology stack expertise & custom integrations experience</p>
+                                <p className="section-title-description technology-description">{data?.techStackDescription || "Technology stack expertise & custom integrations experience"}</p>
                             </div>
                             <div className="button-wrap hero-banner-button-wrap on-demand-cta">
                                 <Link href="/contact-us" className="button-primary on-demand-cta w-inline-block">

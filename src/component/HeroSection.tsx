@@ -1,10 +1,11 @@
 "use client";
 
+import { BannarSectionData } from "@/types/homepage";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 
-export default function HeroSection() {
+export default function HeroSection({ data }: { data?: BannarSectionData }) {
     const [showVideo, setShowVideo] = useState(false);
 
     return (
@@ -47,7 +48,7 @@ export default function HeroSection() {
                                 <div className="section-head-subtitle-dot" />
                                 <p className="section-head-subtitle-content hero-primary-content">Creative Ideas That Inspire Growth</p>
                             </div>
-                            <h2 className="hero-banner-title">Beyond Technology, We Build Trust</h2>
+                            <h2 className="hero-banner-title">{data?.bannarTitle || "Beyond Technology, We Build Trust"}</h2>
                             <div className="button-wrap hero-banner-button-wrap">
                                 <Link href="/contact-us" className="button-primary-3 hero-banner w-inline-block">
                                     <div className="text-block-16">Get in touch</div>
@@ -79,7 +80,7 @@ export default function HeroSection() {
                                 </div>
                                 <div className="intro-text">Watch Intro</div>
                             </button>
-                            <p className="hero-banner-content-description">Crafting custom software that accelerates growth, solves complex challenges, and brings your vision to life through scalable, reliable solutions.</p>
+                            <p className="hero-banner-content-description">{data?.bannarDescription || "Crafting custom software that accelerates growth, solves complex challenges, and brings your vision to life through scalable, reliable solutions."}</p>
                             <div className="button-wrap hero-banner-button-wrap responsive-style">
                                 <Link href="#" data-gn-book-meeting="modal" className="button-primary-3 hero-banner w-inline-block">
                                     <div className="text-block-16">Get in touch</div>
@@ -143,7 +144,7 @@ export default function HeroSection() {
                         <div className="relative pb-[56.25%] h-0">
                             <iframe
                                 className="absolute top-0 left-0 w-full h-full"
-                                src="https://www.youtube.com/embed/x5Vmxo435Eg?autoplay=1"
+                                src={data?.bannarIntroVideoUrl || "https://www.youtube.com/embed/x5Vmxo435Eg?autoplay=1"}
                                 title="YouTube video player"
                                 frameBorder="0"
                                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"

@@ -1,5 +1,6 @@
 "use client";
 
+import { SelectedWorkSectionData, SelectedWork } from "@/types/homepage";
 import { useEffect, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
@@ -32,8 +33,50 @@ const caseStudies = [
     },
 ];
 
-export default function CaseStudySection() {
+const DEFAULT_BGS = [
+    "https://cdn.prod.website-files.com/68d276a2319df5bdcc752026/690204360a47bb374fdfd6f8_img-bg-01.png",
+    "https://cdn.prod.website-files.com/68d276a2319df5bdcc752026/68edfdbeeed21cd13c7882fa_img-bg-02.png",
+    "https://cdn.prod.website-files.com/68d276a2319df5bdcc752026/68fa288152b3552c969f59c5_img-bg-03.png",
+    "https://cdn.prod.website-files.com/68d276a2319df5bdcc752026/68fa29b8d0e9b13cbfd05a9f_img-bg-04.png"
+];
+
+function getProjectName(title: string): string {
+    const words = title.split(" ");
+    if (words.length > 1) {
+        return `${words[0]} ${words[1]}`;
+    }
+    return words[0] || "Project";
+}
+
+export default function CaseStudySection({ 
+    data,
+    selectedWorks = []
+}: { 
+    data?: SelectedWorkSectionData;
+    selectedWorks?: SelectedWork[];
+}) {
     const listRef = useRef<HTMLUListElement>(null);
+
+    const activeCaseStudies = selectedWorks.length > 0
+        ? selectedWorks.map((model, i) => {
+            const bgUrl = model.image?.url
+                ? (model.image.url.startsWith("http")
+                    ? model.image.url
+                    : `${process.env.NEXT_PUBLIC_SERVER_URL}${model.image.url}`)
+                : DEFAULT_BGS[i % DEFAULT_BGS.length];
+            
+            return {
+                id: String(i + 1),
+                name: getProjectName(model.title),
+                title: model.title,
+                desc: model.description,
+                bg: bgUrl
+            };
+        })
+        : caseStudies.map((cs, i) => ({
+            ...cs,
+            bg: DEFAULT_BGS[i % DEFAULT_BGS.length]
+        }));
 
     useEffect(() => {
         if (!listRef.current) return;
@@ -61,7 +104,7 @@ export default function CaseStudySection() {
                 card.removeEventListener("mouseenter", handleMouseEnter);
             });
         };
-    }, []);
+    }, [selectedWorks]);
 
     return (
         <>
@@ -71,10 +114,10 @@ export default function CaseStudySection() {
                         <div className="section-head section-head-two">
                             <div className="section-head-content-subtitle">
                                 <div className="section-head-subtitle-dot" />
-                                <p className="section-head-subtitle-content subtitle-secondary-content">Selected works ( 2024 - 2025 )</p>
+                                <p className="section-head-subtitle-content subtitle-secondary-content">Selected works ( {data?.selectedWorkYears || "2024 - 2025"} )</p>
                             </div>
                             <div id="w-node-ac1d2d88-9db0-673c-14ec-8da00a74a86b-28eb60ed" className="title title-two">
-                                <h2 data-amt="text-reveal" className="title-h2-2 title-h2-two case-study-title">Our Solutions Have Empowered Businesses Worldwide</h2>
+                                <h2 data-amt="text-reveal" className="title-h2-2 title-h2-two case-study-title">{data?.selectedWorkTitle || "Our Solutions Have Empowered Businesses Worldwide"}</h2>
                                 <div className="button-wrap service-banner-button">
                                     <Link href="/contact-us" className="button-primary-dark w-inline-block">
                                         <div className="text-block-12">Talk to us</div>
@@ -94,14 +137,23 @@ export default function CaseStudySection() {
                     <div className="container-4 w-container">
                         <div className="case-study-wrap">
                             <div className="case-study-bg">
-                                <Image loading="lazy" src="https://cdn.prod.website-files.com/68d276a2319df5bdcc752026/690204360a47bb374fdfd6f8_img-bg-01.png" alt="bg image" width={1200} height={600} className="case-study-bg-image case-study-bg-image-1" />
+                                {activeCaseStudies.map((cs, i) => (
+                                    <Image 
+                                        key={cs.id}
+                                        loading="lazy" 
+                                        src={cs.bg} 
+                                        alt="bg image" 
+                                        width={1200} 
+                                        height={600} 
+                                        unoptimized
+                                        className={`case-study-bg-image case-study-bg-image-${cs.id}`}
+                                        style={{ opacity: i === 0 ? 1 : 0 }}
+                                    />
+                                ))}
                                 <div className="case-study-bg-color" />
-                                <Image loading="lazy" src="https://cdn.prod.website-files.com/68d276a2319df5bdcc752026/68edfdbeeed21cd13c7882fa_img-bg-02.png" alt="bg image" width={1200} height={600} className="case-study-bg-image case-study-bg-image-2" />
-                                <Image loading="lazy" src="https://cdn.prod.website-files.com/68d276a2319df5bdcc752026/68fa288152b3552c969f59c5_img-bg-03.png" alt="bg image" width={1200} height={600} className="case-study-bg-image case-study-bg-image-3" />
-                                <Image loading="lazy" src="https://cdn.prod.website-files.com/68d276a2319df5bdcc752026/68fa29b8d0e9b13cbfd05a9f_img-bg-04.png" alt="bg image" width={1200} height={600} className="case-study-bg-image case-study-bg-image-4" />
                             </div>
                             <ul ref={listRef} role="list" className="case-study-list">
-                                {caseStudies.map((cs, i) => (
+                                {activeCaseStudies.map((cs, i) => (
                                     <li key={i} data-amt-item={cs.id} className={`case-study-card-item ${i === 0 ? "border-left-0" : `case-study-card-item-0${i}`}`}>
                                         <div className="bg-filter" />
                                         <div className="case-study-card">

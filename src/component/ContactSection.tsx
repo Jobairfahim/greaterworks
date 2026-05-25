@@ -1,5 +1,6 @@
 "use client";
 
+import { ContactSectionData } from "@/types/homepage";
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
@@ -13,8 +14,57 @@ const techOptions = [
     "UI/UX Designing", "AI/ML Engineering", "Project Management", "Other Custom Work",
 ];
 
-export default function ContactSection({ isSimple = false }: { isSimple?: boolean }) {
+export default function ContactSection({ isSimple = false, data }: { isSimple?: boolean; data?: ContactSectionData }) {
     const [engagementType, setEngagementType] = useState("Staff Augmentation");
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle");
+
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        setIsSubmitting(true);
+        setSubmitStatus("idle");
+
+        const form = e.currentTarget;
+        const formData = new FormData(form);
+        const fullName = formData.get("Full-Name") as string;
+        const email = formData.get("Email-Address") as string;
+        const phone = (formData.get("Phone-Number") as string) || "";
+        const preferredTech = (formData.get("Preferred") as string) || "";
+        const message = (formData.get("Message") as string) || "";
+
+        try {
+            const res = await fetch("/api/contact", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    data: {
+                        fullName,
+                        email,
+                        phone,
+                        preferredTech,
+                        engagementType,
+                        message
+                    }
+                })
+            });
+
+            if (res.ok) {
+                setSubmitStatus("success");
+                form.reset();
+            } else {
+                const errData = await res.json().catch(() => ({}));
+                console.error("Failed to submit contact:", res.status, res.statusText, errData);
+                setSubmitStatus("error");
+            }
+        } catch (error) {
+            console.error("Error submitting contact:", error);
+            setSubmitStatus("error");
+        } finally {
+            setIsSubmitting(false);
+        }
+    };
 
     return (
         <>
@@ -23,20 +73,31 @@ export default function ContactSection({ isSimple = false }: { isSimple?: boolea
                     <div className="contact-us service-page flex ">
                         <div className="contact-us-info service-page">
                             <div className="service-contact-info">
-                                <h2 className="contact-us-title service-title-wrap"><strong className="service-contact-us-title">Start Building Your Project Today, Get in Touch!</strong></h2>
+                                <h2 className="contact-us-title service-title-wrap"><strong className="service-contact-us-title">{data?.contactTitle || "Start Building Your Project Today, Get in Touch!"}</strong></h2>
                                 <ul role="list" className="contact-us-list service-list">
-                                    <li className="contact-us-list-item">
-                                        <Image src="https://res.cloudinary.com/dsoilebvu/image/upload/v1777057659/check_a87gb5.svg" loading="lazy" alt="Icon" width={24} height={24} className="contact-us-list-icon" />
-                                        <p className="contact-us-list-description service-page">NDA? Absolutely just ask.</p>
-                                    </li>
-                                    <li className="contact-us-list-item">
-                                        <Image src="https://res.cloudinary.com/dsoilebvu/image/upload/v1777057659/check_a87gb5.svg" loading="lazy" alt="Icon" width={24} height={24} className="contact-us-list-icon" />
-                                        <p className="contact-us-list-description service-page">We&apos;ll respond in 24 hours fast & focused.</p>
-                                    </li>
-                                    <li className="contact-us-list-item">
-                                        <Image src="https://res.cloudinary.com/dsoilebvu/image/upload/v1777057659/check_a87gb5.svg" loading="lazy" alt="Icon" width={24} height={24} className="contact-us-list-icon" />
-                                        <p className="contact-us-list-description service-page">Work with Senior Engineers.</p>
-                                    </li>
+                                    {data?.contactDetails && data.contactDetails.length > 0 ? (
+                                        data.contactDetails.map((detail) => (
+                                            <li key={detail.id} className="contact-us-list-item">
+                                                <Image src="https://res.cloudinary.com/dsoilebvu/image/upload/v1777057659/check_a87gb5.svg" loading="lazy" alt="Icon" width={24} height={24} className="contact-us-list-icon" />
+                                                <p className="contact-us-list-description service-page">{detail.details}</p>
+                                            </li>
+                                        ))
+                                    ) : (
+                                        <>
+                                            <li className="contact-us-list-item">
+                                                <Image src="https://res.cloudinary.com/dsoilebvu/image/upload/v1777057659/check_a87gb5.svg" loading="lazy" alt="Icon" width={24} height={24} className="contact-us-list-icon" />
+                                                <p className="contact-us-list-description service-page">NDA? Absolutely just ask.</p>
+                                            </li>
+                                            <li className="contact-us-list-item">
+                                                <Image src="https://res.cloudinary.com/dsoilebvu/image/upload/v1777057659/check_a87gb5.svg" loading="lazy" alt="Icon" width={24} height={24} className="contact-us-list-icon" />
+                                                <p className="contact-us-list-description service-page">We&apos;ll respond in 24 hours fast & focused.</p>
+                                            </li>
+                                            <li className="contact-us-list-item">
+                                                <Image src="https://res.cloudinary.com/dsoilebvu/image/upload/v1777057659/check_a87gb5.svg" loading="lazy" alt="Icon" width={24} height={24} className="contact-us-list-icon" />
+                                                <p className="contact-us-list-description service-page">Work with Senior Engineers.</p>
+                                            </li>
+                                        </>
+                                    )}
                                 </ul>
                             </div>
                             <div className="service-contact-us-schedule-wrap responsive">
@@ -45,7 +106,7 @@ export default function ContactSection({ isSimple = false }: { isSimple?: boolea
                                         <Image src="https://cdn.prod.website-files.com/68d276a2319df5bdcc752026/68e4b7bde312a6e238715c90_email.svg" loading="lazy" alt="Icon" width={20} height={20} className="contact-us-schedule-icon" />
                                     </Link>
                                     <div className="contact-us-ceo-name-title">
-                                        <p className="from-prefer-email service-page">Talk To Sales <Link href="mailto:sales@greaterworks.tech" className="link-3 service-link">sales@greaterworks.tech</Link></p>
+                                        <p className="from-prefer-email service-page">Talk To Sales <Link href={`mailto:${data?.contactSupportEmail || 'sales@greaterworks.tech'}`} className="link-3 service-link">{data?.contactSupportEmail || "sales@greaterworks.tech"}</Link></p>
                                     </div>
                                 </div>
                                 <div className={`contact-us-schedule staff-contact-us-schedule ${engagementType === "Custom Product Development" ? "is-active" : ""}`}>
@@ -78,26 +139,37 @@ export default function ContactSection({ isSimple = false }: { isSimple?: boolea
                         </div>
                         <div className="contact-us-from-wrap service-page">
                             <div className="service-contact-info responsive-style">
-                                <h2 className="contact-us-title service-title-wrap"><strong className="service-contact-us-title">Start Building Your Project Today, Get in Touch!</strong></h2>
+                                <h2 className="contact-us-title service-title-wrap"><strong className="service-contact-us-title">{data?.contactTitle || "Start Building Your Project Today, Get in Touch!"}</strong></h2>
                                 <ul role="list" className="contact-us-list service-list">
-                                    <li className="contact-us-list-item">
-                                        <Image src="https://res.cloudinary.com/dsoilebvu/image/upload/v1777057659/check_a87gb5.svg" loading="lazy" alt="Icon" width={24} height={24} className="contact-us-list-icon" />
-                                        <p className="contact-us-list-description service-page">NDA? Absolutely just ask.</p>
-                                    </li>
-                                    <li className="contact-us-list-item">
-                                        <Image src="https://res.cloudinary.com/dsoilebvu/image/upload/v1777057659/check_a87gb5.svg" loading="lazy" alt="Icon" width={24} height={24} className="contact-us-list-icon" />
-                                        <p className="contact-us-list-description service-page">We&apos;ll respond in 24 hours fast & focused.</p>
-                                    </li>
-                                    <li className="contact-us-list-item">
-                                        <Image src="https://res.cloudinary.com/dsoilebvu/image/upload/v1777057659/check_a87gb5.svg" loading="lazy" alt="Icon" width={24} height={24} className="contact-us-list-icon" />
-                                        <p className="contact-us-list-description service-page">Work with Senior Engineers.</p>
-                                    </li>
+                                    {data?.contactDetails && data.contactDetails.length > 0 ? (
+                                        data.contactDetails.map((detail) => (
+                                            <li key={detail.id} className="contact-us-list-item">
+                                                <Image src="https://res.cloudinary.com/dsoilebvu/image/upload/v1777057659/check_a87gb5.svg" loading="lazy" alt="Icon" width={24} height={24} className="contact-us-list-icon" />
+                                                <p className="contact-us-list-description service-page">{detail.details}</p>
+                                            </li>
+                                        ))
+                                    ) : (
+                                        <>
+                                            <li className="contact-us-list-item">
+                                                <Image src="https://res.cloudinary.com/dsoilebvu/image/upload/v1777057659/check_a87gb5.svg" loading="lazy" alt="Icon" width={24} height={24} className="contact-us-list-icon" />
+                                                <p className="contact-us-list-description service-page">NDA? Absolutely just ask.</p>
+                                            </li>
+                                            <li className="contact-us-list-item">
+                                                <Image src="https://res.cloudinary.com/dsoilebvu/image/upload/v1777057659/check_a87gb5.svg" loading="lazy" alt="Icon" width={24} height={24} className="contact-us-list-icon" />
+                                                <p className="contact-us-list-description service-page">We&apos;ll respond in 24 hours fast & focused.</p>
+                                            </li>
+                                            <li className="contact-us-list-item">
+                                                <Image src="https://res.cloudinary.com/dsoilebvu/image/upload/v1777057659/check_a87gb5.svg" loading="lazy" alt="Icon" width={24} height={24} className="contact-us-list-icon" />
+                                                <p className="contact-us-list-description service-page">Work with Senior Engineers.</p>
+                                            </li>
+                                        </>
+                                    )}
                                 </ul>
                             </div>
                             <h2 className="heading-13 service-form-title">Send us a message! </h2>
                             <p className="contact-us-description service-contact-description">Tell us about your project, your company & your goals!</p>
                             <div className="form-block-2 w-form">
-                                <form id="wf-form-Contact-Us-From" name="wf-form-Contact-Us-From" data-name="Contact Us From" method="get" className="form-2">
+                                <form id="wf-form-Contact-Us-From" name="wf-form-Contact-Us-From" data-name="Contact Us From" onSubmit={handleSubmit} className="form-2">
                                     <div className="fields-wrap">
                                         <div className="form-group service-form-group">
                                             <p className="from-group-title service-form-title">Full Name*</p>
@@ -151,15 +223,25 @@ export default function ContactSection({ isSimple = false }: { isSimple?: boolea
                                         </>
                                     )}
                                     <div className="from-footer">
-                                        <input type="submit" data-wait="Please wait..." className="button-primary service-button-primary w-button" value="Submit your message" />
+                                        <input
+                                            type="submit"
+                                            disabled={isSubmitting}
+                                            data-wait="Please wait..."
+                                            className="button-primary service-button-primary w-button"
+                                            value={isSubmitting ? "Submitting..." : "Submit your message"}
+                                        />
                                     </div>
                                 </form>
-                                <div className="success-message-4 responsive-style w-form-done">
-                                    <div className="text-block-14">Thank you! Your submission has been received!</div>
-                                </div>
-                                <div className="w-form-fail">
-                                    <div className="text-block-15">Oops! Something went wrong while submitting the form.</div>
-                                </div>
+                                {submitStatus === "success" && (
+                                    <div className="success-message-4 responsive-style w-form-done" style={{ display: "block" }}>
+                                        <div className="text-block-14">Thank you! Your submission has been received!</div>
+                                    </div>
+                                )}
+                                {submitStatus === "error" && (
+                                    <div className="w-form-fail" style={{ display: "block" }}>
+                                        <div className="text-block-15">Oops! Something went wrong while submitting the form.</div>
+                                    </div>
+                                )}
                             </div>
                         </div>
                     </div>

@@ -1,5 +1,6 @@
 "use client";
 
+import { TestimonialSectionData, Testimonial } from "@/types/homepage";
 import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Autoplay } from "swiper/modules";
@@ -32,7 +33,34 @@ const testimonials = [
     },
 ];
 
-export default function TestimonialsSection() {
+export default function TestimonialsSection({ 
+    data,
+    testimonials: fetchedTestimonials = []
+}: { 
+    data?: TestimonialSectionData;
+    testimonials?: Testimonial[];
+}) {
+    const activeTestimonials = fetchedTestimonials.length > 0
+        ? fetchedTestimonials.map((model) => {
+            const avatarUrl = model.image?.url
+                ? (model.image.url.startsWith("http")
+                    ? model.image.url
+                    : `${process.env.NEXT_PUBLIC_SERVER_URL}${model.image.url}`)
+                : "https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg";
+            
+            return {
+                desc: model.feedback,
+                name: model.name,
+                designation: "Envato Customer",
+                rating: model.rating || 5,
+                avatar: avatarUrl
+            };
+        })
+        : testimonials.map(t => ({
+            ...t,
+            rating: 5,
+            avatar: "https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg"
+        }));
     return (
         <>
             <section className="section section-box pb-120">
@@ -43,12 +71,12 @@ export default function TestimonialsSection() {
                             <p className="section-head-subtitle-content subtitle-secondary-content">What Our Clients Testify</p>
                         </div>
                         <div id="w-node-f45bf615-749c-f206-010c-cf24ca47f6e0-28eb60ed" className="title title-two">
-                            <h2 data-amt="text-reveal" className="title-h2-2 title-h2-two client-review">Endorsed by Industry Leaders for Delivering Unmatched Value</h2>
+                            <h2 data-amt="text-reveal" className="title-h2-2 title-h2-two client-review">{data?.testimonialSectionTitle || "Endorsed by Industry Leaders for Delivering Unmatched Value"}</h2>
                             <div className="average-client-rating">
                                 <div className="award-winning">
                                     <Image alt="Marquee Image" src="https://res.cloudinary.com/dsoilebvu/image/upload/v1777048239/rating-l_ngsvxg.svg" width={40} height={40} className="award-winning-shade-img" />
                                     <div className="rating-number-wrap">
-                                        <div className="rating-number client-review">4.9</div>
+                                        <div className="rating-number client-review">{data?.testimonialAverageRating || 4.9}</div>
                                         <div className="total-rating client-review">/5</div>
                                     </div>
                                     <Image alt="Marquee Image" src="https://res.cloudinary.com/dsoilebvu/image/upload/v1777048240/rating-r_vlkuz4.svg" width={40} height={40} className="award-winning-shade-img hero-banner-shade" />
@@ -94,17 +122,17 @@ export default function TestimonialsSection() {
                                 1280: { slidesPerView: 2 },
                             }}
                         >
-                            {testimonials.map((t, i) => (
+                            {activeTestimonials.map((t, i) => (
                                 <SwiperSlide key={i}>
                                     <li className="clients-review-slider-item">
                                         <div className="rating-wrapper">
-                                            {[...Array(5)].map((_, j) => (
+                                            {[...Array(t.rating)].map((_, j) => (
                                                 <Image key={j} loading="lazy" src="https://res.cloudinary.com/dsoilebvu/image/upload/v1777057659/star_o6pixh.svg" alt="star-svg" width={16} height={16} className="star-icon-filled" />
                                             ))}
                                         </div>
                                         <div className="client-review-description">{t.desc}</div>
                                         <div className="client-profile-wrap  mt-20!">
-                                            <Image src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" loading="lazy" alt="Client Profile" width={48} height={48} className="client-image" />
+                                            <Image src={t.avatar} loading="lazy" alt="Client Profile" width={48} height={48} unoptimized className="client-image" />
                                             <span className="rating-brand-text">Google</span>
                                             <div className="client-description">
                                                 <h3 className="client-name">{t.name}</h3>

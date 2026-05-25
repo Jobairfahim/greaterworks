@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import { ImpactSectionData } from "@/types/homepage";
 import Image from "next/image";
 import Link from "next/link";
 import { gsap } from "gsap";
@@ -10,14 +11,14 @@ if (typeof window !== "undefined") {
     gsap.registerPlugin(ScrollTrigger);
 }
 
-const stats = [
-    { title: "Years of experience", value: 10, suffix: "+", display: "10+", decimals: 0, desc: "Years of experience building custom software solutions." },
-    { title: "Client retention rate", value: 98, suffix: "%", display: "98%", decimals: 0, desc: "Client retention rate, & longterm partnerships built on trust." },
-    { title: "Projects delivered", value: 300, suffix: "+", display: "300+", decimals: 0, desc: "Projects delivered successfully across various industries." },
-    { title: "Users worldwide", value: 50, suffix: "M+", display: "50M+", decimals: 0, desc: "Empowering 50M+ users with seamless digital experiences" },
-];
+export default function ImpactSection({ data }: { data?: ImpactSectionData }) {
+    const stats = [
+        { title: "Years of experience", value: data?.impactSectionExperience || 10, suffix: "+", display: "10+", decimals: 0, desc: "Years of experience building custom software solutions." },
+        { title: "Client retention rate", value: data?.impactSectionClientRetentionRate || 98, suffix: "%", display: "98%", decimals: 0, desc: "Client retention rate, & longterm partnerships built on trust." },
+        { title: "Projects delivered", value: data?.impactSectionProjectsDelivered || 300, suffix: "+", display: "300+", decimals: 0, desc: "Projects delivered successfully across various industries." },
+        { title: "Users worldwide", value: data?.impactSectionUsersWorldwide || 50, suffix: "M+", display: "50M+", decimals: 0, desc: "Empowering 50M+ users with seamless digital experiences" },
+    ];
 
-export default function ImpactSection() {
     const countersRef = useRef<(HTMLSpanElement | null)[]>([]);
 
     useEffect(() => {
@@ -68,7 +69,7 @@ export default function ImpactSection() {
                             <p className="section-head-subtitle-content subtitle-primary-content">Impact that speaks for Itself</p>
                         </div>
                         <div id="w-node-_91e32355-7776-50bb-abb0-7dd1d2bcce8f-d2bcce88" className="title title-two">
-                            <h2 data-amt="text-reveal" className="title-h2 title-h2-two why-choose-us-title-h2">From Concept to Industry Impact, We Build World Class Experiences</h2>
+                            <h2 data-amt="text-reveal" className="title-h2 title-h2-two why-choose-us-title-h2">{data?.impactSectionTitle || "From Concept to Industry Impact, We Build World Class Experiences"}</h2>
                             <div className="button-wrap service-banner-button none">
                                 <Link href="/contact-us" className="button-primary-dark w-inline-block">
                                     <div className="text-block-12">Get in touch</div>

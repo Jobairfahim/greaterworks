@@ -2,8 +2,356 @@ import ContactSection from "@/component/ContactSection";
 import { ServiceFaqAccordion } from "@/component/ServiceFaqAccordion";
 import Image from "next/image";
 import Link from "next/link";
+import { notFound } from "next/navigation";
 
-export default function CustomSoftwareDevelopmentPage() {
+type CmsRecord = Record<string, unknown>;
+
+interface CmsImage {
+  url?: string;
+  alternativeText?: string | null;
+  formats?: Record<string, { url?: string } | undefined>;
+}
+
+interface ServicePageProps {
+  params: Promise<{ id: string }>;
+}
+
+const SERVICE_POPULATE_QUERY =
+  "populate[bannar][populate][bannarImage]=true&populate[bannar][populate][brandsImages]=true&populate[chooseUs][populate][chooseUsSectionData][populate][icon]=true&populate[offer]=true&populate[selectedWork][populate][selectedWorkSectionData][populate][image]=true&populate[ourProcess][populate][ourProcessBgImage]=true&populate[ourProcess][populate][testimonial][populate][image]=true&populate[ourProcess][populate][process]=true&populate[faq][populate][faqs]=true&pagination[pageSize]=10&pagination[page]=1";
+
+const FALLBACK_BANNER_IMAGE =
+  "https://cdn.prod.website-files.com/68d276a2319df5bdcc752026/695227c7f17e6a5a37ecaea8_banner-image.png";
+
+function isRecord(value: unknown): value is CmsRecord {
+  return typeof value === "object" && value !== null && !Array.isArray(value);
+}
+
+function asRecord(value: unknown): CmsRecord {
+  return isRecord(value) ? value : {};
+}
+
+function asArray(value: unknown): CmsRecord[] {
+  return Array.isArray(value) ? value.filter(isRecord) : [];
+}
+
+function getString(source: CmsRecord, keys: string[], fallback = "") {
+  for (const key of keys) {
+    const value = source[key];
+    if (typeof value === "string" && value.trim()) return value;
+    if (typeof value === "number") return String(value);
+  }
+  return fallback;
+}
+
+function getNumber(source: CmsRecord, keys: string[], fallback = 0) {
+  for (const key of keys) {
+    const value = source[key];
+    if (typeof value === "number") return value;
+    if (typeof value === "string" && value.trim() && !Number.isNaN(Number(value))) {
+      return Number(value);
+    }
+  }
+  return fallback;
+}
+
+function getImageUrl(image: unknown, fallback: string) {
+  if (!isRecord(image)) return fallback;
+  const cmsImage = image as CmsImage;
+  const url =
+    cmsImage.formats?.large?.url ||
+    cmsImage.formats?.medium?.url ||
+    cmsImage.formats?.small?.url ||
+    cmsImage.url;
+
+  if (!url) return fallback;
+  if (url.startsWith("http://") || url.startsWith("https://")) return url;
+  return `${process.env.NEXT_PUBLIC_SERVER_URL ?? ""}${url}`;
+}
+
+function getNestedArray(source: CmsRecord, keys: string[]) {
+  for (const key of keys) {
+    const value = source[key];
+    if (Array.isArray(value)) return asArray(value);
+  }
+  return [];
+}
+
+async function getServiceBySlug(slug: string): Promise<CmsRecord | null> {
+  try {
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_SERVER_URL}/api/services?filters[slug][$eq]=${encodeURIComponent(
+        slug
+      )}&${SERVICE_POPULATE_QUERY}`,
+      {
+        cache: "no-store",
+        headers: {
+          Authorization: `Bearer ${process.env.AUTH_TOKEN}`,
+        },
+      }
+    );
+
+    if (!res.ok) {
+      console.error(`Failed to fetch service: ${res.status} ${res.statusText}`);
+      return null;
+    }
+
+    const json = await res.json();
+    const services = asArray(json.data);
+    return services[0] ?? null;
+  } catch (error) {
+    console.error("Error fetching service:", error);
+    return null;
+  }
+}
+
+export default async function CustomSoftwareDevelopmentPage({ params }: ServicePageProps) {
+  const { id } = await params;
+  const service = await getServiceBySlug(id);
+console.log("Fetched Service Data:", service);
+  if (!service) {
+    notFound();
+  }
+
+  const bannar = asRecord(service.bannar);
+  const chooseUs = asRecord(service.chooseUs);
+  const selectedWork = asRecord(service.selectedWork);
+  const ourProcess = asRecord(service.ourProcess);
+  const faq = asRecord(service.faq);
+
+  const bannerTitle = getString(
+    bannar,
+    ["title", "bannarTitle", "bannerTitle", "heading"],
+    "Custom Software Development Built for Innovation & Growth"
+  );
+  const bannerSubtitle = getString(
+    bannar,
+    ["subtitle", "tagline", "bannarSubTitle", "bannerSubTitle"],
+    "Booking for Q1 2026"
+  );
+  const bannerDescription = getString(
+    bannar,
+    ["description", "bannarDescription", "bannerDescription"],
+    "Beyond Code, Delivering Impact! We don't just build apps, we create solutions that drive business results and delight users."
+  );
+  const brandTitle = getString(
+    bannar,
+    ["brandsTitle", "brandTitle"],
+    "Trusted by 500+ happy clients worldwide."
+  );
+  const bannerImage = getImageUrl(bannar.bannarImage, FALLBACK_BANNER_IMAGE);
+  console.log("Banner Image URL:", bannerImage,bannar.bannarImage);
+  const brandImages = asArray(bannar.brandsImages);
+
+  const offerItems = getNestedArray(service, ["offer"]);
+  const chooseUsItems = getNestedArray(chooseUs, ["chooseUsSectionData"]);
+  const workItems = getNestedArray(selectedWork, ["selectedWorkSectionData"]);
+  const processItems = getNestedArray(ourProcess, ["process"]);
+  const testimonials = getNestedArray(ourProcess, ["testimonial"]);
+  const faqItems = getNestedArray(faq, ["faqs"]);
+
+  const fallbackOfferItems = [
+    {
+      num: "S / 001",
+      icon: "69566f0cfd5b251dab6cb856_d-choose-us-img-02_3_kfjzqz.svg",
+      title: "Web Application Development",
+      desc: "Secure, responsive web applications built for scalability, cross-device compatibility, and custom feature integration.",
+    },
+    {
+      num: "S / 002",
+      icon: "69566d02b993d21fb5c04f20_d-service-card-01_3_pq3sxg.svg",
+      title: "API & System Integration",
+      desc: "Robust APIs and seamless integration of legacy systems with new tools, supporting real-time or batch sync and microservices.",
+    },
+    {
+      num: "S / 003",
+      icon: "6956795cc329e420ceeece35_q-choose-us-img-02_1_p4uwvo.svg",
+      title: "Enterprise Data Solutions & Analytics",
+      desc: "End-to-end data solutions including ETL pipelines, real-time dashboards, predictive analytics, and data warehousing.",
+    },
+    {
+      num: "S / 004",
+      icon: "695654920fcdb2da81023066_bussiness_1_fvajfy.svg",
+      title: "Cloud & Infrastructure Engineering",
+      desc: "Cloud migration (AWS, Azure, GCP), server less architectures, containerization, DevOps pipelines, infrastructure as code, and monitoring.",
+    },
+    {
+      num: "S / 005",
+      icon: "69567c9a2c612e8ca6f24b8f_m-service-card-01_1_zjo3xx.svg",
+      title: "UI/UX Design & Prototyping",
+      desc: "User research, journey mapping, wireframes, interactive prototypes, visual and interaction design, and usability testing.",
+    },
+    {
+      num: "S / 006",
+      icon: "69566d029643f586cf9f0265_d-service-card-06_5_v692hw.svg",
+      title: "Maintenance & Support",
+      desc: "Comprehensive maintenance including bug fixes, feature updates, performance optimization, security compliance, and managed SLA support.",
+    },
+  ];
+
+  const offerDisplayItems =
+    offerItems.length > 0
+      ? offerItems.map((item, index) => ({
+          num: getString(item, ["num", "number", "counter"], `S / ${String(index + 1).padStart(3, "0")}`),
+          icon: fallbackOfferItems[index % fallbackOfferItems.length].icon,
+          title: getString(item, ["title", "offerTitle", "heading"], fallbackOfferItems[index % fallbackOfferItems.length].title),
+          desc: getString(item, ["description", "offerDescription", "details"], fallbackOfferItems[index % fallbackOfferItems.length].desc),
+        }))
+      : fallbackOfferItems;
+
+  const fallbackChooseUsItems = [
+    {
+      icon: "69567b82006c105bfc41926e_w-choose-us-img-05_4_bujohb.svg",
+      alt: "Octagon Icon",
+      title: "Full Ownership & IP Rights",
+      desc: "You have complete ownership and all intellectual property rights to your product.",
+    },
+    {
+      icon: "695657cc93405ab37a5e556b_choose-us-icon-03_1_ecehat.svg",
+      alt: "Quality-standard-icon",
+      title: "Assured Quality Standards",
+      desc: "Dependable software solutions through strong design, careful testing, and clear maintenance.",
+    },
+    {
+      icon: "69567b82049528fdedba9c45_w-choose-us-img-02_4_gxzfoe.svg",
+      alt: "Globe",
+      title: "Flexible Engagement Models",
+      desc: "Choose from flexible models, dedicated teams, staff augmentation, or project-based solutions.",
+    },
+    {
+      icon: "69567b827695f581f7b31b50_w-choose-us-img-03_4_cgot6w.svg",
+      alt: "communication-icon",
+      title: "Transparent Communication",
+      desc: "Stay informed with transparent project tracking, frequent updates, and concise agile reports.",
+    },
+    {
+      icon: "69567b820738559f1070439c_w-choose-us-img-04_2_o3bngu.svg",
+      alt: "business-icon",
+      title: "Business-Centric Solutions",
+      desc: "Solutions crafted to mirror your business strategy, ensuring alignment with your industry landscape.",
+    },
+    {
+      icon: "69566d029643f586cf9f0265_d-service-card-06_4_lnqdyd.svg",
+      alt: "settings-icon",
+      title: "Ongoing Support & Growth",
+      desc: "Reliable maintenance, continuous updates, and scalable solutions for performance and growth.",
+    },
+  ];
+
+  const chooseUsDisplayItems =
+    chooseUsItems.length > 0
+      ? chooseUsItems.map((item, index) => ({
+          icon: getImageUrl(
+            item.icon,
+            `https://res.cloudinary.com/dsoilebvu/image/upload/v1778074611/${fallbackChooseUsItems[index % fallbackChooseUsItems.length].icon}`
+          ),
+          alt: getString(item, ["alt", "title"], fallbackChooseUsItems[index % fallbackChooseUsItems.length].alt),
+          title: getString(item, ["title", "chooseUsTitle", "heading"], fallbackChooseUsItems[index % fallbackChooseUsItems.length].title),
+          desc: getString(item, ["description", "chooseUsDescription", "details"], fallbackChooseUsItems[index % fallbackChooseUsItems.length].desc),
+        }))
+      : fallbackChooseUsItems.map((item) => ({
+          ...item,
+          icon: `https://res.cloudinary.com/dsoilebvu/image/upload/v1778074611/${item.icon}`,
+        }));
+
+  const fallbackWorks = [
+    {
+      title: "Lernen - Key Challenges & Value Delivered",
+      description:
+        "We built Lernen to connect students with expert tutors seamlessly. With a mobile-friendly, intuitive platform, customizable sessions, real-time messaging, and scheduling tools, it empowers students and tutors in a complete marketplace.",
+      image: { url: "https://cdn.prod.website-files.com/68d276a2319df5bdcc752026/695622ae093c1cca3a5e771d_lernen-works.png" },
+      impact: "Improved learning efficiency, smoother session management, and higher student satisfaction.",
+      impactNumber: 70,
+      impactSuffix: "%",
+    },
+    {
+      title: "Workreap - Powerful Freelance Marketplaces",
+      description:
+        "We built Workreap to create feature-rich, user-friendly freelance marketplaces, enabling freelancers and employers to connect, collaborate, and grow efficiently with a scalable, engaging, and intuitive platform.",
+      image: { url: "https://cdn.prod.website-files.com/68d276a2319df5bdcc752026/695d1bbd7d1a666f4f84bb62_img-09.jpg" },
+      impact: "Faster hiring cycles, improved freelancer engagement, and smoother project collaboration.",
+      impactNumber: 55,
+      impactSuffix: "%",
+    },
+    {
+      title: "Doctreat - Transforming Online Healthcare",
+      description:
+        "We built Doctreat to connect patients and doctors seamlessly. With a user-friendly, research-backed design, it has enabled 5,000+ patients and 1,000+ doctors to complete 20,000+ consultations efficiently.",
+      image: { url: "https://cdn.prod.website-files.com/68d276a2319df5bdcc752026/69576f55b4cbbc51040f438a_doctreat-work.png" },
+      impact: "Improved appointment efficiency and enhanced patient engagement.",
+      impactNumber: 40,
+      impactSuffix: "%",
+    },
+  ];
+
+  const selectedWorksToDisplay = workItems.length >= 3 ? workItems : fallbackWorks;
+  const selectedWorksDisplay = selectedWorksToDisplay.map((item, index) => ({
+    title: getString(item, ["title", "selectedWorkTitle", "heading"], `Project ${index + 1}`),
+    description: getString(item, ["description", "selectedWorkDescription", "details"], ""),
+    image: getImageUrl(item.image, getImageUrl(asRecord(item).selectedWorkImage, FALLBACK_BANNER_IMAGE)),
+    impact: getString(item, ["impact", "impactDescription", "result"], ""),
+    impactNumber: getNumber(item, ["impactNumber", "impactValue", "target"], 0),
+    impactSuffix: getString(item, ["impactSuffix", "suffix"], "%"),
+  }));
+
+  const processDisplayItems = (
+    processItems.length > 0
+      ? processItems
+      : [
+          { num: "01.", title: "Discovery & Planning", desc: "We align on business goals, user needs, scope, feasibility, and a clear roadmap." },
+          { num: "02.", title: "Design & Prototyping", desc: "User-first UX/UI and interactive prototypes that reflect your brand and drive adoption." },
+          { num: "03.", title: "Agile Development & Testing", desc: "Iterative development with continuous testing to ensure stability, security, and performance." },
+          { num: "04.", title: "Launch, Support & Growth", desc: "Smooth deployment, team training, system integration, and ongoing improvements as you scale." },
+        ]
+  ).map((item, index) => ({
+    num: getString(item, ["num", "number", "counter"], `${String(index + 1).padStart(2, "0")}.`),
+    title: getString(item, ["title", "processTitle", "heading"], ""),
+    desc: getString(item, ["description", "processDescription", "details"], ""),
+  }));
+
+  const testimonialDisplayItems = (
+    testimonials.length > 0
+      ? testimonials
+      : [
+          {
+            name: "Raustyle",
+            role: "Google Customer",
+            text: "The most extensive and well-designed theme of this type that I've seen available. Constantly updated, great support, feature requests added to the theme and constantly getting better. Really hope it keeps improving and evolving for a long time. Great work!",
+            image: { url: "https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" },
+          },
+          {
+            name: "paulthinkgrow",
+            role: "Google Customer",
+            text: "Very GREAT customer support. I am blown away. Great price for the template and very beautiful. I contacted support for something I thought was impossible and they were so kind and helped me without any hesitation. Thank you so much.",
+            image: { url: "https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" },
+          },
+          {
+            name: "BuxRecord",
+            role: "Google Customer",
+            text: "Great job. I have use many other freelancers script theme, fiverr clone script and theme since years, and no one like this in design, and features. So i decide to remove previous script from my domain and install workreap. Now i am happy. Thanks for your support too",
+            image: { url: "https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" },
+          },
+        ]
+  ).map((item) => ({
+    name: getString(item, ["name", "authorName", "title"], "Client"),
+    role: getString(item, ["role", "designation", "company"], "Customer"),
+    text: getString(item, ["text", "feedback", "description"], ""),
+    image: getImageUrl(item.image, "https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg"),
+  }));
+
+  const faqDisplayItems = (
+    faqItems.length > 0
+      ? faqItems
+      : [
+          { q: "How long does a custom software project take?", a: "Timelines vary depending on complexity but typically range from 3 to 9 months." },
+          { q: "How much does it cost to build software?", a: "Costs depend on features, technology stack, and engagement model. We provide transparent estimates after the discovery phase." },
+          { q: "Do you offer ongoing support?", a: "Yes, we offer long-term maintenance, upgrades, and technical assistance." },
+          { q: "How do you ensure software security?", a: "We follow global compliance standards (ISO, GDPR, HIPAA) with advanced encryption and data protection." },
+        ]
+  ).map((item) => ({
+    q: getString(item, ["q", "question", "title"], ""),
+    a: getString(item, ["a", "answer", "description"], ""),
+  }));
+
   return (
     <>
       {/* ── SERVICE BANNER ─────────────────────────────────────────────── */}
@@ -12,14 +360,13 @@ export default function CustomSoftwareDevelopmentPage() {
           <div className="banner-content service-banner-content">
             <div className="section-head-content-subtitle">
               <div className="section-head-subtitle-dot" />
-              <p className="section-head-subtitle-content">Booking for Q1 2026</p>
+              <p className="section-head-subtitle-content">{bannerSubtitle}</p>
             </div>
             <h2 className="banner-title-2 service-banner-content-title">
-              Custom Software Development Built for Innovation &amp; Growth
+              {bannerTitle}
             </h2>
             <p className="service-banner-content-description">
-              Beyond Code, Delivering Impact! We don&apos;t just build apps, we create solutions
-              that drive business results and delight users.
+              {bannerDescription}
             </p>
             <div className="button-wrap service-banner-button">
               <Link href="/contact-us" className="button-primary w-inline-block">
@@ -54,26 +401,36 @@ export default function CustomSoftwareDevelopmentPage() {
             </div>
 
             <div className="service-banner-slider-wrap">
-              <p className="service-banner-slider-title">Trusted by 500+ happy clients worldwide.</p>
+              <p className="service-banner-slider-title">{brandTitle}</p>
               <div className="service-banner-slider">
                 <div className="div-block-7" />
                 <div className="logos-inner">
                   {[...Array(2)].map((_, wi) => (
                     <div key={wi} className="logos-wrapper-2">
-                      {[
-                        "69552209697458f39f276182_brand-logo-09.png",
-                        "695521f2049528fded9affb5_brand-logo-07.png",
-                        "695521dbd94b315853a77d52_brand-logo-06.png",
-                        "695521c4f8ed10005799b610_brand-logo-05.png",
-                        "695521b2d8f2354c8950b959_brand-logo-04.png",
-                        "6955219ccc4fd93ce49be32e_brand-logo-03.png",
-                        "69552189254a8420d72304ef_brand-logo-02.png",
-                        "69552172be8c60bdacafcb8e_brand-logo-01.png",
-                      ].map((img) => (
+                      {(brandImages.length > 0
+                        ? brandImages
+                        : [
+                            "69552209697458f39f276182_brand-logo-09.png",
+                            "695521f2049528fded9affb5_brand-logo-07.png",
+                            "695521dbd94b315853a77d52_brand-logo-06.png",
+                            "695521c4f8ed10005799b610_brand-logo-05.png",
+                            "695521b2d8f2354c8950b959_brand-logo-04.png",
+                            "6955219ccc4fd93ce49be32e_brand-logo-03.png",
+                            "69552189254a8420d72304ef_brand-logo-02.png",
+                            "69552172be8c60bdacafcb8e_brand-logo-01.png",
+                          ]
+                      ).map((img, index) => (
                         <Image
-                          key={img}
+                          key={`${wi}-${index}`}
                           alt="Marquee Image"
-                          src={`https://cdn.prod.website-files.com/68d276a2319df5bdcc752026/${img}`}
+                          src={
+                            typeof img === "string"
+                              ? `https://cdn.prod.website-files.com/68d276a2319df5bdcc752026/${img}`
+                              : getImageUrl(
+                                  img,
+                                  "https://cdn.prod.website-files.com/68d276a2319df5bdcc752026/69552209697458f39f276182_brand-logo-09.png"
+                                )
+                          }
                           width={120}
                           height={40}
                           className="ui-logo-marquee"
@@ -96,8 +453,8 @@ export default function CustomSoftwareDevelopmentPage() {
               height={600}
               className="banner-line-image"
             />
-            <Image
-              src="https://cdn.prod.website-files.com/68d276a2319df5bdcc752026/695227c7f17e6a5a37ecaea8_banner-image.png"
+            <img
+              src={bannerImage}
               alt="Banner-Image"
               width={600}
               height={700}
@@ -107,26 +464,36 @@ export default function CustomSoftwareDevelopmentPage() {
 
           {/* Responsive slider */}
           <div className="service-banner-slider-wrap service-responsive-style">
-            <p className="service-banner-slider-title">Trusted by 500+ happy clients worldwide.</p>
+            <p className="service-banner-slider-title">{brandTitle}</p>
             <div className="service-banner-slider">
               <div className="div-block-7" />
               <div className="logos-inner">
                 {[...Array(2)].map((_, wi) => (
                   <div key={wi} className="logos-wrapper-2">
-                    {[
-                      "690de578a40bbc5e28f07ff7_company-log-01.svg",
-                      "690de578260bf9d8ad326a39_company-log-06.svg",
-                      "690de5776d576c549f14a836_company-log-05.svg",
-                      "690de577601a71c5dda230d2_company-log-03.svg",
-                      "690dea3a770a43473b7adcfc_company-log-07.svg",
-                      "690dea3ac3e4e38c07808ad9_company-log-08.svg",
-                      "690de577364336678dfbafd3_company-log-02.svg",
-                      "690de577aea71afed07b710b_company-log-04.svg",
-                    ].map((img) => (
+                    {(brandImages.length > 0
+                      ? brandImages
+                      : [
+                          "690de578a40bbc5e28f07ff7_company-log-01.svg",
+                          "690de578260bf9d8ad326a39_company-log-06.svg",
+                          "690de5776d576c549f14a836_company-log-05.svg",
+                          "690de577601a71c5dda230d2_company-log-03.svg",
+                          "690dea3a770a43473b7adcfc_company-log-07.svg",
+                          "690dea3ac3e4e38c07808ad9_company-log-08.svg",
+                          "690de577364336678dfbafd3_company-log-02.svg",
+                          "690de577aea71afed07b710b_company-log-04.svg",
+                        ]
+                    ).map((img, index) => (
                       <Image
-                        key={img}
+                        key={`${wi}-${index}`}
                         alt="Marquee Image"
-                        src={`https://cdn.prod.website-files.com/68d276a2319df5bdcc752026/${img}`}
+                        src={
+                          typeof img === "string"
+                            ? `https://cdn.prod.website-files.com/68d276a2319df5bdcc752026/${img}`
+                            : getImageUrl(
+                                img,
+                                "https://cdn.prod.website-files.com/68d276a2319df5bdcc752026/690de578a40bbc5e28f07ff7_company-log-01.svg"
+                              )
+                        }
                         width={100}
                         height={36}
                         className="ui-logo-marquee"
@@ -187,7 +554,7 @@ export default function CustomSoftwareDevelopmentPage() {
             <div className="section-head-content-subtitle">
               <div className="section-head-subtitle-dot" />
               <p className="section-head-subtitle-content subtitle-secondary-content">
-                What we offer
+                {getString(service, ["offerTagline", "offerSubtitle"], "What we offer")}
               </p>
             </div>
             <div
@@ -195,54 +562,20 @@ export default function CustomSoftwareDevelopmentPage() {
               className="title title-two"
             >
               <h2 className="title-h2 title-h2-two">
-                Driving Growth Through Tailored Technology
+                {getString(service, ["offerTitle"], "Driving Growth Through Tailored Technology")}
               </h2>
               <p className="section-title-description">
-                Our apps are customized for your sector, addressing unique workflows, compliance
-                needs, and user expectations.
+                {getString(
+                  service,
+                  ["offerDescription"],
+                  "Our apps are customized for your sector, addressing unique workflows, compliance needs, and user expectations."
+                )}
               </p>
             </div>
           </div>
 
           <ul role="list" className="our-technology-list w-list-unstyled">
-            {[
-              {
-                num: "S / 001",
-                icon: "69566f0cfd5b251dab6cb856_d-choose-us-img-02_3_kfjzqz.svg",
-                title: "Web Application Development",
-                desc: "Secure, responsive web applications built for scalability, cross-device compatibility, and custom feature integration.",
-              },
-              {
-                num: "S / 002",
-                icon: "69566d02b993d21fb5c04f20_d-service-card-01_3_pq3sxg.svg",
-                title: "API & System Integration",
-                desc: "Robust APIs and seamless integration of legacy systems with new tools, supporting real-time or batch sync and microservices.",
-              },
-              {
-                num: "S / 003",
-                icon: "6956795cc329e420ceeece35_q-choose-us-img-02_1_p4uwvo.svg",
-                title: "Enterprise Data Solutions & Analytics",
-                desc: "End-to-end data solutions including ETL pipelines, real-time dashboards, predictive analytics, and data warehousing.",
-              },
-              {
-                num: "S / 004",
-                icon: "695654920fcdb2da81023066_bussiness_1_fvajfy.svg",
-                title: "Cloud & Infrastructure Engineering",
-                desc: "Cloud migration (AWS, Azure, GCP), server less architectures, containerization, DevOps pipelines, infrastructure as code, and monitoring.",
-              },
-              {
-                num: "S / 005",
-                icon: "69567c9a2c612e8ca6f24b8f_m-service-card-01_1_zjo3xx.svg",
-                title: "UI/UX Design & Prototyping",
-                desc: "User research, journey mapping, wireframes, interactive prototypes, visual and interaction design, and usability testing.",
-              },
-              {
-                num: "S / 006",
-                icon: "69566d029643f586cf9f0265_d-service-card-06_5_v692hw.svg",
-                title: "Maintenance & Support",
-                desc: "Comprehensive maintenance including bug fixes, feature updates, performance optimization, security compliance, and managed SLA support.",
-              },
-            ].map((s) => (
+            {offerDisplayItems.map((s) => (
               <li key={s.num} className="our-technology-listi-tem">
                 <div className="our-technology-card">
                   <div className="technology-shade" />
@@ -339,51 +672,14 @@ export default function CustomSoftwareDevelopmentPage() {
               </p>
             </div>
             <h2 className="title-h2 title-h2-two choose-us choose-us-two-title">
-              Partner With Us for Custom Software Development
+              {getString(chooseUs, ["title", "chooseUsTitle", "heading"], "Partner With Us for Custom Software Development")}
             </h2>
           </div>
           <div className="choose-us-content">
-            {[
-              {
-                icon: "69567b82006c105bfc41926e_w-choose-us-img-05_4_bujohb.svg",
-                alt: "Octagon Icon",
-                title: "Full Ownership & IP Rights",
-                desc: "You have complete ownership and all intellectual property rights to your product.",
-              },
-              {
-                icon: "695657cc93405ab37a5e556b_choose-us-icon-03_1_ecehat.svg",
-                alt: "Quality-standard-icon",
-                title: "Assured Quality Standards",
-                desc: "Dependable software solutions through strong design, careful testing, and clear maintenance.",
-              },
-              {
-                icon: "69567b82049528fdedba9c45_w-choose-us-img-02_4_gxzfoe.svg",
-                alt: "Globe",
-                title: "Flexible Engagement Models",
-                desc: "Choose from flexible models, dedicated teams, staff augmentation, or project-based solutions.",
-              },
-              {
-                icon: "69567b827695f581f7b31b50_w-choose-us-img-03_4_cgot6w.svg",
-                alt: "communication-icon",
-                title: "Transparent Communication",
-                desc: "Stay informed with transparent project tracking, frequent updates, and concise agile reports.",
-              },
-              {
-                icon: "69567b820738559f1070439c_w-choose-us-img-04_2_o3bngu.svg",
-                alt: "business-icon",
-                title: "Business-Centric Solutions",
-                desc: "Solutions crafted to mirror your business strategy, ensuring alignment with your industry landscape.",
-              },
-              {
-                icon: "69566d029643f586cf9f0265_d-service-card-06_4_lnqdyd.svg",
-                alt: "settings-icon",
-                title: "Ongoing Support & Growth",
-                desc: "Reliable maintenance, continuous updates, and scalable solutions for performance and growth.",
-              },
-            ].map((w) => (
+            {chooseUsDisplayItems.map((w) => (
               <div key={w.title} className="choose-us-item">
                 <Image
-                  src={`https://res.cloudinary.com/dsoilebvu/image/upload/v1778074611/${w.icon}`}
+                  src={w.icon}
                   loading="lazy"
                   alt={w.alt}
                   width={48}
@@ -525,11 +821,15 @@ export default function CustomSoftwareDevelopmentPage() {
             <div className="section-head-content-subtitle">
               <div className="section-head-subtitle-dot" />
               <p className="section-head-subtitle-content subtitle-secondary-content">
-                Selected works ( 2024 - 2025 )
+                {getString(selectedWork, ["subtitle", "tagline"], "Selected works ( 2024 - 2025 )")}
               </p>
             </div>
             <h2 className="title-h2 title-h2-two portfolio">
-              Empowering businesses worldwide with measurable results
+              {getString(
+                selectedWork,
+                ["title", "selectedWorkTitle", "heading"],
+                "Empowering businesses worldwide with measurable results"
+              )}
             </h2>
           </div>
 
@@ -538,7 +838,7 @@ export default function CustomSoftwareDevelopmentPage() {
             <div className="portfolio-case-study-item full-width">
               <div className="portfolio-case-study-figure">
                 <Image
-                  src="https://cdn.prod.website-files.com/68d276a2319df5bdcc752026/695622ae093c1cca3a5e771d_lernen-works.png"
+                  src={selectedWorksDisplay[0].image}
                   loading="lazy"
                   alt="Portfolio Case Study Image"
                   width={800}
@@ -562,12 +862,10 @@ export default function CustomSoftwareDevelopmentPage() {
               <div className="portfolio-case-study-content v2">
                 <div className="portfolio-case-study-content-head">
                   <h3 className="portfolio-case-study-title">
-                    Lernen – Key Challenges &amp; Value Delivered
+                    {selectedWorksDisplay[0].title}
                   </h3>
                   <p className="portfolio-case-study-sub-title">
-                    We built Lernen to connect students with expert tutors seamlessly. With a
-                    mobile-friendly, intuitive platform, customizable sessions, real-time messaging,
-                    and scheduling tools, it empowers students and tutors in a complete marketplace.
+                    {selectedWorksDisplay[0].description}
                   </p>
                 </div>
                 <div className="portfolio-case-study-content-footer">
@@ -577,14 +875,13 @@ export default function CustomSoftwareDevelopmentPage() {
                     </p>
                     <p className="portfolio-stat-card-info">
                       <span
-                        data-suffix="%"
-                        data-target="70"
+                        data-suffix={selectedWorksDisplay[0].impactSuffix}
+                        data-target={String(selectedWorksDisplay[0].impactNumber)}
                         className="amt-counter amt-counter-two portfolio"
                       >
-                        70%
+                        {selectedWorksDisplay[0].impactNumber}{selectedWorksDisplay[0].impactSuffix}
                       </span>
-                      Improved learning efficiency, smoother session management, and higher student
-                      satisfaction.
+                      {selectedWorksDisplay[0].impact}
                     </p>
                   </div>
                 </div>
@@ -599,7 +896,7 @@ export default function CustomSoftwareDevelopmentPage() {
               <div className="portfolio-case-study-sub-item">
                 <div className="portfolio-case-study-figure">
                   <Image
-                    src="https://cdn.prod.website-files.com/68d276a2319df5bdcc752026/695d1bbd7d1a666f4f84bb62_img-09.jpg"
+                    src={selectedWorksDisplay[1].image}
                     loading="lazy"
                     alt="Portfolio Case Study Image"
                     width={600}
@@ -623,12 +920,10 @@ export default function CustomSoftwareDevelopmentPage() {
                 <div className="portfolio-case-study-content">
                   <div className="portfolio-case-study-content-head">
                     <h3 className="portfolio-case-study-title">
-                      Workreap – Powerful Freelance Marketplaces
+                      {selectedWorksDisplay[1].title}
                     </h3>
                     <p className="section-head-subtitle-content portfolio">
-                      We built Workreap to create feature-rich, user-friendly freelance
-                      marketplaces, enabling freelancers and employers to connect, collaborate, and
-                      grow efficiently with a scalable, engaging, and intuitive platform.
+                      {selectedWorksDisplay[1].description}
                     </p>
                   </div>
                   <div className="portfolio-case-study-content-footer">
@@ -636,14 +931,13 @@ export default function CustomSoftwareDevelopmentPage() {
                       <p className="portfolio-stat-card-title">Our Impact</p>
                       <p className="portfolio-stat-card-info">
                         <span
-                          data-suffix="%"
-                          data-target="55"
+                          data-suffix={selectedWorksDisplay[1].impactSuffix}
+                          data-target={String(selectedWorksDisplay[1].impactNumber)}
                           className="amt-counter amt-counter-two portfolio"
                         >
-                          55%
+                          {selectedWorksDisplay[1].impactNumber}{selectedWorksDisplay[1].impactSuffix}
                         </span>
-                        Faster hiring cycles, improved freelancer engagement, and smoother project
-                        collaboration.
+                        {selectedWorksDisplay[1].impact}
                       </p>
                     </div>
                   </div>
@@ -653,7 +947,7 @@ export default function CustomSoftwareDevelopmentPage() {
               <div className="portfolio-case-study-sub-item">
                 <div className="portfolio-case-study-figure">
                   <Image
-                    src="https://cdn.prod.website-files.com/68d276a2319df5bdcc752026/69576f55b4cbbc51040f438a_doctreat-work.png"
+                    src={selectedWorksDisplay[2].image}
                     loading="lazy"
                     alt="Portfolio Case Study Image"
                     width={600}
@@ -677,12 +971,10 @@ export default function CustomSoftwareDevelopmentPage() {
                 <div className="portfolio-case-study-content">
                   <div className="portfolio-case-study-content-head">
                     <h3 className="portfolio-case-study-title">
-                      Doctreat – Transforming Online Healthcare
+                      {selectedWorksDisplay[2].title}
                     </h3>
                     <p className="section-head-subtitle-content portfolio">
-                      We built Doctreat to connect patients and doctors seamlessly. With a
-                      user-friendly, research-backed design, it has enabled 5,000+ patients and
-                      1,000+ doctors to complete 20,000+ consultations efficiently.
+                      {selectedWorksDisplay[2].description}
                     </p>
                   </div>
                   <div className="portfolio-case-study-content-footer">
@@ -690,13 +982,13 @@ export default function CustomSoftwareDevelopmentPage() {
                       <p className="portfolio-stat-card-title">Our Impact</p>
                       <p className="portfolio-stat-card-info">
                         <span
-                          data-suffix="%"
-                          data-target="40"
+                          data-suffix={selectedWorksDisplay[2].impactSuffix}
+                          data-target={String(selectedWorksDisplay[2].impactNumber)}
                           className="amt-counter amt-counter-two portfolio"
                         >
-                          40%
+                          {selectedWorksDisplay[2].impactNumber}{selectedWorksDisplay[2].impactSuffix}
                         </span>
-                        Improved appointment efficiency and enhanced patient engagement.
+                        {selectedWorksDisplay[2].impact}
                       </p>
                     </div>
                   </div>
@@ -757,33 +1049,16 @@ export default function CustomSoftwareDevelopmentPage() {
               <p className="section-head-subtitle-content subtitle-primary-content">Our process</p>
             </div>
             <h2 className="title-h2 title-h2-two process-title">
-              Our Transparent Process for Developing Custom Software
+              {getString(
+                ourProcess,
+                ["title", "ourProcessTitle", "heading"],
+                "Our Transparent Process for Developing Custom Software"
+              )}
             </h2>
           </div>
 
           <div className="process-cycle-wrapper">
-            {[
-              {
-                num: "01.",
-                title: "Discovery & Planning",
-                desc: "We align on business goals, user needs, scope, feasibility, and a clear roadmap.",
-              },
-              {
-                num: "02.",
-                title: "Design & Prototyping",
-                desc: "User-first UX/UI and interactive prototypes that reflect your brand and drive adoption.",
-              },
-              {
-                num: "03.",
-                title: "Agile Development & Testing",
-                desc: "Iterative development with continuous testing to ensure stability, security, and performance.",
-              },
-              {
-                num: "04.",
-                title: "Launch, Support & Growth",
-                desc: "Smooth deployment, team training, system integration, and ongoing improvements as you scale.",
-              },
-            ].map((p) => (
+            {processDisplayItems.map((p) => (
               <div key={p.num} className="process-cycle-items">
                 <div className="process-cycle-number">{p.num}</div>
                 <div className="process-cycle-content">
@@ -810,23 +1085,7 @@ export default function CustomSoftwareDevelopmentPage() {
               data-infinite="true"
             >
               <div className="w-slider-mask">
-                {[
-                  {
-                    name: "Raustyle",
-                    role: "Google Customer",
-                    text: "The most extensive and well-designed theme of this type that I've seen available. Constantly updated, great support, feature requests added to the theme and constantly getting better. Really hope it keeps improving and evolving for a long time. Great work!",
-                  },
-                  {
-                    name: "paulthinkgrow",
-                    role: "Google Customer",
-                    text: "Very GREAT customer support. I am blown away. Great price for the template and very beautiful. I contacted support for something I thought was impossible and they were so kind and helped me without any hesitation. Thank you so much.",
-                  },
-                  {
-                    name: "BuxRecord",
-                    role: "Google Customer",
-                    text: "Great job. I have use many other freelancers script theme, fiverr clone script and theme since years, and no one like this in design, and features. So i decide to remove previous script from my domain and install workreap. Now i am happy. Thanks for your support too",
-                  },
-                ].map((t) => (
+                {testimonialDisplayItems.map((t) => (
                   <div key={t.name} className="w-slide">
                     <div className="div-block-17">
                       <div className="rating-wrapper">
@@ -845,7 +1104,7 @@ export default function CustomSoftwareDevelopmentPage() {
                       <p className="testimonial-description">{t.text}</p>
                       <div className="testimonial-profile-content">
                         <Image
-                          src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg"
+                          src={t.image}
                           loading="lazy"
                           alt="Client Profile Image"
                           width={48}
@@ -892,11 +1151,14 @@ export default function CustomSoftwareDevelopmentPage() {
                 className="title title-two faq-title"
               >
                 <h2 className="title-h2 title-h2-two">
-                  Get All Your Questions Answered Here!
+                  {getString(faq, ["title", "faqTitle", "heading"], "Get All Your Questions Answered Here!")}
                 </h2>
                 <p className="section-title-description service-faq-description">
-                  If you have other questions or want to know anything else feel free to reach out
-                  at:{" "}
+                  {getString(
+                    faq,
+                    ["description", "faqDescription"],
+                    "If you have other questions or want to know anything else feel free to reach out at:"
+                  )}{" "}
                   <a href="mailto:sales@greaterworks.tech" className="faq-heading-description-link">
                     sales@greaterworks.tech
                   </a>
@@ -904,26 +1166,7 @@ export default function CustomSoftwareDevelopmentPage() {
               </div>
             </div>
 
-            <ServiceFaqAccordion
-              items={[
-                {
-                  q: "How long does a custom software project take?",
-                  a: "Timelines vary depending on complexity but typically range from 3 to 9 months.",
-                },
-                {
-                  q: "How much does it cost to build software?",
-                  a: "Costs depend on features, technology stack, and engagement model. We provide transparent estimates after the discovery phase.",
-                },
-                {
-                  q: "Do you offer ongoing support?",
-                  a: "Yes, we offer long-term maintenance, upgrades, and technical assistance.",
-                },
-                {
-                  q: "How do you ensure software security?",
-                  a: "We follow global compliance standards (ISO, GDPR, HIPAA) with advanced encryption and data protection.",
-                },
-              ]}
-            />
+            <ServiceFaqAccordion items={faqDisplayItems} />
           </div>
         </div>
       </div>

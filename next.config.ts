@@ -3,7 +3,7 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   images: {
     // Serve AVIF first (smallest), fall back to WebP
-    formats: ["image/avif", "image/webp"],
+    // formats: ["image/avif", "image/webp"],
 
     // // Breakpoints Next.js generates responsive images for.
     // // Matches common mobile (390, 640), tablet (768), and desktop widths.
@@ -17,9 +17,14 @@ const nextConfig: NextConfig = {
     // // Reduces re-processing on subsequent requests.
     // minimumCacheTTL: 604800,
 
+    // unoptimized: true,
     remotePatterns: [
       {
         protocol: "https",
+        hostname: "**",
+      },
+      {
+        protocol: "http",
         hostname: "**",
       },
     ],

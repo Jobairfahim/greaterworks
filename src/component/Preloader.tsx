@@ -140,6 +140,7 @@ export default function Preloader() {
                 .logo-text-inner .logo-text-span {
                     -webkit-animation: loading 1s infinite alternate;
                     animation: loading 1s infinite alternate;
+                    display: inline-block;
                 }
                 .logo-text-inner .logo-text-span:nth-child(2) {
                     -webkit-animation-delay: 0.1s;
@@ -189,6 +190,24 @@ export default function Preloader() {
                     }
                     100% {
                         opacity: 0;
+                    }
+                }
+                @media (max-width: 768px) {
+                    .logo-text-inner {
+                        font-size: clamp(16px, 5vw, 32px);
+                        gap: 2px;
+                    }
+                    .logo-text-wrapper {
+                        padding: 15px;
+                    }
+                }
+                @media (max-width: 480px) {
+                    .logo-text-inner {
+                        font-size: clamp(18px, 5vw, 36px);
+                        gap: 1px;
+                    }
+                    .logo-text-wrapper {
+                        padding: 10px;
                     }
                 }
             `}</style>

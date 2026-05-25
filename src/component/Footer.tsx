@@ -1,33 +1,19 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { fetchNavbarData } from "@/lib/api";
+import { NavbarData } from "@/types/navbar";
 
-const footerServices = [
-    { label: "Custom Software Development", href: "/custom-software-development" },
-    { label: "Web Development", href: "/web-app-development" },
-    { label: "Mobile App development", href: "/mobile-app-development" },
-    { label: "Cloud Computing", href: "/devops-it-consulting" },
-    { label: "UI/UX Design", href: "/ui-ux-design" },
-    { label: "Enterprise Solutions", href: "/enterprise-solutions" },
-    { label: "Artificial Intelligence & Machine Learning", href: "/artificial-intelligence-machine-learning" },
-    { label: "DevOps & IT Consulting", href: "/devops-it-consulting" },
-    { label: "Blockchain Development", href: "/blockchain-development" },
-    { label: "Quality Assurance & Testing", href: "/quality-assurance-testing" },
+const defaultSocials = [
+    { icon: "https://cdn.prod.website-files.com/68d276a2319df5bdcc752026/68e4c5c9fbdfaf41fb328b75_linkedin.svg", hover: "https://cdn.prod.website-files.com/68d276a2319df5bdcc752026/68e4c650d294d24baad93e63_linkedin-white.svg", href: "https://www.linkedin.com/company/amento-tech" },
+    { icon: "https://cdn.prod.website-files.com/68d276a2319df5bdcc752026/69008193d2fcbc0bc3d256c5_youtube.svg", hover: "https://cdn.prod.website-files.com/68d276a2319df5bdcc752026/690081f11fd831d2aa593a98_youtube-white.svg", href: "https://www.youtube.com/@amentotech" },
+    { icon: "https://cdn.prod.website-files.com/68d276a2319df5bdcc752026/68e4c5c963753d1948850474_instagram.svg", hover: "https://cdn.prod.website-files.com/68d276a2319df5bdcc752026/68e4c6501992c6b0b7d4220a_instagram-white.svg", href: "https://www.instagram.com/amentotech" },
+    { icon: "https://cdn.prod.website-files.com/68d276a2319df5bdcc752026/69008182dfcd3ca8a63d756b_x.svg", hover: "https://cdn.prod.website-files.com/68d276a2319df5bdcc752026/690081f116941397490b48b8_x-white.svg", href: "https://x.com/amentotech" },
 ];
 
-const footerIndustries = [
-    { label: "E-commerce", href: "/contact-us" },
-    { label: "Fintech", href: "/contact-us" },
-    { label: "Healthcare", href: "/contact-us" },
-    { label: "Ed-tech", href: "/contact-us" },
-    { label: "On-Demand", href: "/contact-us" },
-    { label: "Food & Groceries", href: "/contact-us" },
-    { label: "Real Estate", href: "/contact-us" },
-    { label: "Blockchain", href: "/contact-us" },
-];
-
-const footerCompany = [
+const fallbackFooterCompany = [
     { label: "About Us", href: "/contact-us" },
     { label: "Work Portfolio", href: "/contact-us" },
     { label: "Career", href: "https://www.notion.so/amentotech/Job-Board-AMENTO-TECH-2951664c06b48032a384e228b1deb169", target: "_blank" },
@@ -35,25 +21,56 @@ const footerCompany = [
     { label: "Contact Us", href: "/contact-us" },
 ];
 
-const footerHire = [
+const fallbackServices = [
+    { label: "Custom Software Development", href: "/services/custom-software-development" },
+    { label: "Web Development", href: "/services/web-development" },
+    { label: "Mobile App Development", href: "/services/mobile-app-development" },
+    { label: "Cloud Computing", href: "/services/cloud-computing" },
+    { label: "UI/UX Design", href: "/services/ui-ux-design" },
+];
+
+const fallbackIndustries = [
+    { label: "E-commerce", href: "/contact-us" },
+    { label: "Fintech", href: "/contact-us" },
+    { label: "Healthcare", href: "/contact-us" },
+    { label: "Ed-tech", href: "/contact-us" },
+    { label: "Real Estate", href: "/contact-us" },
+];
+
+const fallbackSolutions = [
     { label: "Restaurant Management System", href: "/contact-us" },
     { label: "Booking & Reservation System", href: "/contact-us" },
     { label: "Real Estate Management System", href: "/contact-us" },
     { label: "ERP System", href: "/contact-us" },
-    { label: "E-commerce Website", href: "/contact-us" },
-    { label: "Livestock Management System", href: "/contact-us" },
-    { label: "School Management System", href: "/contact-us" },
-    { label: "StitchMate", href: "/contact-us" },
-];
-
-const socials = [
-    { icon: "https://cdn.prod.website-files.com/68d276a2319df5bdcc752026/68e4c5c9fbdfaf41fb328b75_linkedin.svg", hover: "https://cdn.prod.website-files.com/68d276a2319df5bdcc752026/68e4c650d294d24baad93e63_linkedin-white.svg", href: "https://www.linkedin.com/company/amento-tech" },
-    { icon: "https://cdn.prod.website-files.com/68d276a2319df5bdcc752026/69008193d2fcbc0bc3d256c5_youtube.svg", hover: "https://cdn.prod.website-files.com/68d276a2319df5bdcc752026/690081f11fd831d2aa593a98_youtube-white.svg", href: "https://www.youtube.com/@amentotech" },
-    { icon: "https://cdn.prod.website-files.com/68d276a2319df5bdcc752026/68e4c5c963753d1948850474_instagram.svg", hover: "https://cdn.prod.website-files.com/68d276a2319df5bdcc752026/68e4c6501992c6b0b7d4220a_instagram-white.svg", href: "https://www.instagram.com/amentotech" },
-    { icon: "https://cdn.prod.website-files.com/68d276a2319df5bdcc752026/69008182dfcd3ca8a63d756b_x.svg", hover: "https://cdn.prod.website-files.com/68d276a2319df5bdcc752026/690081f116941397490b48b8_x-white.svg", href: "https://x.com/amentotech" },
 ];
 
 export default function Footer() {
+    const [navbarData, setNavbarData] = useState<NavbarData | null>(null);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        const loadNavbarData = async () => {
+            try {
+                const data = await fetchNavbarData();
+                setNavbarData(data);
+            } catch (error) {
+                console.error("Failed to load navbar data:", error);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        loadNavbarData();
+    }, []);
+
+    if (loading) {
+        return <div className="footer"></div>;
+    }
+
+    if (!navbarData) {
+        console.warn("Footer: No navbar data available. Using fallback content.");
+    }
+
     return (
         <div className="footer">
             <div className="container-3 w-container">
@@ -72,7 +89,7 @@ export default function Footer() {
                                         <div className="contact-us-card-icon">
                                             <Image src="https://cdn.prod.website-files.com/68d276a2319df5bdcc752026/68e4b7bde312a6e238715c90_email.svg" alt="icon" width={20} height={20} className="image-22" />
                                         </div>
-                                        <Link href="mailto:sales@greaterworks.tech" className="link-2">Talk To Sales <span className="menu-contact-us-card-link-info">sales@greaterworks.tech</span></Link>
+                                        <Link href={`mailto:${navbarData?.serviceSidbarContactEmail || 'sales@greaterworks.tech'}`} className="link-2">Talk To Sales <span className="menu-contact-us-card-link-info">{navbarData?.serviceSidbarContactEmail || 'sales@greaterworks.tech'}</span></Link>
                                     </div>
                                 </div>
                                 <div className="footer-header-card">
@@ -86,29 +103,96 @@ export default function Footer() {
                             </div>
                         </div>
                         <div className="footer-link-list-wrapper">
+                            {/* Services Section */}
                             <div className="footer-link-wrapper footer-service">
-                                <h5 className="footer-links-header">Services We Offer</h5>
-                                {footerServices.map((s, i) => (
-                                    <Link key={i} href={s.href} className={`footer-link ${i === 0 ? "margin-top-0" : ""}`}>{s.label}</Link>
-                                ))}
+                                <h5 className="footer-links-header">{navbarData?.serviceSidbarTitle || 'Services We Offer'}</h5>
+                                {navbarData?.services && navbarData.services.length > 0 ? (
+                                    navbarData.services.map((service, i) => (
+                                        service.service && (
+                                            <Link 
+                                                key={i} 
+                                                href={`/services/${service.service.slug}`} 
+                                                className={`footer-link ${i === 0 ? "margin-top-0" : ""}`}
+                                            >
+                                                {service.service.serviceTitle}
+                                            </Link>
+                                        )
+                                    ))
+                                ) : (
+                                    fallbackServices.map((service, i) => (
+                                        <Link 
+                                            key={i} 
+                                            href={service.href} 
+                                            className={`footer-link ${i === 0 ? "margin-top-0" : ""}`}
+                                        >
+                                            {service.label}
+                                        </Link>
+                                    ))
+                                )}
                             </div>
+
+                            {/* Industries Section */}
                             <div className="footer-link-wrapper footer-our-work">
-                                <h5 className="footer-links-header">Industries we work</h5>
-                                {footerIndustries.map((s, i) => (
-                                    <Link key={i} href={s.href} className={`footer-link ${i === 0 ? "margin-top-0" : ""}`}>{s.label}</Link>
-                                ))}
+                                <h5 className="footer-links-header">Industries We Work</h5>
+                                {navbarData?.industries && navbarData.industries.length > 0 ? (
+                                    navbarData.industries
+                                        .filter(industry => industry.industryTitle) // Filter out null titles
+                                        .map((industry, i) => (
+                                            <Link 
+                                                key={i} 
+                                                href="/contact-us" 
+                                                className={`footer-link ${i === 0 ? "margin-top-0" : ""}`}
+                                            >
+                                                {industry.industryTitle}
+                                            </Link>
+                                        ))
+                                ) : (
+                                    fallbackIndustries.map((industry, i) => (
+                                        <Link 
+                                            key={i} 
+                                            href={industry.href} 
+                                            className={`footer-link ${i === 0 ? "margin-top-0" : ""}`}
+                                        >
+                                            {industry.label}
+                                        </Link>
+                                    ))
+                                )}
                             </div>
+
+                            {/* Company Section */}
                             <div className="footer-link-wrapper footer-about-us">
                                 <h5 className="footer-links-header">Company</h5>
-                                {footerCompany.map((s, i) => (
+                                {fallbackFooterCompany.map((s, i) => (
                                     <Link key={i} href={s.href} target={s.target || undefined} className={`footer-link ${i === 0 ? "margin-top-0" : ""}`}>{s.label}</Link>
                                 ))}
                             </div>
+
+                            {/* Solutions Section */}
                             <div className="footer-link-wrapper footer-hire-dev">
                                 <h5 className="footer-links-header">Our Solutions</h5>
-                                {footerHire.map((s, i) => (
-                                    <Link key={i} href={s.href} className={`footer-link ${i === 0 ? "margin-top-0" : ""}`}>{s.label}</Link>
-                                ))}
+                                {navbarData?.solution && navbarData.solution.length > 0 ? (
+                                    navbarData.solution
+                                        .filter(sol => sol.solutoinTitle) // Filter out null titles
+                                        .map((sol, i) => (
+                                            <Link 
+                                                key={i} 
+                                                href="/contact-us" 
+                                                className={`footer-link ${i === 0 ? "margin-top-0" : ""}`}
+                                            >
+                                                {sol.solutoinTitle}
+                                            </Link>
+                                        ))
+                                ) : (
+                                    fallbackSolutions.map((solution, i) => (
+                                        <Link 
+                                            key={i} 
+                                            href={solution.href} 
+                                            className={`footer-link ${i === 0 ? "margin-top-0" : ""}`}
+                                        >
+                                            {solution.label}
+                                        </Link>
+                                    ))
+                                )}
                             </div>
                         </div>
                     </div>
@@ -129,7 +213,7 @@ export default function Footer() {
                         </div>
                         <div className="footer-about-company-item">
                             <div className="footer-social-icons-wrapper">
-                                {socials.map((s, i) => (
+                                {defaultSocials.map((s, i) => (
                                     <Link key={i} href={s.href} target="_blank" className="footer-social-icon w-inline-block">
                                         <Image src={s.icon} alt="icon" width={16} height={16} className="twitter-white" />
                                         <Image src={s.hover} alt="icon" width={16} height={16} className="twitter-hover" />

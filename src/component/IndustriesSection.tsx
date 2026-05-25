@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import { IndustrySectionData, OnDemandSectionData, Industry } from "@/types/homepage";
 import Image from "next/image";
 import Link from "next/link";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -57,9 +58,55 @@ const industries = [
     },
 ];
 
-const onDemand = ["Service booking apps", "Subscription-based service platforms", "Real-time delivery tracking", "On-demand ride-sharing solutions"];
+const DEFAULT_ICONS = [
+    "https://res.cloudinary.com/dsoilebvu/image/upload/v1777061222/e-commercee_ehrqku.svg",
+    "https://res.cloudinary.com/dsoilebvu/image/upload/v1777061146/fin_vl07rb.svg",
+    "https://res.cloudinary.com/dsoilebvu/image/upload/v1777061147/health_idmkig.svg",
+    "https://res.cloudinary.com/dsoilebvu/image/upload/v1777061145/ed_dnafdh.svg",
+    "https://res.cloudinary.com/dsoilebvu/image/upload/v1777061148/Food_tsvbyc.svg",
+    "https://res.cloudinary.com/dsoilebvu/image/upload/v1777061148/real-state_sksj1b.svg",
+    "https://res.cloudinary.com/dsoilebvu/image/upload/v1777061148/fashion_xjz7wh.svg",
+    "https://res.cloudinary.com/dsoilebvu/image/upload/v1777061595/block_zyz4vf.svg"
+];
 
-export default function IndustriesSection() {
+function getIndustryIcon(title: string, index: number): string {
+    const lower = title.toLowerCase();
+    if (lower.includes("commerce") || lower.includes("shop")) return DEFAULT_ICONS[0];
+    if (lower.includes("fin") || lower.includes("pay") || lower.includes("bank")) return DEFAULT_ICONS[1];
+    if (lower.includes("health") || lower.includes("med") || lower.includes("clinic")) return DEFAULT_ICONS[2];
+    if (lower.includes("ed") || lower.includes("learn") || lower.includes("school")) return DEFAULT_ICONS[3];
+    if (lower.includes("food") || lower.includes("grocery")) return DEFAULT_ICONS[4];
+    if (lower.includes("estate") || lower.includes("property") || lower.includes("home")) return DEFAULT_ICONS[5];
+    if (lower.includes("fashion") || lower.includes("style") || lower.includes("wear")) return DEFAULT_ICONS[6];
+    if (lower.includes("block") || lower.includes("chain") || lower.includes("crypto")) return DEFAULT_ICONS[7];
+    return DEFAULT_ICONS[index % DEFAULT_ICONS.length];
+}
+
+export default function IndustriesSection({ 
+    data, 
+    onDemand,
+    industries: fetchedIndustries = []
+}: { 
+    data?: IndustrySectionData; 
+    onDemand?: OnDemandSectionData;
+    industries?: Industry[];
+}) {
+    const activeIndustries = fetchedIndustries.length > 0
+        ? fetchedIndustries.map((ind, i) => {
+            const bgUrl = ind.image?.url 
+                ? (ind.image.url.startsWith("http") 
+                    ? ind.image.url 
+                    : `${process.env.NEXT_PUBLIC_SERVER_URL}${ind.image.url}`)
+                : "https://cdn.prod.website-files.com/68d276a2319df5bdcc752026/694929087a7c485aa351d3c0_e-commerce-bg.png";
+            
+            return {
+                title: ind.title,
+                icon: getIndustryIcon(ind.title, i),
+                bg: bgUrl,
+                items: ind.details ? ind.details.map(d => d.details) : []
+            };
+        })
+        : industries;
     return (
         <>
             <section className="section section-box p">
@@ -70,8 +117,8 @@ export default function IndustriesSection() {
                             <p className="section-head-subtitle-content subtitle-secondary-content">Industries we serve</p>
                         </div>
                         <div id="w-node-c97fd2b9-5442-167c-a940-0206d67d1c11-28eb60ed" className="title title-two">
-                            <h2 data-amt="text-reveal" className="title-h2-2 title-h2-two">Empowering Industries with Advanced Digital Solutions</h2>
-                            <p className="section-title-description">Delivering intelligent technology solutions to optimize efficiency, foster innovation, and propel sustainable growth across every sector we serve.</p>
+                            <h2 data-amt="text-reveal" className="title-h2-2 title-h2-two">{data?.industrySectionTitle || "Empowering Industries with Advanced Digital Solutions"}</h2>
+                            <p className="section-title-description">{data?.industrySectionDetails || "Delivering intelligent technology solutions to optimize efficiency, foster innovation, and propel sustainable growth across every sector we serve."}</p>
                         </div>
                     </div>
                     <div id="industries-wrapper" className="industries-slider-wrap">
@@ -104,13 +151,13 @@ export default function IndustriesSection() {
                                 if (active) active.classList.add("current");
                             }}
                         >
-                            {industries.map((ind, i) => (
+                            {activeIndustries.map((ind, i) => (
                                 <SwiperSlide key={i}>
                                     <li className="industries-slider-list-item">
                                         <figure className="industries-slider-card">
                                             <div className="industry-card-bg" />
                                             <div className="industries-card-gradient" />
-                                            <Image src={ind.bg} loading="lazy" alt="Image" width={544} height={450} className="industries-card-bg-img" />
+                                            <Image src={ind.bg} loading="lazy" alt="Image" width={544} height={450} unoptimized className="industries-card-bg-img" />
                                             <div className="industries-slider-content-wrap">
                                                 <div className="industries-slider-content">
                                                     <div className="industries-list-item-icon-wrap">
@@ -145,12 +192,21 @@ export default function IndustriesSection() {
                         <div className="on-demand-content">
                             <h3 className="on-demand-title">On-Demand Solutions</h3>
                             <div className="on-demand-list">
-                                {onDemand.map((item, i) => (
-                                    <div key={i} className="on-demand-list-item">
-                                        <div className="on-demand-list-dot" />
-                                        <div className="on-demand-list-title">{item}</div>
-                                    </div>
-                                ))}
+                                {onDemand?.onDemandDetails && onDemand.onDemandDetails.length > 0 ? (
+                                    onDemand.onDemandDetails.map((item) => (
+                                        <div key={item.id} className="on-demand-list-item">
+                                            <div className="on-demand-list-dot" />
+                                            <div className="on-demand-list-title">{item.details}</div>
+                                        </div>
+                                    ))
+                                ) : (
+                                    ["Service booking apps", "Subscription-based service platforms", "Real-time delivery tracking", "On-demand ride-sharing solutions"].map((item, i) => (
+                                        <div key={i} className="on-demand-list-item">
+                                            <div className="on-demand-list-dot" />
+                                            <div className="on-demand-list-title">{item}</div>
+                                        </div>
+                                    ))
+                                )}
                             </div>
                         </div>
                         <div className="button-wrap hero-banner-button-wrap on-demand-cta">
