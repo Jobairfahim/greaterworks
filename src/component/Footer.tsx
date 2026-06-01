@@ -63,25 +63,50 @@ export default function Footer() {
         loadNavbarData();
     }, []);
 
-    if (loading) {
-        return <div className="footer"></div>;
-    }
-
     if (!navbarData) {
         console.warn("Footer: No navbar data available. Using fallback content.");
     }
 
+    const footerCompanyLinks =
+        (navbarData as unknown as { companyLinks?: Array<{ label?: string; href?: string; target?: string }> })?.companyLinks
+            ?.filter((item) => item?.label && item?.href)
+            .map((item) => ({
+                label: item.label as string,
+                href: item.href as string,
+                target: item.target,
+            })) || fallbackFooterCompany;
+
+    const footerSocials =
+        (navbarData as unknown as { socialLinks?: Array<{ icon?: string; hover?: string; href?: string }> })?.socialLinks
+            ?.filter((item) => item?.icon && item?.hover && item?.href)
+            .map((item) => ({
+                icon: item.icon as string,
+                hover: item.hover as string,
+                href: item.href as string,
+            })) || defaultSocials;
+
+    const footerDescription =
+        (navbarData as unknown as { footerDescription?: string })?.footerDescription ||
+        "We help businesses scale and stay competitive with cloud, AI, software & cybersecurity.";
+    const footerCopyright =
+        (navbarData as unknown as { copyrightText?: string })?.copyrightText ||
+        "Copyright 2026 © Greater Works Technologies | All rights reserved";
+    const footerLogo =
+        navbarData?.footerIcon?.url
+            ? `${process.env.NEXT_PUBLIC_SERVER_URL}${navbarData.footerIcon.url}`
+            : "https://res.cloudinary.com/dsoilebvu/image/upload/v1777048314/logo_kxjvlv.png";
+
     return (
-        <div className="footer">
+        <div className="footer" aria-busy={loading}>
             <div className="container-3 w-container">
                 <div className="footer-wrapper">
                     <div className="footer-links-wrapper">
                         <div className="footer-header-wrapper">
                             <div className="footer-header-left-side">
-                                <Link href="/home-page-v2" className="footer-brand w-nav-brand">
-                                    <Image src="https://res.cloudinary.com/dsoilebvu/image/upload/v1777048314/logo_kxjvlv.png" height={30} alt="" width={140} className="logo-footer-image" />
+                                <Link href="/" className="footer-brand w-nav-brand">
+                                    <Image src={footerLogo} height={30} alt="" width={140} className="logo-footer-image" />
                                 </Link>
-                                <p className="footer-description">We help businesses scale and stay competitive with cloud, AI, software & cybersecurity.</p>
+                                <p className="footer-description">{footerDescription}</p>
                             </div>
                             <div className="footer-header-right-side">
                                 <div className="footer-header-card">
@@ -162,7 +187,7 @@ export default function Footer() {
                             {/* Company Section */}
                             <div className="footer-link-wrapper footer-about-us">
                                 <h5 className="footer-links-header">Company</h5>
-                                {fallbackFooterCompany.map((s, i) => (
+                                {footerCompanyLinks.map((s, i) => (
                                     <Link key={i} href={s.href} target={s.target || undefined} className={`footer-link ${i === 0 ? "margin-top-0" : ""}`}>{s.label}</Link>
                                 ))}
                             </div>
@@ -202,7 +227,7 @@ export default function Footer() {
                 <div className="container-3">
                     <div className="footer-bottom-wrapper">
                         <div className="footer-copyright-wrap">
-                            <div className="footer-copyright">Copyright 2026 &copy; Greater Works Technologies | All rights reserved</div>
+                            <div className="footer-copyright">{footerCopyright}</div>
                         </div>
                         <div className="footer-rights-wrapper">
                             <ul role="list" className="footer-nav">
@@ -213,7 +238,7 @@ export default function Footer() {
                         </div>
                         <div className="footer-about-company-item">
                             <div className="footer-social-icons-wrapper">
-                                {defaultSocials.map((s, i) => (
+                                {footerSocials.map((s, i) => (
                                     <Link key={i} href={s.href} target="_blank" className="footer-social-icon w-inline-block">
                                         <Image src={s.icon} alt="icon" width={16} height={16} className="twitter-white" />
                                         <Image src={s.hover} alt="icon" width={16} height={16} className="twitter-hover" />

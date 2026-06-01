@@ -7,33 +7,10 @@ import Navbar from "@/component/Navbar";
 import CTASection from "@/component/CTASection";
 import Footer from "@/component/Footer";
 import FloatingCTA from "@/component/FloatingCTA";
-import { head } from "framer-motion/client";
 import Preloader from "@/component/Preloader";
-import { NavbarData } from "@/types/navbar";
+import { fetchNavbarDataServer } from "@/lib/navbar-data";
 
-async function getNavbarData(): Promise<NavbarData | null> {
-  try {
-    const res = await fetch(
-      `${process.env.NEXT_PUBLIC_SERVER_URL}/api/navbar?populate[services][populate][serviceIcon]=true&populate[services][populate][service]=true&populate[industries][populate][industryIcon]=true&populate[approach][populate][approachIcon]=true&populate[solution][populate][solutionIcon]=true&populate[solutionSidbar]=true&populate[ServiceSidbarImage]=true&populate[navbarIcom]=true&populate[footerIcon]=true`,
-      {
-        cache: "no-store",
-        headers: {
-          Authorization: `Bearer ${process.env.AUTH_TOKEN}`,
-        },
-      }
-    );
-    if (!res.ok) {
-      console.error(`Failed to fetch navbar data: ${res.status} ${res.statusText}`);
-      return null;
-    }
-    const json = await res.json();
-    return json.data;
-  } catch (error) {
-    console.error("Error fetching navbar data:", error);
-    return null;
-  }
-}
-export const dynamic = 'force-dynamic'; // Ensure the layout is always rendered on the server for dynamic data fetching
+export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: "Greater works technologies | Custom Software, Web & Mobile App Development",
@@ -65,7 +42,7 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const navbarData = await getNavbarData();
+  const navbarData = await fetchNavbarDataServer();
 
   return (
     <html lang="en">

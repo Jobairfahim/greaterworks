@@ -1,4 +1,5 @@
 import axios from "axios";
+import { NAVBAR_POPULATE_QUERY } from "@/lib/navbar-data";
 
 const BASE_URL = process.env.NEXT_PUBLIC_SERVER_URL || "http://localhost:1337";
 const AUTH_TOKEN = process.env.AUTH_TOKEN;
@@ -20,9 +21,7 @@ export async function GET() {
       },
     });
 
-    const response = await api.get(
-      `/navbar?populate[services][populate][serviceIcon]=true&populate[services][populate][service]=true&populate[industries][populate][industryIcon]=true&populate[approach][populate][approachIcon]=true&populate[solution][populate][solutionIcon]=true&populate[solution][populate][sidbar]=true&populate[ServiceSidbarImage]=true&populate[navbarIcom]=true&populate[footerIcon]=true`
-    );
+    const response = await api.get(`/navbar?${NAVBAR_POPULATE_QUERY}`);
 
     return Response.json(response.data);
   } catch (error) {

@@ -6,6 +6,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { HiMenu } from "react-icons/hi";
+import { fetchNavbarData } from "@/lib/api";
+import { hasNavbarCmsContent } from "@/lib/navbar-data";
 import { NavbarData } from "@/types/navbar";
 
 const services = [
@@ -13,55 +15,55 @@ const services = [
     title: "Custom Software Development",
     desc: "Tailored solutions to boost your business growth and success.",
     icon: "https://res.cloudinary.com/dsoilebvu/image/upload/v1777048245/custom_kyjfrj.svg",
-    href: "/custom-software-development",
+    href: "/services/custom-software-development",
   },
   {
     title: "Web Development",
     desc: "Robust and responsive websites to enhance online presence.",
     icon: "https://res.cloudinary.com/dsoilebvu/image/upload/v1777048243/web_bvejup.svg",
-    href: "/web-app-development",
+    href: "/services/web-app-development",
   },
   {
     title: "Mobile App development",
     desc: "High-performance mobile apps to strengthen user experience across platforms.",
     icon: "https://res.cloudinary.com/dsoilebvu/image/upload/v1777048242/mobile_ndbr6y.svg",
-    href: "/mobile-app-development",
+    href: "/services/mobile-app-development",
   },
   {
     title: "UI/UX Design",
     desc: "intuitive interfaces to deliver seamless experiences, driving customer satisfaction",
     icon: "https://res.cloudinary.com/dsoilebvu/image/upload/v1777048243/ui-ux_jmvfmm.svg",
-    href: "/ui-ux-design",
+    href: "/services/ui-ux-design",
   },
   {
     title: "Enterprise Solutions",
     desc: "Custom enterprise solutions to optimize your business operations",
     icon: "https://res.cloudinary.com/dsoilebvu/image/upload/v1777048240/enterprise_fzmrry.svg",
-    href: "/enterprise-solutions",
+    href: "/services/enterprise-solutions",
   },
   {
     title: "Artificial Intelligence & Machine Learning",
     desc: "Leverage AI and ML to enhance predictive capabilities for smarter business decisions",
     icon: "https://res.cloudinary.com/dsoilebvu/image/upload/v1777048244/ai_ml_uof8se.svg",
-    href: "/artificial-intelligence-machine-learning",
+    href: "/services/artificial-intelligence-machine-learning",
   },
   {
     title: "DevOps & IT Consulting",
     desc: "Optimize your SDLC with expert DevOps solutions and IT strategy consulting",
     icon: "https://res.cloudinary.com/dsoilebvu/image/upload/v1777048239/devops_yytzvd.svg",
-    href: "/devops-it-consulting",
+    href: "/services/devops-it-consulting",
   },
   {
     title: "Blockchain Development",
     desc: "Secure, scalable blockchain solutions and DApps, fostering trust and innovation across industries.",
     icon: "https://res.cloudinary.com/dsoilebvu/image/upload/v1777048244/block-chain_jyxqsp.svg",
-    href: "/blockchain-development",
+    href: "/services/blockchain-development",
   },
   {
     title: "Quality Assurance & Testing",
     desc: "Ensure software quality with SQA and automated testing for flawless performance",
     icon: "https://res.cloudinary.com/dsoilebvu/image/upload/v1777048239/qa_gfbujp.svg",
-    href: "/quality-assurance-testing",
+    href: "/services/quality-assurance-testing",
   },
 ];
 
@@ -312,15 +314,46 @@ function DropdownList({
   return <nav className={`w-dropdown-list ${className}`}>{children}</nav>;
 }
 
-export default function Navbar({ data }: { data?: NavbarData | null }) {
+export default function Navbar({ data: initialData }: { data?: NavbarData | null }) {
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [activeHireTab, setActiveHireTab] = useState(0);
+  const [cmsData, setCmsData] = useState<NavbarData | null>(initialData ?? null);
 
   // Check if current page is homepage
   const isHomepage = pathname === "/";
 
+  useEffect(() => {
+    setCmsData(initialData ?? null);
+  }, [initialData]);
+
+  // Same source as Footer: refetch via /api/navbar when server data is missing/empty
+  useEffect(() => {
+    if (hasNavbarCmsContent(initialData)) return;
+
+    let cancelled = false;
+
+    const loadNavbar = async () => {
+      try {
+        const fresh = await fetchNavbarData();
+        if (!cancelled && fresh) {
+          setCmsData(fresh);
+        }
+      } catch (error) {
+        console.error("Navbar: failed to load CMS data", error);
+      }
+    };
+
+    loadNavbar();
+
+    return () => {
+      cancelled = true;
+    };
+  }, [initialData]);
+
+  const data = cmsData;
+console.log(data);
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
     window.addEventListener("scroll", handleScroll);
@@ -356,25 +389,27 @@ export default function Navbar({ data }: { data?: NavbarData | null }) {
   const logoUnoptimized = !!data?.navbarIcom?.url;
 
   // Services dynamic mapping and filtering
+  const mappedServices =
+    data?.services
+      ?.filter((s) => s.service?.serviceTitle && s.service?.slug)
+      .map((s) => {
+        const slug = s.service!.slug.startsWith("/")
+          ? s.service!.slug.slice(1)
+          : s.service!.slug;
+        return {
+          title: s.service!.serviceTitle,
+          desc: s.serviceDescription || "",
+          icon: s.serviceIcon?.url
+            ? `${process.env.NEXT_PUBLIC_SERVER_URL}${s.serviceIcon.url}`
+            : "https://res.cloudinary.com/dsoilebvu/image/upload/v1777048245/custom_kyjfrj.svg",
+          href: `/services/${slug}`,
+          isLocalIcon: !!s.serviceIcon?.url,
+        };
+      }) ?? [];
+
   const displayServices =
-    data?.services && data.services.length > 0
-      ? data.services
-          .filter((s) => s.service)
-          .map((s) => {
-            const title = s.service!.serviceTitle;
-            const desc = s.serviceDescription || "";
-            const icon = s.serviceIcon?.url
-              ? `${process.env.NEXT_PUBLIC_SERVER_URL}${s.serviceIcon.url}`
-              : "https://res.cloudinary.com/dsoilebvu/image/upload/v1777048245/custom_kyjfrj.svg";
-            const href = `/services/${s.service!.slug.startsWith("/") ? s.service!.slug.slice(1) : s.service!.slug}`;
-            return {
-              title,
-              desc,
-              icon,
-              href,
-              isLocalIcon: !!s.serviceIcon?.url,
-            };
-          })
+    mappedServices.length > 0
+      ? mappedServices
       : services.map((s) => ({ ...s, isLocalIcon: false }));
 
   // Services Sidebar dynamic data
@@ -433,25 +468,42 @@ export default function Navbar({ data }: { data?: NavbarData | null }) {
   // Solutions Categories (for Our Solutions dropdown) - matching hireTabs structure
   // If CMS provides solutionCategories, use them; otherwise fallback to static hireTabs
   const solutionCategories =
-    data?.solutionCategories && data.solutionCategories.length > 0
-      ? data.solutionCategories.map((cat) => ({
-          label: cat.label,
-          icon: cat.icon?.url
-            ? `${process.env.NEXT_PUBLIC_SERVER_URL}${cat.icon.url}`
+    data?.solution && data.solution.length > 0
+      ? data.solution.map((cat) => ({
+          label: cat.solutoinTitle,
+          icon: cat.solutionIcon?.url
+            ? `${process.env.NEXT_PUBLIC_SERVER_URL}${cat.solutionIcon.url}`
             : "https://res.cloudinary.com/dsoilebvu/image/upload/v1777048243/web_bvejup.svg",
-          items: cat.items.map((item) => ({
-            title: item.title,
-            desc: item.desc,
+          items: cat.sidbar.map((item) => ({
+            title: item.solutionSidbarTitle,
+            desc: item.solutionSdibarDescription,
           })),
           isLocalIcon: !!cat.icon?.url,
         }))
+      : data?.solution && data.solution.length > 0
+        ? [
+            {
+              label: "Our Solutions",
+              icon:
+                data.solution[0]?.solutionIcon?.url
+                  ? `${process.env.NEXT_PUBLIC_SERVER_URL}${data.solution[0].solutionIcon.url}`
+                  : "https://res.cloudinary.com/dsoilebvu/image/upload/v1777048243/web_bvejup.svg",
+              items: data.solution
+                .filter((item) => item.solutoinTitle)
+                .map((item) => ({
+                  title: item.solutoinTitle || "Solution",
+                  desc: "Tailored software solution designed for your business goals.",
+                })),
+              isLocalIcon: !!data.solution[0]?.solutionIcon?.url,
+            },
+          ]
       : hireTabs.map((tab) => ({ ...tab, isLocalIcon: false }));
 
   // Solution sidebar data for contact link
   const solutionSidebarDescription =
     data?.solutionSidbarDescription ||
     "Get in touch with our 24/7 active support team to get your query resolve.";
-
+console.log("solutionCategories", solutionCategories);
   return (
     <div
       data-animation="default"

@@ -1,8 +1,8 @@
+import { Metadata } from "next";
 import ContactSection from "@/component/ContactSection";
 import { ServiceFaqAccordion } from "@/component/ServiceFaqAccordion";
 import Image from "next/image";
 import Link from "next/link";
-import { notFound } from "next/navigation";
 
 type CmsRecord = Record<string, unknown>;
 
@@ -104,13 +104,46 @@ async function getServiceBySlug(slug: string): Promise<CmsRecord | null> {
   }
 }
 
-export default async function CustomSoftwareDevelopmentPage({ params }: ServicePageProps) {
+function getServiceSeo(service: CmsRecord | null, slug: string) {
+  const seo = asRecord(service?.seo);
+  const title =
+    getString(seo, ["metaTitle", "title", "seoTitle"]) ||
+    getString(service ?? {}, ["serviceTitle", "title"], "") ||
+    slug
+      .split("-")
+      .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
+      .join(" ");
+  const description =
+    getString(seo, ["metaDescription", "description", "seoDescription"]) ||
+    "Custom software services designed to scale your business.";
+
+  return { title, description };
+}
+
+export async function generateMetadata({ params }: ServicePageProps): Promise<Metadata> {
   const { id } = await params;
   const service = await getServiceBySlug(id);
-console.log("Fetched Service Data:", service);
-  if (!service) {
-    notFound();
-  }
+  const seo = getServiceSeo(service, id);
+
+  return {
+    title: seo.title,
+    description: seo.description,
+    openGraph: {
+      title: seo.title,
+      description: seo.description,
+      type: "website",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: seo.title,
+      description: seo.description,
+    },
+  };
+}
+
+export default async function CustomSoftwareDevelopmentPage({ params }: ServicePageProps) {
+  const { id } = await params;
+  const service = (await getServiceBySlug(id)) ?? {};
 
   const bannar = asRecord(service.bannar);
   const chooseUs = asRecord(service.chooseUs);
@@ -139,7 +172,6 @@ console.log("Fetched Service Data:", service);
     "Trusted by 500+ happy clients worldwide."
   );
   const bannerImage = getImageUrl(bannar.bannarImage, FALLBACK_BANNER_IMAGE);
-  console.log("Banner Image URL:", bannerImage,bannar.bannarImage);
   const brandImages = asArray(bannar.brandsImages);
 
   const offerItems = getNestedArray(service, ["offer"]);

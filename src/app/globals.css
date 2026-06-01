@@ -34607,29 +34607,6 @@ a.btn-outline:hover {
   box-shadow: 0 0 0 1.5px #9433e9 !important;
 }
 
-/* ===== Insights Post: Breadcrumbs overrides ===== */
-.breadcrumbs, .breadcrumbs a {
-  font-size: 12px !important;
-  font-weight: 400 !important;
-  color: #9433e9 !important;
-  letter-spacing: 1px !important;
-  text-decoration: none !important;
-  font-family: Satoshi, Arial, sans-serif !important;
-  text-transform: none !important;
-  transition: none !important;
-}
-
-.breadcrumbs a:hover {
-  color: #7a1fd4 !important;
-  text-decoration: underline !important;
-}
-
-/* ===== Insights Pages Global Font Override ===== */
-.insights-hub-page *, 
-.insight-post-page * {
-  font-family: Satoshi, Arial, sans-serif !important;
-}
-
 /* ===== Not Found Page Global Font Override ===== */
 .not-found-page *, 
 .not-found-page {
