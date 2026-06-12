@@ -187,15 +187,7 @@ export const fetchPrivacyPolicyData = async () => {
   }
 };
 
-export const fetchGDPRPolicyData = async () => {
-  try {
-    const data = await fetchWithHeaders("/gdpr");
-    return data.data;
-  } catch (error) {
-    console.error("Error fetching GDPR policy data:", error);
-    return null;
-  }
-};
+
 
 // Function to fetch terms and condition data
 export const fetchTermsAndConditionData = async () => {

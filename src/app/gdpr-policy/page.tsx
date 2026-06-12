@@ -1,9 +1,6 @@
 "use client";
 
-import { fetchGDPRPolicyData } from "@/lib/api";
-import { PrivacyPolicyData } from "@/types/privacy-policy";
-import { Metadata } from "next";
-import { useEffect, useState } from "react";
+
 
 const defaultPrivacyContent = {
   title: "GDPR Policy",
@@ -106,32 +103,10 @@ const defaultPrivacyContent = {
 };
 
 export default function GDPRPolicyPage() {
-  const [policyData, setPolicyData] = useState<PrivacyPolicyData | null>(null);
-  const [loading, setLoading] = useState(true);
+ 
 
-  useEffect(() => {
-    const loadPolicyData = async () => {
-      try {
-        const data = await fetchGDPRPolicyData();
-        setPolicyData(data);
-      } catch (error) {
-        console.error("Failed to load GDPR policy data:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
 
-    loadPolicyData();
-  }, []);
-  if (loading) {
-    return (
-      <div className="section privacy-policy-banner">
-        <div className="w-container">Loading...</div>
-      </div>
-    );
-  }
-
-  const policy = policyData || defaultPrivacyContent;
+  const policy =  defaultPrivacyContent;
 
 
   return (
