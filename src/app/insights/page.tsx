@@ -10,7 +10,7 @@ async function getBlogPageData(): Promise<BlogPageData | null> {
       {
         cache: "no-store",
         headers: {
-          Authorization: `Bearer ${process.env.AUTH_TOKEN}`,
+          Authorization: `Bearer ${process.env.NEXT_PUBLIC_AUTH_TOKEN}`,
         },
       }
     );
@@ -35,7 +35,7 @@ async function getBlogs(): Promise<Blog[]> {
       {
         cache: "no-store",
         headers: {
-          Authorization: `Bearer ${process.env.AUTH_TOKEN}`,
+          Authorization: `Bearer ${process.env.NEXT_PUBLIC_AUTH_TOKEN}`,
         },
       }
     );

@@ -1,47 +1,20 @@
+"use client";
+
+import { fetchGDPRPolicyData } from "@/lib/api";
+import { PrivacyPolicyData } from "@/types/privacy-policy";
 import { Metadata } from "next";
+import { useEffect, useState } from "react";
 
-export const metadata: Metadata = {
-  title: "GDPR Policy | Greater Works Technologies",
-  description: "Learn about the GDPR policy of Greater Works Technologies, including what personal data we collect, how we use and protect it, and your rights.",
-};
-
-export default function GDPRPolicyPage() {
-  const formattedDate = new Date("2026-06-02").toLocaleDateString("en-US", {
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  });
-
-  return (
-    <>
-      {/* BANNER */}
-      <section className="section privacy-policy-banner">
-        <div className="w-layout-blockcontainer container-v2 w-container">
-          <div className="section-head section-head-two privacy-head">
-            <div className="section-head-content-subtitle privacy-page">
-              <div className="section-head-subtitle-dot" />
-              <p className="section-head-subtitle-content subtitle-secondary-content">
-                Last updated: {formattedDate}
-              </p>
-            </div>
-
-            <div className="title title-two faq-title">
-              <h2 className="title-h2-2 title-h2-two">GDPR Policy</h2>
-              <p className="section-title-description privacy-description">
-                At Greater Works Technologies, we are committed to protecting the privacy of our website users. This GDPR policy explains how we collect, use, and protect the personal data of our users in accordance with the General Data Protection Regulation (GDPR).
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* CONTENT */}
-      <section className="section privacy-policy-section">
+const defaultPrivacyContent = {
+  title: "GDPR Policy",
+  description:
+    "At Greater Works Technologies, we are committed to protecting the privacy of our website users. This GDPR policy explains how we collect, use, and protect the personal data of our users in accordance with the General Data Protection Regulation (GDPR).",
+  details: `<section className="section privacy-policy-section">
         <div className="w-layout-blockcontainer container-v2 w-container">
           <div className="ck-content ck-editor__editable privacy-ck-wrapper">
             <div className="privacy-content-wrap">
               
-              {/* SECTION 1 */}
+             
               <div className="privacy-content">
                 <div className="privacy-content-title">
                   <strong>What personal data do we collect?</strong>
@@ -57,7 +30,7 @@ export default function GDPRPolicyPage() {
                 </ul>
               </div>
 
-              {/* SECTION 2 */}
+              
               <div className="privacy-content">
                 <div className="privacy-content-title">
                   <strong>How do we use your personal data?</strong>
@@ -73,7 +46,7 @@ export default function GDPRPolicyPage() {
                 </ul>
               </div>
 
-              {/* SECTION 3 */}
+        
               <div className="privacy-content">
                 <div className="privacy-content-title">
                   <strong>How do we protect your personal data?</strong>
@@ -88,7 +61,7 @@ export default function GDPRPolicyPage() {
                 </ul>
               </div>
 
-              {/* SECTION 4 */}
+              
               <div className="privacy-content">
                 <div className="privacy-content-title">
                   <strong>Your rights under GDPR</strong>
@@ -111,7 +84,7 @@ export default function GDPRPolicyPage() {
                 </p>
               </div>
 
-              {/* SECTION 5 */}
+            
               <div className="privacy-content">
                 <div className="privacy-content-title">
                   <strong>Contact us</strong>
@@ -126,6 +99,74 @@ export default function GDPRPolicyPage() {
               </div>
 
             </div>
+          </div>
+        </div>
+      </section>`,
+  tag: "2026-01-01",
+};
+
+export default function GDPRPolicyPage() {
+  const [policyData, setPolicyData] = useState<PrivacyPolicyData | null>(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const loadPolicyData = async () => {
+      try {
+        const data = await fetchGDPRPolicyData();
+        setPolicyData(data);
+      } catch (error) {
+        console.error("Failed to load GDPR policy data:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadPolicyData();
+  }, []);
+  if (loading) {
+    return (
+      <div className="section privacy-policy-banner">
+        <div className="w-container">Loading...</div>
+      </div>
+    );
+  }
+
+  const policy = policyData || defaultPrivacyContent;
+
+
+  return (
+    <>
+      <section className="section privacy-policy-banner">
+        <div className="w-layout-blockcontainer container-v2 w-container">
+          <div className="section-head section-head-two privacy-head">
+            <div className="section-head-content-subtitle privacy-page">
+              <div className="section-head-subtitle-dot" />
+              <p className="section-head-subtitle-content subtitle-secondary-content">
+                {policy?.tag}
+              </p>
+            </div>
+
+            <div className="title title-two faq-title">
+              <h2 className="title-h2-2 title-h2-two">{policy.title}</h2>
+              <p className="section-title-description privacy-description">
+                {policy.description}
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* CONTENT */}
+      <section className="section privacy-policy-section">
+        <div className="w-layout-blockcontainer container-v2 w-container">
+          {/* IMPORTANT WRAPPER FIX */}
+          <div className="ck-content ck-editor__editable privacy-ck-wrapper">
+            {policy.details && (
+              <div
+                className="  ck-content"
+                dangerouslySetInnerHTML={{ __html: policy.details }}
+              />
+            )}
           </div>
         </div>
       </section>

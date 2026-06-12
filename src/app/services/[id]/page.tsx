@@ -3,8 +3,9 @@ import ContactSection from "@/component/ContactSection";
 import { ServiceFaqAccordion } from "@/component/ServiceFaqAccordion";
 import Image from "next/image";
 import Link from "next/link";
+import { getServiceBySlug } from "@/lib/api";
 
-type CmsRecord = Record<string, unknown>;
+export type CmsRecord = Record<string, unknown>;
 
 interface CmsImage {
   url?: string;
@@ -16,8 +17,7 @@ interface ServicePageProps {
   params: Promise<{ id: string }>;
 }
 
-const SERVICE_POPULATE_QUERY =
-  "populate[bannar][populate][bannarImage]=true&populate[bannar][populate][brandsImages]=true&populate[chooseUs][populate][chooseUsSectionData][populate][icon]=true&populate[offer]=true&populate[selectedWork][populate][selectedWorkSectionData][populate][image]=true&populate[ourProcess][populate][ourProcessBgImage]=true&populate[ourProcess][populate][testimonial][populate][image]=true&populate[ourProcess][populate][process]=true&populate[faq][populate][faqs]=true&pagination[pageSize]=10&pagination[page]=1";
+
 
 const FALLBACK_BANNER_IMAGE =
   "https://cdn.prod.website-files.com/68d276a2319df5bdcc752026/695227c7f17e6a5a37ecaea8_banner-image.png";
@@ -30,7 +30,7 @@ function asRecord(value: unknown): CmsRecord {
   return isRecord(value) ? value : {};
 }
 
-function asArray(value: unknown): CmsRecord[] {
+export function asArray(value: unknown): CmsRecord[] {
   return Array.isArray(value) ? value.filter(isRecord) : [];
 }
 
@@ -76,33 +76,7 @@ function getNestedArray(source: CmsRecord, keys: string[]) {
   return [];
 }
 
-async function getServiceBySlug(slug: string): Promise<CmsRecord | null> {
-  try {
-    const res = await fetch(
-      `${process.env.NEXT_PUBLIC_SERVER_URL}/api/services?filters[slug][$eq]=${encodeURIComponent(
-        slug
-      )}&${SERVICE_POPULATE_QUERY}`,
-      {
-        cache: "no-store",
-        headers: {
-          Authorization: `Bearer ${process.env.AUTH_TOKEN}`,
-        },
-      }
-    );
 
-    if (!res.ok) {
-      console.error(`Failed to fetch service: ${res.status} ${res.statusText}`);
-      return null;
-    }
-
-    const json = await res.json();
-    const services = asArray(json.data);
-    return services[0] ?? null;
-  } catch (error) {
-    console.error("Error fetching service:", error);
-    return null;
-  }
-}
 
 function getServiceSeo(service: CmsRecord | null, slug: string) {
   const seo = asRecord(service?.seo);
@@ -120,26 +94,26 @@ function getServiceSeo(service: CmsRecord | null, slug: string) {
   return { title, description };
 }
 
-export async function generateMetadata({ params }: ServicePageProps): Promise<Metadata> {
-  const { id } = await params;
-  const service = await getServiceBySlug(id);
-  const seo = getServiceSeo(service, id);
+// export async function generateMetadata({ params }: ServicePageProps): Promise<Metadata> {
+//   const { id } = await params;
+//   const service = await getServiceBySlug(id);
+//   const seo = getServiceSeo(service, id);
 
-  return {
-    title: seo.title,
-    description: seo.description,
-    openGraph: {
-      title: seo.title,
-      description: seo.description,
-      type: "website",
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: seo.title,
-      description: seo.description,
-    },
-  };
-}
+//   return {
+//     title: seo.title,
+//     description: seo.description,
+//     openGraph: {
+//       title: seo.title,
+//       description: seo.description,
+//       type: "website",
+//     },
+//     twitter: {
+//       card: "summary_large_image",
+//       title: seo.title,
+//       description: seo.description,
+//     },
+//   };
+// }
 
 export default async function CustomSoftwareDevelopmentPage({ params }: ServicePageProps) {
   const { id } = await params;

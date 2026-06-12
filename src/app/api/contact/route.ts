@@ -8,7 +8,7 @@ export async function POST(request: Request) {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
-                "Authorization": `Bearer ${process.env.AUTH_TOKEN}`
+                "Authorization": `Bearer ${process.env.NEXT_PUBLIC_AUTH_TOKEN}`
             },
             body: JSON.stringify(body)
         });
