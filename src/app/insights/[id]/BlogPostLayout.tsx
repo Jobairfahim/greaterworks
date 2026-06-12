@@ -5,7 +5,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { Blog } from "@/types/insights";
 import BlogDetailClient, { ContentRenderer } from "./BlogDetailClient";
-import BlogSearch from "./BlogSearch";
 
 interface BlogPostLayoutProps {
   blog: Blog;
@@ -109,8 +108,6 @@ export default function BlogPostLayout({ blog, formattedDate }: BlogPostLayoutPr
 
         {/* Right Sidebar */}
         <aside className="right-sidebar">
-          <BlogSearch />
-
           <div className="promo-card light">
             <div className="promo-icon outline-icon">
               <svg
@@ -162,6 +159,13 @@ export default function BlogPostLayout({ blog, formattedDate }: BlogPostLayoutPr
                 className="button-primary service-button-primary promo-btn block w-button"
               >
                 {isSubscribing ? "Subscribing..." : "Subscribe"}
+                <Image
+                  alt="arrow-top-right"
+                  src="https://cdn.prod.website-files.com/68d276a2319df5bdcc752026/68dd105094d90e0a289e4185_arrow-top-right-white.svg"
+                  width={16}
+                  height={16}
+                  className="button-icon"
+                />
               </button>
               {subscriptionStatus === "success" && (
                 <p className="promo-status success">
@@ -432,6 +436,10 @@ export default function BlogPostLayout({ blog, formattedDate }: BlogPostLayoutPr
           border-radius: 0;
           background: #9433e9;
           color: white;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 12px;
         }
 
         .promo-btn.block:hover { background: #8129d1; }
@@ -475,6 +483,7 @@ export default function BlogPostLayout({ blog, formattedDate }: BlogPostLayoutPr
           background-color: #fff;
         }
 
+        .promo-input::placeholder { font-size: 14px; }
         .promo-input:focus       { border-color: var(--primary); }
 
         .promo-status {

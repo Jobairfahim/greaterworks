@@ -319,14 +319,16 @@ export default function Navbar({ data: initialData }: { data?: NavbarData | null
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [activeHireTab, setActiveHireTab] = useState(0);
+  const [prevInitialData, setPrevInitialData] = useState(initialData);
   const [cmsData, setCmsData] = useState<NavbarData | null>(initialData ?? null);
 
   // Check if current page is homepage
   const isHomepage = pathname === "/";
 
-  useEffect(() => {
+  if (initialData !== prevInitialData) {
+    setPrevInitialData(initialData);
     setCmsData(initialData ?? null);
-  }, [initialData]);
+  }
 
   // Same source as Footer: refetch via /api/navbar when server data is missing/empty
   useEffect(() => {
@@ -478,7 +480,7 @@ console.log(data);
             title: item.solutionSidbarTitle,
             desc: item.solutionSdibarDescription,
           })),
-          isLocalIcon: !!cat.icon?.url,
+          isLocalIcon: !!cat.solutionIcon?.url,
         }))
       : data?.solution && data.solution.length > 0
         ? [

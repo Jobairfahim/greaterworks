@@ -121,7 +121,7 @@ export default function Footer() {
                                     <div className="footer-author">
                                         <Image src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" alt="" width={40} height={40} className="footer-author-logo" />
                                         <Link href="https://share.google/eBCe9dSE8o3Y3MIwy" target="_blank" className="w-inline-block">
-                                            <p style={{ fontWeight: 'bold', color: 'lightgray', fontSize: '28px' }}>Google</p>
+                                            <p style={{ color: '#ffffff' }} className="rating-brand-text">Google</p>
                                         </Link>
                                     </div>
                                 </div>
@@ -234,6 +234,8 @@ export default function Footer() {
                                 <li className="footer-nav-item"><Link href="/privacy-policy" className="footer-nav-link">Privacy Policy</Link></li>
                                 <li className="footer-nav-item-dot" />
                                 <li className="footer-nav-item"><Link href="/terms-and-conditions" className="footer-nav-link">Terms Of Use</Link></li>
+                                <li className="footer-nav-item-dot" />
+                                <li className="footer-nav-item"><Link href="/gdpr-policy" className="footer-nav-link">GDPR</Link></li>
                             </ul>
                         </div>
                         <div className="footer-about-company-item">
@@ -252,3 +254,13 @@ export default function Footer() {
         </div>
     );
 }
+
+<style>{`
+    .rating-brand-text {
+    color: #000000;
+    font-family: "DM Sans", sans-serif;
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 1;
+}
+`}</style>

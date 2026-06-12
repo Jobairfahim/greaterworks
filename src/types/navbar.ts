@@ -32,6 +32,7 @@ export interface NavbarSolution {
   id: number;
   solutoinTitle: string | null; // Note: spelt as solutoinTitle in Strapi API
   solutionIcon: ImageData | null;
+  sidbar: NavbarSolutionSidebar[];
 }
 
 export interface NavbarSolutionSidebar {

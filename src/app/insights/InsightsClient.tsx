@@ -650,6 +650,10 @@ export default function InsightsClient({ data, blogs }: InsightsClientProps) {
           background-image: none !important;
         }
 
+        :global(.insights-hub-page .title-button:hover .title-button-text) {
+          color: #ffffff !important;
+        }
+
         /* Pagination */
         .pagination {
           display: flex;

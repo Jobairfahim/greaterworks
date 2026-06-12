@@ -11322,9 +11322,10 @@ figure {
   pointer-events: none;
   -webkit-text-fill-color: inherit;
   background-clip: border-box;
-  width: 93%;
-  height: 100%;
-  max-height: none;
+  width: 60%;
+  height: 580px;
+  max-height: 580px;
+  object-fit: contain;
   position: relative;
   bottom: -30px;
 }
@@ -11903,6 +11904,16 @@ figure {
 }
 
 .industries-slider-content .title-button.transition-none.active-button:hover .title-button-text {
+  color: #fff !important;
+}
+
+.insights-hub-page .title-button.transition-none.active-button:hover {
+  background-color: transparent !important;
+  background-image: none !important;
+  color: #fff !important;
+}
+
+.insights-hub-page .title-button.transition-none.active-button:hover .title-button-text {
   color: #fff !important;
 }
 
