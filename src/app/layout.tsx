@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { DM_Sans, Exo, Inconsolata, Lato } from "next/font/google";
 import "./globals.css";
 import "swiper/css";
 import "swiper/css/navigation";
@@ -7,7 +8,6 @@ import Navbar from "@/component/Navbar";
 import CTASection from "@/component/CTASection";
 import Footer from "@/component/Footer";
 import FloatingCTA from "@/component/FloatingCTA";
-import { head } from "framer-motion/client";
 import Preloader from "@/component/Preloader";
 import { NavbarData } from "@/types/navbar";
 
@@ -33,6 +33,34 @@ async function getNavbarData(): Promise<NavbarData | null> {
     return null;
   }
 }
+const lato = Lato({
+  subsets: ["latin"],
+  weight: ["100", "300", "400", "700", "900"],
+  display: "swap",
+  variable: "--font-lato",
+});
+
+const exo = Exo({
+  subsets: ["latin"],
+  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
+  display: "swap",
+  variable: "--font-exo",
+});
+
+const dmSans = DM_Sans({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700", "800", "900"],
+  display: "swap",
+  variable: "--font-dm-sans",
+});
+
+const inconsolata = Inconsolata({
+  subsets: ["latin"],
+  weight: ["400", "700"],
+  display: "swap",
+  variable: "--font-inconsolata",
+});
+
 export const dynamic = 'force-dynamic'; // Ensure the layout is always rendered on the server for dynamic data fetching
 
 export const metadata: Metadata = {
@@ -68,16 +96,7 @@ export default async function RootLayout({
   const navbarData = await getNavbarData();
 
   return (
-    <html lang="en">
-      <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Exo:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Inconsolata:wght@400;700&family=DM+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
-          rel="stylesheet"
-        />
-
-      </head>
+    <html lang="en" className={`${lato.variable} ${exo.variable} ${dmSans.variable} ${inconsolata.variable}`}>
       <body>
         <Preloader />
         <Navbar data={navbarData} />

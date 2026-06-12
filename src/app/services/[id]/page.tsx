@@ -3,14 +3,7 @@ import { ServiceFaqAccordion } from "@/component/ServiceFaqAccordion";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-
-type CmsRecord = Record<string, unknown>;
-
-interface CmsImage {
-  url?: string;
-  alternativeText?: string | null;
-  formats?: Record<string, { url?: string } | undefined>;
-}
+import { CmsRecord, getImageUrl, getNumber, getString, pickString, resolveImageUrl, safeArray, safeRecord } from "@/lib/cms";
 
 interface ServicePageProps {
   params: Promise<{ id: string }>;
@@ -21,60 +14,6 @@ const SERVICE_POPULATE_QUERY =
 
 const FALLBACK_BANNER_IMAGE =
   "https://cdn.prod.website-files.com/68d276a2319df5bdcc752026/695227c7f17e6a5a37ecaea8_banner-image.png";
-
-function isRecord(value: unknown): value is CmsRecord {
-  return typeof value === "object" && value !== null && !Array.isArray(value);
-}
-
-function asRecord(value: unknown): CmsRecord {
-  return isRecord(value) ? value : {};
-}
-
-function asArray(value: unknown): CmsRecord[] {
-  return Array.isArray(value) ? value.filter(isRecord) : [];
-}
-
-function getString(source: CmsRecord, keys: string[], fallback = "") {
-  for (const key of keys) {
-    const value = source[key];
-    if (typeof value === "string" && value.trim()) return value;
-    if (typeof value === "number") return String(value);
-  }
-  return fallback;
-}
-
-function getNumber(source: CmsRecord, keys: string[], fallback = 0) {
-  for (const key of keys) {
-    const value = source[key];
-    if (typeof value === "number") return value;
-    if (typeof value === "string" && value.trim() && !Number.isNaN(Number(value))) {
-      return Number(value);
-    }
-  }
-  return fallback;
-}
-
-function getImageUrl(image: unknown, fallback: string) {
-  if (!isRecord(image)) return fallback;
-  const cmsImage = image as CmsImage;
-  const url =
-    cmsImage.formats?.large?.url ||
-    cmsImage.formats?.medium?.url ||
-    cmsImage.formats?.small?.url ||
-    cmsImage.url;
-
-  if (!url) return fallback;
-  if (url.startsWith("http://") || url.startsWith("https://")) return url;
-  return `${process.env.NEXT_PUBLIC_SERVER_URL ?? ""}${url}`;
-}
-
-function getNestedArray(source: CmsRecord, keys: string[]) {
-  for (const key of keys) {
-    const value = source[key];
-    if (Array.isArray(value)) return asArray(value);
-  }
-  return [];
-}
 
 async function getServiceBySlug(slug: string): Promise<CmsRecord | null> {
   try {
@@ -96,7 +35,7 @@ async function getServiceBySlug(slug: string): Promise<CmsRecord | null> {
     }
 
     const json = await res.json();
-    const services = asArray(json.data);
+    const services = safeArray(json.data);
     return services[0] ?? null;
   } catch (error) {
     console.error("Error fetching service:", error);
@@ -107,47 +46,46 @@ async function getServiceBySlug(slug: string): Promise<CmsRecord | null> {
 export default async function CustomSoftwareDevelopmentPage({ params }: ServicePageProps) {
   const { id } = await params;
   const service = await getServiceBySlug(id);
-console.log("Fetched Service Data:", service);
+
   if (!service) {
     notFound();
   }
 
-  const bannar = asRecord(service.bannar);
-  const chooseUs = asRecord(service.chooseUs);
-  const selectedWork = asRecord(service.selectedWork);
-  const ourProcess = asRecord(service.ourProcess);
-  const faq = asRecord(service.faq);
+  const bannerRecord = safeRecord(service.bannar);
+  const chooseUs = safeRecord(service.chooseUs);
+  const selectedWork = safeRecord(service.selectedWork);
+  const ourProcess = safeRecord(service.ourProcess);
+  const faq = safeRecord(service.faq);
 
-  const bannerTitle = getString(
-    bannar,
+  const bannerTitle = pickString(
+    bannerRecord,
     ["title", "bannarTitle", "bannerTitle", "heading"],
     "Custom Software Development Built for Innovation & Growth"
   );
-  const bannerSubtitle = getString(
-    bannar,
+  const bannerSubtitle = pickString(
+    bannerRecord,
     ["subtitle", "tagline", "bannarSubTitle", "bannerSubTitle"],
     "Booking for Q1 2026"
   );
-  const bannerDescription = getString(
-    bannar,
+  const bannerDescription = pickString(
+    bannerRecord,
     ["description", "bannarDescription", "bannerDescription"],
     "Beyond Code, Delivering Impact! We don't just build apps, we create solutions that drive business results and delight users."
   );
-  const brandTitle = getString(
-    bannar,
+  const brandTitle = pickString(
+    bannerRecord,
     ["brandsTitle", "brandTitle"],
     "Trusted by 500+ happy clients worldwide."
   );
-  const bannerImage = getImageUrl(bannar.bannarImage, FALLBACK_BANNER_IMAGE);
-  console.log("Banner Image URL:", bannerImage,bannar.bannarImage);
-  const brandImages = asArray(bannar.brandsImages);
+  const bannerImage = resolveImageUrl(bannerRecord.bannarImage, FALLBACK_BANNER_IMAGE);
+  const brandImages = safeArray(bannerRecord.brandsImages);
 
-  const offerItems = getNestedArray(service, ["offer"]);
-  const chooseUsItems = getNestedArray(chooseUs, ["chooseUsSectionData"]);
-  const workItems = getNestedArray(selectedWork, ["selectedWorkSectionData"]);
-  const processItems = getNestedArray(ourProcess, ["process"]);
-  const testimonials = getNestedArray(ourProcess, ["testimonial"]);
-  const faqItems = getNestedArray(faq, ["faqs"]);
+  const offerItems = safeArray(service.offer);
+  const chooseUsItems = safeArray(chooseUs.chooseUsSectionData);
+  const workItems = safeArray(selectedWork.selectedWorkSectionData);
+  const processItems = safeArray(ourProcess.process);
+  const testimonials = safeArray(ourProcess.testimonial);
+  const faqItems = safeArray(faq.faqs);
 
   const fallbackOfferItems = [
     {
@@ -287,7 +225,7 @@ console.log("Fetched Service Data:", service);
   const selectedWorksDisplay = selectedWorksToDisplay.map((item, index) => ({
     title: getString(item, ["title", "selectedWorkTitle", "heading"], `Project ${index + 1}`),
     description: getString(item, ["description", "selectedWorkDescription", "details"], ""),
-    image: getImageUrl(item.image, getImageUrl(asRecord(item).selectedWorkImage, FALLBACK_BANNER_IMAGE)),
+    image: getImageUrl(item.image, getImageUrl(safeRecord(item).selectedWorkImage, FALLBACK_BANNER_IMAGE)),
     impact: getString(item, ["impact", "impactDescription", "result"], ""),
     impactNumber: getNumber(item, ["impactNumber", "impactValue", "target"], 0),
     impactSuffix: getString(item, ["impactSuffix", "suffix"], "%"),
@@ -453,12 +391,13 @@ console.log("Fetched Service Data:", service);
               height={600}
               className="banner-line-image"
             />
-            <img
+            <Image
               src={bannerImage}
               alt="Banner-Image"
               width={600}
               height={700}
               className="image-10 service-banner-image"
+              unoptimized
             />
           </div>
 

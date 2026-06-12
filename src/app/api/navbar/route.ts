@@ -1,23 +1,27 @@
 import axios from "axios";
 
-const BASE_URL = process.env.NEXT_PUBLIC_SERVER_URL || "http://localhost:1337";
+// Normalize NEXT_PUBLIC_SERVER_URL: sometimes it's the string 'undefined' in some env setups.
+const rawBase = process.env.NEXT_PUBLIC_SERVER_URL;
+const BASE_URL = (typeof rawBase === "string" && rawBase && rawBase !== "undefined") ? rawBase : "http://localhost:1337";
 const AUTH_TOKEN = process.env.AUTH_TOKEN;
 
 export async function GET() {
   try {
-    if (!BASE_URL) {
+    // Ensure we have a usable base url
+    if (!BASE_URL || BASE_URL === "undefined") {
       return Response.json(
-        { error: "NEXT_PUBLIC_SERVER_URL environment variable is not set" },
+        { error: "NEXT_PUBLIC_SERVER_URL is not configured on the server" },
         { status: 500 }
       );
     }
 
     const api = axios.create({
-      baseURL: `${BASE_URL}/api`,
+      baseURL: `${BASE_URL.replace(/\/$/, "")}/api`,
       headers: {
         Authorization: `Bearer ${AUTH_TOKEN}`,
         "Content-Type": "application/json",
       },
+      timeout: 5000,
     });
 
     const response = await api.get(

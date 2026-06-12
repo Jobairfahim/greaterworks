@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useMemo, useRef } from "react";
 import { ImpactSectionData } from "@/types/homepage";
 import Image from "next/image";
 import Link from "next/link";
@@ -12,12 +12,20 @@ if (typeof window !== "undefined") {
 }
 
 export default function ImpactSection({ data }: { data?: ImpactSectionData }) {
-    const stats = [
-        { title: "Years of experience", value: data?.impactSectionExperience || 10, suffix: "+", display: "10+", decimals: 0, desc: "Years of experience building custom software solutions." },
-        { title: "Client retention rate", value: data?.impactSectionClientRetentionRate || 98, suffix: "%", display: "98%", decimals: 0, desc: "Client retention rate, & longterm partnerships built on trust." },
-        { title: "Projects delivered", value: data?.impactSectionProjectsDelivered || 300, suffix: "+", display: "300+", decimals: 0, desc: "Projects delivered successfully across various industries." },
-        { title: "Users worldwide", value: data?.impactSectionUsersWorldwide || 50, suffix: "M+", display: "50M+", decimals: 0, desc: "Empowering 50M+ users with seamless digital experiences" },
-    ];
+    const stats = useMemo(
+        () => [
+            { title: "Years of experience", value: data?.impactSectionExperience || 10, suffix: "+", display: "10+", decimals: 0, desc: "Years of experience building custom software solutions." },
+            { title: "Client retention rate", value: data?.impactSectionClientRetentionRate || 98, suffix: "%", display: "98%", decimals: 0, desc: "Client retention rate, & longterm partnerships built on trust." },
+            { title: "Projects delivered", value: data?.impactSectionProjectsDelivered || 300, suffix: "+", display: "300+", decimals: 0, desc: "Projects delivered successfully across various industries." },
+            { title: "Users worldwide", value: data?.impactSectionUsersWorldwide || 50, suffix: "M+", display: "50M+", decimals: 0, desc: "Empowering 50M+ users with seamless digital experiences" },
+        ],
+        [
+            data?.impactSectionExperience,
+            data?.impactSectionClientRetentionRate,
+            data?.impactSectionProjectsDelivered,
+            data?.impactSectionUsersWorldwide,
+        ]
+    );
 
     const countersRef = useRef<(HTMLSpanElement | null)[]>([]);
 
@@ -57,7 +65,7 @@ export default function ImpactSection({ data }: { data?: ImpactSectionData }) {
         return () => {
             triggers.forEach((st) => st.kill());
         };
-    }, []);
+    }, [stats]);
 
     return (
         <>

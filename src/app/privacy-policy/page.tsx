@@ -34,7 +34,7 @@ export default function PrivacyPolicyPage() {
 
     loadPolicyData();
   }, []);
- console.log("Privacy Policy Data:", policyData);
+
   if (loading) {
     return (
       <div className="section privacy-policy-banner">
