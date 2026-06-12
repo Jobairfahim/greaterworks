@@ -15,6 +15,7 @@ import {
 import { IoSearchOutline } from "react-icons/io5";
 import ContactSection from "@/component/ContactSection";
 import { Blog, BlogPageData } from "@/types/insights";
+import { LuMoveUpRight } from "react-icons/lu";
 
 const FALLBACK_BLOG_IMAGE =
   "https://cdn.prod.website-files.com/68d276a2319df5bdcc752026/695d1bbd9c1d82c15d69cbec_img-07.jpg";
@@ -68,15 +69,7 @@ function ReadArticleButton({
       className={`title-button transition-none active-button w-inline-block ${className}`}
     >
       <div className="title-button-text">Read Article</div>
-      <div className="arrows-container cta">
-        <Image
-          alt="icon"
-          src="https://res.cloudinary.com/dsoilebvu/image/upload/v1777064837/arrow-up_ktln9z.svg"
-          width={16}
-          height={16}
-          className="arrow-button _16"
-        />
-      </div>
+      <LuMoveUpRight className="title-button-text" />
     </Link>
   );
 }
@@ -102,7 +95,9 @@ export default function InsightsClient({ data, blogs }: InsightsClientProps) {
   const filteredInsights = blogs.filter(
     (blog) =>
       blog.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      stripHtml(blog.description).toLowerCase().includes(searchQuery.toLowerCase())
+      stripHtml(blog.description)
+        .toLowerCase()
+        .includes(searchQuery.toLowerCase()),
   );
 
   const isSearching = searchQuery.trim() !== "";
@@ -111,7 +106,7 @@ export default function InsightsClient({ data, blogs }: InsightsClientProps) {
   const totalPages = Math.ceil(sourceList.length / ITEMS_PER_PAGE);
   const currentDisplayBlogs = sourceList.slice(
     (currentPage - 1) * ITEMS_PER_PAGE,
-    currentPage * ITEMS_PER_PAGE
+    currentPage * ITEMS_PER_PAGE,
   );
 
   // CMS-driven text with safe fallbacks
@@ -132,8 +127,10 @@ export default function InsightsClient({ data, blogs }: InsightsClientProps) {
     <div className="insights-hub-page">
       {/* Hero Section */}
       <section className="hub-hero">
-        <h1 className="hub-title">{heroTitle}</h1>
-        <p className="hub-subtitle">{heroSubtitle}</p>
+        <h1 className="title-h2-2 title-h2-two text-center ">{heroTitle}</h1>
+        <p className="section-title-description text-center py-5">
+          {heroSubtitle}
+        </p>
 
         <div className="search-container">
           <input
@@ -149,7 +146,9 @@ export default function InsightsClient({ data, blogs }: InsightsClientProps) {
         </div>
 
         <div className="hub-socials">
-          <span className="social-text">Follow us for the latest insights -&gt;</span>
+          <span className="social-text">
+            Follow us for the latest insights -&gt;
+          </span>
           <div className="social-icons">
             <a href="#" className="s-icon fb">
               <FaFacebookF size={18} />
@@ -199,7 +198,9 @@ export default function InsightsClient({ data, blogs }: InsightsClientProps) {
                     </div>
                     <div className="latest-card-content">
                       <h3 className="latest-title">{blog.title}</h3>
-                      <p className="latest-date">{formatBlogDate(blog.publishingDate)}</p>
+                      <p className="latest-date">
+                        {formatBlogDate(blog.publishingDate)}
+                      </p>
                       <ReadArticleButton href={getBlogHref(blog)} />
                     </div>
                   </div>
@@ -233,7 +234,10 @@ export default function InsightsClient({ data, blogs }: InsightsClientProps) {
               )}
             </>
           ) : (
-            <p className="insights-empty-message" style={{ textAlign: "center", padding: "40px 0" }}>
+            <p
+              className="insights-empty-message"
+              style={{ textAlign: "center", padding: "40px 0" }}
+            >
               No blogs found matching your search.
             </p>
           )}
@@ -242,8 +246,10 @@ export default function InsightsClient({ data, blogs }: InsightsClientProps) {
         <>
           {/* Featured Blogs */}
           <section className="featured-section">
-            <h2 className="section-title">{featuredTitle}</h2>
-            <p className="section-subtitle">{featuredSubtitle}</p>
+            <h2 className="title-h2-2 title-h2-two text-center ">
+              {featuredTitle}
+            </h2>
+            <p className="section-subtitle text-xl">{featuredSubtitle}</p>
 
             {featuredBlogs.length >= 3 && (
               <div className="featured-grid">
@@ -253,7 +259,11 @@ export default function InsightsClient({ data, blogs }: InsightsClientProps) {
                     <Link
                       href={getBlogHref(featuredBlogs[0])}
                       className="block-link"
-                      style={{ width: "100%", height: "100%", display: "block" }}
+                      style={{
+                        width: "100%",
+                        height: "100%",
+                        display: "block",
+                      }}
                     >
                       <Image
                         src={getBlogImage(featuredBlogs[0])}
@@ -265,7 +275,9 @@ export default function InsightsClient({ data, blogs }: InsightsClientProps) {
                     </Link>
                   </div>
                   <div className="feat-content">
-                    <h3 className="feat-title-large">{featuredBlogs[0].title}</h3>
+                    <h3 className="feat-title-large">
+                      {featuredBlogs[0].title}
+                    </h3>
                     <p className="feat-date">
                       {formatBlogDate(featuredBlogs[0].publishingDate)}
                     </p>
@@ -283,7 +295,11 @@ export default function InsightsClient({ data, blogs }: InsightsClientProps) {
                       <Link
                         href={getBlogHref(featuredBlogs[1])}
                         className="block-link"
-                        style={{ width: "100%", height: "100%", display: "block" }}
+                        style={{
+                          width: "100%",
+                          height: "100%",
+                          display: "block",
+                        }}
                       >
                         <Image
                           src={getBlogImage(featuredBlogs[1])}
@@ -313,7 +329,11 @@ export default function InsightsClient({ data, blogs }: InsightsClientProps) {
                       <Link
                         href={getBlogHref(featuredBlogs[2])}
                         className="block-link"
-                        style={{ width: "100%", height: "100%", display: "block" }}
+                        style={{
+                          width: "100%",
+                          height: "100%",
+                          display: "block",
+                        }}
                       >
                         <Image
                           src={getBlogImage(featuredBlogs[2])}
@@ -344,8 +364,10 @@ export default function InsightsClient({ data, blogs }: InsightsClientProps) {
 
           {/* Latest Blogs */}
           <section className="latest-section">
-            <h2 className="section-title">{latestTitle}</h2>
-            <p className="section-subtitle">{latestSubtitle}</p>
+            <h2 className="title-h2-2 title-h2-two text-center  ">
+              {latestTitle}
+            </h2>
+            <p className="section-subtitle text-xl">{latestSubtitle}</p>
 
             <div className="latest-grid">
               {currentDisplayBlogs.map((blog) => (
@@ -361,7 +383,9 @@ export default function InsightsClient({ data, blogs }: InsightsClientProps) {
                   </div>
                   <div className="latest-card-content">
                     <h3 className="latest-title">{blog.title}</h3>
-                    <p className="latest-date">{formatBlogDate(blog.publishingDate)}</p>
+                    <p className="latest-date">
+                      {formatBlogDate(blog.publishingDate)}
+                    </p>
                     <ReadArticleButton href={getBlogHref(blog)} />
                   </div>
                 </div>
@@ -369,7 +393,10 @@ export default function InsightsClient({ data, blogs }: InsightsClientProps) {
             </div>
 
             {currentDisplayBlogs.length === 0 && (
-              <p className="insights-empty-message" style={{ textAlign: "center", padding: "40px 0" }}>
+              <p
+                className="insights-empty-message"
+                style={{ textAlign: "center", padding: "40px 0" }}
+              >
                 No blogs are available yet.
               </p>
             )}
@@ -469,7 +496,9 @@ export default function InsightsClient({ data, blogs }: InsightsClientProps) {
 
         .s-icon {
           color: #000;
-          transition: transform 0.2s ease, opacity 0.2s ease;
+          transition:
+            transform 0.2s ease,
+            opacity 0.2s ease;
           display: flex;
           align-items: center;
           justify-content: center;
@@ -597,7 +626,9 @@ export default function InsightsClient({ data, blogs }: InsightsClientProps) {
           border: 1px solid #f3f4f6;
           overflow: hidden;
           background: #fff;
-          transition: box-shadow 0.2s ease, transform 0.2s ease;
+          transition:
+            box-shadow 0.2s ease,
+            transform 0.2s ease;
         }
 
         .latest-card:hover {

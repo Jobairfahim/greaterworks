@@ -13,7 +13,7 @@ import { fetchNavbarDataServer } from "@/lib/navbar-data";
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "Greater works technologies | Custom Software, Web & Mobile App Development",
+  title: "Greater Works Technologies | Custom Software, Web & Mobile App Development",
   description:
     "Greater works technologies is a leading software development company delivering custom web, mobile, and enterprise solutions. We help businesses innovate with scalable technology, expert engineering, and end-to-end digital transformation.",
   openGraph: {
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Greater works technologies | Custom Software, Web & Mobile App Development",
+    title: "Greater Works technologies | Custom Software, Web & Mobile App Development",
     description:
       "Greater works technologies is a leading software development company delivering custom web, mobile, and enterprise solutions. We help businesses innovate with scalable technology, expert engineering, and end-to-end digital transformation.",
   },

@@ -5594,7 +5594,6 @@ figure {
 .author-info {
   justify-content: center;
   align-items: center;
-  margin-top: 30px;
   display: flex;
 }
 
@@ -22078,7 +22077,7 @@ figure {
 
   .field-form.full.service-form-field {
     border-radius: 14px;
-    height: 64px;
+    height: 4px;
     padding: 16px 32px;
     font-size: 20px;
     font-weight: 400;
