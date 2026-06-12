@@ -233,9 +233,7 @@ export default function InsightsClient({ data, blogs }: InsightsClientProps) {
               )}
             </>
           ) : (
-            <p
-              style={{ textAlign: "center", color: "#6b7280", padding: "40px 0" }}
-            >
+            <p className="insights-empty-message" style={{ textAlign: "center", padding: "40px 0" }}>
               No blogs found matching your search.
             </p>
           )}
@@ -371,13 +369,7 @@ export default function InsightsClient({ data, blogs }: InsightsClientProps) {
             </div>
 
             {currentDisplayBlogs.length === 0 && (
-              <p
-                style={{
-                  textAlign: "center",
-                  color: "#6b7280",
-                  padding: "40px 0",
-                }}
-              >
+              <p className="insights-empty-message" style={{ textAlign: "center", padding: "40px 0" }}>
                 No blogs are available yet.
               </p>
             )}
@@ -413,11 +405,6 @@ export default function InsightsClient({ data, blogs }: InsightsClientProps) {
       )}
 
       <style jsx>{`
-        .insights-hub-page,
-        .insights-hub-page * {
-          font-family: "Satoshi", sans-serif !important;
-        }
-
         .insights-hub-page {
           min-height: 100vh;
           background: #ffffff;
@@ -433,19 +420,10 @@ export default function InsightsClient({ data, blogs }: InsightsClientProps) {
         }
 
         .hub-title {
-          font-family: Satoshi, Arial, sans-serif;
-          font-size: 48px;
-          font-weight: 400;
-          color: #111827;
           margin-bottom: 24px;
         }
 
         .hub-subtitle {
-          font-family: Satoshi, Arial, sans-serif;
-          font-weight: 400;
-          font-size: 16px;
-          line-height: 1.6;
-          color: #4b5563;
           margin-bottom: 40px;
           padding: 0 40px;
         }
@@ -461,18 +439,8 @@ export default function InsightsClient({ data, blogs }: InsightsClientProps) {
           padding: 16px 48px 16px 20px;
           border-radius: 8px;
           border: 1px solid #e5e7eb;
-          font-size: 16px;
           outline: none;
-          color: #111827;
           transition: border-color 0.2s ease;
-        }
-
-        .hub-search-input:focus {
-          border-color: #0052ff;
-        }
-
-        .hub-search-input::placeholder {
-          color: #9ca3af;
         }
 
         .search-icon-wrapper {
@@ -492,12 +460,6 @@ export default function InsightsClient({ data, blogs }: InsightsClientProps) {
           align-items: center;
           justify-content: center;
           gap: 16px;
-        }
-
-        .social-text {
-          font-size: 15px;
-          font-weight: 600;
-          color: #374151;
         }
 
         .social-icons {
@@ -544,21 +506,14 @@ export default function InsightsClient({ data, blogs }: InsightsClientProps) {
         }
 
         .section-title {
-          font-family: Satoshi, Arial, sans-serif;
-          font-size: 32px;
-          font-weight: 400;
           text-align: center;
-          color: #000;
           margin-bottom: 16px;
         }
 
         .section-subtitle {
-          font-size: 15px;
-          color: #4b5563;
           text-align: center;
           max-width: 700px;
           margin: 0 auto 48px;
-          line-height: 1.6;
         }
 
         /* Featured Grid */
@@ -588,10 +543,7 @@ export default function InsightsClient({ data, blogs }: InsightsClientProps) {
         }
 
         .feat-title-large {
-          font-size: 24px;
-          font-weight: 400;
           margin-bottom: 12px;
-          color: #111827;
         }
 
         .feat-right-stack {
@@ -616,10 +568,7 @@ export default function InsightsClient({ data, blogs }: InsightsClientProps) {
         }
 
         .feat-title-small {
-          font-size: 18px;
-          font-weight: 400;
           margin-bottom: 8px;
-          color: #111827;
         }
 
         .feat-content {
@@ -632,13 +581,6 @@ export default function InsightsClient({ data, blogs }: InsightsClientProps) {
           display: flex;
           flex-direction: column;
           align-items: flex-start;
-        }
-
-        .feat-date,
-        .latest-date {
-          font-size: 13px;
-          color: #6b7280;
-          font-weight: 400;
         }
 
         /* Latest Grid */
@@ -678,11 +620,7 @@ export default function InsightsClient({ data, blogs }: InsightsClientProps) {
         }
 
         .latest-title {
-          font-size: 18px;
-          font-weight: 400;
           margin-bottom: 12px;
-          color: #111827;
-          line-height: 1.4;
         }
 
         .latest-date {
@@ -712,20 +650,8 @@ export default function InsightsClient({ data, blogs }: InsightsClientProps) {
           background-image: none !important;
         }
 
-        :global(
-            .insights-hub-page
-              .title-button.transition-none.active-button:hover
-          ) {
-          background-color: transparent !important;
-          color: #111827 !important;
-        }
-
-        :global(
-            .insights-hub-page
-              .title-button.transition-none.active-button:hover
-              .title-button-text
-          ) {
-          color: #111827 !important;
+        :global(.insights-hub-page .title-button:hover .title-button-text) {
+          color: #ffffff !important;
         }
 
         /* Pagination */
@@ -742,29 +668,18 @@ export default function InsightsClient({ data, blogs }: InsightsClientProps) {
           border: 1px solid #e5e7eb;
           background: #fff;
           border-radius: 6px;
-          font-size: 14px;
-          font-weight: 400;
-          color: #374151;
           cursor: pointer;
           transition: all 0.2s ease;
-          font-family: "Satoshi", sans-serif;
         }
 
         .page-btn:hover:not(:disabled) {
-          border-color: #9433e9;
-          color: #9433e9;
+          border-color: var(--primary);
         }
 
         .page-btn:disabled {
           opacity: 0.5;
           cursor: not-allowed;
           background: #f9fafb;
-        }
-
-        .page-info {
-          font-size: 14px;
-          color: #6b7280;
-          font-weight: 400;
         }
 
         /* Responsive Styles */
@@ -774,9 +689,6 @@ export default function InsightsClient({ data, blogs }: InsightsClientProps) {
           }
           .latest-grid {
             grid-template-columns: repeat(2, 1fr);
-          }
-          .hub-title {
-            font-size: 36px;
           }
         }
 

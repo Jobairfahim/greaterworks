@@ -5,7 +5,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { Blog } from "@/types/insights";
 import BlogDetailClient, { ContentRenderer } from "./BlogDetailClient";
-import BlogSearch from "./BlogSearch";
 
 interface BlogPostLayoutProps {
   blog: Blog;
@@ -109,8 +108,6 @@ export default function BlogPostLayout({ blog, formattedDate }: BlogPostLayoutPr
 
         {/* Right Sidebar */}
         <aside className="right-sidebar">
-          <BlogSearch />
-
           <div className="promo-card light">
             <div className="promo-icon outline-icon">
               <svg
@@ -162,6 +159,13 @@ export default function BlogPostLayout({ blog, formattedDate }: BlogPostLayoutPr
                 className="button-primary service-button-primary promo-btn block w-button"
               >
                 {isSubscribing ? "Subscribing..." : "Subscribe"}
+                <Image
+                  alt="arrow-top-right"
+                  src="https://cdn.prod.website-files.com/68d276a2319df5bdcc752026/68dd105094d90e0a289e4185_arrow-top-right-white.svg"
+                  width={16}
+                  height={16}
+                  className="button-icon"
+                />
               </button>
               {subscriptionStatus === "success" && (
                 <p className="promo-status success">
@@ -179,11 +183,6 @@ export default function BlogPostLayout({ blog, formattedDate }: BlogPostLayoutPr
       </div>
 
       <style jsx>{`
-        .insight-post-page,
-        .insight-post-page * {
-          font-family: Satoshi, Arial, sans-serif !important;
-        }
-
         .insight-post-page {
           min-height: 100vh;
           background: #ffffff;
@@ -251,15 +250,7 @@ export default function BlogPostLayout({ blog, formattedDate }: BlogPostLayoutPr
         }
 
         :global(.sidebar-title) {
-          font-size: 16px;
-          font-weight: 400;
           margin-bottom: 12px;
-          color: #111111 !important;
-        }
-
-        :global(.toc-empty) {
-          font-size: 13px;
-          color: #9ca3af;
         }
 
         :global(.toc-list) {
@@ -290,12 +281,8 @@ export default function BlogPostLayout({ blog, formattedDate }: BlogPostLayoutPr
           padding: 0;
           border: none;
           background: none !important;
-          font-size: 13px;
-          line-height: 1.5;
           cursor: pointer;
           transition: color 0.2s ease;
-          color: #000000 !important;
-          -webkit-text-fill-color: #000000 !important;
           display: block;
           width: 100%;
           opacity: 1 !important;
@@ -304,51 +291,36 @@ export default function BlogPostLayout({ blog, formattedDate }: BlogPostLayoutPr
 
         :global(.toc-sub-item) { padding-left: 16px !important; }
 
-        :global(.toc-sub-item .toc-link) { font-size: 12px; }
-
         :global(.toc-sub-item::before) {
           content: "—" !important;
           font-size: 12px !important;
         }
 
-        :global(.toc-link:hover)  { color: #111111 !important; }
         :global(.toc-link.active) {
-          color: #111111 !important;
           text-decoration: underline;
         }
 
         /* ── Content wrapper ── */
         :global(.content-wrapper) {
-          font-size: 16px;
-          line-height: 1.8;
-          color: #4a5568;
           margin-top: 40px;
         }
 
         :global(.content-wrapper p)  { margin-bottom: 24px; }
         :global(.content-wrapper h2) {
-          font-size: 28px;
-          font-weight: 400;
-          color: #1a202c;
           margin: 40px 0 20px;
         }
         :global(.content-wrapper h3) {
-          font-size: 20px;
-          color: #2d3748;
           margin: 32px 0 16px;
         }
         :global(.content-wrapper blockquote) {
-          font-size: 20px;
           font-style: italic;
-          color: #2d3748;
           padding: 24px 32px;
-          border-left: 4px solid #9433e9;
+          border-left: 4px solid var(--primary);
           background: #f8fafc;
           margin: 32px 0;
           border-radius: 0 12px 12px 0;
-          line-height: 1.6;
         }
-        :global(.content-wrapper a)  { color: #9433e9; text-decoration: underline; }
+        :global(.content-wrapper a)  { text-decoration: underline; }
         :global(.content-wrapper ul),
         :global(.content-wrapper ol) { padding-left: 24px; margin-bottom: 24px; }
         :global(.content-wrapper li) { margin-bottom: 8px; }
@@ -357,26 +329,17 @@ export default function BlogPostLayout({ blog, formattedDate }: BlogPostLayoutPr
         .center-content { min-width: 0; }
 
         .breadcrumbs {
-          font-size: 12px;
-          font-weight: 400;
-          color: #9433e9;
-          letter-spacing: 1px;
           margin-bottom: 20px;
         }
 
         .breadcrumbs :global(a) {
-          color: #9433e9;
           text-decoration: none;
         }
 
         .breadcrumbs :global(a:hover) { text-decoration: underline; }
 
         .article-title {
-          font-size: 42px;
-          font-weight: 400;
-          color: #000;
           margin-bottom: 20px;
-          line-height: 1.2;
         }
 
         .author-meta-block {
@@ -401,9 +364,6 @@ export default function BlogPostLayout({ blog, formattedDate }: BlogPostLayoutPr
         }
 
         .author-name {
-          font-size: 16px;
-          font-weight: 400;
-          color: #9433e9;
           margin-bottom: 4px;
         }
 
@@ -411,14 +371,6 @@ export default function BlogPostLayout({ blog, formattedDate }: BlogPostLayoutPr
           display: flex;
           align-items: center;
           gap: 6px;
-          font-size: 13px;
-          color: #4b5563;
-        }
-
-        .meta-dot {
-          font-size: 14px;
-          font-weight: 400;
-          color: #9ca3af;
         }
 
         /* ── Right sidebar ── */
@@ -462,22 +414,14 @@ export default function BlogPostLayout({ blog, formattedDate }: BlogPostLayoutPr
         }
 
         .promo-title {
-          font-size: 20px;
-          font-weight: 400;
           margin-bottom: 12px;
-          line-height: 1.4;
         }
 
         .promo-text {
-          font-size: 13px;
-          color: #4b5563;
-          line-height: 1.6;
           margin-bottom: 24px;
         }
 
         .promo-btn {
-          font-size: 15px;
-          font-weight: 400;
           padding: 12px 24px;
           border-radius: 8px;
           border: none;
@@ -492,6 +436,10 @@ export default function BlogPostLayout({ blog, formattedDate }: BlogPostLayoutPr
           border-radius: 0;
           background: #9433e9;
           color: white;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 12px;
         }
 
         .promo-btn.block:hover { background: #8129d1; }
@@ -518,14 +466,12 @@ export default function BlogPostLayout({ blog, formattedDate }: BlogPostLayoutPr
         }
 
         .promo-label {
-          color: #141414;
           display: flex;
           align-items: center;
           margin-bottom: 0;
         }
 
         .promo-label .required {
-          color: #ef4444;
           margin-left: 2px;
         }
 
@@ -537,22 +483,12 @@ export default function BlogPostLayout({ blog, formattedDate }: BlogPostLayoutPr
           background-color: #fff;
         }
 
-        .promo-input:focus       { border-color: #9433e9; }
-        .promo-input::placeholder { color: rgba(20, 20, 20, 0.45); }
+        .promo-input::placeholder { font-size: 14px; }
+        .promo-input:focus       { border-color: var(--primary); }
 
         .promo-status {
-          font-size: 13px;
-          line-height: 1.5;
           margin: 12px 0 0;
           text-align: left;
-        }
-
-        .promo-status.success {
-          color: #047857;
-        }
-
-        .promo-status.error {
-          color: #dc2626;
         }
 
         /* ── Responsive ── */
@@ -568,7 +504,6 @@ export default function BlogPostLayout({ blog, formattedDate }: BlogPostLayoutPr
         @media (max-width: 768px) {
           .blog-layout-grid   { grid-template-columns: 1fr; }
           .right-sidebar      { position: static; }
-          .article-title      { font-size: 32px; }
           .center-content     { padding: 24px; }
         }
       `}</style>

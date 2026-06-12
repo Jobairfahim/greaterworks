@@ -34,5 +34,10 @@ export interface Blog {
   createdAt: string;
   updatedAt: string;
   publishedAt: string;
+  seo?: {
+    metaTitle?: string | null;
+    metaDescription?: string | null;
+    keywords?: string | null;
+  } | null;
 }
 

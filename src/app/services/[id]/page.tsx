@@ -1,9 +1,16 @@
+import { Metadata } from "next";
 import ContactSection from "@/component/ContactSection";
 import { ServiceFaqAccordion } from "@/component/ServiceFaqAccordion";
 import Image from "next/image";
 import Link from "next/link";
-import { notFound } from "next/navigation";
-import { CmsRecord, getImageUrl, getNumber, getString, pickString, resolveImageUrl, safeArray, safeRecord } from "@/lib/cms";
+
+type CmsRecord = Record<string, unknown>;
+
+interface CmsImage {
+  url?: string;
+  alternativeText?: string | null;
+  formats?: Record<string, { url?: string } | undefined>;
+}
 
 interface ServicePageProps {
   params: Promise<{ id: string }>;
@@ -43,13 +50,46 @@ async function getServiceBySlug(slug: string): Promise<CmsRecord | null> {
   }
 }
 
-export default async function CustomSoftwareDevelopmentPage({ params }: ServicePageProps) {
+function getServiceSeo(service: CmsRecord | null, slug: string) {
+  const seo = asRecord(service?.seo);
+  const title =
+    getString(seo, ["metaTitle", "title", "seoTitle"]) ||
+    getString(service ?? {}, ["serviceTitle", "title"], "") ||
+    slug
+      .split("-")
+      .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
+      .join(" ");
+  const description =
+    getString(seo, ["metaDescription", "description", "seoDescription"]) ||
+    "Custom software services designed to scale your business.";
+
+  return { title, description };
+}
+
+export async function generateMetadata({ params }: ServicePageProps): Promise<Metadata> {
   const { id } = await params;
   const service = await getServiceBySlug(id);
+  const seo = getServiceSeo(service, id);
 
-  if (!service) {
-    notFound();
-  }
+  return {
+    title: seo.title,
+    description: seo.description,
+    openGraph: {
+      title: seo.title,
+      description: seo.description,
+      type: "website",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: seo.title,
+      description: seo.description,
+    },
+  };
+}
+
+export default async function CustomSoftwareDevelopmentPage({ params }: ServicePageProps) {
+  const { id } = await params;
+  const service = (await getServiceBySlug(id)) ?? {};
 
   const bannerRecord = safeRecord(service.bannar);
   const chooseUs = safeRecord(service.chooseUs);
@@ -77,8 +117,8 @@ export default async function CustomSoftwareDevelopmentPage({ params }: ServiceP
     ["brandsTitle", "brandTitle"],
     "Trusted by 500+ happy clients worldwide."
   );
-  const bannerImage = resolveImageUrl(bannerRecord.bannarImage, FALLBACK_BANNER_IMAGE);
-  const brandImages = safeArray(bannerRecord.brandsImages);
+  const bannerImage = getImageUrl(bannar.bannarImage, FALLBACK_BANNER_IMAGE);
+  const brandImages = asArray(bannar.brandsImages);
 
   const offerItems = safeArray(service.offer);
   const chooseUsItems = safeArray(chooseUs.chooseUsSectionData);

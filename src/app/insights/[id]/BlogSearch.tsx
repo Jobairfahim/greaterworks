@@ -128,11 +128,7 @@ export default function BlogSearch() {
         }
 
         .search-title {
-          font-size: 20px;
-          font-weight: 400;
           margin-bottom: 16px;
-          line-height: 1.4;
-          color: #1a202c;
         }
 
         .search-form {
@@ -146,25 +142,21 @@ export default function BlogSearch() {
           padding: 12px 16px;
           border: 1px solid #e2e8f0;
           border-radius: 6px;
-          font-size: 14px;
-          font-family: inherit;
           transition: all 0.2s ease;
         }
 
         .search-input:focus {
           outline: none;
-          border-color: #9433e9;
+          border-color: var(--primary);
           box-shadow: 0 0 0 3px rgba(148, 51, 233, 0.1);
         }
 
         .search-button {
           padding: 12px 24px;
-          background: #9433e9;
+          background: var(--primary);
           color: white;
           border: none;
           border-radius: 6px;
-          font-size: 14px;
-          font-weight: 500;
           cursor: pointer;
           transition: all 0.2s ease;
         }
@@ -228,17 +220,7 @@ export default function BlogSearch() {
           gap: 4px;
         }
 
-        .result-title {
-          font-size: 14px;
-          font-weight: 500;
-          color: #1a202c;
-          line-height: 1.4;
-        }
-
         .result-excerpt {
-          font-size: 12px;
-          color: #718096;
-          line-height: 1.4;
           overflow: hidden;
           text-overflow: ellipsis;
           display: -webkit-box;
@@ -249,8 +231,6 @@ export default function BlogSearch() {
         .no-results {
           padding: 16px;
           text-align: center;
-          font-size: 14px;
-          color: #718096;
           background: #f8fafc;
           border-radius: 6px;
         }

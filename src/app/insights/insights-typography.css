@@ -1,0 +1,406 @@
+/**
+ * Insights section typography — matches site design system:
+ * Satoshi, --heading (#141414), --body (#525252), --primary (#9433e9)
+ */
+
+.insights-hub-page,
+.insight-post-page {
+  font-family: Satoshi, Arial, sans-serif;
+  color: var(--body);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── Insights hub (listing) ─────────────────────────────────────────── */
+
+.insights-hub-page .hub-title {
+  font-family: Satoshi, Arial, sans-serif;
+  font-size: 40px;
+  font-weight: 400;
+  line-height: 1.15;
+  letter-spacing: -0.96px;
+  color: var(--heading);
+}
+
+.insights-hub-page .hub-subtitle {
+  font-family: Satoshi, Arial, sans-serif;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 28px;
+  color: var(--body);
+}
+
+.insights-hub-page .hub-search-input {
+  font-family: Satoshi, Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 26px;
+  color: var(--heading);
+}
+
+.insights-hub-page .hub-search-input::placeholder {
+  color: var(--dark-gray-50, #afafaf);
+  font-weight: 400;
+}
+
+.insights-hub-page .hub-search-input:focus {
+  border-color: var(--primary);
+}
+
+.insights-hub-page .social-text {
+  font-family: Satoshi, Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 26px;
+  color: var(--heading);
+}
+
+.insights-hub-page .section-title {
+  font-family: Satoshi, Arial, sans-serif;
+  font-size: 40px;
+  font-weight: 400;
+  line-height: 45px;
+  letter-spacing: -0.96px;
+  color: var(--heading);
+}
+
+.insights-hub-page .section-subtitle {
+  font-family: Satoshi, Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 26px;
+  color: var(--body);
+}
+
+.insights-hub-page .feat-title-large {
+  font-family: Satoshi, Arial, sans-serif;
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 34px;
+  color: var(--heading);
+}
+
+.insights-hub-page .feat-title-small,
+.insights-hub-page .latest-title {
+  font-family: Satoshi, Arial, sans-serif;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 28px;
+  color: var(--heading);
+}
+
+.insights-hub-page .feat-date,
+.insights-hub-page .latest-date {
+  font-family: Satoshi, Arial, sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 26px;
+  color: var(--body);
+}
+
+.insights-hub-page .page-btn {
+  font-family: Satoshi, Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 26px;
+  color: var(--heading);
+}
+
+.insights-hub-page .page-btn:hover:not(:disabled) {
+  color: var(--primary);
+}
+
+.insights-hub-page .page-info {
+  font-family: Satoshi, Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 26px;
+  color: var(--body);
+}
+
+.insights-hub-page .title-button-text {
+  font-family: Satoshi, Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 26px;
+  color: var(--primary);
+}
+
+.insights-hub-page .title-button.transition-none.active-button:hover,
+.insights-hub-page .title-button.transition-none.active-button:hover .title-button-text {
+  color: var(--heading) !important;
+}
+
+.insights-hub-page .insights-empty-message {
+  font-family: Satoshi, Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 26px;
+  color: var(--body);
+}
+
+/* ── Insight detail (post) ──────────────────────────────────────────── */
+
+.insight-post-page .breadcrumbs,
+.insight-post-page .breadcrumbs a {
+  font-family: Satoshi, Arial, sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 26px;
+  letter-spacing: normal;
+  color: var(--primary);
+  text-transform: none;
+}
+
+.insight-post-page .breadcrumbs a:hover {
+  color: var(--primary);
+}
+
+.insight-post-page .article-title {
+  font-family: Satoshi, Arial, sans-serif;
+  font-size: 42px;
+  font-weight: 400;
+  line-height: 1.15;
+  letter-spacing: -0.96px;
+  color: var(--heading);
+}
+
+.insight-post-page .author-name {
+  font-family: Satoshi, Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 26px;
+  color: var(--primary);
+}
+
+.insight-post-page .author-details {
+  font-family: Satoshi, Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 26px;
+  color: var(--body);
+}
+
+.insight-post-page .meta-dot {
+  font-family: Satoshi, Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--dark-gray-50, #afafaf);
+}
+
+.insight-post-page .sidebar-title {
+  font-family: Satoshi, Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 26px;
+  color: var(--heading);
+}
+
+.insight-post-page .toc-empty {
+  font-family: Satoshi, Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 26px;
+  color: var(--body);
+}
+
+.insight-post-page .toc-link {
+  font-family: Satoshi, Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 26px;
+  color: var(--heading);
+}
+
+.insight-post-page .toc-sub-item .toc-link {
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.insight-post-page .toc-link:hover,
+.insight-post-page .toc-link.active {
+  color: var(--primary);
+}
+
+.insight-post-page .content-wrapper {
+  font-family: Satoshi, Arial, sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 28px;
+  color: var(--body);
+}
+
+.insight-post-page .content-wrapper p {
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 28px;
+  color: var(--body);
+}
+
+.insight-post-page .content-wrapper h1 {
+  font-family: Satoshi, Arial, sans-serif;
+  font-size: 40px;
+  font-weight: 400;
+  line-height: 45px;
+  letter-spacing: -0.96px;
+  color: var(--heading);
+}
+
+.insight-post-page .content-wrapper h2 {
+  font-family: Satoshi, Arial, sans-serif;
+  font-size: 40px;
+  font-weight: 400;
+  line-height: 45px;
+  letter-spacing: -0.96px;
+  color: var(--heading);
+}
+
+.insight-post-page .content-wrapper h3 {
+  font-family: Satoshi, Arial, sans-serif;
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 34px;
+  color: var(--heading);
+}
+
+.insight-post-page .content-wrapper h4,
+.insight-post-page .content-wrapper h5,
+.insight-post-page .content-wrapper h6 {
+  font-family: Satoshi, Arial, sans-serif;
+  font-weight: 400;
+  color: var(--heading);
+}
+
+.insight-post-page .content-wrapper strong,
+.insight-post-page .content-wrapper b {
+  font-weight: 500;
+  color: var(--heading);
+}
+
+.insight-post-page .content-wrapper a {
+  color: var(--primary);
+  font-weight: 400;
+}
+
+.insight-post-page .content-wrapper li {
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 28px;
+  color: var(--body);
+}
+
+.insight-post-page .content-wrapper blockquote {
+  font-family: Satoshi, Arial, sans-serif;
+  font-size: 20px;
+  font-weight: 400;
+  font-style: italic;
+  line-height: 30px;
+  color: var(--heading);
+}
+
+.insight-post-page .content-wrapper code,
+.insight-post-page .content-wrapper pre {
+  font-family: Inconsolata, monospace;
+  font-size: 14px;
+}
+
+/* Right sidebar: search + promo */
+.insight-post-page .search-card .search-title,
+.insight-post-page .promo-title {
+  font-family: Satoshi, Arial, sans-serif;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 30px;
+  color: var(--heading);
+}
+
+.insight-post-page .search-card .search-input,
+.insight-post-page .promo-input {
+  font-family: Satoshi, Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 26px;
+  color: var(--heading);
+}
+
+.insight-post-page .search-card .search-input::placeholder,
+.insight-post-page .promo-input::placeholder {
+  color: var(--dark-gray-50, #afafaf);
+  font-weight: 400;
+}
+
+.insight-post-page .search-card .search-button,
+.insight-post-page .promo-btn {
+  font-family: Satoshi, Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 26px;
+}
+
+.insight-post-page .search-card .result-title {
+  font-family: Satoshi, Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 26px;
+  color: var(--heading);
+}
+
+.insight-post-page .search-card .result-excerpt,
+.insight-post-page .search-card .no-results {
+  font-family: Satoshi, Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 26px;
+  color: var(--body);
+}
+
+.insight-post-page .promo-text {
+  font-family: Satoshi, Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 26px;
+  color: var(--body);
+}
+
+.insight-post-page .promo-label,
+.insight-post-page .from-group-title {
+  font-family: Satoshi, Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 26px;
+  color: var(--heading);
+}
+
+.insight-post-page .promo-status {
+  font-family: Satoshi, Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 26px;
+}
+
+.insight-post-page .promo-status.success {
+  color: #047857;
+}
+
+.insight-post-page .promo-status.error {
+  color: #dc2626;
+}
+
+/* Responsive type scale (hub) */
+@media (max-width: 1024px) {
+  .insights-hub-page .hub-title {
+    font-size: 36px;
+    line-height: 46px;
+  }
+}
+
+@media (max-width: 768px) {
+  .insight-post-page .article-title {
+    font-size: 32px;
+    line-height: 40px;
+  }
+
+  .insight-post-page .content-wrapper h2 {
+    font-size: 28px;
+    line-height: 38px;
+  }
+}

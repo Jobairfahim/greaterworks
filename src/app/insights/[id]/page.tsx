@@ -1,6 +1,9 @@
+import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { Blog } from "@/types/insights";
 import BlogPostLayout from "./BlogPostLayout";
+import { getInsightById } from "@/data/insightsData";
+import "../insights-typography.css";
 
 async function getBlogBySlugOrDocumentId(id: string): Promise<Blog | null> {
   try {
@@ -27,13 +30,41 @@ async function getBlogBySlugOrDocumentId(id: string): Promise<Blog | null> {
   }
 }
 
+function getFallbackBlog(id: string): Blog | null {
+  const insight = getInsightById(id);
+  if (!insight) return null;
+
+  const date = insight.date ? new Date(insight.date) : new Date();
+
+  return {
+    excerpt: insight.description,
+    id: 0,
+    documentId: insight.id,
+    title: insight.title,
+    publishingDate: date.toISOString(),
+    readTime: insight.readTime ?? "5 min read",
+    authorName: insight.author ?? "Greater Works Team",
+    authorEmail: "sales@greaterworks.tech",
+    description: insight.content ? `<p>${insight.content}</p>` : `<p>${insight.description}</p>`,
+    slug: insight.id,
+    coverImage: null,
+    facebookLink: null,
+    twitterLink: null,
+    pinterestLink: null,
+    linkedinLink: null,
+    createdAt: date.toISOString(),
+    updatedAt: date.toISOString(),
+    publishedAt: date.toISOString(),
+  };
+}
+
 export default async function InsightPostPage({
   params,
 }: {
   params: Promise<{ id: string }>;
 }) {
   const { id } = await params;
-  const blog = await getBlogBySlugOrDocumentId(id);
+  const blog = (await getBlogBySlugOrDocumentId(id)) ?? getFallbackBlog(id);
 
   if (!blog) {
     notFound();
@@ -48,4 +79,37 @@ export default async function InsightPostPage({
     : null;
 
   return <BlogPostLayout blog={blog} formattedDate={formattedDate} />;
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}): Promise<Metadata> {
+  const { id } = await params;
+  const blog = (await getBlogBySlugOrDocumentId(id)) ?? getFallbackBlog(id);
+
+  if (!blog) {
+    return {
+      title: "Insight Not Found",
+    };
+  }
+
+  const title = blog.seo?.metaTitle || blog.title;
+  const description = blog.seo?.metaDescription || blog.excerpt || "";
+
+  return {
+    title,
+    description,
+    openGraph: {
+      title,
+      description,
+      type: "article",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+    },
+  };
 }

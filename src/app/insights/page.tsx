@@ -1,5 +1,7 @@
 import { Blog, BlogPageData } from "@/types/insights";
 import InsightsClient from "./InsightsClient";
+import { allInsights } from "@/data/insightsData";
+import "./insights-typography.css";
 
 async function getBlogPageData(): Promise<BlogPageData | null> {
   try {
@@ -49,11 +51,37 @@ async function getBlogs(): Promise<Blog[]> {
   }
 }
 
+function getFallbackBlogs(): Blog[] {
+  return allInsights.map((insight, index) => {
+    const date = insight.date ? new Date(insight.date) : new Date();
+    return {
+      excerpt: insight.description,
+      id: index + 1,
+      documentId: insight.id,
+      title: insight.title,
+      publishingDate: date.toISOString(),
+      readTime: insight.readTime ?? "5 min read",
+      authorName: insight.author ?? "Greater Works Team",
+      authorEmail: "sales@greaterworks.tech",
+      description: insight.content ? `<p>${insight.content}</p>` : `<p>${insight.description}</p>`,
+      slug: insight.id,
+      coverImage: null,
+      facebookLink: null,
+      twitterLink: null,
+      pinterestLink: null,
+      linkedinLink: null,
+      createdAt: date.toISOString(),
+      updatedAt: date.toISOString(),
+      publishedAt: date.toISOString(),
+    };
+  });
+}
+
 export default async function InsightsPage() {
   const [blogPageData, blogs] = await Promise.all([
     getBlogPageData(),
     getBlogs(),
   ]);
 
-  return <InsightsClient data={blogPageData} blogs={blogs} />;
+  return <InsightsClient data={blogPageData} blogs={blogs.length > 0 ? blogs : getFallbackBlogs()} />;
 }
