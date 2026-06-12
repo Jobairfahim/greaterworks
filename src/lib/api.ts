@@ -154,10 +154,14 @@ export const fetchNavbarData = async () => {
     const data = await response.json();
     return data.data;
   } catch (error) {
-    if (error instanceof Error) {
-      console.error("Error fetching navbar data:", error.message);
-    } else {
-      console.error("Error fetching navbar data:", error);
+    // Don't spam the console from client components — return null so callers can use fallbacks.
+    if (process.env.NODE_ENV !== "production") {
+      // Helpful debug output during development only
+      if (error instanceof Error) {
+        console.warn("fetchNavbarData failed:", error.message);
+      } else {
+        console.warn("fetchNavbarData failed:", error);
+      }
     }
     return null;
   }
@@ -176,10 +180,12 @@ export const fetchPrivacyPolicyData = async () => {
     const data = await response.json();
     return data.data;
   } catch (error) {
-    if (error instanceof Error) {
-      console.error("Error fetching privacy policy data:", error.message);
-    } else {
-      console.error("Error fetching privacy policy data:", error);
+    if (process.env.NODE_ENV !== "production") {
+      if (error instanceof Error) {
+        console.warn("fetchPrivacyPolicyData failed:", error.message);
+      } else {
+        console.warn("fetchPrivacyPolicyData failed:", error);
+      }
     }
     return null;
   }
@@ -198,10 +204,12 @@ export const fetchTermsAndConditionData = async () => {
     const data = await response.json();
     return data.data;
   } catch (error) {
-    if (error instanceof Error) {
-      console.error("Error fetching terms and condition data:", error.message);
-    } else {
-      console.error("Error fetching terms and condition data:", error);
+    if (process.env.NODE_ENV !== "production") {
+      if (error instanceof Error) {
+        console.warn("fetchTermsAndConditionData failed:", error.message);
+      } else {
+        console.warn("fetchTermsAndConditionData failed:", error);
+      }
     }
     return null;
   }

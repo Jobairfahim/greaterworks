@@ -1,8 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { FormEvent, useState } from "react";
 import Link from "next/link";
-import Image from "next/image";
 import { Blog } from "@/types/insights";
 
 export default function BlogSearch() {
@@ -11,7 +10,7 @@ export default function BlogSearch() {
   const [isSearching, setIsSearching] = useState(false);
   const [showResults, setShowResults] = useState(false);
 
-  const handleSearch = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSearch = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     if (!searchQuery.trim()) {

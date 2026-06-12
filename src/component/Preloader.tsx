@@ -5,7 +5,6 @@ import { gsap } from "gsap";
 
 export default function Preloader() {
     const [hidden, setHidden] = useState(false);
-    const [isNavigation, setIsNavigation] = useState(false);
     const preloaderRef = useRef<HTMLDivElement>(null);
     const svgPathRef = useRef<SVGPathElement>(null);
     const logoTextRef = useRef<HTMLDivElement>(null);
@@ -81,7 +80,6 @@ export default function Preloader() {
                 
                 // Show preloader for navigation
                 setHidden(false);
-                setIsNavigation(true);
                 document.body.classList.add("loading");
                 
                 // Navigate after showing preloader

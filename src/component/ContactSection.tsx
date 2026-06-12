@@ -1,7 +1,7 @@
 "use client";
 
 import { ContactSectionData } from "@/types/homepage";
-import { useState } from "react";
+import { FormEvent, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -14,12 +14,20 @@ const techOptions = [
     "UI/UX Designing", "AI/ML Engineering", "Project Management", "Other Custom Work",
 ];
 
+const fallbackContactDetails = [
+    "NDA? Absolutely just ask.",
+    "We&apos;ll respond in 24 hours fast & focused.",
+    "Work with Senior Engineers.",
+];
+
 export default function ContactSection({ isSimple = false, data }: { isSimple?: boolean; data?: ContactSectionData }) {
     const [engagementType, setEngagementType] = useState("Staff Augmentation");
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle");
+    const contactEmail = data?.contactSupportEmail ?? "sales@greaterworks.tech";
+    const contactDetails = data?.contactDetails?.length ? data.contactDetails : fallbackContactDetails.map((details) => ({ id: details, details }));
 
-    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         setIsSubmitting(true);
         setSubmitStatus("idle");
@@ -75,29 +83,12 @@ export default function ContactSection({ isSimple = false, data }: { isSimple?: 
                             <div className="service-contact-info">
                                 <h2 className="contact-us-title service-title-wrap"><strong className="service-contact-us-title">{data?.contactTitle || "Start Building Your Project Today, Get in Touch!"}</strong></h2>
                                 <ul role="list" className="contact-us-list service-list">
-                                    {data?.contactDetails && data.contactDetails.length > 0 ? (
-                                        data.contactDetails.map((detail) => (
-                                            <li key={detail.id} className="contact-us-list-item">
-                                                <Image src="https://res.cloudinary.com/dsoilebvu/image/upload/v1777057659/check_a87gb5.svg" loading="lazy" alt="Icon" width={24} height={24} className="contact-us-list-icon" />
-                                                <p className="contact-us-list-description service-page">{detail.details}</p>
-                                            </li>
-                                        ))
-                                    ) : (
-                                        <>
-                                            <li className="contact-us-list-item">
-                                                <Image src="https://res.cloudinary.com/dsoilebvu/image/upload/v1777057659/check_a87gb5.svg" loading="lazy" alt="Icon" width={24} height={24} className="contact-us-list-icon" />
-                                                <p className="contact-us-list-description service-page">NDA? Absolutely just ask.</p>
-                                            </li>
-                                            <li className="contact-us-list-item">
-                                                <Image src="https://res.cloudinary.com/dsoilebvu/image/upload/v1777057659/check_a87gb5.svg" loading="lazy" alt="Icon" width={24} height={24} className="contact-us-list-icon" />
-                                                <p className="contact-us-list-description service-page">We&apos;ll respond in 24 hours fast & focused.</p>
-                                            </li>
-                                            <li className="contact-us-list-item">
-                                                <Image src="https://res.cloudinary.com/dsoilebvu/image/upload/v1777057659/check_a87gb5.svg" loading="lazy" alt="Icon" width={24} height={24} className="contact-us-list-icon" />
-                                                <p className="contact-us-list-description service-page">Work with Senior Engineers.</p>
-                                            </li>
-                                        </>
-                                    )}
+                                    {contactDetails.map((detail) => (
+                                        <li key={detail.id} className="contact-us-list-item">
+                                            <Image src="https://res.cloudinary.com/dsoilebvu/image/upload/v1777057659/check_a87gb5.svg" loading="lazy" alt="Icon" width={24} height={24} className="contact-us-list-icon" />
+                                            <p className="contact-us-list-description service-page">{detail.details}</p>
+                                        </li>
+                                    ))}
                                 </ul>
                             </div>
                             <div className="service-contact-us-schedule-wrap responsive">
@@ -106,7 +97,7 @@ export default function ContactSection({ isSimple = false, data }: { isSimple?: 
                                         <Image src="https://cdn.prod.website-files.com/68d276a2319df5bdcc752026/68e4b7bde312a6e238715c90_email.svg" loading="lazy" alt="Icon" width={20} height={20} className="contact-us-schedule-icon" />
                                     </Link>
                                     <div className="contact-us-ceo-name-title">
-                                        <p className="from-prefer-email service-page">Talk To Sales <Link href={`mailto:${data?.contactSupportEmail || 'sales@greaterworks.tech'}`} className="link-3 service-link">{data?.contactSupportEmail || "sales@greaterworks.tech"}</Link></p>
+                                        <p className="from-prefer-email service-page">Talk To Sales <Link href={`mailto:${contactEmail}`} className="link-3 service-link">{contactEmail}</Link></p>
                                     </div>
                                 </div>
                                 <div className={`contact-us-schedule staff-contact-us-schedule ${engagementType === "Custom Product Development" ? "is-active" : ""}`}>
@@ -141,29 +132,12 @@ export default function ContactSection({ isSimple = false, data }: { isSimple?: 
                             <div className="service-contact-info responsive-style">
                                 <h2 className="contact-us-title service-title-wrap"><strong className="service-contact-us-title">{data?.contactTitle || "Start Building Your Project Today, Get in Touch!"}</strong></h2>
                                 <ul role="list" className="contact-us-list service-list">
-                                    {data?.contactDetails && data.contactDetails.length > 0 ? (
-                                        data.contactDetails.map((detail) => (
-                                            <li key={detail.id} className="contact-us-list-item">
-                                                <Image src="https://res.cloudinary.com/dsoilebvu/image/upload/v1777057659/check_a87gb5.svg" loading="lazy" alt="Icon" width={24} height={24} className="contact-us-list-icon" />
-                                                <p className="contact-us-list-description service-page">{detail.details}</p>
-                                            </li>
-                                        ))
-                                    ) : (
-                                        <>
-                                            <li className="contact-us-list-item">
-                                                <Image src="https://res.cloudinary.com/dsoilebvu/image/upload/v1777057659/check_a87gb5.svg" loading="lazy" alt="Icon" width={24} height={24} className="contact-us-list-icon" />
-                                                <p className="contact-us-list-description service-page">NDA? Absolutely just ask.</p>
-                                            </li>
-                                            <li className="contact-us-list-item">
-                                                <Image src="https://res.cloudinary.com/dsoilebvu/image/upload/v1777057659/check_a87gb5.svg" loading="lazy" alt="Icon" width={24} height={24} className="contact-us-list-icon" />
-                                                <p className="contact-us-list-description service-page">We&apos;ll respond in 24 hours fast & focused.</p>
-                                            </li>
-                                            <li className="contact-us-list-item">
-                                                <Image src="https://res.cloudinary.com/dsoilebvu/image/upload/v1777057659/check_a87gb5.svg" loading="lazy" alt="Icon" width={24} height={24} className="contact-us-list-icon" />
-                                                <p className="contact-us-list-description service-page">Work with Senior Engineers.</p>
-                                            </li>
-                                        </>
-                                    )}
+                                    {contactDetails.map((detail) => (
+                                        <li key={detail.id} className="contact-us-list-item">
+                                            <Image src="https://res.cloudinary.com/dsoilebvu/image/upload/v1777057659/check_a87gb5.svg" loading="lazy" alt="Icon" width={24} height={24} className="contact-us-list-icon" />
+                                            <p className="contact-us-list-description service-page">{detail.details}</p>
+                                        </li>
+                                    ))}
                                 </ul>
                             </div>
                             <h2 className="heading-13 service-form-title">Send us a message! </h2>

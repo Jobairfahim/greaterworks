@@ -1,6 +1,5 @@
 "use client";
 
-import { useEffect, useRef } from "react";
 import { IndustrySectionData, OnDemandSectionData, Industry } from "@/types/homepage";
 import Image from "next/image";
 import Link from "next/link";

@@ -1,5 +1,4 @@
 import Preloader from "@/component/Preloader";
-import Navbar from "@/component/Navbar";
 import HeroSection from "@/component/HeroSection";
 import ApproachUsSection from "@/component/ApproachUsSection";
 import ServicesSection from "@/component/ServicesSection";

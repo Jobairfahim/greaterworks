@@ -6,10 +6,8 @@ import { useGSAP } from "@gsap/react";
 
 const PageTransition = ({ children }: { children: React.ReactNode }) => {
     const currentLocation = usePathname();
-
-    console.log(currentLocation);
-    const stairParentRef = useRef(null);
-    const childRef = useRef(null);
+    const stairParentRef = useRef<HTMLDivElement | null>(null);
+    const childRef = useRef<HTMLDivElement | null>(null);
 
     useGSAP(() => {
         const tl = gsap.timeline();
