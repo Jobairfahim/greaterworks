@@ -485,6 +485,7 @@ export default async function CustomSoftwareDevelopmentPage({ params }: ServiceP
               height={600}
               className="banner-line-image"
             />
+            
             <img
               src={bannerImage}
               alt="Banner-Image"
