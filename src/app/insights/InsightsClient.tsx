@@ -115,6 +115,7 @@ export default function InsightsClient({ data, blogs }: InsightsClientProps) {
   );
 
   // CMS-driven text with safe fallbacks
+  const subtitle = data?.serviceTagline || "What we offer";
   const heroTitle = data?.pageTitle ?? "Latest Tech and Trends";
   const heroSubtitle =
     data?.pageDescription ??
@@ -132,6 +133,10 @@ export default function InsightsClient({ data, blogs }: InsightsClientProps) {
     <div className="insights-hub-page">
       {/* Hero Section */}
       <section className="hub-hero">
+        <div className="section-head-content-subtitle">
+          <div className="section-head-subtitle-dot" />
+          <p className="section-head-subtitle-content subtitle-secondary-content">{subtitle}</p>
+        </div>
         <h1 className="hub-title">{heroTitle}</h1>
         <p className="hub-subtitle">{heroSubtitle}</p>
 

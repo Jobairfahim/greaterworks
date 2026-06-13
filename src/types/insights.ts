@@ -12,6 +12,7 @@ export interface BlogPageData {
   createdAt: string;
   updatedAt: string;
   publishedAt: string;
+  serviceTagline?: string;
 }
 
 export interface Blog {
