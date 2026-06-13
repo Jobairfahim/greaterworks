@@ -4,6 +4,7 @@ import { ServiceFaqAccordion } from "@/component/ServiceFaqAccordion";
 import Image from "next/image";
 import Link from "next/link";
 import { getServiceBySlug } from "@/lib/api";
+import { LuMoveUpRight } from "react-icons/lu";
 
 export type CmsRecord = Record<string, unknown>;
 
@@ -16,8 +17,6 @@ interface CmsImage {
 interface ServicePageProps {
   params: Promise<{ id: string }>;
 }
-
-
 
 const FALLBACK_BANNER_IMAGE =
   "https://cdn.prod.website-files.com/68d276a2319df5bdcc752026/695227c7f17e6a5a37ecaea8_banner-image.png";
@@ -47,7 +46,11 @@ function getNumber(source: CmsRecord, keys: string[], fallback = 0) {
   for (const key of keys) {
     const value = source[key];
     if (typeof value === "number") return value;
-    if (typeof value === "string" && value.trim() && !Number.isNaN(Number(value))) {
+    if (
+      typeof value === "string" &&
+      value.trim() &&
+      !Number.isNaN(Number(value))
+    ) {
       return Number(value);
     }
   }
@@ -75,8 +78,6 @@ function getNestedArray(source: CmsRecord, keys: string[]) {
   }
   return [];
 }
-
-
 
 function getServiceSeo(service: CmsRecord | null, slug: string) {
   const seo = asRecord(service?.seo);
@@ -115,7 +116,9 @@ function getServiceSeo(service: CmsRecord | null, slug: string) {
 //   };
 // }
 
-export default async function CustomSoftwareDevelopmentPage({ params }: ServicePageProps) {
+export default async function CustomSoftwareDevelopmentPage({
+  params,
+}: ServicePageProps) {
   const { id } = await params;
   const service = (await getServiceBySlug(id)) ?? {};
 
@@ -128,22 +131,22 @@ export default async function CustomSoftwareDevelopmentPage({ params }: ServiceP
   const bannerTitle = getString(
     bannar,
     ["title", "bannarTitle", "bannerTitle", "heading"],
-    "Custom Software Development Built for Innovation & Growth"
+    "Custom Software Development Built for Innovation & Growth",
   );
   const bannerSubtitle = getString(
     bannar,
     ["subtitle", "tagline", "bannarSubTitle", "bannerSubTitle"],
-    "Booking for Q1 2026"
+    "Booking for Q1 2026",
   );
   const bannerDescription = getString(
     bannar,
     ["description", "bannarDescription", "bannerDescription"],
-    "Beyond Code, Delivering Impact! We don't just build apps, we create solutions that drive business results and delight users."
+    "Beyond Code, Delivering Impact! We don't just build apps, we create solutions that drive business results and delight users.",
   );
   const brandTitle = getString(
     bannar,
     ["brandsTitle", "brandTitle"],
-    "Trusted by 500+ happy clients worldwide."
+    "Trusted by 500+ happy clients worldwide.",
   );
   const bannerImage = getImageUrl(bannar.bannarImage, FALLBACK_BANNER_IMAGE);
   const brandImages = asArray(bannar.brandsImages);
@@ -197,10 +200,22 @@ export default async function CustomSoftwareDevelopmentPage({ params }: ServiceP
   const offerDisplayItems =
     offerItems.length > 0
       ? offerItems.map((item, index) => ({
-          num: getString(item, ["num", "number", "counter"], `S / ${String(index + 1).padStart(3, "0")}`),
+          num: getString(
+            item,
+            ["num", "number", "counter"],
+            `S / ${String(index + 1).padStart(3, "0")}`,
+          ),
           icon: fallbackOfferItems[index % fallbackOfferItems.length].icon,
-          title: getString(item, ["title", "offerTitle", "heading"], fallbackOfferItems[index % fallbackOfferItems.length].title),
-          desc: getString(item, ["description", "offerDescription", "details"], fallbackOfferItems[index % fallbackOfferItems.length].desc),
+          title: getString(
+            item,
+            ["title", "offerTitle", "heading"],
+            fallbackOfferItems[index % fallbackOfferItems.length].title,
+          ),
+          desc: getString(
+            item,
+            ["description", "offerDescription", "details"],
+            fallbackOfferItems[index % fallbackOfferItems.length].desc,
+          ),
         }))
       : fallbackOfferItems;
 
@@ -248,11 +263,23 @@ export default async function CustomSoftwareDevelopmentPage({ params }: ServiceP
       ? chooseUsItems.map((item, index) => ({
           icon: getImageUrl(
             item.icon,
-            `https://res.cloudinary.com/dsoilebvu/image/upload/v1778074611/${fallbackChooseUsItems[index % fallbackChooseUsItems.length].icon}`
+            `https://res.cloudinary.com/dsoilebvu/image/upload/v1778074611/${fallbackChooseUsItems[index % fallbackChooseUsItems.length].icon}`,
           ),
-          alt: getString(item, ["alt", "title"], fallbackChooseUsItems[index % fallbackChooseUsItems.length].alt),
-          title: getString(item, ["title", "chooseUsTitle", "heading"], fallbackChooseUsItems[index % fallbackChooseUsItems.length].title),
-          desc: getString(item, ["description", "chooseUsDescription", "details"], fallbackChooseUsItems[index % fallbackChooseUsItems.length].desc),
+          alt: getString(
+            item,
+            ["alt", "title"],
+            fallbackChooseUsItems[index % fallbackChooseUsItems.length].alt,
+          ),
+          title: getString(
+            item,
+            ["title", "chooseUsTitle", "heading"],
+            fallbackChooseUsItems[index % fallbackChooseUsItems.length].title,
+          ),
+          desc: getString(
+            item,
+            ["description", "chooseUsDescription", "details"],
+            fallbackChooseUsItems[index % fallbackChooseUsItems.length].desc,
+          ),
         }))
       : fallbackChooseUsItems.map((item) => ({
           ...item,
@@ -264,8 +291,11 @@ export default async function CustomSoftwareDevelopmentPage({ params }: ServiceP
       title: "Lernen - Key Challenges & Value Delivered",
       description:
         "We built Lernen to connect students with expert tutors seamlessly. With a mobile-friendly, intuitive platform, customizable sessions, real-time messaging, and scheduling tools, it empowers students and tutors in a complete marketplace.",
-      image: { url: "https://cdn.prod.website-files.com/68d276a2319df5bdcc752026/695622ae093c1cca3a5e771d_lernen-works.png" },
-      impact: "Improved learning efficiency, smoother session management, and higher student satisfaction.",
+      image: {
+        url: "https://cdn.prod.website-files.com/68d276a2319df5bdcc752026/695622ae093c1cca3a5e771d_lernen-works.png",
+      },
+      impact:
+        "Improved learning efficiency, smoother session management, and higher student satisfaction.",
       impactNumber: 70,
       impactSuffix: "%",
     },
@@ -273,8 +303,11 @@ export default async function CustomSoftwareDevelopmentPage({ params }: ServiceP
       title: "Workreap - Powerful Freelance Marketplaces",
       description:
         "We built Workreap to create feature-rich, user-friendly freelance marketplaces, enabling freelancers and employers to connect, collaborate, and grow efficiently with a scalable, engaging, and intuitive platform.",
-      image: { url: "https://cdn.prod.website-files.com/68d276a2319df5bdcc752026/695d1bbd7d1a666f4f84bb62_img-09.jpg" },
-      impact: "Faster hiring cycles, improved freelancer engagement, and smoother project collaboration.",
+      image: {
+        url: "https://cdn.prod.website-files.com/68d276a2319df5bdcc752026/695d1bbd7d1a666f4f84bb62_img-09.jpg",
+      },
+      impact:
+        "Faster hiring cycles, improved freelancer engagement, and smoother project collaboration.",
       impactNumber: 55,
       impactSuffix: "%",
     },
@@ -282,18 +315,33 @@ export default async function CustomSoftwareDevelopmentPage({ params }: ServiceP
       title: "Doctreat - Transforming Online Healthcare",
       description:
         "We built Doctreat to connect patients and doctors seamlessly. With a user-friendly, research-backed design, it has enabled 5,000+ patients and 1,000+ doctors to complete 20,000+ consultations efficiently.",
-      image: { url: "https://cdn.prod.website-files.com/68d276a2319df5bdcc752026/69576f55b4cbbc51040f438a_doctreat-work.png" },
-      impact: "Improved appointment efficiency and enhanced patient engagement.",
+      image: {
+        url: "https://cdn.prod.website-files.com/68d276a2319df5bdcc752026/69576f55b4cbbc51040f438a_doctreat-work.png",
+      },
+      impact:
+        "Improved appointment efficiency and enhanced patient engagement.",
       impactNumber: 40,
       impactSuffix: "%",
     },
   ];
 
-  const selectedWorksToDisplay = workItems.length >= 3 ? workItems : fallbackWorks;
+  const selectedWorksToDisplay =
+    workItems.length >= 3 ? workItems : fallbackWorks;
   const selectedWorksDisplay = selectedWorksToDisplay.map((item, index) => ({
-    title: getString(item, ["title", "selectedWorkTitle", "heading"], `Project ${index + 1}`),
-    description: getString(item, ["description", "selectedWorkDescription", "details"], ""),
-    image: getImageUrl(item.image, getImageUrl(asRecord(item).selectedWorkImage, FALLBACK_BANNER_IMAGE)),
+    title: getString(
+      item,
+      ["title", "selectedWorkTitle", "heading"],
+      `Project ${index + 1}`,
+    ),
+    description: getString(
+      item,
+      ["description", "selectedWorkDescription", "details"],
+      "",
+    ),
+    image: getImageUrl(
+      item.image,
+      getImageUrl(asRecord(item).selectedWorkImage, FALLBACK_BANNER_IMAGE),
+    ),
     impact: getString(item, ["impact", "impactDescription", "result"], ""),
     impactNumber: getNumber(item, ["impactNumber", "impactValue", "target"], 0),
     impactSuffix: getString(item, ["impactSuffix", "suffix"], "%"),
@@ -303,13 +351,33 @@ export default async function CustomSoftwareDevelopmentPage({ params }: ServiceP
     processItems.length > 0
       ? processItems
       : [
-          { num: "01.", title: "Discovery & Planning", desc: "We align on business goals, user needs, scope, feasibility, and a clear roadmap." },
-          { num: "02.", title: "Design & Prototyping", desc: "User-first UX/UI and interactive prototypes that reflect your brand and drive adoption." },
-          { num: "03.", title: "Agile Development & Testing", desc: "Iterative development with continuous testing to ensure stability, security, and performance." },
-          { num: "04.", title: "Launch, Support & Growth", desc: "Smooth deployment, team training, system integration, and ongoing improvements as you scale." },
+          {
+            num: "01.",
+            title: "Discovery & Planning",
+            desc: "We align on business goals, user needs, scope, feasibility, and a clear roadmap.",
+          },
+          {
+            num: "02.",
+            title: "Design & Prototyping",
+            desc: "User-first UX/UI and interactive prototypes that reflect your brand and drive adoption.",
+          },
+          {
+            num: "03.",
+            title: "Agile Development & Testing",
+            desc: "Iterative development with continuous testing to ensure stability, security, and performance.",
+          },
+          {
+            num: "04.",
+            title: "Launch, Support & Growth",
+            desc: "Smooth deployment, team training, system integration, and ongoing improvements as you scale.",
+          },
         ]
   ).map((item, index) => ({
-    num: getString(item, ["num", "number", "counter"], `${String(index + 1).padStart(2, "0")}.`),
+    num: getString(
+      item,
+      ["num", "number", "counter"],
+      `${String(index + 1).padStart(2, "0")}.`,
+    ),
     title: getString(item, ["title", "processTitle", "heading"], ""),
     desc: getString(item, ["description", "processDescription", "details"], ""),
   }));
@@ -322,36 +390,57 @@ export default async function CustomSoftwareDevelopmentPage({ params }: ServiceP
             name: "Raustyle",
             role: "Google Customer",
             text: "The most extensive and well-designed theme of this type that I've seen available. Constantly updated, great support, feature requests added to the theme and constantly getting better. Really hope it keeps improving and evolving for a long time. Great work!",
-            image: { url: "https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" },
+            image: {
+              url: "https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg",
+            },
           },
           {
             name: "paulthinkgrow",
             role: "Google Customer",
             text: "Very GREAT customer support. I am blown away. Great price for the template and very beautiful. I contacted support for something I thought was impossible and they were so kind and helped me without any hesitation. Thank you so much.",
-            image: { url: "https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" },
+            image: {
+              url: "https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg",
+            },
           },
           {
             name: "BuxRecord",
             role: "Google Customer",
             text: "Great job. I have use many other freelancers script theme, fiverr clone script and theme since years, and no one like this in design, and features. So i decide to remove previous script from my domain and install workreap. Now i am happy. Thanks for your support too",
-            image: { url: "https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" },
+            image: {
+              url: "https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg",
+            },
           },
         ]
   ).map((item) => ({
     name: getString(item, ["name", "authorName", "title"], "Client"),
     role: getString(item, ["role", "designation", "company"], "Customer"),
     text: getString(item, ["text", "feedback", "description"], ""),
-    image: getImageUrl(item.image, "https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg"),
+    image: getImageUrl(
+      item.image,
+      "https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg",
+    ),
   }));
 
   const faqDisplayItems = (
     faqItems.length > 0
       ? faqItems
       : [
-          { q: "How long does a custom software project take?", a: "Timelines vary depending on complexity but typically range from 3 to 9 months." },
-          { q: "How much does it cost to build software?", a: "Costs depend on features, technology stack, and engagement model. We provide transparent estimates after the discovery phase." },
-          { q: "Do you offer ongoing support?", a: "Yes, we offer long-term maintenance, upgrades, and technical assistance." },
-          { q: "How do you ensure software security?", a: "We follow global compliance standards (ISO, GDPR, HIPAA) with advanced encryption and data protection." },
+          {
+            q: "How long does a custom software project take?",
+            a: "Timelines vary depending on complexity but typically range from 3 to 9 months.",
+          },
+          {
+            q: "How much does it cost to build software?",
+            a: "Costs depend on features, technology stack, and engagement model. We provide transparent estimates after the discovery phase.",
+          },
+          {
+            q: "Do you offer ongoing support?",
+            a: "Yes, we offer long-term maintenance, upgrades, and technical assistance.",
+          },
+          {
+            q: "How do you ensure software security?",
+            a: "We follow global compliance standards (ISO, GDPR, HIPAA) with advanced encryption and data protection.",
+          },
         ]
   ).map((item) => ({
     q: getString(item, ["q", "question", "title"], ""),
@@ -375,7 +464,10 @@ export default async function CustomSoftwareDevelopmentPage({ params }: ServiceP
               {bannerDescription}
             </p>
             <div className="button-wrap service-banner-button">
-              <Link href="/contact-us" className="button-primary w-inline-block">
+              <Link
+                href="/contact-us"
+                className="button-primary w-inline-block"
+              >
                 <div className="text-block-12">Get in touch</div>
                 <Image
                   alt="arrow-top-right"
@@ -385,8 +477,13 @@ export default async function CustomSoftwareDevelopmentPage({ params }: ServiceP
                   className="button-icon"
                 />
               </Link>
-              <Link href="/contact-us" className="button-secondary-light w-inline-block">
-                <div className="button-secondary-light-text">Book a meeting</div>
+              <Link
+                href="/contact-us"
+                className="button-secondary-light w-inline-block"
+              >
+                <div className="button-secondary-light-text">
+                  Book a meeting
+                </div>
                 <div className="arrows-container cta">
                   <Image
                     src="https://cdn.prod.website-files.com/68d276a2319df5bdcc752026/6937e4382716cdf25ad0f3d5_date-icon-light.svg"
@@ -434,7 +531,7 @@ export default async function CustomSoftwareDevelopmentPage({ params }: ServiceP
                               ? `https://cdn.prod.website-files.com/68d276a2319df5bdcc752026/${img}`
                               : getImageUrl(
                                   img,
-                                  "https://cdn.prod.website-files.com/68d276a2319df5bdcc752026/69552209697458f39f276182_brand-logo-09.png"
+                                  "https://cdn.prod.website-files.com/68d276a2319df5bdcc752026/69552209697458f39f276182_brand-logo-09.png",
                                 )
                           }
                           width={120}
@@ -497,7 +594,7 @@ export default async function CustomSoftwareDevelopmentPage({ params }: ServiceP
                             ? `https://cdn.prod.website-files.com/68d276a2319df5bdcc752026/${img}`
                             : getImageUrl(
                                 img,
-                                "https://cdn.prod.website-files.com/68d276a2319df5bdcc752026/690de578a40bbc5e28f07ff7_company-log-01.svg"
+                                "https://cdn.prod.website-files.com/68d276a2319df5bdcc752026/690de578a40bbc5e28f07ff7_company-log-01.svg",
                               )
                         }
                         width={100}
@@ -545,8 +642,9 @@ export default async function CustomSoftwareDevelopmentPage({ params }: ServiceP
             </div>
             <div className="approach-content">
               <p className="approach-content-description-content">
-                Off-the-shelf solutions are fine until your business needs more. We build custom
-                software that aligns with your workflows and scales securely.
+                Off-the-shelf solutions are fine until your business needs more.
+                We build custom software that aligns with your workflows and
+                scales securely.
               </p>
             </div>
           </div>
@@ -560,7 +658,11 @@ export default async function CustomSoftwareDevelopmentPage({ params }: ServiceP
             <div className="section-head-content-subtitle">
               <div className="section-head-subtitle-dot" />
               <p className="section-head-subtitle-content subtitle-secondary-content">
-                {getString(service, ["offerTagline", "offerSubtitle"], "What we offer")}
+                {getString(
+                  service,
+                  ["offerTagline", "offerSubtitle"],
+                  "What we offer",
+                )}
               </p>
             </div>
             <div
@@ -568,13 +670,17 @@ export default async function CustomSoftwareDevelopmentPage({ params }: ServiceP
               className="title title-two"
             >
               <h2 className="title-h2 title-h2-two">
-                {getString(service, ["offerTitle"], "Driving Growth Through Tailored Technology")}
+                {getString(
+                  service,
+                  ["offerTitle"],
+                  "Driving Growth Through Tailored Technology",
+                )}
               </h2>
               <p className="section-title-description">
                 {getString(
                   service,
                   ["offerDescription"],
-                  "Our apps are customized for your sector, addressing unique workflows, compliance needs, and user expectations."
+                  "Our apps are customized for your sector, addressing unique workflows, compliance needs, and user expectations.",
                 )}
               </p>
             </div>
@@ -599,29 +705,18 @@ export default async function CustomSoftwareDevelopmentPage({ params }: ServiceP
                       <p className="our-technology-list-counter">{s.num}</p>
                       <h3 className="our-technology-list-title">{s.title}</h3>
                       <div className="our-technology-list-description-wrap">
-                        <p className="our-technology-list-description">{s.desc}</p>
+                        <p className="our-technology-list-description">
+                          {s.desc}
+                        </p>
                         <div className="button-wrap our-technology-list-buttons">
                           <Link
                             href="/contact-us"
                             className="title-button transition-none active-button w-inline-block"
                           >
-                            <div className="button-text active-button-text">Start a project</div>
-                            <div className="arrows-container cta">
-                              <Image
-                                src="https://res.cloudinary.com/dsoilebvu/image/upload/v1777064837/arrow-up_ktln9z.svg"
-                                alt="icon"
-                                width={16}
-                                height={16}
-                                className="dark-arrow _16 active-button-arrow"
-                              />
-                              <Image
-                                src="https://cdn.prod.website-files.com/68d276a2319df5bdcc752026/68dbd9d8c78e82683455072e_arrow-top-right.svg"
-                                alt="icon"
-                                width={16}
-                                height={16}
-                                className="arrow-button _16 active-button-arrow-two"
-                              />
+                            <div className="button-text active-button-text">
+                              Start a project
                             </div>
+                            <LuMoveUpRight />
                           </Link>
                         </div>
                       </div>
@@ -637,30 +732,18 @@ export default async function CustomSoftwareDevelopmentPage({ params }: ServiceP
               <div className="section-head-subtitle-content-wrap">
                 <div className="section-head-subtitle-dot responsive-style" />
                 <p className="section-head-subtitle-content tagline">
-                  Looking for something specific? Let&apos;s discuss a custom solution!
+                  Looking for something specific? Let&apos;s discuss a custom
+                  solution!
                 </p>
               </div>
               <Link
                 href="/contact-us"
                 className="title-button transition-none active-button w-inline-block"
               >
-                <div className="button-text active-button-text">Book a meeting</div>
-                <div className="arrows-container cta tagline-button-icon">
-                  <Image
-                    src="https://res.cloudinary.com/dsoilebvu/image/upload/v1777064837/arrow-up_ktln9z.svg"
-                    alt="icon"
-                    width={16}
-                    height={16}
-                    className="dark-arrow _16 active-button-arrow"
-                  />
-                  <Image
-                    src="https://cdn.prod.website-files.com/68d276a2319df5bdcc752026/68dbd9d8c78e82683455072e_arrow-top-right.svg"
-                    alt="icon"
-                    width={16}
-                    height={16}
-                    className="arrow-button _16 active-button-arrow-two"
-                  />
+                <div className="button-text active-button-text">
+                  Book a meeting
                 </div>
+                <LuMoveUpRight />
               </Link>
             </div>
           </div>
@@ -678,7 +761,11 @@ export default async function CustomSoftwareDevelopmentPage({ params }: ServiceP
               </p>
             </div>
             <h2 className="title-h2 title-h2-two choose-us choose-us-two-title">
-              {getString(chooseUs, ["title", "chooseUsTitle", "heading"], "Partner With Us for Custom Software Development")}
+              {getString(
+                chooseUs,
+                ["title", "chooseUsTitle", "heading"],
+                "Partner With Us for Custom Software Development",
+              )}
             </h2>
           </div>
           <div className="choose-us-content">
@@ -717,10 +804,14 @@ export default async function CustomSoftwareDevelopmentPage({ params }: ServiceP
               className="title title-two"
             >
               <h2 className="title-h2 title-h2-two why-choose-us-title-h2">
-                From Concept to Industry Impact, We Build World Class Experiences
+                From Concept to Industry Impact, We Build World Class
+                Experiences
               </h2>
               <div className="button-wrap service-banner-button none">
-                <Link href="/contact-us" className="button-primary-dark w-inline-block">
+                <Link
+                  href="/contact-us"
+                  className="button-primary-dark w-inline-block"
+                >
                   <div className="text-block-12">Get in touch</div>
                   <Image
                     alt="arrow-top-right"
@@ -730,8 +821,13 @@ export default async function CustomSoftwareDevelopmentPage({ params }: ServiceP
                     className="button-icon"
                   />
                 </Link>
-                <Link href="/contact-us" className="button-secondary-dark w-inline-block">
-                  <div className="button-secondary-dark-text">Book a meeting</div>
+                <Link
+                  href="/contact-us"
+                  className="button-secondary-dark w-inline-block"
+                >
+                  <div className="button-secondary-dark-text">
+                    Book a meeting
+                  </div>
                   <div className="arrows-container cta">
                     <Image
                       src="https://cdn.prod.website-files.com/68d276a2319df5bdcc752026/6937e4382716cdf25ad0f3d5_date-icon-light.svg"
@@ -755,13 +851,35 @@ export default async function CustomSoftwareDevelopmentPage({ params }: ServiceP
 
           <ul role="list" className="quality-stats-list-two">
             {[
-              { label: "Years of experience", target: 10, suffix: "+", desc: "Years of experience building custom software solutions." },
-              { label: "Client retention rate", target: 98, suffix: "%", desc: "Client retention rate, & longterm partnerships built on trust." },
-              { label: "Projects delivered", target: 300, suffix: "+", desc: "Projects delivered successfully across various industries." },
-              { label: "Users worldwide", target: 50, suffix: "M+", desc: "Empowering 50M+ users with seamless digital experiences" },
+              {
+                label: "Years of experience",
+                target: 10,
+                suffix: "+",
+                desc: "Years of experience building custom software solutions.",
+              },
+              {
+                label: "Client retention rate",
+                target: 98,
+                suffix: "%",
+                desc: "Client retention rate, & longterm partnerships built on trust.",
+              },
+              {
+                label: "Projects delivered",
+                target: 300,
+                suffix: "+",
+                desc: "Projects delivered successfully across various industries.",
+              },
+              {
+                label: "Users worldwide",
+                target: 50,
+                suffix: "M+",
+                desc: "Empowering 50M+ users with seamless digital experiences",
+              },
             ].map((s, i) => (
               <li key={s.label} className="quality-stats-item-two">
-                <div className={`quality-stats-card-two${i === 3 ? " last-item" : ""}`}>
+                <div
+                  className={`quality-stats-card-two${i === 3 ? " last-item" : ""}`}
+                >
                   <p className="quality-stats-card-title-two">{s.label}</p>
                   <p className="quality-stats-card-counter">
                     <span
@@ -769,7 +887,8 @@ export default async function CustomSoftwareDevelopmentPage({ params }: ServiceP
                       data-target={String(s.target)}
                       className="amt-counter amt-counter-two"
                     >
-                      {s.target}{s.suffix}
+                      {s.target}
+                      {s.suffix}
                     </span>
                   </p>
                   <p className="quality-stats-card-info-two">{s.desc}</p>
@@ -783,7 +902,9 @@ export default async function CustomSoftwareDevelopmentPage({ params }: ServiceP
               href="/contact-us"
               className="button-primary-dark button-primary-dark-responsive w-inline-block"
             >
-              <div className="text-block-12 text-block-12-responsive">Start a project</div>
+              <div className="text-block-12 text-block-12-responsive">
+                Start a project
+              </div>
               <Image
                 alt="arrow-top-right"
                 src="https://cdn.prod.website-files.com/68d276a2319df5bdcc752026/68dd105094d90e0a289e4185_arrow-top-right-white.svg"
@@ -827,14 +948,18 @@ export default async function CustomSoftwareDevelopmentPage({ params }: ServiceP
             <div className="section-head-content-subtitle">
               <div className="section-head-subtitle-dot" />
               <p className="section-head-subtitle-content subtitle-secondary-content">
-                {getString(selectedWork, ["subtitle", "tagline"], "Selected works ( 2024 - 2025 )")}
+                {getString(
+                  selectedWork,
+                  ["subtitle", "tagline"],
+                  "Selected works ( 2024 - 2025 )",
+                )}
               </p>
             </div>
             <h2 className="title-h2 title-h2-two portfolio">
               {getString(
                 selectedWork,
                 ["title", "selectedWorkTitle", "heading"],
-                "Empowering businesses worldwide with measurable results"
+                "Empowering businesses worldwide with measurable results",
               )}
             </h2>
           </div>
@@ -882,10 +1007,13 @@ export default async function CustomSoftwareDevelopmentPage({ params }: ServiceP
                     <p className="portfolio-stat-card-info">
                       <span
                         data-suffix={selectedWorksDisplay[0].impactSuffix}
-                        data-target={String(selectedWorksDisplay[0].impactNumber)}
+                        data-target={String(
+                          selectedWorksDisplay[0].impactNumber,
+                        )}
                         className="amt-counter amt-counter-two portfolio"
                       >
-                        {selectedWorksDisplay[0].impactNumber}{selectedWorksDisplay[0].impactSuffix}
+                        {selectedWorksDisplay[0].impactNumber}
+                        {selectedWorksDisplay[0].impactSuffix}
                       </span>
                       {selectedWorksDisplay[0].impact}
                     </p>
@@ -938,10 +1066,13 @@ export default async function CustomSoftwareDevelopmentPage({ params }: ServiceP
                       <p className="portfolio-stat-card-info">
                         <span
                           data-suffix={selectedWorksDisplay[1].impactSuffix}
-                          data-target={String(selectedWorksDisplay[1].impactNumber)}
+                          data-target={String(
+                            selectedWorksDisplay[1].impactNumber,
+                          )}
                           className="amt-counter amt-counter-two portfolio"
                         >
-                          {selectedWorksDisplay[1].impactNumber}{selectedWorksDisplay[1].impactSuffix}
+                          {selectedWorksDisplay[1].impactNumber}
+                          {selectedWorksDisplay[1].impactSuffix}
                         </span>
                         {selectedWorksDisplay[1].impact}
                       </p>
@@ -989,10 +1120,13 @@ export default async function CustomSoftwareDevelopmentPage({ params }: ServiceP
                       <p className="portfolio-stat-card-info">
                         <span
                           data-suffix={selectedWorksDisplay[2].impactSuffix}
-                          data-target={String(selectedWorksDisplay[2].impactNumber)}
+                          data-target={String(
+                            selectedWorksDisplay[2].impactNumber,
+                          )}
                           className="amt-counter amt-counter-two portfolio"
                         >
-                          {selectedWorksDisplay[2].impactNumber}{selectedWorksDisplay[2].impactSuffix}
+                          {selectedWorksDisplay[2].impactNumber}
+                          {selectedWorksDisplay[2].impactSuffix}
                         </span>
                         {selectedWorksDisplay[2].impact}
                       </p>
@@ -1007,11 +1141,14 @@ export default async function CustomSoftwareDevelopmentPage({ params }: ServiceP
           <div className="portfolio-cta">
             <div className="portfolio-cta-content-wrap">
               <h3 className="portfolio-cta-content-title">
-                Looking for something similar? We&apos;re always excited about starting a new
-                project.
+                Looking for something similar? We&apos;re always excited about
+                starting a new project.
               </h3>
               <div className="button-wrap portfolio-cta-button-wrap">
-                <Link href="/contact-us" className="button-primary-dark w-inline-block">
+                <Link
+                  href="/contact-us"
+                  className="button-primary-dark w-inline-block"
+                >
                   <div className="text-block-12">Start a project</div>
                   <Image
                     alt="arrow-top-right"
@@ -1021,8 +1158,13 @@ export default async function CustomSoftwareDevelopmentPage({ params }: ServiceP
                     className="button-icon"
                   />
                 </Link>
-                <Link href="/contact-us" className="button-secondary-dark w-inline-block">
-                  <div className="button-secondary-dark-text">Book a meeting</div>
+                <Link
+                  href="/contact-us"
+                  className="button-secondary-dark w-inline-block"
+                >
+                  <div className="button-secondary-dark-text">
+                    Book a meeting
+                  </div>
                   <div className="arrows-container cta">
                     <Image
                       src="https://cdn.prod.website-files.com/68d276a2319df5bdcc752026/6937e4382716cdf25ad0f3d5_date-icon-light.svg"
@@ -1052,13 +1194,15 @@ export default async function CustomSoftwareDevelopmentPage({ params }: ServiceP
           <div className="protfolio-header responsive-style">
             <div className="section-head-content-subtitle subtitle-primary-content">
               <div className="section-head-subtitle-dot" />
-              <p className="section-head-subtitle-content subtitle-primary-content">Our process</p>
+              <p className="section-head-subtitle-content subtitle-primary-content">
+                Our process
+              </p>
             </div>
             <h2 className="title-h2 title-h2-two process-title">
               {getString(
                 ourProcess,
                 ["title", "ourProcessTitle", "heading"],
-                "Our Transparent Process for Developing Custom Software"
+                "Our Transparent Process for Developing Custom Software",
               )}
             </h2>
           </div>
@@ -1119,7 +1263,9 @@ export default async function CustomSoftwareDevelopmentPage({ params }: ServiceP
                         />
                         <div className="testimonial-user-info">
                           <h5 className="testimonial-user-name">{t.name}</h5>
-                          <div className="testimonial-user-designation">{t.role}</div>
+                          <div className="testimonial-user-designation">
+                            {t.role}
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -1157,15 +1303,22 @@ export default async function CustomSoftwareDevelopmentPage({ params }: ServiceP
                 className="title title-two faq-title"
               >
                 <h2 className="title-h2 title-h2-two">
-                  {getString(faq, ["title", "faqTitle", "heading"], "Get All Your Questions Answered Here!")}
+                  {getString(
+                    faq,
+                    ["title", "faqTitle", "heading"],
+                    "Get All Your Questions Answered Here!",
+                  )}
                 </h2>
                 <p className="section-title-description service-faq-description">
                   {getString(
                     faq,
                     ["description", "faqDescription"],
-                    "If you have other questions or want to know anything else feel free to reach out at:"
+                    "If you have other questions or want to know anything else feel free to reach out at:",
                   )}{" "}
-                  <a href="mailto:sales@greaterworks.tech" className="faq-heading-description-link">
+                  <a
+                    href="mailto:sales@greaterworks.tech"
+                    className="faq-heading-description-link"
+                  >
                     sales@greaterworks.tech
                   </a>
                 </p>
