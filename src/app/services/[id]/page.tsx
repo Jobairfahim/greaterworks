@@ -556,6 +556,7 @@ export default async function CustomSoftwareDevelopmentPage({
               height={600}
               className="banner-line-image"
             />
+            
             <img
               src={bannerImage}
               alt="Banner-Image"
@@ -711,7 +712,7 @@ export default async function CustomSoftwareDevelopmentPage({
                         <div className="button-wrap our-technology-list-buttons">
                           <Link
                             href="/contact-us"
-                            className="title-button transition-none active-button w-inline-block"
+                            className="title-button transition-none active-button w-inline-block no-hover"
                           >
                             <div className="button-text active-button-text">
                               Start a project
@@ -738,7 +739,7 @@ export default async function CustomSoftwareDevelopmentPage({
               </div>
               <Link
                 href="/contact-us"
-                className="title-button transition-none active-button w-inline-block"
+                className="title-button transition-none active-button w-inline-block no-hover"
               >
                 <div className="button-text active-button-text">
                   Book a meeting
@@ -915,7 +916,7 @@ export default async function CustomSoftwareDevelopmentPage({
             </Link>
             <Link
               href="/contact-us"
-              className="button-secondary-dark button-secondary-dark-responsive w-inline-block"
+              className="button-secondary-dark button-secondary-dark-responsive w-inline-block no-hover"
             >
               <div className="button-secondary-dark-text button-secondary-dark-text-responsive">
                 Book a meeting
@@ -1329,6 +1330,42 @@ export default async function CustomSoftwareDevelopmentPage({
           </div>
         </div>
       </div>
+      <style>{`
+        .button-secondary-light.no-hover:hover {
+          transform: none !important;
+          background-color: #e6e6e6 !important;
+          border-color: #cfcfcf !important;
+          box-shadow: none !important;
+        }
+        .button-secondary-light.no-hover:hover .button-secondary-light-text {
+          color: var(--secondary) !important;
+        }
+
+        .title-button.transition-none.active-button.no-hover:hover {
+          background-color: transparent !important;
+          background-image: none !important;
+          color: inherit !important;
+        }
+        .title-button.transition-none.active-button.no-hover:hover .active-button-text {
+          color: var(--primary) !important;
+        }
+
+        .button-secondary-dark.no-hover:hover {
+          background-color: #fcfcfc1a !important;
+          border-color: #fcfcfc1a !important;
+          transform: none !important;
+          box-shadow: none !important;
+        }
+        .button-secondary-dark.no-hover:hover .button-secondary-dark-text {
+          color: #fcfcfc !important;
+        }
+        .button-secondary-dark.no-hover:hover .arrow-button._16 {
+          opacity: 1 !important;
+        }
+        .button-secondary-dark.no-hover:hover .dark-arrow._16 {
+          opacity: 0 !important;
+        }
+      `}</style>
     </>
   );
 }
