@@ -2,7 +2,7 @@ import axios from "axios";
 import { NAVBAR_POPULATE_QUERY } from "@/lib/navbar-data";
 
 const BASE_URL = process.env.NEXT_PUBLIC_SERVER_URL || "http://localhost:1337";
-const AUTH_TOKEN = process.env.AUTH_TOKEN;
+const AUTH_TOKEN = process.env.NEXT_PUBLIC_AUTH_TOKEN;
 
 export async function GET() {
   try {

@@ -5594,7 +5594,6 @@ figure {
 .author-info {
   justify-content: center;
   align-items: center;
-  margin-top: 30px;
   display: flex;
 }
 
@@ -11890,20 +11889,23 @@ figure {
 }
 
 .title-button.transition-none.active-button:hover {
-  background-color: #000 !important;
   color: #fff !important;
 }
 
-.title-button.transition-none.active-button:hover .title-button-text {
+.title-button.transition-none.active-button:hover .title-button-text,
+.title-button.transition-none.active-button:hover .button-text.active-button-text,
+.title-button.transition-none.active-button:hover .button-text {
   color: #fff !important;
 }
 
 .industries-slider-content .title-button.transition-none.active-button:hover {
-  background-color: #000 !important;
+ 
   color: #fff !important;
 }
 
-.industries-slider-content .title-button.transition-none.active-button:hover .title-button-text {
+.industries-slider-content .title-button.transition-none.active-button:hover .title-button-text,
+.industries-slider-content .title-button.transition-none.active-button:hover .button-text.active-button-text,
+.industries-slider-content .title-button.transition-none.active-button:hover .button-text {
   color: #fff !important;
 }
 
@@ -11913,7 +11915,9 @@ figure {
   color: #fff !important;
 }
 
-.insights-hub-page .title-button.transition-none.active-button:hover .title-button-text {
+.insights-hub-page .title-button.transition-none.active-button:hover .title-button-text,
+.insights-hub-page .title-button.transition-none.active-button:hover .button-text.active-button-text,
+.insights-hub-page .title-button.transition-none.active-button:hover .button-text {
   color: #fff !important;
 }
 
@@ -22078,7 +22082,7 @@ figure {
 
   .field-form.full.service-form-field {
     border-radius: 14px;
-    height: 64px;
+    height: 4px;
     padding: 16px 32px;
     font-size: 20px;
     font-weight: 400;
