@@ -13,7 +13,6 @@ export interface BlogPageData {
   updatedAt: string;
   publishedAt: string;
   serviceTagline?: string;
-
 }
 
 export interface Blog {
@@ -36,11 +35,10 @@ export interface Blog {
   createdAt: string;
   updatedAt: string;
   publishedAt: string;
-    isFeatured:boolean;
+  isFeatured: boolean;
   seo?: {
     metaTitle?: string | null;
     metaDescription?: string | null;
     keywords?: string | null;
   } | null;
 }
-

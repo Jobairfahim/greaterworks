@@ -55,6 +55,7 @@ function getFallbackBlog(id: string): Blog | null {
     createdAt: date.toISOString(),
     updatedAt: date.toISOString(),
     publishedAt: date.toISOString(),
+    isFeatured: false,
   };
 }
 
