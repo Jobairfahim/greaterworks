@@ -9,7 +9,7 @@ import { Blog } from "@/types/insights";
 export function ContentRenderer({ html }: { html: string }) {
   return (
     <div
-      className="content-wrapper"
+      className="content-wrapper rich-text ck-content text-wrap"
       dangerouslySetInnerHTML={{ __html: html }}
     />
   );

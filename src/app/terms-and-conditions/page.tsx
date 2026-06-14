@@ -76,7 +76,7 @@ export default function TermsAndConditionsPage() {
         <div className="w-layout-blockcontainer container-v2 w-container">
           <div className="privacy-content-wrap">
             {terms.details && (
-              <div dangerouslySetInnerHTML={{ __html: terms.details }} />
+              <div className="content-wrapper rich-text ck-content" dangerouslySetInnerHTML={{ __html: terms.details }} />
             )}
           </div>
         </div>

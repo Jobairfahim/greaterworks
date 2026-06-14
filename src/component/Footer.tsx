@@ -258,7 +258,7 @@ export default function Footer() {
 <style>{`
     .rating-brand-text {
     color: #000000;
-    font-family: "DM Sans", sans-serif;
+    font-family:  Satoshi, Arial, sans-serif;
     font-size: 24px;
     font-weight: 700;
     line-height: 1;

@@ -148,8 +148,8 @@ export default function InsightsClient({ data, blogs }: InsightsClientProps) {
           </span>
         </div>
 
-        <div className="hub-socials">
-          <span className="social-text">
+        <div className="hub-socials ">
+          <span className="section-subtitle text-xl mb-0" style={{ marginBottom: 0 }}>
             Follow us for the latest insights -&gt;
           </span>
           <div className="social-icons">
@@ -239,7 +239,7 @@ export default function InsightsClient({ data, blogs }: InsightsClientProps) {
           ) : (
             <p
               className="insights-empty-message"
-              style={{ textAlign: "center", padding: "40px 0" }}
+              style={{ padding: "40px 0" }}
             >
               No blogs found matching your search.
             </p>
@@ -249,7 +249,7 @@ export default function InsightsClient({ data, blogs }: InsightsClientProps) {
         <>
           {/* Featured Blogs */}
           <section className="featured-section">
-            <h2 className="title-h2-2 title-h2-two text-center ">
+            <h2 className="title-h2-2 title-h2-two">
               {featuredTitle}
             </h2>
             <p className="section-subtitle text-xl">{featuredSubtitle}</p>
@@ -367,7 +367,7 @@ export default function InsightsClient({ data, blogs }: InsightsClientProps) {
 
           {/* Latest Blogs */}
           <section className="latest-section">
-            <h2 className="title-h2-2 title-h2-two text-center  ">
+            <h2 className="title-h2-2 title-h2-two">
               {latestTitle}
             </h2>
             <p className="section-subtitle text-xl">{latestSubtitle}</p>
@@ -398,7 +398,7 @@ export default function InsightsClient({ data, blogs }: InsightsClientProps) {
             {currentDisplayBlogs.length === 0 && (
               <p
                 className="insights-empty-message"
-                style={{ textAlign: "center", padding: "40px 0" }}
+                style={{ padding: "40px 0" }}
               >
                 No blogs are available yet.
               </p>
@@ -443,9 +443,9 @@ export default function InsightsClient({ data, blogs }: InsightsClientProps) {
 
         /* Hero Section */
         .hub-hero {
-          text-align: center;
+          text-align: left;
           padding: 100px 20px 80px;
-          max-width: 900px;
+          max-width: 1400px;
           margin: 0 auto;
         }
 
@@ -455,13 +455,13 @@ export default function InsightsClient({ data, blogs }: InsightsClientProps) {
 
         .hub-subtitle {
           margin-bottom: 40px;
-          padding: 0 40px;
+          max-width: 760px;
         }
 
         .search-container {
           position: relative;
           max-width: 500px;
-          margin: 0 auto 40px;
+          margin: 0 0 40px;
         }
 
         .hub-search-input {
@@ -488,7 +488,7 @@ export default function InsightsClient({ data, blogs }: InsightsClientProps) {
         .hub-socials {
           display: flex;
           align-items: center;
-          justify-content: center;
+          justify-content: flex-start;
           gap: 16px;
         }
 
@@ -538,14 +538,14 @@ export default function InsightsClient({ data, blogs }: InsightsClientProps) {
         }
 
         .section-title {
-          text-align: center;
+          text-align: left;
           margin-bottom: 16px;
         }
 
         .section-subtitle {
-          text-align: center;
+          text-align: left;
           max-width: 700px;
-          margin: 0 auto 48px;
+          margin: 0 0 48px;
         }
 
         /* Featured Grid */
@@ -692,7 +692,7 @@ export default function InsightsClient({ data, blogs }: InsightsClientProps) {
         .pagination {
           display: flex;
           align-items: center;
-          justify-content: center;
+          justify-content: flex-start;
           gap: 16px;
           margin-top: 48px;
         }

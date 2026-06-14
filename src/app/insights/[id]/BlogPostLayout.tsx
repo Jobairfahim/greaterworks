@@ -11,7 +11,10 @@ interface BlogPostLayoutProps {
   formattedDate: string | null;
 }
 
-export default function BlogPostLayout({ blog, formattedDate }: BlogPostLayoutProps) {
+export default function BlogPostLayout({
+  blog,
+  formattedDate,
+}: BlogPostLayoutProps) {
   const [isSubscribing, setIsSubscribing] = useState(false);
   const [subscriptionStatus, setSubscriptionStatus] = useState<
     "idle" | "success" | "error"
@@ -43,7 +46,12 @@ export default function BlogPostLayout({ blog, formattedDate }: BlogPostLayoutPr
 
       if (!res.ok) {
         const errData = await res.json().catch(() => ({}));
-        console.error("Failed to subscribe:", res.status, res.statusText, errData);
+        console.error(
+          "Failed to subscribe:",
+          res.status,
+          res.statusText,
+          errData,
+        );
         setSubscriptionStatus("error");
         return;
       }
@@ -84,7 +92,12 @@ export default function BlogPostLayout({ blog, formattedDate }: BlogPostLayoutPr
               />
             </div>
             <div className="author-info">
-              <div className="author-name">{blog.authorName}</div>
+              <div
+                className="author-name mb-0 mr-2"
+                style={{ marginBottom: 0 }}
+              >
+                {blog.authorName}
+              </div>
               <div className="author-details">
                 {formattedDate && (
                   <>
@@ -137,8 +150,9 @@ export default function BlogPostLayout({ blog, formattedDate }: BlogPostLayoutPr
                   type="text"
                   name="fullName"
                   required
-                  className="field-form full text-field-2 service-form-field promo-input w-input"
-                  placeholder="Enter your full name"
+                  className="field-form full text-field-2 service-form-field promo-input w-input h-2"
+                  placeholder="Enter your full name "
+                  style={{ height: "4px" }}
                 />
               </div>
               <div className="form-group service-form-group promo-input-group">
@@ -149,8 +163,9 @@ export default function BlogPostLayout({ blog, formattedDate }: BlogPostLayoutPr
                   type="email"
                   name="email"
                   required
-                  className="field-form full service-form-field promo-input w-input"
+                  className="field-form full service-form-field promo-input w-input h-2"
                   placeholder="Enter your email address"
+                  style={{ height: "4px" }}
                 />
               </div>
               <button
@@ -230,10 +245,18 @@ export default function BlogPostLayout({ blog, formattedDate }: BlogPostLayoutPr
           padding: 0;
         }
 
-        :global(.social-btn.facebook) { color: #1877f2; }
-        :global(.social-btn.twitter)  { color: #000000; }
-        :global(.social-btn.pinterest){ color: #e60023; }
-        :global(.social-btn.linkedin) { color: #0a66c2; }
+        :global(.social-btn.facebook) {
+          color: #1877f2;
+        }
+        :global(.social-btn.twitter) {
+          color: #000000;
+        }
+        :global(.social-btn.pinterest) {
+          color: #e60023;
+        }
+        :global(.social-btn.linkedin) {
+          color: #0a66c2;
+        }
 
         :global(.sidebar-content) {
           background: #fafafa;
@@ -243,7 +266,9 @@ export default function BlogPostLayout({ blog, formattedDate }: BlogPostLayoutPr
           overflow-y: auto;
         }
 
-        :global(.sidebar-content::-webkit-scrollbar) { width: 6px; }
+        :global(.sidebar-content::-webkit-scrollbar) {
+          width: 6px;
+        }
         :global(.sidebar-content::-webkit-scrollbar-thumb) {
           background: #cbd5e1;
           border-radius: 4px;
@@ -289,7 +314,9 @@ export default function BlogPostLayout({ blog, formattedDate }: BlogPostLayoutPr
           visibility: visible !important;
         }
 
-        :global(.toc-sub-item) { padding-left: 16px !important; }
+        :global(.toc-sub-item) {
+          padding-left: 16px !important;
+        }
 
         :global(.toc-sub-item::before) {
           content: "—" !important;
@@ -305,7 +332,9 @@ export default function BlogPostLayout({ blog, formattedDate }: BlogPostLayoutPr
           margin-top: 40px;
         }
 
-        :global(.content-wrapper p)  { margin-bottom: 24px; }
+        :global(.content-wrapper p) {
+          margin-bottom: 24px;
+        }
         :global(.content-wrapper h2) {
           margin: 40px 0 20px;
         }
@@ -320,13 +349,22 @@ export default function BlogPostLayout({ blog, formattedDate }: BlogPostLayoutPr
           margin: 32px 0;
           border-radius: 0 12px 12px 0;
         }
-        :global(.content-wrapper a)  { text-decoration: underline; }
+        :global(.content-wrapper a) {
+          text-decoration: underline;
+        }
         :global(.content-wrapper ul),
-        :global(.content-wrapper ol) { padding-left: 24px; margin-bottom: 24px; }
-        :global(.content-wrapper li) { margin-bottom: 8px; }
+        :global(.content-wrapper ol) {
+          padding-left: 24px;
+          margin-bottom: 24px;
+        }
+        :global(.content-wrapper li) {
+          margin-bottom: 8px;
+        }
 
         /* ── Center column ── */
-        .center-content { min-width: 0; }
+        .center-content {
+          min-width: 0;
+        }
 
         .breadcrumbs {
           margin-bottom: 20px;
@@ -336,7 +374,9 @@ export default function BlogPostLayout({ blog, formattedDate }: BlogPostLayoutPr
           text-decoration: none;
         }
 
-        .breadcrumbs :global(a:hover) { text-decoration: underline; }
+        .breadcrumbs :global(a:hover) {
+          text-decoration: underline;
+        }
 
         .article-title {
           margin-bottom: 20px;
@@ -442,7 +482,9 @@ export default function BlogPostLayout({ blog, formattedDate }: BlogPostLayoutPr
           gap: 12px;
         }
 
-        .promo-btn.block:hover { background: #8129d1; }
+        .promo-btn.block:hover {
+          background: #8129d1;
+        }
 
         .promo-btn.block:disabled {
           cursor: not-allowed;
@@ -483,8 +525,12 @@ export default function BlogPostLayout({ blog, formattedDate }: BlogPostLayoutPr
           background-color: #fff;
         }
 
-        .promo-input::placeholder { font-size: 14px; }
-        .promo-input:focus       { border-color: var(--primary); }
+        .promo-input::placeholder {
+          font-size: 14px;
+        }
+        .promo-input:focus {
+          border-color: var(--primary);
+        }
 
         .promo-status {
           margin: 12px 0 0;
@@ -493,18 +539,30 @@ export default function BlogPostLayout({ blog, formattedDate }: BlogPostLayoutPr
 
         /* ── Responsive ── */
         @media (max-width: 1200px) {
-          .blog-layout-grid { gap: 24px; }
+          .blog-layout-grid {
+            gap: 24px;
+          }
         }
 
         @media (max-width: 991px) {
-          .blog-layout-grid { grid-template-columns: 1fr 300px; }
-          :global(.left-sidebar) { display: none; }
+          .blog-layout-grid {
+            grid-template-columns: 1fr 300px;
+          }
+          :global(.left-sidebar) {
+            display: none;
+          }
         }
 
         @media (max-width: 768px) {
-          .blog-layout-grid   { grid-template-columns: 1fr; }
-          .right-sidebar      { position: static; }
-          .center-content     { padding: 24px; }
+          .blog-layout-grid {
+            grid-template-columns: 1fr;
+          }
+          .right-sidebar {
+            position: static;
+          }
+          .center-content {
+            padding: 24px;
+          }
         }
       `}</style>
     </div>

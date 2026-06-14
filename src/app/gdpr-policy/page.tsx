@@ -1,7 +1,5 @@
 "use client";
 
-
-
 const defaultPrivacyContent = {
   title: "GDPR Policy",
   description:
@@ -103,11 +101,7 @@ const defaultPrivacyContent = {
 };
 
 export default function GDPRPolicyPage() {
- 
-
-
-  const policy =  defaultPrivacyContent;
-
+  const policy = defaultPrivacyContent;
 
   return (
     <>
@@ -138,7 +132,7 @@ export default function GDPRPolicyPage() {
           <div className="ck-content ck-editor__editable privacy-ck-wrapper">
             {policy.details && (
               <div
-                className="  ck-content"
+                className="content-wrapper rich-text ck-content"
                 dangerouslySetInnerHTML={{ __html: policy.details }}
               />
             )}

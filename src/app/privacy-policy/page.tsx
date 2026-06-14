@@ -79,7 +79,7 @@ export default function PrivacyPolicyPage() {
           >
             {policy.details && (
               <div 
-              className="  ck-content" 
+              className="content-wrapper rich-text ck-content" 
               dangerouslySetInnerHTML={{ __html: policy.details }} />
             )}
           </div>

@@ -4218,6 +4218,13 @@ of the component, floating–point numbers have been used which, for the default
 	--ck-color-mention-background: hsla(341, 100%, 30%, 0.1);
 	--ck-color-mention-text: hsl(341, 100%, 30%);
 }
+.ck-content {
+  font-family:  Satoshi, Arial, sans-serif !important;
+  text-wrap: wrap;
+}
+.rich-text {
+  font-family:  Satoshi, Arial, sans-serif;
+}
 .ck-content .mention {
 	background: var(--ck-color-mention-background);
 	color: var(--ck-color-mention-text);

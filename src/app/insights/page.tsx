@@ -73,6 +73,7 @@ function getFallbackBlogs(): Blog[] {
       createdAt: date.toISOString(),
       updatedAt: date.toISOString(),
       publishedAt: date.toISOString(),
+      isFeatured: index < 3, 
     };
   });
 }

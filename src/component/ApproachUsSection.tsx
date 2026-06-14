@@ -94,7 +94,7 @@ export default function ApproachUsSection() {
                 }
                 .rating-brand-text {
                     color: #f7f7f7ff;
-                    font-family: "DM Sans", sans-serif;
+                    font-family:  Satoshi, Arial, sans-serif;
                     font-size: 24px;
                     font-weight: 700;
                     line-height: 1;
