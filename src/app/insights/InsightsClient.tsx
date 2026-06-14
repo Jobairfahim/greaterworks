@@ -699,11 +699,6 @@ export default function InsightsClient({ data, blogs }: InsightsClientProps) {
         :global(.insights-hub-page .title-button.no-hover:hover) {
           background-color: transparent !important;
           background-image: none !important;
-          color: var(--primary) !important;
-        }
-
-        :global(.insights-hub-page .title-button.no-hover:hover .title-button-text) {
-          color: var(--primary) !important;
         }
 
         /* Pagination */
