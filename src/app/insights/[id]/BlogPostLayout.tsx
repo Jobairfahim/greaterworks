@@ -152,6 +152,7 @@ export default function BlogPostLayout({
                   required
                   className="field-form full text-field-2 service-form-field promo-input w-input"
                   placeholder="Enter your full name "
+                   style={{ height: 0 }}
                 />
               </div>
               <div className="form-group service-form-group promo-input-group">
@@ -164,6 +165,7 @@ export default function BlogPostLayout({
                   required
                   className="field-form full service-form-field promo-input w-input"
                   placeholder="Enter your email address"
+                  style={{ height: 0 }}
                 />
               </div>
               <button
