@@ -17,7 +17,7 @@ async function getHomepageData(): Promise<HomepageData | null> {
         const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/home?populate[bannarSection][populate][brandsImages]=true&populate[engagementModelSection][populate][engagementModelImage]=true&populate[techStackSection][populate][techStackImage]=true&populate[contactSection][populate][contactDetails]=true&populate[onDemandSection][populate][onDemandDetails]=true&populate[industrySection]=true&populate[impactSection]=true&populate[selectedWorkSection]=true&populate[testimonialSection]=true&populate[serviceSection][populate][serviceImage]=true&populate[serviceSection][populate][services]=true`, {
             cache: 'no-store',
             headers: {
-                'Authorization': `Bearer ${process.env.AUTH_TOKEN}`
+                'Authorization': `Bearer ${process.env.NEXT_PUBLIC_AUTH_TOKEN}`
             }
         });
         if (!res.ok) {
@@ -38,7 +38,7 @@ async function getEngagementModels(): Promise<EngagementModel[]> {
         const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/engagement-models?populate[details]=true`, {
             cache: 'no-store',
             headers: {
-                'Authorization': `Bearer ${process.env.AUTH_TOKEN}`
+                'Authorization': `Bearer ${process.env.NEXT_PUBLIC_AUTH_TOKEN}`
             }
         });
         if (!res.ok) {
@@ -58,7 +58,7 @@ async function getIndustries(): Promise<Industry[]> {
         const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/industries?populate[details]=true&populate[image]=true`, {
             cache: 'no-store',
             headers: {
-                'Authorization': `Bearer ${process.env.AUTH_TOKEN}`
+                'Authorization': `Bearer ${process.env.NEXT_PUBLIC_AUTH_TOKEN}`
             }
         });
         if (!res.ok) {
@@ -78,7 +78,7 @@ async function getSelectedWorks(): Promise<SelectedWork[]> {
         const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/selected-works?populate[image]=true`, {
             cache: 'no-store',
             headers: {
-                'Authorization': `Bearer ${process.env.AUTH_TOKEN}`
+                'Authorization': `Bearer ${process.env.NEXT_PUBLIC_AUTH_TOKEN}`
             }
         });
         if (!res.ok) {
@@ -98,7 +98,7 @@ async function getTestimonials(): Promise<Testimonial[]> {
         const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/testimonials?populate[image]=true`, {
             cache: 'no-store',
             headers: {
-                'Authorization': `Bearer ${process.env.AUTH_TOKEN}`
+                'Authorization': `Bearer ${process.env.NEXT_PUBLIC_AUTH_TOKEN}`
             }
         });
         if (!res.ok) {

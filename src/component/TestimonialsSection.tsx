@@ -159,7 +159,7 @@ export default function TestimonialsSection({
                 }
                 .rating-brand-text {
                     color: #525252ff;
-                    font-family: "DM Sans", sans-serif;
+                    font-family:  Satoshi, Arial, sans-serif;
                     font-size: 24px;
                     font-weight: 700;
                     line-height: 1;

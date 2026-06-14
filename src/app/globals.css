@@ -3,11 +3,12 @@
 html {
   -webkit-text-size-adjust: 100%;
   -ms-text-size-adjust: 100%;
-  font-family: sans-serif;
+  font-family:  Satoshi, Arial, sans-serif;
 }
 
 body {
   margin: 0;
+  font-family: inherit;
 }
 
 article,
@@ -469,6 +470,8 @@ h6 {
 p {
   margin-top: 0;
   margin-bottom: 10px;
+  font-size: 20px;
+  line-height: 30px;
 }
 
 blockquote {
@@ -2317,7 +2320,7 @@ textarea.w-select {
 body {
   color: var(--heading);
   letter-spacing: -0.05em;
-  font-family: Inter;
+  font-family:  Satoshi, Arial, sans-serif;
   font-size: 16px;
   font-weight: 500;
   line-height: 1.5em;
@@ -2328,7 +2331,7 @@ h1 {
   letter-spacing: -0.05em;
   margin-top: 10px;
   margin-bottom: 10px;
-  font-family: Inter;
+  font-family:  Satoshi, Arial, sans-serif;
   font-size: 70px;
   font-weight: 700;
   line-height: 1.1em;
@@ -2341,7 +2344,7 @@ h2 {
   text-transform: none;
   margin-top: 10px;
   margin-bottom: 10px;
-  font-family: Inter;
+  font-family:  Satoshi, Arial, sans-serif;
   font-size: 50px;
   font-weight: 700;
   line-height: 1.1em;
@@ -2352,7 +2355,7 @@ h3 {
   letter-spacing: -0.05em;
   margin-top: 10px;
   margin-bottom: 10px;
-  font-family: Inter;
+  font-family:  Satoshi, Arial, sans-serif;
   font-size: 40px;
   font-weight: 700;
   line-height: 1.1em;
@@ -2363,7 +2366,7 @@ h4 {
   letter-spacing: -0.05em;
   margin-top: 10px;
   margin-bottom: 10px;
-  font-family: Inter;
+  font-family:  Satoshi, Arial, sans-serif;
   font-size: 30px;
   font-weight: 700;
   line-height: 1.2em;
@@ -2374,7 +2377,7 @@ h5 {
   letter-spacing: -0.05em;
   margin-top: 10px;
   margin-bottom: 10px;
-  font-family: Inter;
+  font-family:  Satoshi, Arial, sans-serif;
   font-size: 24px;
   font-weight: 700;
   line-height: 1.2em;
@@ -2385,7 +2388,7 @@ h6 {
   letter-spacing: -0.05em;
   margin-top: 10px;
   margin-bottom: 10px;
-  font-family: Inter;
+  font-family:  Satoshi, Arial, sans-serif;
   font-size: 18px;
   font-weight: 700;
   line-height: 1.1em;
@@ -2397,17 +2400,17 @@ p {
   letter-spacing: -0.05em;
   margin-top: 10px;
   margin-bottom: 10px;
-  font-family: Inter;
-  font-size: 16px;
+  font-family:  Satoshi, Arial, sans-serif;
+  font-size: 20px;
   font-weight: 500;
-  line-height: 1.5em;
+  line-height: 30px;
 }
 
 a {
   color: var(--primary);
   letter-spacing: -0.05em;
   align-items: center;
-  font-family: Inter;
+  font-family:  Satoshi, Arial, sans-serif;
   font-size: 18px;
   font-weight: 500;
   line-height: 1.5em;
@@ -2436,7 +2439,7 @@ ul {
 li {
   letter-spacing: -0.05em;
   align-items: center;
-  font-family: Inter;
+  font-family:  Satoshi, Arial, sans-serif;
   font-size: 16px;
   font-weight: 500;
   line-height: 1.5em;
@@ -3801,7 +3804,7 @@ figure {
 .section-subtitle {
   color: var(--primary);
   text-transform: capitalize;
-  background-color: #9433e91a;
+  /* background-color: #9433e91a; */
   border-radius: 5px;
   flex-direction: column;
   align-self: flex-start;
@@ -4102,7 +4105,7 @@ figure {
 .pricing-plan-currency-icon {
   color: var(--heading);
   margin-right: 2px;
-  font-family: Lato, sans-serif;
+  font-family:  Satoshi, Arial, sans-serif;
   font-size: 20px;
   font-weight: 700;
   line-height: 20px;
@@ -4415,7 +4418,7 @@ figure {
 .footer-brand.w--current {
   color: #fff;
   padding-left: 0;
-  font-family: Poppins;
+  font-family:  Satoshi, Arial, sans-serif;
 }
 
 .footer-social-icon {
@@ -4465,7 +4468,7 @@ figure {
   height: 60px;
   margin-bottom: 0;
   padding: 0;
-  font-family: Lato, sans-serif;
+  font-family:  Satoshi, Arial, sans-serif;
   font-size: 18px;
 }
 
@@ -4818,7 +4821,7 @@ figure {
   color: var(--primary);
   background-color: #0000;
   padding: 30px;
-  font-family: Lato, sans-serif;
+  font-family:  Satoshi, Arial, sans-serif;
   font-size: 16px;
 }
 
@@ -5594,7 +5597,6 @@ figure {
 .author-info {
   justify-content: center;
   align-items: center;
-  margin-top: 30px;
   display: flex;
 }
 
@@ -5658,7 +5660,7 @@ figure {
   color: #999;
   margin-left: -20px;
   padding: 5px 0;
-  font-family: Poppins;
+  font-family:  Satoshi, Arial, sans-serif;
   transition: color 0.2s;
   display: flex;
 }
@@ -5764,7 +5766,7 @@ figure {
 }
 
 .rich-text-style li {
-  font-family: Inter;
+  font-family:  Satoshi, Arial, sans-serif;
   font-size: 16px;
   font-weight: 500;
   line-height: 1.5em;
@@ -9607,7 +9609,7 @@ figure {
   padding-top: 20px;
   padding-bottom: 20px;
   padding-left: 40px;
-  font-family: Inter;
+  font-family:  Satoshi, Arial, sans-serif;
   font-size: 24px;
   font-weight: 700;
   line-height: 1.5em;
@@ -9752,7 +9754,7 @@ figure {
 }
 
 .rich-text-job-details li {
-  font-family: Inter;
+  font-family:  Satoshi, Arial, sans-serif;
   font-size: 16px;
   font-weight: 500;
   line-height: 1.5em;
@@ -10885,7 +10887,7 @@ figure {
   margin-bottom: 0;
   padding-left: 20px;
   padding-right: 20px;
-  font-family: Exo, sans-serif;
+  font-family:  Satoshi, Arial, sans-serif;
 }
 
 .text-field::placeholder {
@@ -10897,7 +10899,7 @@ figure {
   color: var(--white\<deleted\|variable-7376bfaa\>);
   margin-top: 0;
   margin-bottom: 10px;
-  font-family: Exo, sans-serif;
+  font-family:  Satoshi, Arial, sans-serif;
 }
 
 .success-message-3 {
@@ -10909,7 +10911,7 @@ figure {
 
 .text-block {
   color: #fff;
-  font-family: Exo, sans-serif;
+  font-family:  Satoshi, Arial, sans-serif;
   font-weight: 400;
 }
 
@@ -10961,7 +10963,7 @@ figure {
 
 .text-block-2 {
   color: #fff;
-  font-family: Exo, sans-serif;
+  font-family:  Satoshi, Arial, sans-serif;
   font-weight: 400;
 }
 
@@ -11890,20 +11892,23 @@ figure {
 }
 
 .title-button.transition-none.active-button:hover {
-  background-color: #000 !important;
   color: #fff !important;
 }
 
-.title-button.transition-none.active-button:hover .title-button-text {
+.title-button.transition-none.active-button:hover .title-button-text,
+.title-button.transition-none.active-button:hover .button-text.active-button-text,
+.title-button.transition-none.active-button:hover .button-text {
   color: #fff !important;
 }
 
 .industries-slider-content .title-button.transition-none.active-button:hover {
-  background-color: #000 !important;
+ 
   color: #fff !important;
 }
 
-.industries-slider-content .title-button.transition-none.active-button:hover .title-button-text {
+.industries-slider-content .title-button.transition-none.active-button:hover .title-button-text,
+.industries-slider-content .title-button.transition-none.active-button:hover .button-text.active-button-text,
+.industries-slider-content .title-button.transition-none.active-button:hover .button-text {
   color: #fff !important;
 }
 
@@ -11913,7 +11918,9 @@ figure {
   color: #fff !important;
 }
 
-.insights-hub-page .title-button.transition-none.active-button:hover .title-button-text {
+.insights-hub-page .title-button.transition-none.active-button:hover .title-button-text,
+.insights-hub-page .title-button.transition-none.active-button:hover .button-text.active-button-text,
+.insights-hub-page .title-button.transition-none.active-button:hover .button-text {
   color: #fff !important;
 }
 
@@ -25139,7 +25146,7 @@ figure {
     color: #222;
     padding-top: 12px;
     padding-bottom: 12px;
-    font-family: Lato, sans-serif;
+    font-family:  Satoshi, Arial, sans-serif;
     font-weight: 700;
   }
 
@@ -34629,5 +34636,10 @@ a.btn-outline:hover {
 /* ===== Not Found Page Global Font Override ===== */
 .not-found-page *, 
 .not-found-page {
-  font-family: Satoshi, Arial, sans-serif !important;
+  font-family:  Satoshi, Arial, sans-serif !important;
 }
+
+
+/* Custom font utilities */
+.font-satoshi { font-family:  Satoshi, Arial, sans-serif; }
+.font-self-sand { font-family:  Satoshi, Arial, sans-serif; }

@@ -13,7 +13,7 @@ const defaultPrivacyContent = {
     <div class="privacy-content-title"><strong>1. Information We Collect</strong></div>
     <p>We may collect personal information that you choose to share with us, including but not limited to your name, email address, phone number, and company details.</p>
   </div>`,
-  updatedAt: "2026-01-01",
+  tag: "2026-01-01",
 };
 
 export default function PrivacyPolicyPage() {
@@ -34,7 +34,6 @@ export default function PrivacyPolicyPage() {
 
     loadPolicyData();
   }, []);
- console.log("Privacy Policy Data:", policyData);
   if (loading) {
     return (
       <div className="section privacy-policy-banner">
@@ -45,13 +44,7 @@ export default function PrivacyPolicyPage() {
 
   const policy = policyData || defaultPrivacyContent;
 
-  const formattedDate = policy.updatedAt
-    ? new Date(policy.updatedAt).toLocaleDateString("en-US", {
-        year: "numeric",
-        month: "long",
-        day: "numeric",
-      })
-    : "January 01, 2026";
+
 
   return (
     <>
@@ -62,7 +55,7 @@ export default function PrivacyPolicyPage() {
             <div className="section-head-content-subtitle privacy-page">
               <div className="section-head-subtitle-dot" />
               <p className="section-head-subtitle-content subtitle-secondary-content">
-                Last updated: {formattedDate}
+                  {policy?.tag}
               </p>
             </div>
 
@@ -86,7 +79,7 @@ export default function PrivacyPolicyPage() {
           >
             {policy.details && (
               <div 
-              className="  ck-content" 
+              className="content-wrapper rich-text ck-content" 
               dangerouslySetInnerHTML={{ __html: policy.details }} />
             )}
           </div>

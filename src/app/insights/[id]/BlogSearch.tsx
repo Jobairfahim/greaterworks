@@ -29,7 +29,7 @@ export default function BlogSearch() {
         `${process.env.NEXT_PUBLIC_SERVER_URL}/api/blogs?filters[title][$containsi]=${encodedQuery}&populate[image]=true&populate[authorImage]=true&pagination[pageSize]=10&pagination[page]=1`,
         {
           headers: {
-            Authorization: `Bearer ${process.env.AUTH_TOKEN}`,
+            Authorization: `Bearer ${process.env.NEXT_PUBLIC_AUTH_TOKEN}`,
           },
         }
       );

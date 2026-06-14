@@ -13,7 +13,7 @@ async function getBlogBySlugOrDocumentId(id: string): Promise<Blog | null> {
       {
         cache: "no-store",
         headers: {
-          Authorization: `Bearer ${process.env.AUTH_TOKEN}`,
+          Authorization: `Bearer ${process.env.NEXT_PUBLIC_AUTH_TOKEN}`,
         },
       }
     );
@@ -55,6 +55,7 @@ function getFallbackBlog(id: string): Blog | null {
     createdAt: date.toISOString(),
     updatedAt: date.toISOString(),
     publishedAt: date.toISOString(),
+    isFeatured: false,
   };
 }
 

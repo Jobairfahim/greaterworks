@@ -61,7 +61,7 @@ export default function FloatingCTA() {
                 }
 
                 .floating-cta__text {
-                    font-family: "DM Sans", sans-serif;
+                    font-family:  Satoshi, Arial, sans-serif;
                     font-size: 16px;
                     font-weight: 700;
                     line-height: 1;

@@ -5,7 +5,7 @@
 
 .insights-hub-page,
 .insight-post-page {
-  font-family: Satoshi, Arial, sans-serif;
+  font-family:  Satoshi, Arial, sans-serif;
   color: var(--body);
   -webkit-font-smoothing: antialiased;
 }
@@ -13,7 +13,7 @@
 /* ── Insights hub (listing) ─────────────────────────────────────────── */
 
 .insights-hub-page .hub-title {
-  font-family: Satoshi, Arial, sans-serif;
+  font-family:  Satoshi, Arial, sans-serif;
   font-size: 40px;
   font-weight: 400;
   line-height: 1.15;
@@ -22,15 +22,15 @@
 }
 
 .insights-hub-page .hub-subtitle {
-  font-family: Satoshi, Arial, sans-serif;
+  font-family:  Satoshi, Arial, sans-serif;
   font-size: 20px;
   font-weight: 400;
-  line-height: 28px;
+  line-height: 30px;
   color: var(--body);
 }
 
 .insights-hub-page .hub-search-input {
-  font-family: Satoshi, Arial, sans-serif;
+  font-family:  Satoshi, Arial, sans-serif;
   font-size: 16px;
   font-weight: 400;
   line-height: 26px;
@@ -47,7 +47,7 @@
 }
 
 .insights-hub-page .social-text {
-  font-family: Satoshi, Arial, sans-serif;
+  font-family:  Satoshi, Arial, sans-serif;
   font-size: 16px;
   font-weight: 500;
   line-height: 26px;
@@ -55,7 +55,7 @@
 }
 
 .insights-hub-page .section-title {
-  font-family: Satoshi, Arial, sans-serif;
+  font-family:  Satoshi, Arial, sans-serif;
   font-size: 40px;
   font-weight: 400;
   line-height: 45px;
@@ -64,15 +64,15 @@
 }
 
 .insights-hub-page .section-subtitle {
-  font-family: Satoshi, Arial, sans-serif;
-  font-size: 16px;
+  font-family:  Satoshi, Arial, sans-serif;
+  font-size: 20px;
   font-weight: 400;
-  line-height: 26px;
+  line-height: 30px;
   color: var(--body);
 }
 
 .insights-hub-page .feat-title-large {
-  font-family: Satoshi, Arial, sans-serif;
+  font-family:  Satoshi, Arial, sans-serif;
   font-size: 24px;
   font-weight: 400;
   line-height: 34px;
@@ -81,7 +81,7 @@
 
 .insights-hub-page .feat-title-small,
 .insights-hub-page .latest-title {
-  font-family: Satoshi, Arial, sans-serif;
+  font-family:  Satoshi, Arial, sans-serif;
   font-size: 20px;
   font-weight: 400;
   line-height: 28px;
@@ -90,7 +90,7 @@
 
 .insights-hub-page .feat-date,
 .insights-hub-page .latest-date {
-  font-family: Satoshi, Arial, sans-serif;
+  font-family:  Satoshi, Arial, sans-serif;
   font-size: 12px;
   font-weight: 400;
   line-height: 26px;
@@ -98,7 +98,7 @@
 }
 
 .insights-hub-page .page-btn {
-  font-family: Satoshi, Arial, sans-serif;
+  font-family:  Satoshi, Arial, sans-serif;
   font-size: 14px;
   font-weight: 500;
   line-height: 26px;
@@ -110,7 +110,7 @@
 }
 
 .insights-hub-page .page-info {
-  font-family: Satoshi, Arial, sans-serif;
+  font-family:  Satoshi, Arial, sans-serif;
   font-size: 14px;
   font-weight: 400;
   line-height: 26px;
@@ -118,7 +118,7 @@
 }
 
 .insights-hub-page .title-button-text {
-  font-family: Satoshi, Arial, sans-serif;
+  font-family:  Satoshi, Arial, sans-serif;
   font-size: 16px;
   font-weight: 400;
   line-height: 26px;
@@ -131,10 +131,10 @@
 }
 
 .insights-hub-page .insights-empty-message {
-  font-family: Satoshi, Arial, sans-serif;
-  font-size: 16px;
+  font-family:  Satoshi, Arial, sans-serif;
+  font-size: 20px;
   font-weight: 400;
-  line-height: 26px;
+  line-height: 30px;
   color: var(--body);
 }
 
@@ -142,8 +142,8 @@
 
 .insight-post-page .breadcrumbs,
 .insight-post-page .breadcrumbs a {
-  font-family: Satoshi, Arial, sans-serif;
-  font-size: 12px;
+  font-family:  Satoshi, Arial, sans-serif;
+  font-size: 20px;
   font-weight: 400;
   line-height: 26px;
   letter-spacing: normal;
@@ -156,7 +156,7 @@
 }
 
 .insight-post-page .article-title {
-  font-family: Satoshi, Arial, sans-serif;
+  font-family:  Satoshi, Arial, sans-serif;
   font-size: 42px;
   font-weight: 400;
   line-height: 1.15;
@@ -165,7 +165,7 @@
 }
 
 .insight-post-page .author-name {
-  font-family: Satoshi, Arial, sans-serif;
+  font-family:  Satoshi, Arial, sans-serif;
   font-size: 16px;
   font-weight: 500;
   line-height: 26px;
@@ -173,7 +173,7 @@
 }
 
 .insight-post-page .author-details {
-  font-family: Satoshi, Arial, sans-serif;
+  font-family:  Satoshi, Arial, sans-serif;
   font-size: 14px;
   font-weight: 400;
   line-height: 26px;
@@ -181,14 +181,14 @@
 }
 
 .insight-post-page .meta-dot {
-  font-family: Satoshi, Arial, sans-serif;
+  font-family:  Satoshi, Arial, sans-serif;
   font-size: 14px;
   font-weight: 400;
   color: var(--dark-gray-50, #afafaf);
 }
 
 .insight-post-page .sidebar-title {
-  font-family: Satoshi, Arial, sans-serif;
+  font-family:  Satoshi, Arial, sans-serif;
   font-size: 16px;
   font-weight: 500;
   line-height: 26px;
@@ -196,7 +196,7 @@
 }
 
 .insight-post-page .toc-empty {
-  font-family: Satoshi, Arial, sans-serif;
+  font-family:  Satoshi, Arial, sans-serif;
   font-size: 14px;
   font-weight: 400;
   line-height: 26px;
@@ -204,7 +204,7 @@
 }
 
 .insight-post-page .toc-link {
-  font-family: Satoshi, Arial, sans-serif;
+  font-family:  Satoshi, Arial, sans-serif;
   font-size: 14px;
   font-weight: 400;
   line-height: 26px;
@@ -222,22 +222,22 @@
 }
 
 .insight-post-page .content-wrapper {
-  font-family: Satoshi, Arial, sans-serif;
-  font-size: 18px;
+  font-family:  Satoshi, Arial, sans-serif;
+  font-size: 20px;
   font-weight: 400;
-  line-height: 28px;
+  line-height: 30px;
   color: var(--body);
 }
 
 .insight-post-page .content-wrapper p {
-  font-size: 18px;
+  font-size: 20px;
   font-weight: 400;
-  line-height: 28px;
+  line-height: 30px;
   color: var(--body);
 }
 
 .insight-post-page .content-wrapper h1 {
-  font-family: Satoshi, Arial, sans-serif;
+  font-family:  Satoshi, Arial, sans-serif;
   font-size: 40px;
   font-weight: 400;
   line-height: 45px;
@@ -246,7 +246,7 @@
 }
 
 .insight-post-page .content-wrapper h2 {
-  font-family: Satoshi, Arial, sans-serif;
+  font-family:  Satoshi, Arial, sans-serif;
   font-size: 40px;
   font-weight: 400;
   line-height: 45px;
@@ -255,7 +255,7 @@
 }
 
 .insight-post-page .content-wrapper h3 {
-  font-family: Satoshi, Arial, sans-serif;
+  font-family:  Satoshi, Arial, sans-serif;
   font-size: 24px;
   font-weight: 400;
   line-height: 34px;
@@ -265,7 +265,7 @@
 .insight-post-page .content-wrapper h4,
 .insight-post-page .content-wrapper h5,
 .insight-post-page .content-wrapper h6 {
-  font-family: Satoshi, Arial, sans-serif;
+  font-family:  Satoshi, Arial, sans-serif;
   font-weight: 400;
   color: var(--heading);
 }
@@ -289,7 +289,7 @@
 }
 
 .insight-post-page .content-wrapper blockquote {
-  font-family: Satoshi, Arial, sans-serif;
+  font-family:  Satoshi, Arial, sans-serif;
   font-size: 20px;
   font-weight: 400;
   font-style: italic;
@@ -306,7 +306,7 @@
 /* Right sidebar: search + promo */
 .insight-post-page .search-card .search-title,
 .insight-post-page .promo-title {
-  font-family: Satoshi, Arial, sans-serif;
+  font-family:  Satoshi, Arial, sans-serif;
   font-size: 20px;
   font-weight: 400;
   line-height: 30px;
@@ -315,7 +315,7 @@
 
 .insight-post-page .search-card .search-input,
 .insight-post-page .promo-input {
-  font-family: Satoshi, Arial, sans-serif;
+  font-family:  Satoshi, Arial, sans-serif;
   font-size: 14px;
   font-weight: 400;
   line-height: 26px;
@@ -330,14 +330,14 @@
 
 .insight-post-page .search-card .search-button,
 .insight-post-page .promo-btn {
-  font-family: Satoshi, Arial, sans-serif;
+  font-family:  Satoshi, Arial, sans-serif;
   font-size: 14px;
   font-weight: 500;
   line-height: 26px;
 }
 
 .insight-post-page .search-card .result-title {
-  font-family: Satoshi, Arial, sans-serif;
+  font-family:  Satoshi, Arial, sans-serif;
   font-size: 14px;
   font-weight: 500;
   line-height: 26px;
@@ -346,7 +346,7 @@
 
 .insight-post-page .search-card .result-excerpt,
 .insight-post-page .search-card .no-results {
-  font-family: Satoshi, Arial, sans-serif;
+  font-family:  Satoshi, Arial, sans-serif;
   font-size: 14px;
   font-weight: 400;
   line-height: 26px;
@@ -354,7 +354,7 @@
 }
 
 .insight-post-page .promo-text {
-  font-family: Satoshi, Arial, sans-serif;
+  font-family:  Satoshi, Arial, sans-serif;
   font-size: 16px;
   font-weight: 400;
   line-height: 26px;
@@ -363,7 +363,7 @@
 
 .insight-post-page .promo-label,
 .insight-post-page .from-group-title {
-  font-family: Satoshi, Arial, sans-serif;
+  font-family:  Satoshi, Arial, sans-serif;
   font-size: 14px;
   font-weight: 500;
   line-height: 26px;
@@ -371,7 +371,7 @@
 }
 
 .insight-post-page .promo-status {
-  font-family: Satoshi, Arial, sans-serif;
+  font-family:  Satoshi, Arial, sans-serif;
   font-size: 14px;
   font-weight: 400;
   line-height: 26px;
