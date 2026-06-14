@@ -1454,15 +1454,28 @@ console.log("solutionCategories", solutionCategories);
                     display: block;
                     width: 100%;
                 }
-                                .header-contact-us .button-secondary-light.nav-btn:hover {
+                                .navbar-2:not(.navbar-dark-text) .header-contact-us .button-secondary-light.nav-btn:hover,
+                .navbar-2.scrolled .header-contact-us .button-secondary-light.nav-btn:hover {
                     background: rgba(255, 255, 255, 0.1) !important;
                     border-color: rgba(255, 255, 255, 0.16) !important;
                 }
-                .header-contact-us .button-secondary-light.nav-btn:hover .button-secondary-light-text-3.nav-btn {
+                .navbar-2:not(.navbar-dark-text) .header-contact-us .button-secondary-light.nav-btn:hover .button-secondary-light-text-3.nav-btn,
+                .navbar-2.scrolled .header-contact-us .button-secondary-light.nav-btn:hover .button-secondary-light-text-3.nav-btn {
                     color: #fff !important;
                 }
-                .header-contact-us .button-secondary-light.nav-btn:hover .nav-icon-dark {
+                .navbar-2:not(.navbar-dark-text) .header-contact-us .button-secondary-light.nav-btn:hover .nav-icon-dark,
+                .navbar-2.scrolled .header-contact-us .button-secondary-light.nav-btn:hover .nav-icon-dark {
                     filter: brightness(0) invert(1);
+                }
+                .navbar-2.navbar-dark-text:not(.scrolled) .header-contact-us .button-secondary-light.nav-btn:hover {
+                    background: rgba(0, 0, 0, 0.1) !important;
+                    border-color: rgba(0, 0, 0, 0.2) !important;
+                }
+                .navbar-2.navbar-dark-text:not(.scrolled) .header-contact-us .button-secondary-light.nav-btn:hover .button-secondary-light-text-3.nav-btn {
+                    color: #666 !important;
+                }
+                .navbar-2.navbar-dark-text:not(.scrolled) .header-contact-us .button-secondary-light.nav-btn:hover .nav-icon-dark {
+                    filter: none !important;
                 }
                 .dropdown {
                     position: relative;

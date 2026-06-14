@@ -296,7 +296,7 @@ export default function IndustriesSection({
                           </div>
                           <Link
                             href="/coming-soon"
-                            className="title-button transition-none active-button w-inline-block"
+                            className="title-button transition-none active-button w-inline-block no-hover"
                           >
                             <div className="title-button-text">View More</div>
 
@@ -355,7 +355,7 @@ export default function IndustriesSection({
                 href="/contact-us"
                 data-gn-book-meeting="modal"
                 data-w-id="2508fbb2-8c84-a30d-a44c-a22c87bd4b73"
-                className="button-secondary-light hero-secondary-button w-inline-block"
+                className="button-secondary-light hero-secondary-button w-inline-block no-hover"
               >
                 <div className="button-secondary-light-text-2">
                   Book a meeting
@@ -363,7 +363,7 @@ export default function IndustriesSection({
                 <div className="arrows-container cta">
                   <Image
                     alt="Icon"
-                    src="https://cdn.prod.website-files.com/68d276a2319df5bdcc752026/6937e4382716cdf25ad0f3d5_date-icon-light.svg"
+                    src="https://cdn.prod.website-files.com/68d276a2319df5bdcc752026/6937e33ae69eb8ce6ab3de51_date-icon-dark.svg"
                     width={16}
                     height={16}
                     className="dark-arrow _16"
@@ -474,21 +474,40 @@ export default function IndustriesSection({
                     }
                 }
                 /* Override View More button hover effect */
-                .title-button:hover {
+                .title-button.no-hover:hover {
                     background-color: transparent !important;
                     background-image: none !important;
+                    color: var(--primary) !important;
                 }
-                .active-button:hover {
-                    background-color: transparent !important;
-                    background-image: none !important;
+                .title-button.no-hover:hover .title-button-text {
+                    color: var(--primary) !important;
                 }
-                .title-button.transition-none.active-button:hover {
+                .industries-slider-content .title-button.no-hover:hover {
                     background-color: transparent !important;
                     color: var(--primary) !important;
                 }
-                .industries-slider-content .title-button.transition-none.active-button:hover {
-                    background-color: transparent !important;
+                .industries-slider-content .title-button.no-hover:hover .title-button-text {
                     color: var(--primary) !important;
+                }
+                /* Override Book a meeting button hover effect */
+                .button-secondary-light.no-hover:hover {
+                    background-color: #e6e6e6 !important;
+                    transform: none !important;
+                    box-shadow: none !important;
+                    border-color: #cfcfcf !important;
+                }
+                .button-secondary-light.no-hover:hover .button-secondary-light-text-2 {
+                    color: #152423 !important;
+                }
+                .button-secondary-light.no-hover:hover .dark-arrow._16 {
+                    opacity: 1 !important;
+                    filter: none !important;
+                }
+                .button-secondary-light.no-hover:hover .arrow-button._16 {
+                    opacity: 0 !important;
+                }
+                .button-secondary-light.no-hover:hover .arrows-container {
+                    transform: none !important;
                 }
                 @media only screen and (max-width: 1320px) {
                     #industry-container {

@@ -66,7 +66,7 @@ function ReadArticleButton({
   return (
     <Link
       href={href}
-      className={`title-button transition-none active-button w-inline-block ${className}`}
+      className={`title-button transition-none active-button w-inline-block no-hover ${className}`}
     >
       <div className="title-button-text">Read Article</div>
       <LuMoveUpRight className="title-button-text" />
@@ -128,12 +128,16 @@ export default function InsightsClient({ data, blogs }: InsightsClientProps) {
     <div className="insights-hub-page">
       {/* Hero Section */}
       <section className="hub-hero">
-        <div className="section-head-content-subtitle">
-          <div className="section-head-subtitle-dot" />
-          <p className="section-head-subtitle-content subtitle-secondary-content">{subtitle}</p>
+        <div className="section-head section-head-two" style={{ marginBottom: "40px" }}>
+          <div className="section-head-content-subtitle">
+            <div className="section-head-subtitle-dot" />
+            <p className="section-head-subtitle-content subtitle-secondary-content">{subtitle}</p>
+          </div>
+          <div className="title title-two">
+            <h1 className="title-h2-2 title-h2-two hub-title">{heroTitle}</h1>
+            <p className="section-title-description hub-subtitle">{heroSubtitle}</p>
+          </div>
         </div>
-        <h1 className="hub-title">{heroTitle}</h1>
-        <p className="hub-subtitle">{heroSubtitle}</p>
 
         <div className="search-container">
           <input
@@ -150,7 +154,7 @@ export default function InsightsClient({ data, blogs }: InsightsClientProps) {
 
         <div className="hub-socials ">
           <span className="section-subtitle text-xl mb-0" style={{ marginBottom: 0 }}>
-            Follow us for the latest insights -&gt;
+            Follow us for the latest insights and updates!
           </span>
           <div className="social-icons">
             <a href="#" className="s-icon fb">
@@ -249,10 +253,14 @@ export default function InsightsClient({ data, blogs }: InsightsClientProps) {
         <>
           {/* Featured Blogs */}
           <section className="featured-section">
-            <h2 className="title-h2-2 title-h2-two">
-              {featuredTitle}
-            </h2>
-            <p className="section-subtitle text-xl">{featuredSubtitle}</p>
+            <div className="section-head section-head-two">
+              <div className="title title-two">
+                <h2 className="title-h2-2 title-h2-two" style={{ margin: 0 }}>
+                  {featuredTitle}
+                </h2>
+                <p className="section-title-description">{featuredSubtitle}</p>
+              </div>
+            </div>
 
             {featuredBlogs.length >= 3 && (
               <div className="featured-grid">
@@ -367,10 +375,14 @@ export default function InsightsClient({ data, blogs }: InsightsClientProps) {
 
           {/* Latest Blogs */}
           <section className="latest-section">
-            <h2 className="title-h2-2 title-h2-two">
-              {latestTitle}
-            </h2>
-            <p className="section-subtitle text-xl">{latestSubtitle}</p>
+            <div className="section-head section-head-two">
+              <div className="title title-two">
+                <h2 className="title-h2-2 title-h2-two" style={{ margin: 0 }}>
+                  {latestTitle}
+                </h2>
+                <p className="section-title-description">{latestSubtitle}</p>
+              </div>
+            </div>
 
             <div className="latest-grid">
               {currentDisplayBlogs.map((blog) => (
@@ -444,17 +456,17 @@ export default function InsightsClient({ data, blogs }: InsightsClientProps) {
         /* Hero Section */
         .hub-hero {
           text-align: left;
-          padding: 100px 20px 80px;
+          padding: 100px 40px 80px;
           max-width: 1400px;
           margin: 0 auto;
         }
 
         .hub-title {
-          margin-bottom: 24px;
+          margin-bottom: 0;
         }
 
         .hub-subtitle {
-          margin-bottom: 40px;
+          margin-bottom: 0;
           max-width: 760px;
         }
 
@@ -684,8 +696,14 @@ export default function InsightsClient({ data, blogs }: InsightsClientProps) {
           background-image: none !important;
         }
 
-        :global(.insights-hub-page .title-button:hover .title-button-text) {
-          color: #ffffff !important;
+        :global(.insights-hub-page .title-button.no-hover:hover) {
+          background-color: transparent !important;
+          background-image: none !important;
+          color: var(--primary) !important;
+        }
+
+        :global(.insights-hub-page .title-button.no-hover:hover .title-button-text) {
+          color: var(--primary) !important;
         }
 
         /* Pagination */

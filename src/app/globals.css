@@ -11891,36 +11891,36 @@ figure {
   padding-bottom: 2px;
 }
 
-.title-button.transition-none.active-button:hover {
+.title-button.transition-none.active-button:not(.no-hover):hover {
   color: #fff !important;
 }
 
-.title-button.transition-none.active-button:hover .title-button-text,
-.title-button.transition-none.active-button:hover .button-text.active-button-text,
-.title-button.transition-none.active-button:hover .button-text {
+.title-button.transition-none.active-button:not(.no-hover):hover .title-button-text,
+.title-button.transition-none.active-button:not(.no-hover):hover .button-text.active-button-text,
+.title-button.transition-none.active-button:not(.no-hover):hover .button-text {
   color: #fff !important;
 }
 
-.industries-slider-content .title-button.transition-none.active-button:hover {
+.industries-slider-content .title-button.transition-none.active-button:not(.no-hover):hover {
  
   color: #fff !important;
 }
 
-.industries-slider-content .title-button.transition-none.active-button:hover .title-button-text,
-.industries-slider-content .title-button.transition-none.active-button:hover .button-text.active-button-text,
-.industries-slider-content .title-button.transition-none.active-button:hover .button-text {
+.industries-slider-content .title-button.transition-none.active-button:not(.no-hover):hover .title-button-text,
+.industries-slider-content .title-button.transition-none.active-button:not(.no-hover):hover .button-text.active-button-text,
+.industries-slider-content .title-button.transition-none.active-button:not(.no-hover):hover .button-text {
   color: #fff !important;
 }
 
-.insights-hub-page .title-button.transition-none.active-button:hover {
+.insights-hub-page .title-button.transition-none.active-button:not(.no-hover):hover {
   background-color: transparent !important;
   background-image: none !important;
   color: #fff !important;
 }
 
-.insights-hub-page .title-button.transition-none.active-button:hover .title-button-text,
-.insights-hub-page .title-button.transition-none.active-button:hover .button-text.active-button-text,
-.insights-hub-page .title-button.transition-none.active-button:hover .button-text {
+.insights-hub-page .title-button.transition-none.active-button:not(.no-hover):hover .title-button-text,
+.insights-hub-page .title-button.transition-none.active-button:not(.no-hover):hover .button-text.active-button-text,
+.insights-hub-page .title-button.transition-none.active-button:not(.no-hover):hover .button-text {
   color: #fff !important;
 }
 
@@ -33518,6 +33518,14 @@ html.wf-design-mode .preloader {
 }
 
 
+/* Non-homepage: disable hover effect on Get in Touch nav button */
+.navbar-dark-text:not(.scrolled) .button-secondary-light.nav-btn:hover {
+  transform: none !important;
+  box-shadow: none !important;
+  background: #000 !important;
+  border-color: #000 !important;
+}
+
 /* Dropdown positioning */
 .dropdown {
   position: relative;
@@ -34635,3 +34643,42 @@ a.btn-outline:hover {
 /* Custom font utilities */
 .font-satoshi { font-family:  Satoshi, Arial, sans-serif; }
 .font-self-sand { font-family:  Satoshi, Arial, sans-serif; }
+
+/* ── Remove hover effect from all Book a meeting buttons site-wide ── */
+
+/* Light variant (grey background) */
+.button-secondary-light:not(.nav-btn):hover {
+  transform: none !important;
+  box-shadow: none !important;
+  background-color: #e6e6e6 !important;
+  border-color: #cfcfcf !important;
+}
+.button-secondary-light:not(.nav-btn):hover .button-secondary-light-text,
+.button-secondary-light:not(.nav-btn):hover .button-secondary-light-text-2 {
+  color: inherit !important;
+}
+.button-secondary-light:not(.nav-btn):hover .dark-arrow._16 {
+  opacity: 0 !important;
+}
+.button-secondary-light:not(.nav-btn):hover .arrow-button._16 {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+/* Dark variant */
+.button-secondary-dark:hover {
+  background-color: #fcfcfc1a !important;
+  border-color: #fcfcfc1a !important;
+  transform: none !important;
+  box-shadow: none !important;
+}
+.button-secondary-dark:hover .button-secondary-dark-text,
+.button-secondary-dark:hover .button-secondary-dark-text-responsive {
+  color: #fcfcfc !important;
+}
+.button-secondary-dark:hover .arrow-button._16 {
+  opacity: 1 !important;
+}
+.button-secondary-dark:hover .dark-arrow._16 {
+  opacity: 0 !important;
+}

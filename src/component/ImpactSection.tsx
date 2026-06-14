@@ -110,7 +110,7 @@ export default function ImpactSection({ data }: { data?: ImpactSectionData }) {
                             <div className="text-block-12 text-block-12-responsive">Start a project</div>
                             <Image alt="arrow-top-right" src="https://cdn.prod.website-files.com/68d276a2319df5bdcc752026/68dd105094d90e0a289e4185_arrow-top-right-white.svg" width={16} height={16} className="button-icon" />
                         </Link>
-                        <Link href="/contact-us" data-gn-book-meeting="modal" className="button-secondary-dark button-secondary-dark-responsive w-inline-block">
+                        <Link href="/contact-us" data-gn-book-meeting="modal" className="button-secondary-dark  w-inline-block">
                             <div className="button-secondary-dark-text button-secondary-dark-text-responsive">Book a meeting</div>
                             <div className="arrows-container cta">
                                 <Image src="https://cdn.prod.website-files.com/68d276a2319df5bdcc752026/6937e4382716cdf25ad0f3d5_date-icon-light.svg" alt="Icon" width={16} height={16} className="arrow-button _16 v2" />

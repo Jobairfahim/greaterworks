@@ -60,13 +60,13 @@ export default function ServicesSection({ data }: { data?: ServiceSectionData })
                                     onMouseLeave={() => setHoveredIndex(null)}
                                 >
                                     <div className="services-listing-title">{s.title}</div>
-                                    <Image 
+                                    {/* <Image 
                                         alt="arrow-top-right" 
                                         src={hoveredIndex === i ? "https://res.cloudinary.com/dsoilebvu/image/upload/v1778074601/68dd0ede1e60a7db30b19932_arrow-top-right_1_ufxclp.svg" : "https://cdn.prod.website-files.com/68d276a2319df5bdcc752026/68dd105094d90e0a289e4185_arrow-top-right-white.svg"} 
                                         width={24} 
                                         height={24} 
                                         className="button-icon service-listing-icon-white" 
-                                    />
+                                    /> */}
                                     <Image 
                                         alt="arrow-top-right" 
                                         src={hoveredIndex === i ? "https://res.cloudinary.com/dsoilebvu/image/upload/v1778074601/68dd0ede1e60a7db30b19932_arrow-top-right_1_ufxclp.svg" : "https://cdn.prod.website-files.com/68d276a2319df5bdcc752026/6942b22dc1dbf27cb5b5a394_arrow-up-right-grey.png"} 
