@@ -33511,6 +33511,14 @@ html.wf-design-mode .preloader {
 }
 
 
+/* Non-homepage: disable hover effect on Get in Touch nav button */
+.navbar-dark-text .button-secondary-light.nav-btn:hover {
+  transform: none !important;
+  box-shadow: none !important;
+  background: #000 !important;
+  border-color: #000 !important;
+}
+
 /* Dropdown positioning */
 .dropdown {
   position: relative;
