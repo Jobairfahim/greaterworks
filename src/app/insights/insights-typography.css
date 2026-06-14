@@ -125,8 +125,8 @@
   color: var(--primary);
 }
 
-.insights-hub-page .title-button.transition-none.active-button:hover,
-.insights-hub-page .title-button.transition-none.active-button:hover .title-button-text {
+.insights-hub-page .title-button.transition-none.active-button:not(.no-hover):hover,
+.insights-hub-page .title-button.transition-none.active-button:not(.no-hover):hover .title-button-text {
   color: var(--heading) !important;
 }
 

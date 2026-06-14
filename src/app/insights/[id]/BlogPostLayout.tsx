@@ -150,9 +150,8 @@ export default function BlogPostLayout({
                   type="text"
                   name="fullName"
                   required
-                  className="field-form full text-field-2 service-form-field promo-input w-input h-2"
+                  className="field-form full text-field-2 service-form-field promo-input w-input"
                   placeholder="Enter your full name "
-                  style={{ height: "4px" }}
                 />
               </div>
               <div className="form-group service-form-group promo-input-group">
@@ -163,9 +162,8 @@ export default function BlogPostLayout({
                   type="email"
                   name="email"
                   required
-                  className="field-form full service-form-field promo-input w-input h-2"
+                  className="field-form full service-form-field promo-input w-input"
                   placeholder="Enter your email address"
-                  style={{ height: "4px" }}
                 />
               </div>
               <button
@@ -462,28 +460,16 @@ export default function BlogPostLayout({
         }
 
         .promo-btn {
-          padding: 12px 24px;
-          border-radius: 8px;
-          border: none;
           cursor: pointer;
-          transition: all 0.2s ease;
         }
 
         .promo-btn.block {
           width: 100%;
-          height: 52px;
           margin-top: 4px;
-          border-radius: 0;
-          background: #9433e9;
-          color: white;
           display: flex;
           align-items: center;
           justify-content: center;
-          gap: 12px;
-        }
-
-        .promo-btn.block:hover {
-          background: #8129d1;
+          border-radius: 38px;
         }
 
         .promo-btn.block:disabled {
