@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { fetchPrivacyPolicyData } from "@/lib/api";
 import { PrivacyPolicyData } from "@/types/privacy-policy";
- // ✅ REQUIRED
+
 
 const defaultPrivacyContent = {
   title: "Privacy Policy",
@@ -73,7 +73,6 @@ export default function PrivacyPolicyPage() {
       <section className="section privacy-policy-section">
         <div className="w-layout-blockcontainer container-v2 w-container">
 
-          {/* IMPORTANT WRAPPER FIX */}
           <div
           className="ck-content ck-editor__editable privacy-ck-wrapper"
           >
