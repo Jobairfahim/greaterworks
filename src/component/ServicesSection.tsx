@@ -6,15 +6,15 @@ import { useState } from "react";
 import { ServiceSectionData } from "@/types/homepage";
 
 const services = [
-    { title: "Custom Software Development", href: "/custom-software-development" },
-    { title: "Web App Development", href: "/web-app-development" },
-    { title: "Mobile App Development", href: "/mobile-app-development" },
-    { title: "UI/UX Design", href: "/ui-ux-design" },
-    { title: "Custom Enterprise Solutions", href: "/enterprise-solutions" },
-    { title: "AI & Machine Learning", href: "/artificial-intelligence-machine-learning" },
-    { title: "Blockchain Development", href: "/blockchain-development" },
-    { title: "DevOps & CloudOps", href: "/devops-it-consulting" },
-    { title: "Quality Assurance & Testing", href: "/quality-assurance-testing" },
+    { title: "Custom Software Development", href: "services/custom-software-development" },
+    { title: "Web App Development", href: "services/web-app-development" },
+    { title: "Mobile App Development", href: "services/mobile-app-development" },
+    { title: "UI/UX Design", href: "services/ui-ux-design" },
+    { title: "Custom Enterprise Solutions", href: "services/enterprise-solutions" },
+    { title: "AI & Machine Learning", href: "services/artificial-intelligence-machine-learning" },
+    { title: "Blockchain Development", href: "services/blockchain-development" },
+    { title: "DevOps & CloudOps", href: "services/devops-it-consulting" },
+    { title: "Quality Assurance & Testing", href: "services/quality-assurance-testing" },
 ];
 
 export default function ServicesSection({ data }: { data?: ServiceSectionData }) {

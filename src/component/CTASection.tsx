@@ -15,10 +15,10 @@ export default function CTASection() {
                                 <div className="text-block-22">Start a project</div>
                                 <Image alt="arrow-top-right" src="https://cdn.prod.website-files.com/68d276a2319df5bdcc752026/68dd105094d90e0a289e4185_arrow-top-right-white.svg" width={16} height={16} className="button-icon" />
                             </Link>
-                            <Link href="/contact-us" className="button-secondary-light hero-secondary-button w-inline-block">
+                            <Link href="/contact-us" className="button-secondary-light hero-secondary-button w-inline-block no-hover">
                                 <div className="button-secondary-light-text-2">Book a meeting</div>
                                 <div className="arrows-container cta">
-                                    <Image alt="Icon" src="https://cdn.prod.website-files.com/68d276a2319df5bdcc752026/6937e4382716cdf25ad0f3d5_date-icon-light.svg" width={16} height={16} className="dark-arrow _16" />
+                                    <Image alt="Icon" src="https://cdn.prod.website-files.com/68d276a2319df5bdcc752026/6937e33ae69eb8ce6ab3de51_date-icon-dark.svg" width={16} height={16} className="dark-arrow _16" />
                                     <Image alt="Icon" src="https://cdn.prod.website-files.com/68d276a2319df5bdcc752026/6937e33ae69eb8ce6ab3de51_date-icon-dark.svg" width={16} height={16} className="arrow-button _16" />
                                 </div>
                             </Link>
@@ -32,6 +32,26 @@ export default function CTASection() {
                         padding-top: 32px;
                         padding-bottom: 32px;
                     }
+                }
+                /* Override Book a meeting button hover effect */
+                .button-secondary-light.no-hover:hover {
+                    background-color: #e6e6e6 !important;
+                    transform: none !important;
+                    box-shadow: none !important;
+                    border-color: #cfcfcf !important;
+                }
+                .button-secondary-light.no-hover:hover .button-secondary-light-text-2 {
+                    color: #152423 !important;
+                }
+                .button-secondary-light.no-hover:hover .dark-arrow._16 {
+                    opacity: 1 !important;
+                    filter: none !important;
+                }
+                .button-secondary-light.no-hover:hover .arrow-button._16 {
+                    opacity: 0 !important;
+                }
+                .button-secondary-light.no-hover:hover .arrows-container {
+                    transform: none !important;
                 }
             `}</style>
         </>

@@ -1423,6 +1423,9 @@ console.log("solutionCategories", solutionCategories);
                 .navbar-2.navbar-dark-text .nav-icon-dark {
                     filter: none !important;
                 }
+                .navbar-2.navbar-dark-text.scrolled .nav-icon-dark {
+                    filter: brightness(0) invert(1) !important;
+                }
                 .navbar-2.scrolled {
                     background: rgba(17, 24, 39, 0.78) !important;
                     backdrop-filter: blur(20px) saturate(180%) !important;

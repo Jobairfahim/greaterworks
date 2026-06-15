@@ -1349,6 +1349,9 @@ export default async function CustomSoftwareDevelopmentPage({
         .title-button.transition-none.active-button.no-hover:hover .active-button-text {
           color: var(--primary) !important;
         }
+        .title-button.transition-none.active-button.no-hover:hover svg {
+          color: var(--primary) !important;
+        }
 
         .button-secondary-dark.no-hover:hover {
           background-color: #fcfcfc1a !important;
