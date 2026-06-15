@@ -557,6 +557,9 @@ export default function InsightsClient({ data, blogs }: InsightsClientProps) {
         }
 
         .feat-title-large {
+          font-size: 24px;
+          font-weight: 400;
+          color: #525252 !important;
           margin-bottom: 12px;
         }
 
