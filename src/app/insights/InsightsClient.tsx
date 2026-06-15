@@ -3,15 +3,6 @@
 import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import {
-  FaFacebookF,
-  FaXTwitter,
-  FaInstagram,
-  FaPinterestP,
-  FaYoutube,
-  FaLinkedinIn,
-  FaGithub,
-} from "react-icons/fa6";
 import { IoSearchOutline } from "react-icons/io5";
 import ContactSection from "@/component/ContactSection";
 import { Blog, BlogPageData } from "@/types/insights";
@@ -110,16 +101,18 @@ export default function InsightsClient({ data, blogs }: InsightsClientProps) {
   );
 
   // CMS-driven text with safe fallbacks
-  const subtitle = data?.serviceTagline || "What we offer";
-  const heroTitle = data?.pageTitle ?? "Latest Tech and Trends";
+  const subtitle = data?.serviceTagline || "Latest Tech and Trends";
+  const subtitle2 = data?.serviceTagline || "Featured Blogs";
+  const subtitle3 = data?.serviceTagline || "Latest Blogs";
+  // const heroTitle = data?.pageTitle ?? "Latest Tech and Trends";
   const heroSubtitle =
     data?.pageDescription ??
     "Get ahead with fresh insights, hands-on guides, and smart strategies to help you navigate the world of tech, eCommerce, and digital marketing with confidence.";
-  const featuredTitle = data?.secondTitle ?? "Featured Blogs";
+
   const featuredSubtitle =
     data?.secondDiscription ??
     "Check out our top blogs, packed with expert tips, smart strategies, and fresh insights to keep you ahead in tech, eCommerce, and digital trends.";
-  const latestTitle = data?.lastTitle ?? "Latest Blogs";
+
   const latestSubtitle =
     data?.lastDiscription ??
     "Your go-to spot for fresh ideas, expert tips, and breakthrough insights in the digital world.";
@@ -128,18 +121,7 @@ export default function InsightsClient({ data, blogs }: InsightsClientProps) {
     <div className="insights-hub-page">
       {/* Hero Section */}
       <section className="hub-hero">
-        <div className="section-head section-head-two" style={{ marginBottom: "40px" }}>
-          <div className="section-head-content-subtitle">
-            <div className="section-head-subtitle-dot" />
-            <p className="section-head-subtitle-content subtitle-secondary-content">{subtitle}</p>
-          </div>
-          <div className="title title-two">
-            <h1 className="title-h2-2 title-h2-two hub-title">{heroTitle}</h1>
-            <p className="section-title-description hub-subtitle">{heroSubtitle}</p>
-          </div>
-        </div>
-
-        <div className="search-container">
+        <div className="search-container" style={{ marginBottom: "40px" }}>
           <input
             type="text"
             placeholder="Search"
@@ -152,34 +134,16 @@ export default function InsightsClient({ data, blogs }: InsightsClientProps) {
           </span>
         </div>
 
-        <div className="hub-socials ">
-          <span className="section-subtitle text-xl mb-0" style={{ marginBottom: 0 }}>
-            Follow us for the latest insights and updates!
-          </span>
-          <div className="social-icons">
-            <a href="#" className="s-icon fb">
-              <FaFacebookF size={18} />
-            </a>
-            <a href="#" className="s-icon x">
-              <FaXTwitter size={18} />
-            </a>
-            <a href="#" className="s-icon ig">
-              <FaInstagram size={18} />
-            </a>
-            <a href="#" className="s-icon pin">
-              <FaPinterestP size={18} />
-            </a>
-            <a href="#" className="s-icon yt">
-              <FaYoutube size={18} />
-            </a>
-            <a href="#" className="s-icon li">
-              <FaLinkedinIn size={18} />
-            </a>
-            <a href="#" className="s-icon gh">
-              <FaGithub size={18} />
-            </a>
-          </div>
+        <div className="section-head section-head-two" style={{ marginBottom: "40px" }}>
+              <div className="title title-two">
+                <div className="section-head-content-subtitle">
+                  <div className="section-head-subtitle-dot" />
+                  <p className="section-head-subtitle-content subtitle-secondary-content">{subtitle}</p>
+                </div>
+                <p className="section-title-description">{heroSubtitle}</p>
+              </div>
         </div>
+
       </section>
 
       {searchQuery.trim() !== "" ? (
@@ -255,9 +219,13 @@ export default function InsightsClient({ data, blogs }: InsightsClientProps) {
           <section className="featured-section">
             <div className="section-head section-head-two">
               <div className="title title-two">
-                <h2 className="title-h2-2 title-h2-two" style={{ margin: 0 }}>
+                <div className="section-head-content-subtitle">
+                  <div className="section-head-subtitle-dot" />
+                  <p className="section-head-subtitle-content subtitle-secondary-content">{subtitle2}</p>
+                </div>
+                {/* <h2 className="title-h2-2 title-h2-two" style={{ margin: 0 }}>
                   {featuredTitle}
-                </h2>
+                </h2> */}
                 <p className="section-title-description">{featuredSubtitle}</p>
               </div>
             </div>
@@ -377,9 +345,10 @@ export default function InsightsClient({ data, blogs }: InsightsClientProps) {
           <section className="latest-section">
             <div className="section-head section-head-two">
               <div className="title title-two">
-                <h2 className="title-h2-2 title-h2-two" style={{ margin: 0 }}>
-                  {latestTitle}
-                </h2>
+                <div className="section-head-content-subtitle">
+                  <div className="section-head-subtitle-dot" />
+                  <p className="section-head-subtitle-content subtitle-secondary-content">{subtitle3}</p>
+                </div>
                 <p className="section-title-description">{latestSubtitle}</p>
               </div>
             </div>
@@ -473,7 +442,7 @@ export default function InsightsClient({ data, blogs }: InsightsClientProps) {
         .search-container {
           position: relative;
           max-width: 500px;
-          margin: 0 0 40px;
+          margin: 0 auto 40px;
         }
 
         .hub-search-input {
@@ -550,6 +519,7 @@ export default function InsightsClient({ data, blogs }: InsightsClientProps) {
         }
 
         .section-title {
+        
           text-align: left;
           margin-bottom: 16px;
         }
@@ -666,6 +636,9 @@ export default function InsightsClient({ data, blogs }: InsightsClientProps) {
         }
 
         .latest-title {
+          font-size: 20px;
+          font-weight: 400;
+          color: #525252 !important;
           margin-bottom: 12px;
         }
 

@@ -7,10 +7,10 @@ import { fetchNavbarData } from "@/lib/api";
 import { NavbarData } from "@/types/navbar";
 
 const defaultSocials = [
-    { icon: "https://cdn.prod.website-files.com/68d276a2319df5bdcc752026/68e4c5c9fbdfaf41fb328b75_linkedin.svg", hover: "https://cdn.prod.website-files.com/68d276a2319df5bdcc752026/68e4c650d294d24baad93e63_linkedin-white.svg", href: "https://www.linkedin.com/company/amento-tech" },
-    { icon: "https://cdn.prod.website-files.com/68d276a2319df5bdcc752026/69008193d2fcbc0bc3d256c5_youtube.svg", hover: "https://cdn.prod.website-files.com/68d276a2319df5bdcc752026/690081f11fd831d2aa593a98_youtube-white.svg", href: "https://www.youtube.com/@amentotech" },
-    { icon: "https://cdn.prod.website-files.com/68d276a2319df5bdcc752026/68e4c5c963753d1948850474_instagram.svg", hover: "https://cdn.prod.website-files.com/68d276a2319df5bdcc752026/68e4c6501992c6b0b7d4220a_instagram-white.svg", href: "https://www.instagram.com/amentotech" },
-    { icon: "https://cdn.prod.website-files.com/68d276a2319df5bdcc752026/69008182dfcd3ca8a63d756b_x.svg", hover: "https://cdn.prod.website-files.com/68d276a2319df5bdcc752026/690081f116941397490b48b8_x-white.svg", href: "https://x.com/amentotech" },
+    { icon: "https://cdn.prod.website-files.com/68d276a2319df5bdcc752026/68e4c5c9fbdfaf41fb328b75_linkedin.svg", hover: "https://cdn.prod.website-files.com/68d276a2319df5bdcc752026/68e4c650d294d24baad93e63_linkedin-white.svg", href: "" },
+    { icon: "https://cdn.prod.website-files.com/68d276a2319df5bdcc752026/69008193d2fcbc0bc3d256c5_youtube.svg", hover: "https://cdn.prod.website-files.com/68d276a2319df5bdcc752026/690081f11fd831d2aa593a98_youtube-white.svg", href: "" },
+    { icon: "https://cdn.prod.website-files.com/68d276a2319df5bdcc752026/68e4c5c963753d1948850474_instagram.svg", hover: "https://cdn.prod.website-files.com/68d276a2319df5bdcc752026/68e4c6501992c6b0b7d4220a_instagram-white.svg", href: "" },
+    { icon: "https://cdn.prod.website-files.com/68d276a2319df5bdcc752026/69008182dfcd3ca8a63d756b_x.svg", hover: "https://cdn.prod.website-files.com/68d276a2319df5bdcc752026/690081f116941397490b48b8_x-white.svg", href: "" },
 ];
 
 const fallbackFooterCompany = [
